@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowUp } from './Icons';
+import { Sparkles, ArrowUp, WineMeatBrandLogo } from './Icons';
 
 export default function Footer({ activeCategory }) {
   const categoryTitle = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
@@ -39,15 +39,18 @@ export default function Footer({ activeCategory }) {
         {/* 底部資訊欄 */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-charcoal-muted/30 text-xs text-parchment-300">
           <div className="space-y-3 md:col-span-2">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">
-                {activeCategory === 'beef' ? '🥩' : activeCategory === 'pork' ? '🐖' : '🐟'}
-              </span>
-              <span className="font-serif font-bold text-xl text-white tracking-tight">
-                MEAT & SEAFOOD GUIDE
-              </span>
+            <div className="flex items-center gap-3">
+              <WineMeatBrandLogo className="w-9 h-9" />
+              <div className="flex flex-col">
+                <span className="font-serif font-bold text-xl text-white tracking-tight">
+                  酒肉朋友 <span className="text-xs font-mono font-normal text-amber-300/80">FAIR-WEATHER FRIENDS</span>
+                </span>
+                <span className="text-[11px] text-parchment-400 font-sans">
+                  肉品與海鮮部位選購 × 料理侍酒指南
+                </span>
+              </div>
             </div>
-            <p className="max-w-sm text-parchment-400 leading-relaxed font-sans">
+            <p className="max-w-sm text-parchment-400 leading-relaxed font-sans pt-1">
               全方位「肉品與海鮮部位選購 × 料理佐餐指南」，致力於將解剖分切、烹調火候與餐酒風味學整合成一站式決策流程。
             </p>
           </div>
@@ -73,7 +76,7 @@ export default function Footer({ activeCategory }) {
         {/* 版權與回頂部 */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-parchment-400">
           <div>
-            © {new Date().getFullYear()} 肉品與海鮮部位選購與料理指南. All rights reserved.
+            © {new Date().getFullYear()} 酒肉朋友 (Fair-Weather Friends). All rights reserved.
           </div>
 
           <button

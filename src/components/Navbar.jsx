@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Wine, Utensils, BookOpen, HelpCircle, Menu, X, Sparkles, Fish } from './Icons';
+import { Compass, Wine, Utensils, BookOpen, HelpCircle, Menu, X, Sparkles, WineMeatBrandLogo } from './Icons';
 
 export default function Navbar({ activeCategory, onSelectCategory }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,19 +24,22 @@ export default function Navbar({ activeCategory, onSelectCategory }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           
-          {/* 品牌識別 */}
+          {/* 品牌識別：酒肉朋友 */}
           <a href="#" className="flex items-center gap-3 group shrink-0">
-            <div className="w-11 h-11 rounded-lg bg-beef-burgundy flex items-center justify-center text-white shadow-md group-hover:bg-beef-red transition-colors">
-              <span className="text-2xl select-none">
-                {activeCategory === 'beef' ? '🥩' : activeCategory === 'pork' ? '🐖' : '🐟'}
-              </span>
+            <div className="relative">
+              <WineMeatBrandLogo className="w-11 h-11 shadow-md group-hover:scale-105 transition-transform" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif font-bold text-lg sm:text-xl tracking-tight text-charcoal flex items-center gap-1.5">
-                MEAT & SEAFOOD <span className="text-[10px] font-sans tracking-widest text-beef-burgundy px-1.5 py-0.5 border border-beef-burgundy rounded">GUIDE</span>
-              </span>
-              <span className="text-[11px] text-charcoal-muted tracking-wider hidden sm:inline">
-                肉品與海鮮部位選購 × 料理佐餐指南
+              <div className="flex items-center gap-2">
+                <span className="font-serif font-extrabold text-xl sm:text-2xl tracking-tight text-charcoal flex items-center gap-1.5">
+                  酒肉朋友
+                </span>
+                <span className="text-[10px] font-mono tracking-widest text-beef-burgundy px-1.5 py-0.5 border border-beef-burgundy/40 rounded bg-beef-burgundy/5 uppercase font-bold">
+                  FAIR-WEATHER
+                </span>
+              </div>
+              <span className="text-[11px] text-charcoal-muted tracking-wider hidden sm:inline font-sans">
+                肉品與海鮮部位選購 × 料理侍酒指南
               </span>
             </div>
           </a>
