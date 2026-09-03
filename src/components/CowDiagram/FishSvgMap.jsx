@@ -5,8 +5,8 @@ import { Info, Sparkles, ChevronRight } from '../Icons';
 export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName }) {
   const [hoveredPrimalId, setHoveredPrimalId] = useState(null);
 
-  const getPrimal = (id) => FISH_PRIMAL_AREAS.find((p) => p.id === id) || FISH_PRIMAL_AREAS[0];
-  const activePrimal = getPrimal(selectedPrimalId || hoveredPrimalId || 'fish-loin');
+  const getPrimal = (id) => FISH_PRIMAL_AREAS.find((p) => p.id === id) || FISH_PRIMAL_AREAS[2];
+  const activePrimal = getPrimal(selectedPrimalId || hoveredPrimalId || 'fish-dorsal');
 
   return (
     <div className="relative w-full bg-parchment-50 border border-parchment-300 rounded-2xl p-4 sm:p-6 shadow-sm overflow-hidden">
@@ -14,7 +14,7 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
       <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-parchment-200">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-charcoal-muted">
           <Info className="w-4 h-4 text-beef-burgundy" />
-          <span>點擊魚隻部位探索海鮮分切與料理配酒指南</span>
+          <span>點擊魚隻部位探索 9 大通用分切與料理指南</span>
         </div>
         <div className="text-xs text-charcoal-muted hidden sm:block">
           當前選中：<span className="font-bold text-beef-burgundy">{activePrimal.name} ({activePrimal.enName})</span>
@@ -33,6 +33,11 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
             <pattern id="fishEtchingLines" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
               <line x1="0" y1="0" x2="0" y2="8" stroke="#1C1917" strokeWidth="0.75" opacity="0.22" />
             </pattern>
+            {/* 交叉排線陰影 */}
+            <pattern id="fishEtchingCross" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="10" stroke="#1C1917" strokeWidth="0.75" opacity="0.25" />
+              <line x1="0" y1="0" x2="10" y2="0" stroke="#1C1917" strokeWidth="0.75" opacity="0.25" />
+            </pattern>
             {/* 魚鱗幾何紋理 */}
             <pattern id="fishScales" width="12" height="12" patternUnits="userSpaceOnUse">
               <path d="M 0,6 C 3,2 9,2 12,6 C 9,10 3,10 0,6 Z" fill="none" stroke="#1C1917" strokeWidth="0.6" opacity="0.2" />
@@ -42,7 +47,7 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
             </filter>
           </defs>
 
-          {/* 魚隻輪廓底稿背景 (魚鰭、魚尾、魚吻) */}
+          {/* 魚隻輪廓底稿背景 (背鰭、尾鰭、胸鰭、魚吻) */}
           <g className="opacity-90" fill="#DDE5E0" stroke="#1C1917" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             {/* 背鰭 (Dorsal Fin) */}
             <path d="M 380,130 C 440,90 560,95 620,150 L 590,165 L 420,160 Z" fill="#B9CCC2" />
@@ -66,7 +71,7 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
           </g>
 
           {/* ========================================================
-              魚類海鮮 6 大分切色塊主體 (Fish Primals)
+              魚類海鮮通用分切色塊主體 (Universal Fish Cuts)
               ======================================================== */}
 
           {/* 1. 魚頭部 (#D8963E 暖芥末赭黃) */}
@@ -93,11 +98,11 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               魚頭部
             </text>
             <text x="160" y="240" textAnchor="middle" fill="#1C1917" fontSize="12" opacity="0.9" className="font-serif italic pointer-events-none">
-              砂鍋·味噌湯膠質
+              臉頰膠質·砂鍋湯
             </text>
           </g>
 
-          {/* 2. 魚下巴 (Kama #B84A39 陶土磚紅) */}
+          {/* 2. 魚下巴 (Kama / 琵琶骨 #B84A39 陶土磚紅) */}
           <g
             className="cursor-pointer transition-all duration-200"
             onClick={() => onSelectPrimal('fish-collar')}
@@ -121,39 +126,39 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               魚下巴
             </text>
             <text x="270" y="376" textAnchor="middle" fill="#FAF8F5" fontSize="10" opacity="0.95" className="font-serif italic pointer-events-none">
-              居酒屋鹽烤必點
+              琵琶骨·鹽烤首選
             </text>
           </g>
 
-          {/* 3. 魚背肉 / 菲力 (#5B705B 鼠尾草灰綠) */}
+          {/* 3. 背肉 / 背脊肉 (#5B705B 鼠尾草灰綠) */}
           <g
             className="cursor-pointer transition-all duration-200"
-            onClick={() => onSelectPrimal('fish-loin')}
-            onMouseEnter={() => setHoveredPrimalId('fish-loin')}
+            onClick={() => onSelectPrimal('fish-dorsal')}
+            onMouseEnter={() => setHoveredPrimalId('fish-dorsal')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'fish-loin' ? 'url(#fishSoftGlow)' : undefined}
+            filter={selectedPrimalId === 'fish-dorsal' ? 'url(#fishSoftGlow)' : undefined}
           >
             <path
               d="M 240,175 C 360,150 520,150 680,180 L 680,285 L 240,285 Z"
-              fill={selectedPrimalId === 'fish-loin' ? '#6C836C' : '#5B705B'}
+              fill={selectedPrimalId === 'fish-dorsal' ? '#6C836C' : '#5B705B'}
               stroke="#FAF8F5"
-              strokeWidth={selectedPrimalId === 'fish-loin' ? 4 : 2.5}
+              strokeWidth={selectedPrimalId === 'fish-dorsal' ? 4 : 2.5}
             />
             <path
               d="M 240,175 C 360,150 520,150 680,180 L 680,285 L 240,285 Z"
               fill="url(#fishScales)"
               stroke="#FAF8F5"
-              strokeWidth={selectedPrimalId === 'fish-loin' ? 4 : 2.5}
+              strokeWidth={selectedPrimalId === 'fish-dorsal' ? 4 : 2.5}
             />
             <text x="460" y="225" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
-              魚背肉 / 菲力 (Fish Loin)
+              背肉 / 背脊肉 (Dorsal)
             </text>
             <text x="460" y="250" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              鮭魚排 · 石斑清肉 · 香煎清蒸主力
+              午仔魚 · 鱸魚 · 白鯧 · 清蒸香煎主力
             </text>
           </g>
 
-          {/* 4. 魚肚 / 大腹 (#D26C42 珊瑚橘) */}
+          {/* 4. 腹肉 / 魚肚 (#D26C42 珊瑚橘) */}
           <g
             className="cursor-pointer transition-all duration-200"
             onClick={() => onSelectPrimal('fish-belly')}
@@ -174,14 +179,14 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'fish-belly' ? 4 : 2.5}
             />
             <text x="490" y="340" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="19" className="font-sans pointer-events-none drop-shadow">
-              魚肚 / 大腹 (Fish Belly · Toro)
+              腹肉 / 魚肚 (Belly · Toro)
             </text>
             <text x="490" y="360" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              鮪魚大腹 · 虱目魚肚 · 濃郁油脂
+              虱目魚肚 · 黑鮪大腹 · 濃郁油脂精華
             </text>
           </g>
 
-          {/* 5. 魚尾部 (#7C2333 深勃根地酒紅) */}
+          {/* 5. 尾段 / 尾肉 (#7C2333 深勃根地酒紅) */}
           <g
             className="cursor-pointer transition-all duration-200"
             onClick={() => onSelectPrimal('fish-tail')}
@@ -202,26 +207,26 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'fish-tail' ? 4 : 2.5}
             />
             <text x="750" y="275" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="17" className="font-sans pointer-events-none drop-shadow">
-              魚尾部
+              尾段
             </text>
             <text x="750" y="295" textAnchor="middle" fill="#FAF8F5" fontSize="11" opacity="0.95" className="font-serif italic pointer-events-none">
-              白帶魚段·紅燒
+              白帶魚·紅燒
             </text>
           </g>
 
           {/* 外框線與圖表裝飾 */}
           <rect x="10" y="10" width="980" height="560" fill="none" stroke="#1C1917" strokeWidth="1" strokeDasharray="6 4" opacity="0.4" />
           <g className="font-serif italic text-xs" fill="#1C1917" opacity="0.85">
-            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">FIG. 03 — FISH & SEAFOOD CUT ANATOMY</text>
-            <text x="30" y="70" className="text-xs">Culinary Filleting & Portioning Breakdown System</text>
+            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">FIG. 03 — TAIWAN FISH & SEAFOOD CUT ANATOMY</text>
+            <text x="30" y="70" className="text-xs">9 Universal Culinary Anatomical Breakdown System</text>
           </g>
         </svg>
       </div>
 
-      {/* 底部色票快速切換標籤列 */}
+      {/* 底部 9 大部位快速切換標籤列 */}
       <div className="mt-4 pt-4 border-t border-parchment-200">
         <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2">
-          快速切換魚類分切部位：
+          快速切換 9 大通用魚體部位：
         </div>
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {FISH_PRIMAL_AREAS.map((primal) => {

@@ -1,4 +1,4 @@
-// 魚類海鮮部位與分切區域資料
+// 9 類通用魚體解剖與食用部位分類資料
 export const FISH_PRIMAL_AREAS = [
   {
     id: 'fish-head',
@@ -6,111 +6,229 @@ export const FISH_PRIMAL_AREAS = [
     enName: 'Fish Head',
     color: '#D8963E', // 暖芥末赭黃
     textColor: 'text-charcoal',
-    extendedCuts: ['鮭魚頭塊', '石斑魚頭', '鰱魚大頭'],
-    positioning: '膠質濃郁、砂鍋與慢燉湯品極品',
-    description: '包含魚鰓蓋肉、眼窩膠質與頭骨軟骨，富含極高膠原蛋白與天然鮮味，慢熬後湯頭乳白醇厚。',
-    recommendedCooking: ['砂鍋魚頭煲', '日式味噌豆腐湯', '鹽烤魚頭'],
-    idealWine: ['Junmai Sake (純米清酒)', 'Unoaked Chardonnay (未過桶夏多內)', 'Brut Champagne']
+    extendedCuts: ['虱目魚頭', '石斑魚頭塊', '鮭魚頭', '鰱魚大頭'],
+    positioning: '臉頰膠質、骨邊鮮肉與砂鍋精華',
+    description: '包含魚鰓蓋肉、臉頰肉、眼窩膠質與頭骨軟骨，富含極高膠原蛋白與天然鮮味肌苷酸，慢熬後湯頭乳白醇厚。',
+    recommendedCooking: ['台式砂鍋魚頭煲', '日式味噌豆腐魚頭湯', '蔥薑紅燒魚頭', '鹽烤魚頭'],
+    idealWine: ['Junmai Sake (純米清酒)', 'Unoaked Chardonnay (未過桶夏多內)', '高酸乾型白酒']
   },
   {
     id: 'fish-collar',
-    name: '魚下巴 (Kama)',
+    name: '魚下巴 (琵琶骨)',
     enName: 'Fish Collar / Kama',
     color: '#B84A39', // 陶土磚紅
     textColor: 'text-white',
-    extendedCuts: ['鹽烤鮭魚下巴', '青甘/鰤魚下巴', '石斑魚下巴'],
-    positioning: '油香滿溢、居酒屋鹽烤必點',
-    description: '魚鰓後方與胸鰭相連的三角形肉塊，活動量大且油脂儲量豐富，肉質極為滑嫩、外皮焦脆多汁。',
-    recommendedCooking: ['日式居酒屋椒鹽炭烤', '味噌醃漬嫩烤', '照燒香煎'],
-    idealWine: ['Crisp Sauvignon Blanc', 'Dry Riesling (乾型麗絲玲)', '辛口本釀造清酒']
+    extendedCuts: ['青魽/鰤魚下巴', '鮭魚下巴', '台灣鯛下巴', '海鱺下巴'],
+    positioning: '肉厚油潤、居酒屋鹽烤必點',
+    description: '位於鰓蓋後方與胸鰭根部交界處的三角形肉塊，活動量大且油脂儲量豐富，肉質極為滑嫩有彈性、外皮焦脆多汁。',
+    recommendedCooking: ['居酒屋椒鹽炭烤', '氣炸香酥魚下巴', '西京漬白味噌烤', '照燒香煎'],
+    idealWine: ['Brut 氣泡酒 (Champagne / Cava)', 'Sauvignon Blanc (白蘇維濃)', '辛口本釀造清酒']
   },
   {
-    id: 'fish-loin',
-    name: '魚背肉 / 菲力',
-    enName: 'Fish Loin / Fillet',
+    id: 'fish-dorsal',
+    name: '背肉 / 背脊肉',
+    enName: 'Dorsal / Back Meat',
     color: '#5B705B', // 鼠尾草灰綠
     textColor: 'text-white',
-    extendedCuts: ['鮭魚菲力排', '金目鱸魚排', '龍虎斑清肉', '台灣鯛魚片'],
-    positioning: '刺少肉厚、香煎清蒸與舒肥首選',
-    description: '魚脊椎上側的厚實清肉，幾無暗刺、肌理緊實細嫩，是家庭料理與西式魚排最受歡迎的精華部位。',
-    recommendedCooking: ['奶油香煎魚排', '蔥薑樹子清蒸', '義式香草紙包烤魚', '低溫舒肥'],
-    idealWine: ['Chablis (夏布利白酒)', 'Pinot Grigio (灰皮諾)', 'Sauvignon Blanc']
+    extendedCuts: ['午仔魚背肉', '金目鱸背肉排', '白鯧背肉', '土魠魚排'],
+    positioning: '肌理精實、肉味純淨厚實',
+    description: '位於魚體側線上方、背部脊骨兩側，運動量充沛，肉質緊實成片狀、幾無暗刺，適合清蒸、香煎與切片煮湯。',
+    recommendedCooking: ['古法樹子清蒸', '香煎椒鹽魚排', '薑絲鮮魚清湯', '義式香草紙包烤'],
+    idealWine: ['Pinot Grigio (灰皮諾)', 'Albariño (阿爾巴利諾)', 'Chablis (夏布利白酒)', '甲州白酒 (Koshu)']
   },
   {
     id: 'fish-belly',
-    name: '魚肚 / 大腹 (Toro)',
+    name: '腹肉 / 魚肚 (Toro)',
     enName: 'Fish Belly / Toro',
     color: '#D26C42', // 珊瑚橘
     textColor: 'text-white',
-    extendedCuts: ['鮪魚大腹 (Otoro)', '無刺虱目魚肚', '鮭魚腹肉刺身', '炙燒魚肚壽司'],
-    positioning: '脂肪之王、生食刺身與煎魚肚靈魂',
-    description: '魚腹腔周圍的軟嫩肉層，富含大量 Omega-3 不飽和脂肪酸，油脂熔點低，入口即化、香氣濃郁。',
-    recommendedCooking: ['頂級生魚片刺身', '乾煎無刺虱目魚肚', '炙燒握壽司', '日式照燒'],
-    idealWine: ['桶陳 Chardonnay', 'Brut Rosé Champagne (粉紅香檳)', '純米大吟釀']
+    extendedCuts: ['黑鮪魚大腹/中腹', '無刺虱目魚肚', '鮭魚腹肉刺身', '青魽魚肚'],
+    positioning: '油脂之冠、生食刺身與香煎魚肚靈魂',
+    description: '側線下方至腹腔周圍，富含大量天然 Omega-3 不飽和脂肪酸，油脂熔點低，炙烤或生食入口即化、脂香濃郁。',
+    recommendedCooking: ['頂級生魚片刺身', '無油乾煎虱目魚肚', '炙燒握壽司', '味噌香煎'],
+    idealWine: ['桶陳 Chardonnay', 'Brut Rosé 香檳 (粉紅氣泡酒)', '純米大吟釀', '微甜 Riesling']
+  },
+  {
+    id: 'fish-loin',
+    name: '魚柳 / 菲力',
+    enName: 'Fish Loin / Tenderloin Fillet',
+    color: '#333A42', // 炭墨黑
+    textColor: 'text-white',
+    extendedCuts: ['虱目魚柳 (魚菲力)', '鮭魚菲力排', '台灣鯛清肉片', '鱸魚菲力'],
+    positioning: '無刺極嫩、家庭與西餐萬用魚排',
+    description: '去骨去刺後取出的整條主肌肉，質地最為細嫩無負擔，適合老人小孩與健身族群快炒、香煎或酥炸。',
+    recommendedCooking: ['奶油香煎魚柳', '日式酥炸魚柳條', '蔥爆魚柳快炒', '低溫舒肥魚排'],
+    idealWine: ['Sauvignon Blanc', 'Pinot Noir (黑皮諾)', '未過桶白酒']
   },
   {
     id: 'fish-tail',
-    name: '魚尾部',
+    name: '尾段 / 尾肉',
     enName: 'Fish Tail',
     color: '#7C2333', // 深勃根地酒紅
     textColor: 'text-white',
-    extendedCuts: ['白帶魚尾段', '石斑魚尾', '紅燒魚尾'],
-    positioning: '皮彈肉緊、家常紅燒與快煎',
-    description: '魚隻推進游動的主力肌肉，脂肪最少、膠質皮膜厚實，適合醬汁濃郁的紅燒或裹粉乾煎。',
-    recommendedCooking: ['家常紅燒豆瓣魚', '蔥燒魚尾', '裹粉香煎酥脆'],
-    idealWine: ['輕盈 Pinot Noir (黑皮諾)', 'Dry Rosé (粉紅酒)', '純米吟釀']
+    extendedCuts: ['白帶魚尾段', '土魠魚尾', '紅燒魚尾塊'],
+    positioning: '肉質緊實彈牙、家常紅燒首選',
+    description: '魚隻推進游動的主力部位，脂肪含量較低但肌肉纖維極為緊實耐煮，適合以濃厚醬汁紅燒或裹粉乾煎。',
+    recommendedCooking: ['家常豆瓣紅燒魚尾', '香煎椒鹽白帶魚段', '切塊燉湯'],
+    idealWine: ['輕盈 Pinot Noir', 'Vinho Verde (綠酒)', 'Dry Rosé (粉紅酒)']
   },
   {
-    id: 'fish-frame',
-    name: '魚骨與高湯料',
-    enName: 'Fish Bone & Frame',
+    id: 'fish-skin',
+    name: '魚皮 / 皮油',
+    enName: 'Fish Skin',
     color: '#A89279', // 暖燕麥褐
     textColor: 'text-white',
-    extendedCuts: ['魚骨高湯包', '魚雜煮湯塊'],
-    positioning: '天然海味精華、鮮美高湯基底',
-    description: '片魚後留下的脊骨與骨邊肉，經高溫烘烤或煎香後熬煮，能釋放濃郁天然肌苷酸鮮味。',
-    recommendedCooking: ['法式海鮮魚高湯 (Fumet de Poisson)', '薑絲魚骨清湯'],
-    idealWine: ['Muscadet (慕斯卡得)', 'Sauvignon Blanc']
+    extendedCuts: ['無刺虱目魚皮', '涼拌石斑魚皮', '脆炸鮭魚皮'],
+    positioning: '膠質Q彈、汆燙涼拌與酥炸極品',
+    description: '表皮與緊連的皮下脂肪層，富含膠原蛋白與天然明膠，汆燙滑溜 Q 彈、高溫酥炸則如薯片般酥脆。',
+    recommendedCooking: ['汆燙佐芥末醬油膏', '薑絲魚皮湯', '泰式涼拌魚皮', '酥炸鹹蛋黃魚皮'],
+    idealWine: ['Brut 氣泡酒', '乾型白酒 (Dry Riesling)', '冰鎮吟釀清酒']
+  },
+  {
+    id: 'fish-bone',
+    name: '魚骨 / 魚嶺',
+    enName: 'Fish Bone / Ridge',
+    color: '#6B4C38', // 雕刻深褐
+    textColor: 'text-white',
+    extendedCuts: ['香煎虱目魚嶺', '海鮮魚骨高湯包', '酥炸魚骨酥'],
+    positioning: '骨邊焦香與天然海味高湯精華',
+    description: '包含魚脊椎骨、背鰭骨肉（魚嶺）與骨髓，煎炸後骨酥肉香下酒一絕；熬湯則能釋放極致天然海鮮甜味。',
+    recommendedCooking: ['乾煎椒鹽虱目魚嶺', '法式海鮮魚高湯 (Fumet)', '酥炸魚骨酥'],
+    idealWine: ['清爽白酒 (Muscadet)', '拉格啤酒 (Lager)', '辛口清酒']
+  },
+  {
+    id: 'fish-offal',
+    name: '內臟 / 魚卵 / 白子',
+    enName: 'Offal, Roe & Milt',
+    color: '#C58C36', // 琥珀金棕
+    textColor: 'text-white',
+    extendedCuts: ['野生烏魚子', '煎虱目魚腸', '烏魚膘 (白子)', '香煎魚卵'],
+    positioning: '老饕珍味、濃郁鹹鮮下酒霸主',
+    description: '包含魚卵巢（烏魚子）、魚腸、魚膘與魚肝，風味濃烈、鮮味極度濃縮，是台菜與居酒屋的老饕級食材。',
+    recommendedCooking: ['高粱酒炙燒烏魚子', '九層塔薑絲快炒魚腸', '麻油紅燒烏魚膘', '乾煎魚卵佐美乃滋'],
+    idealWine: ['Champagne (香檳)', 'Fino Sherry (雪莉酒)', '純米清酒 (Junmai Sake)']
   }
 ];
 
-// 12 款精選魚類海鮮部位規格資料庫
+// 台灣常見 12 款精選魚種與部位規格資料庫
 export const FISH_CUTS_DATA = [
   {
-    id: 'salmon-fillet',
-    name: '鮭魚菲力排',
-    enName: 'Atlantic Salmon Fillet',
-    aliases: '鮭魚排、三文魚柳、厚切鮭魚菲力',
-    primalId: 'fish-loin',
-    primalName: '魚背肉 (Fish Loin)',
-    tagBadge: 'Omega-3 豐富 · 香煎外酥內嫩',
-    tagColor: 'bg-orange-100 text-orange-900 border-orange-300',
+    id: 'milkfish-belly-cut',
+    name: '無刺虱目魚肚',
+    enName: 'Milkfish Belly',
+    aliases: '牛奶魚肚、麻豆虱目魚肚、台南特產魚肚',
+    primalId: 'fish-belly',
+    primalName: '腹肉 / 魚肚 (Belly)',
+    tagBadge: '黑色甘醇魚油 · 全魚利用典範',
+    tagColor: 'bg-amber-100 text-amber-900 border-amber-300',
+    scores: {
+      tenderness: 4,
+      fat: 5,
+      flavor: 5
+    },
+    locationDesc: '取自虱目魚腹腔兩側，中央包覆一塊豐厚甘甜的深色不飽和脂肪層，無細刺且香氣濃郁。',
+    keywords: ['台南名產', '無刺處理', '黑色魚油精華', '無油乾煎', '薑絲魚肚湯'],
+    cookingMethods: [
+      { name: '乾煎香脆魚肚', desc: '不放油冷鍋下鍋，逼出天然魚油煎至雙面焦黃酥脆，撒椒鹽白胡椒。' },
+      { name: '台南薑絲魚肚湯', desc: '魚肚與老薑絲、米酒大火煮滾 3 分鐘，湯頭鮮甜回甘。' },
+      { name: '古早味鳳梨豆醬煨煮', desc: '蔭鳳梨豆醬文火燜煮入味，鹹甘開胃。' }
+    ],
+    donenessTip: '乾煎時皮面先下，大火逼出魚油至微焦脆；煮湯則滾水快燙避免魚油融散。',
+    winePairing: {
+      wines: ['Dry Riesling (乾型麗絲玲)', 'Albariño (阿爾巴利諾)', 'Chardonnay (夏多內)'],
+      rationale: '虱目魚肚天然油脂極為豐沛，西班牙 Albariño 或乾型 Riesling 的高酸度與鹹鮮礦物感能俐落切除油膩感。',
+      styleSummary: '明亮核果酸度 · 鹹鮮礦物感 · 生津洗油'
+    }
+  },
+  {
+    id: 'threadfin-steak',
+    name: '午仔魚 (一夜干 / 鮮切排)',
+    enName: 'Fourfinger Threadfin',
+    aliases: '午仔、竹午、台灣第一鮮',
+    primalId: 'fish-dorsal',
+    primalName: '背肉 / 背脊肉 (Dorsal)',
+    tagBadge: '少刺多脂 · 台灣全能冠軍魚',
+    tagColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
     scores: {
       tenderness: 5,
       fat: 4,
       flavor: 5
     },
-    locationDesc: '取自大西洋鮭魚背脊厚實中段，色澤橙紅鮮亮，油脂細密均勻分佈於肌理間。',
-    keywords: ['Omega-3', '奶油香煎', '刺少肉厚', '生熟皆宜', '餐桌常勝軍'],
+    locationDesc: '民間俗語「一午、二紅衫、三鯧、四馬加」，午仔魚肉質極致細嫩、油脂均勻且幾無暗刺，是台灣家庭全能魚代表。',
+    keywords: ['一午二鯧', '少刺好入口', '一夜干名品', '清蒸乾煎皆宜', '全家最愛'],
     cookingMethods: [
-      { name: '脆皮奶油香煎', desc: '魚皮朝下大火煎至酥脆，淋入大蒜檸檬百里香奶油，內裡保持粉嫩。' },
-      { name: '日式照燒', desc: '醬油味醂清酒黃金比例，慢火收汁至魚肉裹上一層晶亮甘甜。' },
-      { name: '紙包蒔蘿烘烤', desc: '與檸檬片、白酒、蒔蘿包入烘焙紙悶烤，鎖住原汁。' }
+      { name: '居酒屋午仔魚一夜干', desc: '鹽水浸漬風乾後直火烤至表皮焦脆冒油泡，擠檸檬汁。' },
+      { name: '破布子甘樹子清蒸', desc: '大火快蒸 6 分鐘，肉質細嫩如豆腐、甘甜回味。' },
+      { name: '乾煎椒鹽香酥魚排', desc: '雙面煎至金黃，鎖住飽滿細緻魚脂。' }
     ],
-    donenessTip: '建議中心保持 50°C~52°C（約 7-8 分熟），肉質最為細嫩多汁，過熟容易滲出白色蛋白質變乾。',
+    donenessTip: '肉質極嫩且含水量高，清蒸時間不宜超過 6-8 分鐘；煎烤時中火慢煎避免翻碎。',
     winePairing: {
-      wines: ['桶陳 Chardonnay (夏多內)', 'Pinot Noir (黑皮諾)', 'Brut Rosé Champagne'],
-      rationale: '鮭魚豐富的天然魚油與濃郁風味，能完美承接帶有香草橡木桶奶油香的 Chardonnay；或搭配輕盈細緻的紅酒黑皮諾。',
-      styleSummary: '烤橡木奶油香 · 圓潤酒體 · 活潑果酸'
+      wines: ['Albariño (阿爾巴利諾)', '未過桶 Chardonnay', '純米吟釀清酒'],
+      rationale: '午仔魚兼具細緻肉質與滑順脂香，搭配帶有白桃香氣與明亮酸度的 Albariño 或冷藏純米吟釀，相得益彰。',
+      styleSummary: '柑橘白桃果香 · 清新酸度 · 圓潤優雅'
     }
   },
   {
-    id: 'tuna-otoro',
-    name: '鮪魚大腹 / 赤身',
+    id: 'milkfish-loin-cut',
+    name: '虱目魚柳 (魚菲力)',
+    enName: 'Milkfish Tenderloin Fillet',
+    aliases: '魚里肌、無刺魚柳條、虱目魚菲力',
+    primalId: 'fish-loin',
+    primalName: '魚柳 / 菲力 (Loin Fillet)',
+    tagBadge: '少刺極嫩 · 高蛋白家常首選',
+    tagColor: 'bg-stone-100 text-stone-900 border-stone-300',
+    scores: {
+      tenderness: 5,
+      fat: 2,
+      flavor: 4
+    },
+    locationDesc: '取自虱目魚脊椎兩側的兩條精華清肉（一尾魚僅有兩條），完全無刺、肉質軟嫩多汁。',
+    keywords: ['無刺魚柳', '高蛋白健身', '老人小孩最愛', '快炒炸魚柳', '全魚利用'],
+    cookingMethods: [
+      { name: '酥炸椒鹽魚柳條', desc: '抓醃米酒白胡椒，裹地瓜粉炸至金黃酥脆，撒九層塔。' },
+      { name: '蔥爆黑胡椒魚柳', desc: '大火熱油快速爆炒洋蔥、蔥段與黑胡椒醬，鮮嫩下飯。' }
+    ],
+    donenessTip: '肉質極嫩，快炒或酥炸時間約 2-3 分鐘即可，避免過度加熱導致水分流失。',
+    winePairing: {
+      wines: ['Sauvignon Blanc (白蘇維濃)', 'Pinot Grigio (灰皮諾)', '拉格啤酒'],
+      rationale: '炸魚柳或快炒調味靈活，紐西蘭 Sauvignon Blanc 的青檸酸香與百香果風味能完美解膩提鮮。',
+      styleSummary: '青檸酸爽 · 熱帶果香 · 俐落明快'
+    }
+  },
+  {
+    id: 'barramundi-fillet',
+    name: '金目鱸 / 七星鱸魚排',
+    enName: 'Barramundi / Sea Bass Fillet',
+    aliases: '鱸魚菲力、金目鱸排、養生鱸魚',
+    primalId: 'fish-dorsal',
+    primalName: '背肉 / 背脊肉 (Dorsal)',
+    tagBadge: '肉質潔白細緻 · 滋補養生首選',
+    tagColor: 'bg-blue-100 text-blue-900 border-blue-300',
+    scores: {
+      tenderness: 4,
+      fat: 2,
+      flavor: 3
+    },
+    locationDesc: '鱸魚背脊厚實清肉，肉質純白細嫩呈瓣狀，無暗刺且脂肪適中，是術後調養與日常滋補的國民好魚。',
+    keywords: ['養生鱸魚湯', '白肉魚經典', '無腥味好吸收', '義式香草紙包', '萬用魚排'],
+    cookingMethods: [
+      { name: '薑絲清燉鱸魚湯', desc: '鱸魚片與老薑絲、米酒、蛤蜊文火燉煮，湯頭鮮甘滋補。' },
+      { name: '義式紙包海鮮烤', desc: '搭配小番茄、黑橄欖、白酒與九層塔紙包烘烤，原汁全保留。' }
+    ],
+    donenessTip: '肉質纖細，香煎或清蒸時間需精準掌控，魚肉由半透明轉為純白即可起鍋。',
+    winePairing: {
+      wines: ['Pinot Grigio (灰皮諾)', 'Sauvignon Blanc', 'Muscadet (慕斯卡得)'],
+      rationale: '清爽細緻的鱸魚最適合酒體輕盈、酸度清新明亮的義大利灰皮諾或法國羅亞爾河白酒。',
+      styleSummary: '青蘋果與檸檬 · 輕盈純淨 · 爽口優雅'
+    }
+  },
+  {
+    id: 'tuna-otoro-cut',
+    name: '黑鮪魚大腹 / 赤身',
     enName: 'Bluefin Tuna Otoro & Akami',
-    aliases: '黑鮪魚大腹、Toro、刺身極品',
+    aliases: '東港黑鮪、Toro、刺身極品、黑金',
     primalId: 'fish-belly',
-    primalName: '魚肚部 (Fish Belly)',
+    primalName: '腹肉 / 魚肚 (Belly)',
     tagBadge: '入口即化 · 刺身殿堂級',
     tagColor: 'bg-rose-100 text-rose-900 border-rose-300',
     scores: {
@@ -118,17 +236,44 @@ export const FISH_CUTS_DATA = [
       fat: 5,
       flavor: 5
     },
-    locationDesc: '取自黑鮪魚前腹近鰓下部，油脂比例高達 30%~40%，呈現粉嫩雪花紋理。',
-    keywords: ['生魚片之王', '入口即化', '雪花油紋', '極致鮮甜', '炙燒握壽司'],
+    locationDesc: '取自屏東東港野生黑鮪魚前腹部，油脂高達 35%~40%，雪花油紋細密，入口如冰淇淋般瞬間融化。',
+    keywords: ['東港黑鮪季', '入口即化', '雪花油紋', '極致鮮甜', '炙燒握壽司'],
     cookingMethods: [
       { name: '頂級刺身厚切', desc: '冰鎮後厚切，佐現磨山葵與薄鹽生抽，油脂在舌尖瞬間融化。' },
       { name: '炙燒握壽司', desc: '噴槍高溫秒炙表面逼出焦香魚脂，佐特製醬油。' }
     ],
     donenessTip: '極度推薦生食或微炙表面。高溫全熟會破壞其如冰淇淋般的細膩油花質地。',
     winePairing: {
-      wines: ['純米大吟釀 (Junmai Daiginjo)', 'Vintage Champagne (年份香檳)', 'Pinot Noir'],
+      wines: ['純米大吟釀 (Junmai Daiginjo)', 'Vintage Champagne (年份香檳)', 'Pinot Noir (黑皮諾)'],
       rationale: '高油脂的黑鮪魚大腹與年份香檳的高酸氣泡是絕配；搭配精米步合高的純米大吟釀更能帶出極致清甜旨味。',
       styleSummary: '純淨旨味 · 精緻果香 · 細膩氣泡'
+    }
+  },
+  {
+    id: 'amberjack-collar',
+    name: '青魽 / 海鱺魚下巴',
+    enName: 'Amberjack / Cobia Collar (Kama)',
+    aliases: '鰤魚下巴、青甘下巴、海鱺下巴',
+    primalId: 'fish-collar',
+    primalName: '魚下巴 (Collar / Kama)',
+    tagBadge: '皮焦肉嫩 · 居酒屋炭烤霸主',
+    tagColor: 'bg-red-100 text-red-900 border-red-300',
+    scores: {
+      tenderness: 5,
+      fat: 5,
+      flavor: 5
+    },
+    locationDesc: '位於鰓蓋下方連接胸鰭的運動肌塊，外有厚實魚鱗皮，內有最飽滿滑嫩的運動油脂肉。',
+    keywords: ['居酒屋必點', '外酥內嫩多汁', '椒鹽香烤', '下酒神物', '油脂大爆發'],
+    cookingMethods: [
+      { name: '日式炭火椒鹽烤', desc: '均勻抹鹽擦乾，烤箱 180°C 烤 20 分鐘後翻面 200°C 烤至表皮焦脆冒泡。' },
+      { name: '西京漬白味噌烤', desc: '以白味噌、味醂清酒醃漬兩天後慢火烘烤，甜鹹香濃。' }
+    ],
+    donenessTip: '務必烤至外皮酥脆焦香，高溫能逼出多餘油脂，使內部肉質多汁而不膩口。',
+    winePairing: {
+      wines: ['辛口本釀造清酒 (Dry Sake)', 'Sauvignon Blanc', 'Brut Cava 氣泡酒'],
+      rationale: '焦香爆汁的魚下巴，需要高酸度果香或辛口俐落的日本清酒，瞬間洗刷油脂並重啟味蕾。',
+      styleSummary: '辛口俐落 · 芭樂百香果酸香 · 乾爽氣泡'
     }
   },
   {
@@ -136,8 +281,8 @@ export const FISH_CUTS_DATA = [
     name: '龍虎斑清肉排',
     enName: 'Dragon Tiger Grouper Fillet',
     aliases: '珍珠石斑排、龍膽石斑清肉、帶皮斑魚排',
-    primalId: 'fish-loin',
-    primalName: '魚背肉 (Fish Loin)',
+    primalId: 'fish-dorsal',
+    primalName: '背肉 / 背脊肉 (Dorsal)',
     tagBadge: '皮Q肉細 · 頂級宴客海味',
     tagColor: 'bg-emerald-100 text-emerald-900 border-emerald-300',
     scores: {
@@ -159,203 +304,40 @@ export const FISH_CUTS_DATA = [
     }
   },
   {
-    id: 'milkfish-belly',
-    name: '無刺虱目魚肚',
-    enName: 'Milkfish Belly',
-    aliases: '台南虱目魚、牛奶魚、麻豆魚肚',
-    primalId: 'fish-belly',
-    primalName: '魚肚部 (Fish Belly)',
-    tagBadge: '台南在地代表 · 黑色甘醇魚油',
-    tagColor: 'bg-amber-100 text-amber-900 border-amber-300',
-    scores: {
-      tenderness: 4,
-      fat: 5,
-      flavor: 4
-    },
-    locationDesc: '台灣南部經典特產，取自整尾虱目魚正中心腹肉，中央包覆一塊標誌性深色甘甜魚油脂。',
-    keywords: ['台南名產', '無刺處理', '黑色魚油精華', '香煎焦脆', '薑絲魚肚湯'],
-    cookingMethods: [
-      { name: '乾煎香脆魚肚', desc: '不放油冷鍋下鍋，逼出天然魚油煎至雙面焦黃酥脆，撒椒鹽白胡椒。' },
-      { name: '台南薑絲魚肚湯', desc: '魚肚與老薑絲、米酒大火煮滾 3 分鐘，湯頭鮮甜回甘。' },
-      { name: '古早味鳳梨豆醬煨煮', desc: '蔭鳳梨豆醬文火燜煮入味，鹹甘開胃。' }
-    ],
-    donenessTip: '乾煎時皮面先下，大火逼出魚油至微焦脆；煮湯則滾水快燙避免魚油融散。',
-    winePairing: {
-      wines: ['Dry Riesling (乾型麗絲玲)', 'Albarino (阿爾巴利諾)', '台灣在地金柑氣泡酒'],
-      rationale: '虱目魚肚天然油脂極為豐沛，西班牙 Albarino 或乾型 Riesling 的高酸度與鹹鮮礦物感能俐落切除油膩感。',
-      styleSummary: '明亮核果酸度 · 鹹鮮礦物感 · 生津洗油'
-    }
-  },
-  {
-    id: 'barramundi-fillet',
-    name: '金目鱸魚排',
-    enName: 'Barramundi Fillet',
-    aliases: '金目鱸、鱸魚菲力、月子鱸魚',
-    primalId: 'fish-loin',
-    primalName: '魚背肉 (Fish Loin)',
-    tagBadge: '肉質潔白 · 滋補養生首選',
-    tagColor: 'bg-stone-100 text-stone-900 border-stone-300',
-    scores: {
-      tenderness: 4,
-      fat: 2,
-      flavor: 3
-    },
-    locationDesc: '鱸魚背脊肉，肉質純白細嫩成片狀，幾無細刺且脂肪含量適中，是術後與日常調養的最佳蛋白質。',
-    keywords: ['養生鱸魚湯', '白肉魚經典', '無腥味好吸收', '義式香草紙包', '萬用魚排'],
-    cookingMethods: [
-      { name: '薑絲清燉鱸魚湯', desc: '鱸魚切塊，加入薑絲、米酒與蛤蜊燉湯，鮮甘滋補。' },
-      { name: '義式紙包海鮮烤', desc: '搭配小番茄、黑橄欖、白酒與九層塔紙包烘烤，原汁全保留。' }
-    ],
-    donenessTip: '肉質纖細，香煎或清蒸時間需精準掌控，魚肉由半透明轉為純白即可起鍋。',
-    winePairing: {
-      wines: ['Pinot Grigio (灰皮諾)', 'Sauvignon Blanc', 'Muscadet (慕斯卡得)'],
-      rationale: '清爽細緻的鱸魚最適合酒體輕盈、酸度清新明亮的義大利灰皮諾或法國羅亞爾河白酒。',
-      styleSummary: '青蘋果與檸檬 · 輕盈純淨 · 爽口優雅'
-    }
-  },
-  {
-    id: 'salmon-collar',
-    name: '居酒屋烤魚下巴',
-    enName: 'Grilled Salmon / Yellowtail Collar',
-    aliases: '鮭魚下巴、青甘下巴、鰤魚下巴',
-    primalId: 'fish-collar',
-    primalName: '魚下巴 (Fish Collar)',
-    tagBadge: '皮焦肉嫩 · 居酒屋下酒霸主',
-    tagColor: 'bg-red-100 text-red-900 border-red-300',
-    scores: {
-      tenderness: 5,
-      fat: 5,
-      flavor: 5
-    },
-    locationDesc: '位於魚鰓下方連接胸鰭的三角運動肌，外有厚實魚鱗皮，內有最飽滿滑嫩的運動油脂肉。',
-    keywords: ['居酒屋必點', '外酥內嫩多汁', '椒鹽香烤', '下酒神物', '油脂大爆發'],
-    cookingMethods: [
-      { name: '日式炭火椒鹽烤', desc: '均勻抹鹽靜置出水擦乾，烤箱 200°C 烤 15 分鐘至表皮滋滋冒泡金黃焦脆。' },
-      { name: '西京漬白味噌烤', desc: '以白味噌、味醂清酒醃漬兩天後慢火烘烤，甜鹹香濃。' }
-    ],
-    donenessTip: '務必烤至外皮酥脆焦香，高溫能逼出多餘油脂，使內部肉質多汁而不膩口。',
-    winePairing: {
-      wines: ['辛口本釀造清酒 (Dry Sake)', 'Sauvignon Blanc (紐西蘭白蘇維濃)', '氣泡酒 (Cava)'],
-      rationale: '焦香爆汁的魚下巴，需要高酸度果香或辛口俐落的日本清酒，瞬間洗刷油脂並重啟味蕾。',
-      styleSummary: '辛口俐落 · 芭樂百香果酸香 · 乾爽氣泡'
-    }
-  },
-  {
-    id: 'fish-head-pot',
-    name: '砂鍋大魚頭',
-    enName: 'Braised Fish Head',
-    aliases: '鰱魚頭、鮭魚頭塊、石斑魚頭煲',
-    primalId: 'fish-head',
-    primalName: '魚頭部 (Fish Head)',
-    tagBadge: '膠質濃郁 · 圍爐砂鍋經典',
+    id: 'pomfret-steak',
+    name: '白鯧魚 (全魚 / 鮮切排)',
+    enName: 'Silver Pomfret',
+    aliases: '正白鯧、鯧魚、年節大菜',
+    primalId: 'fish-dorsal',
+    primalName: '背肉 / 背脊肉 (Dorsal)',
+    tagBadge: '肉質極細 · 年節團圓清蒸首選',
     tagColor: 'bg-yellow-100 text-yellow-900 border-yellow-300',
     scores: {
-      tenderness: 4,
-      fat: 4,
-      flavor: 5
-    },
-    locationDesc: '整顆大魚頭，包含臉頰腮肉、眼窩膠質與軟骨，經過炸香與長時間燉煮，精華全入湯中。',
-    keywords: ['砂鍋魚頭', '滿滿膠原', '濃郁沙茶', '圍爐年菜', '味噌魚頭湯'],
-    cookingMethods: [
-      { name: '台式沙茶砂鍋魚頭', desc: '魚頭裹粉炸至酥透，與大白菜、凍豆腐、蛋酥、沙茶慢熬一大鍋。' },
-      { name: '日式鮭魚頭味噌煮', desc: '魚頭川燙去腥後與白蘿蔔、紅味噌文火慢燉入味。' }
-    ],
-    donenessTip: '魚頭入鍋前務必先高溫油炸或乾煎至定型金黃，既能鎖住鮮味又能消除腥味。',
-    winePairing: {
-      wines: ['純米清酒 (Junmai Sake)', 'Unoaked Chardonnay', 'Gewürztraminer'],
-      rationale: '沙茶或味噌砂鍋調味濃郁且帶甜鹹，純米清酒的天然米香旨味能與沙茶香料完美融合。',
-      styleSummary: '米香醇厚 · 圓潤包覆感 · 旨味加乘'
-    }
-  },
-  {
-    id: 'ribbonfish-cut',
-    name: '香煎白帶魚段',
-    enName: 'Ribbonfish / Cutlassfish Cut',
-    aliases: '白帶魚排、油帶、厚切白帶魚',
-    primalId: 'fish-tail',
-    primalName: '魚尾部 (Fish Tail)',
-    tagBadge: '銀亮銀皮 · 肉質細緻甘甜',
-    tagColor: 'bg-zinc-200 text-zinc-900 border-zinc-400',
-    scores: {
-      tenderness: 4,
+      tenderness: 5,
       fat: 3,
       flavor: 4
     },
-    locationDesc: '野生捕撈之白帶魚中後段厚切切塊，銀亮魚皮富含天然鳥嘌呤，肉質細緻如絲、甘甜鮮美。',
-    keywords: ['家常便當菜', '外酥內嫩', '野生海味', '銀亮外皮', '香煎首選'],
+    locationDesc: '野生捕撈之頂級海魚，體型側扁，肉質極度細緻如絲、鮮甜無小刺，是年節團圓的代表海味。',
+    keywords: ['三鯧美名', '年菜主角', '刺少肉細', '清蒸乾煎米粉湯', '高貴鮮美'],
     cookingMethods: [
-      { name: '乾煎椒鹽白帶魚', desc: '兩面劃菱格紋，抹薄鹽裹地瓜粉煎至金黃酥脆，擠檸檬汁。' },
-      { name: '紅燒白帶魚段', desc: '煎香後加入蔥段、薑片、黑醋與醬油大火燜燒收汁。' }
+      { name: '清蒸蔥油白鯧', desc: '兩面劃刀，鋪薑絲大火蒸 7 分鐘，撒大量蔥絲淋滾油醬汁。' },
+      { name: '鯧魚芋頭米粉湯', desc: '鯧魚煎香後與炸芋頭、蛋酥、紅蔥頭同熬米粉高湯，鮮美濃郁。' }
     ],
-    donenessTip: '煎魚前確保魚體表面乾燥，中小火慢煎定型後再翻面，保持銀皮完整酥脆。',
+    donenessTip: '肉質極為嬌嫩，清蒸時間切忌過長，魚肉由透明變白即可出鍋。',
     winePairing: {
-      wines: ['Vinho Verde (綠酒)', 'Vermentino (維蒙蒂諾)', 'Sauvignon Blanc'],
-      rationale: '白帶魚肉細鮮甜，葡萄牙微氣泡綠酒 (Vinho Verde) 的微酸微氣泡感能完美襯托酥炸魚皮的香氣。',
-      styleSummary: '微氣泡生津 · 清脆柑橘 · 爽口去油'
+      wines: ['Grüner Veltliner (綠維特利納)', 'Chablis (夏布利)', '吟釀清酒'],
+      rationale: '白鯧細緻甘甜的肉質經不起厚重酒體壓迫，奧地利 Grüner Veltliner 的白胡椒與青蘋果香氣最為和諧。',
+      styleSummary: '白胡椒辛香 · 脆爽酸度 · 細緻礦物感'
     }
   },
   {
-    id: 'tilapia-fillet',
-    name: '台灣鯛魚片',
-    enName: 'Taiwan Tilapia Fillet',
-    aliases: '潮鯛片、台灣鯛、無刺鯛魚',
-    primalId: 'fish-loin',
-    primalName: '魚背肉 (Fish Loin)',
-    tagBadge: '高蛋白低脂 · 健身備餐國民神魚',
-    tagColor: 'bg-red-100 text-red-900 border-red-300',
-    scores: {
-      tenderness: 3,
-      fat: 1,
-      flavor: 3
-    },
-    locationDesc: '台灣優質精緻養殖吳郭魚之精修清肉片，完全去骨無刺，肉質緊實、蛋白質含量高且幾無脂肪。',
-    keywords: ['減脂備餐', '無刺便利', '火鍋常備', '經濟實惠', '蒲燒鯛魚'],
-    cookingMethods: [
-      { name: '蒲燒醬烤鯛魚片', desc: '抹照燒蒲燒醬高溫烘烤，撒熟白芝麻蓋飯。' },
-      { name: '昆布柴魚火鍋涮片', desc: '斜切薄片入火鍋涮燙 15 秒，沾日式桔醬。' }
-    ],
-    donenessTip: '因脂肪極低，避免長時間過度高溫油炸，快煎或快蒸保持水分最為嫩口。',
-    winePairing: {
-      wines: ['Pinot Grigio (灰皮諾)', 'Soave (索阿維白酒)', '輕盈白酒'],
-      rationale: '味道溫和清淡的鯛魚，最適合酸度輕快、帶白色花香與青檸香氣的義大利北部白酒。',
-      styleSummary: '白花香氣 · 清爽淡雅 · 輕盈酸度'
-    }
-  },
-  {
-    id: 'cod-steak',
-    name: '格陵蘭扁鱈 / 大比目魚排',
-    enName: 'Greenland Halibut / Cod Steak',
-    aliases: '扁鱈切片、大比目魚排、冰海鱈魚',
-    primalId: 'fish-loin',
-    primalName: '魚背肉 (Fish Loin)',
-    tagBadge: '雪白大片肉瓣 · 水嫩滑口',
-    tagColor: 'bg-blue-100 text-blue-900 border-blue-300',
-    scores: {
-      tenderness: 5,
-      fat: 4,
-      flavor: 4
-    },
-    locationDesc: '來自北大西洋寒冷深海，肉質呈現雪白的大片瓣狀肌理，水分與油脂豐富，入口極為滑嫩。',
-    keywords: ['清蒸豆豉鱈魚', '肉瓣分明', '極致滑嫩', '老人小孩最愛', '香煎檸檬鱈魚'],
-    cookingMethods: [
-      { name: '豆豉樹子蒸扁鱈', desc: '抹少許鹽，鋪上黑豆豉與薑絲蒸 8 分鐘，淋蔥油。' },
-      { name: '檸檬香草奶油香煎', desc: '表面沾麵粉防散，慢火煎至金黃，淋檸檬奶油醬。' }
-    ],
-    donenessTip: '扁鱈含水量極高，烹調前需先用紙巾充分吸乾水分，香煎時需沾薄粉防碎。',
-    winePairing: {
-      wines: ['Chardonnay (夏多內)', 'Viognier (維歐尼耶)', 'Albariño (阿爾巴利諾)'],
-      rationale: '鱈魚滑嫩且帶有豐郁奶油感，適合搭配帶有成熟黃蘋果、杏桃香氣且酸度平衡的白葡萄酒。',
-      styleSummary: '成熟核果香 · 滑順酒體 · 雅緻酸度'
-    }
-  },
-  {
-    id: 'mackerel-steak',
+    id: 'spanish-mackerel',
     name: '澎湖野生土魠魚排',
     enName: 'Spanish Mackerel Steak',
-    aliases: '土魠魚、馬加魚、土魠魚羹肉',
-    primalId: 'fish-loin',
-    primalName: '魚背肉 (Fish Loin)',
-    tagBadge: '肉質紮實 · 冬季油脂最美',
+    aliases: '土魠魚、馬加魚、土魠魚排、土魠魚羹',
+    primalId: 'fish-dorsal',
+    primalName: '背肉 / 背脊肉 (Dorsal)',
+    tagBadge: '肉質紮實 · 冬令油脂香濃',
     tagColor: 'bg-amber-200 text-amber-950 border-amber-400',
     scores: {
       tenderness: 3,
@@ -370,18 +352,72 @@ export const FISH_CUTS_DATA = [
     ],
     donenessTip: '土魠魚肉質結實，厚切香煎時中小火慢煎熟透，外皮酥脆內部肉香集中。',
     winePairing: {
-      wines: ['Sauvignon Blanc', 'Dry Riesling', '冰鎮清酒'],
+      wines: ['Sauvignon Blanc', 'Dry Riesling', '冰鎮純米酒'],
       rationale: '土魠魚風味濃郁且具深海油脂感，紐西蘭 Sauvignon Blanc 的草本與百香果酸香能完美襯托魚香。',
       styleSummary: '草本百香果 · 高酸洗油 · 明快清爽'
     }
   },
   {
-    id: 'mullet-roe',
+    id: 'salmon-fillet-cut',
+    name: '挪威鮭魚菲力排',
+    enName: 'Atlantic Salmon Fillet',
+    aliases: '三文魚柳、厚切鮭魚菲力、鮭魚排',
+    primalId: 'fish-dorsal',
+    primalName: '背肉 / 背脊肉 (Dorsal)',
+    tagBadge: 'Omega-3 豐富 · 香煎外酥內嫩',
+    tagColor: 'bg-orange-100 text-orange-900 border-orange-300',
+    scores: {
+      tenderness: 5,
+      fat: 4,
+      flavor: 5
+    },
+    locationDesc: '取自大西洋鮭魚背脊厚實中段，色澤橙紅鮮亮，油脂細密均勻分佈於肌理間。',
+    keywords: ['Omega-3', '奶油香煎', '刺少肉厚', '生熟皆宜', '餐桌常勝軍'],
+    cookingMethods: [
+      { name: '脆皮奶油香煎', desc: '魚皮朝下大火煎至酥脆，淋入大蒜檸檬百里香奶油，內裡保持粉嫩。' },
+      { name: '日式照燒', desc: '醬油味醂清酒黃金比例，慢火收汁至魚肉裹上一層晶亮甘甜。' }
+    ],
+    donenessTip: '建議中心保持 50°C~52°C（約 7-8 分熟），肉質最為細嫩多汁，過熟容易滲出白色蛋白質變乾。',
+    winePairing: {
+      wines: ['桶陳 Chardonnay (夏多內)', 'Pinot Noir (黑皮諾)', 'Brut Rosé Champagne'],
+      rationale: '鮭魚豐富的天然魚油與濃郁風味，能完美承接帶有香草橡木桶奶油香的 Chardonnay；或搭配輕盈細緻的紅酒黑皮諾。',
+      styleSummary: '烤橡木奶油香 · 圓潤酒體 · 活潑果酸'
+    }
+  },
+  {
+    id: 'mackerel-fillet',
+    name: '鯖魚 / 竹筴魚 (一夜干 / 切片)',
+    enName: 'Mackerel / Horse Mackerel Fillet',
+    aliases: '挪威鯖魚、花飛、日式鹽烤鯖魚',
+    primalId: 'fish-dorsal',
+    primalName: '背肉 / 背脊肉 (Dorsal)',
+    tagBadge: '深海濃郁魚油 · 鹽烤下飯神器',
+    tagColor: 'bg-zinc-200 text-zinc-900 border-zinc-400',
+    scores: {
+      tenderness: 4,
+      fat: 5,
+      flavor: 5
+    },
+    locationDesc: '冷水深海青皮魚類，魚油含量極高且肉味強烈濃郁，富含 DHA 與 EPA，鹽烤與醋漬極佳。',
+    keywords: ['鹽烤鯖魚', '深海魚油', '強風味魚種', '便當人氣王', '醋漬鯖魚'],
+    cookingMethods: [
+      { name: '日式鹽烤鯖魚一夜干', desc: '烤箱 200°C 烤 12-15 分鐘至魚皮滋滋爆油焦脆，淋檸檬汁。' },
+      { name: '日式醋漬鯖魚 (Shimesaba)', desc: '鹽醃脫水後以米醋醃漬，切薄片佐山葵。' }
+    ],
+    donenessTip: '鹽烤時皮朝上，以高溫快速烤出脆皮並逼出多餘油脂。',
+    winePairing: {
+      wines: ['Vinho Verde (綠酒)', 'Txakoli (查科麗白酒)', '辛口本釀造清酒'],
+      rationale: '鯖魚魚油濃郁且帶強烈魚味，西班牙 Txakoli 或葡萄牙綠酒的超高酸度與微氣泡能徹底清潔口腔。',
+      styleSummary: '超高酸度微氣泡 · 柑橘青檸 · 強效去油'
+    }
+  },
+  {
+    id: 'mullet-bottarga',
     name: '野生烏魚子',
     enName: 'Taiwan Bottarga / Mullet Roe',
     aliases: '烏金、台灣烏魚子、炙燒烏魚子',
-    primalId: 'fish-belly',
-    primalName: '魚肚部 (Fish Belly)',
+    primalId: 'fish-offal',
+    primalName: '內臟 / 魚卵 (Offal & Roe)',
     tagBadge: '台灣烏金 · 濃縮極致鮮鹹醇香',
     tagColor: 'bg-amber-100 text-amber-900 border-amber-300',
     scores: {
@@ -404,66 +440,70 @@ export const FISH_CUTS_DATA = [
   }
 ];
 
-// 魚類海鮮餐酒搭配科學原則
+// 魚類海鮮餐酒搭配科學原則（5 大風味課題與 4 大魚肉質地分類）
 export const FISH_WINE_PRINCIPLES = [
   {
-    title: '原則一：魚油多寡決定酒款酸度與酒體',
-    subtitle: 'Fat Content & Fish Oil Dictate Acidity & Weight',
-    desc: '高魚油魚種（鮭魚、鮪魚大腹、烤魚下巴）需要具備桶陳結構的 Chardonnay、粉紅香檳或純米大吟釀切油；清瘦白肉魚（石斑、鱸魚、鯛魚）則應選擇輕盈高酸的夏布利、灰皮諾或 Sauvignon Blanc。',
+    title: '原則一：魚油多寡與鮮味強度決定酸度與酒體',
+    subtitle: 'Fat Content & Umami Strength Dictate Wine Acidity & Body',
+    desc: '海鮮搭酒最忌諱高單寧厚重紅酒（單寧與鐵離子會催化魚油氧化產生金屬鐵鏽魚腥味）。細緻白肉魚配冷冽高酸白酒（Chablis / Pinot Grigio）；高油脂魚類（鮭魚、鮪魚大腹、鯖魚）則需桶陳 Chardonnay、粉紅香檳或純米大吟釀切除油膩。',
     items: [
-      { meatType: '高油脂魚類 (鮭魚、鮪魚大腹、魚下巴、虱目魚肚)', wineStyle: '桶陳圓潤、高酸氣泡或辛口清酒', examples: 'Oaked Chardonnay、Brut Rosé Champagne、純米大吟釀' },
-      { meatType: '膠質清甜魚類 (龍虎斑、石斑魚、金目鱸魚)', wineStyle: '純淨礦石感、明亮柑橘果酸', examples: 'Chablis (夏布利)、Sauvignon Blanc、Pinot Grigio' },
-      { meatType: '濃郁濃縮海味 (烏魚子、魚頭砂鍋煲)', wineStyle: '氣泡洗刷感、雪莉酒堅果香或純米酒旨味', examples: 'Champagne、Fino Sherry、純米清酒 (Junmai Sake)' }
+      { meatType: '細緻白肉型 (午仔魚、鱸魚、白鯧、石斑)', wineStyle: '純淨礦石感、明亮柑橘果酸、吟釀清酒', examples: 'Chablis (夏布利)、Sauvignon Blanc、Albariño、純米吟釀' },
+      { meatType: '油脂豐富型 (鮭魚、黑鮪大腹、青魽下巴、虱目魚肚)', wineStyle: '桶陳圓潤、高酸年份香檳、辛口清酒', examples: 'Oaked Chardonnay、Brut Rosé Champagne、純米大吟釀' },
+      { meatType: '風味鮮明型 (鯖魚、土魠魚、竹筴魚)', wineStyle: '超高酸度、微氣泡或冷藏輕紅酒', examples: 'Vinho Verde (綠酒)、Txakoli、輕盈 Pinot Noir' },
+      { meatType: '濃縮海味珍味 (野生烏魚子、魚頭砂鍋)', wineStyle: '氣泡洗刷感、雪莉酒堅果香或純米酒旨味', examples: 'Champagne、Fino Sherry、純米清酒 (Junmai Sake)' }
     ]
   },
   {
     title: '原則二：清蒸檸檬佐高酸白酒，醬燒照燒佐輕紅酒或清酒',
-    subtitle: 'Cooking & Sauce Shape Wine Compatibility',
-    desc: '海鮮最忌諱高單寧厚重紅酒（會與魚油結合產生強烈鐵鏽與魚腥味）。清蒸與檸檬香煎配高酸白酒；日式醬燒、照燒或紅燒則可跨界搭配低單寧黑皮諾或日本清酒。',
+    subtitle: 'Cooking Method & Sauce Dictate Flavor Pairing',
+    desc: '烹調技法與醬汁大幅改變搭酒方向。清蒸以破布子蔥薑提鮮，需搭配礦物感白酒；日式照燒、蒲燒或紅燒帶甜鹹醬香，需以微甜 Riesling、清酒或低單寧黑皮諾相呼應。',
     items: [
-      { method: '原味清蒸 / 樹子蔥油', wineFocus: '礦物冷冽感、生津果酸', picks: 'Chablis、Sauvignon Blanc、純米吟釀' },
-      { method: '奶油香煎 / 西式紙包烤', wineFocus: '烤青蘋果、適度乳酸圓潤感', picks: 'Unoaked Chardonnay、Pinot Grigio' },
-      { method: '日式照燒 / 蒲燒 / 紅燒醬汁', wineFocus: '輕柔單寧、深色櫻桃或米香旨味', picks: 'Pinot Noir (黑皮諾)、純米清酒' },
+      { method: '原味清蒸 / 樹子蔥油', wineFocus: '冷冽礦石感、生津檸檬酸度', picks: 'Chablis、Albariño、甲州白酒 (Koshu)' },
+      { method: '脆皮奶油香煎 / 西式紙包烤', wineFocus: '烤青蘋果、適度乳酸圓潤感', picks: '未過桶 Chardonnay、Pinot Grigio' },
+      { method: '日式居酒屋鹽烤 / 氣炸魚下巴', wineFocus: '辛口俐落、芭樂熱帶果酸、氣泡去油', picks: '辛口本釀造清酒、Sauvignon Blanc、Brut Cava' },
+      { method: '日式照燒 / 蒲燒 / 紅燒醬汁', wineFocus: '微甜果香、柔和單寧或米香旨味', picks: 'Off-dry Riesling、Pinot Noir (黑皮諾)、純米清酒' },
       { method: '生食刺身 / 炙燒握壽司', wineFocus: '細膩微氣泡、極致純淨純米旨味', picks: 'Blanc de Blancs 香檳、純米大吟釀' }
     ]
   }
 ];
 
-// 魚類選魚助手問答資料
+// 魚類選魚助手問答資料（涵蓋刺量、魚肉質地、料理方式與搭酒）
 export const FISH_WIZARD_DATA = {
   textures: [
-    { id: 'tender-flake', label: '細嫩多汁、瓣狀肉質', icon: 'Sparkles', desc: '追求如白雪般滑順細嫩的口感', recommendedIds: ['cod-steak', 'salmon-fillet', 'barramundi-fillet', 'tilapia-fillet'] },
-    { id: 'fatty-melt', label: '魚油滿溢、入口即化', icon: 'Droplets', desc: '熱愛豐富 Omega-3 魚油與濃郁脂香', recommendedIds: ['tuna-otoro', 'salmon-collar', 'milkfish-belly', 'salmon-fillet'] },
-    { id: 'springy-skin', label: '皮Q肉彈、滿滿膠質', icon: 'Clock', desc: '喜歡石斑魚皮的彈牙與膠原蛋白', recommendedIds: ['grouper-fillet', 'fish-head-pot', 'salmon-collar'] },
-    { id: 'firm-meaty', label: '肉感紮實、無小暗刺', icon: 'HeartPulse', desc: '喜歡大口吃肉、大塊厚切口感', recommendedIds: ['mackerel-steak', 'ribbonfish-cut', 'grouper-fillet'] },
-    { id: 'umami-savory', label: '濃縮鹹鮮、珍味老饕', icon: 'Flame', desc: '追求頂級下酒珍味與深邃海味', recommendedIds: ['mullet-roe', 'tuna-otoro', 'fish-head-pot'] }
+    { id: 'boneless-tender', label: '少刺好入口、全家安心吃', icon: 'Sparkles', desc: '幾無暗刺、肉質軟嫩，老人小孩最愛', recommendedIds: ['threadfin-steak', 'milkfish-loin-cut', 'barramundi-fillet', 'salmon-fillet-cut'] },
+    { id: 'tender-steam', label: '細嫩清爽、想清蒸煮湯', icon: 'Soup', desc: '追求純淨清甜、如豆腐般細嫩瓣狀肉質', recommendedIds: ['pomfret-steak', 'grouper-fillet', 'barramundi-fillet', 'threadfin-steak'] },
+    { id: 'fatty-sear', label: '油脂豐富、想香煎或炭烤', icon: 'Droplets', desc: '熱愛豐富 Omega-3 魚油與金黃焦脆外皮', recommendedIds: ['milkfish-belly-cut', 'amberjack-collar', 'salmon-fillet-cut', 'mackerel-fillet'] },
+    { id: 'firm-meaty', label: '肉質結實、想吃魚排或紅燒', icon: 'HeartPulse', desc: '肉感厚實、大口咀嚼無暗刺負擔', recommendedIds: ['spanish-mackerel', 'grouper-fillet', 'salmon-fillet-cut'] },
+    { id: 'sashimi-raw', label: '生生魚片刺身 / 炙燒握壽司', icon: 'Sparkles', desc: '極致鮮甜、冰鎮厚切入口即化', recommendedIds: ['tuna-otoro-cut', 'salmon-fillet-cut'] },
+    { id: 'offal-collagen', label: '老饕挑戰：下巴、魚皮、烏魚子', icon: 'Flame', desc: '追求極致膠質、濃郁鹹鮮與老饕珍味', recommendedIds: ['mullet-bottarga', 'amberjack-collar', 'milkfish-belly-cut'] }
   ],
   cookingMethods: [
-    { id: 'pan-sear', label: '脆皮香煎 / 奶油煎魚排', icon: 'UtensilsCrossed', desc: '魚皮金黃酥脆、鎖住肉汁', recommendedIds: ['salmon-fillet', 'milkfish-belly', 'ribbonfish-cut', 'mackerel-steak'] },
-    { id: 'steam-fresh', label: '蔥薑樹子清蒸', icon: 'Soup', desc: '原汁原味、鮮甜嫩滑', recommendedIds: ['grouper-fillet', 'cod-steak', 'barramundi-fillet'] },
-    { id: 'sashimi-raw', label: '頂級刺身 / 炙燒生食', icon: 'Sparkles', desc: '冰鎮厚切、品嚐原味油香', recommendedIds: ['tuna-otoro', 'salmon-fillet'] },
-    { id: 'grill-bbq', label: '居酒屋鹽烤 / 照燒', icon: 'Flame', desc: '直火炭烤逼出魚油焦香', recommendedIds: ['salmon-collar', 'mullet-roe', 'tilapia-fillet', 'salmon-fillet'] },
-    { id: 'soup-pot', label: '薑絲魚湯 / 砂鍋魚頭煲', icon: 'Clock', desc: '濃醇膠質高湯、暖胃甘甜', recommendedIds: ['fish-head-pot', 'barramundi-fillet', 'milkfish-belly'] },
-    { id: 'braise-sauce', label: '台式紅燒 / 醬油樹子燜煮', icon: 'Soup', desc: '鹹香入味、醬香下飯', recommendedIds: ['ribbonfish-cut', 'mackerel-steak', 'fish-head-pot'] }
+    { id: 'steam-fresh', label: '蔥薑樹子清蒸', icon: 'Soup', desc: '大火快蒸 6-8 分鐘、鮮甜嫩滑', recommendedIds: ['threadfin-steak', 'pomfret-steak', 'grouper-fillet', 'barramundi-fillet'] },
+    { id: 'pan-sear', label: '脆皮香煎 / 奶油煎魚排', icon: 'UtensilsCrossed', desc: '魚皮金黃酥脆、鎖住肉汁', recommendedIds: ['milkfish-belly-cut', 'salmon-fillet-cut', 'spanish-mackerel', 'threadfin-steak'] },
+    { id: 'grill-bbq', label: '居酒屋鹽烤 / 氣炸一夜干', icon: 'Flame', desc: '直火炭烤逼出魚油焦香', recommendedIds: ['amberjack-collar', 'threadfin-steak', 'mackerel-fillet', 'mullet-bottarga'] },
+    { id: 'soup-pot', label: '薑絲魚湯 / 砂鍋魚頭煲', icon: 'Clock', desc: '濃醇膠質高湯、暖胃甘甜', recommendedIds: ['barramundi-fillet', 'milkfish-belly-cut', 'grouper-fillet'] },
+    { id: 'braise-sauce', label: '台式紅燒 / 醬油樹子燜煮', icon: 'Soup', desc: '鹹香入味、醬香下飯', recommendedIds: ['spanish-mackerel', 'threadfin-steak', 'pomfret-steak'] },
+    { id: 'fry-fillet', label: '酥炸椒鹽魚柳 / 魚羹', icon: 'UtensilsCrossed', desc: '外酥內嫩、下酒良伴', recommendedIds: ['milkfish-loin-cut', 'spanish-mackerel'] },
+    { id: 'sashimi-plate', label: '頂級刺身 / 炙燒生食', icon: 'Sparkles', desc: '冰鎮厚切、品嚐原味油香', recommendedIds: ['tuna-otoro-cut', 'salmon-fillet-cut'] }
   ]
 };
 
-// 魚類海鮮常見問答 FAQ
+// 台灣魚類常見問答 FAQ
 export const FISH_FAQS_DATA = [
   {
-    q: '為什麼吃魚喝紅葡萄酒容易出現「鐵鏽味」與魚腥味？',
-    a: '這是因為紅酒中的「單寧」與高濃度「鐵離子」會與海鮮魚肉中的不飽和脂肪酸產生化學反應，瞬間氧化並釋放出類似金屬生鏽的強烈魚腥味。因此海鮮佐餐首選高酸度的白葡萄酒（如 Chablis、Sauvignon Blanc）、氣泡酒或日本清酒；若一定要搭配紅酒，僅建議選擇單寧極低、果酸純淨的黑皮諾 (Pinot Noir) 搭配醬燒魚類。'
+    q: '為什麼吃魚喝紅葡萄酒容易出現「鐵鏽味」與強烈魚腥味？',
+    a: '這是因為紅酒中的「單寧」與高濃度「鐵離子」會催化海鮮魚肉中的不飽和脂肪酸（魚油）迅速氧化，瞬間釋放出類似金屬生鏽與腥臭的揮發性化合物。因此海鮮佐餐首選高酸度的白葡萄酒（如 Chablis、Sauvignon Blanc、Albariño）、香檳氣泡酒或日本清酒；若一定要搭配紅酒，僅建議選擇單寧極低、果酸純淨的黑皮諾 (Pinot Noir) 搭配醬燒或香煎魚排。'
   },
   {
-    q: '魚肚（如鮭魚肚、虱目魚肚）與魚背肉（菲力）在料理上有何不同？',
-    a: '魚肚部位油脂含量極高，最適合以「乾煎」（利用自身魚油煎出脆皮）或做成生魚片、炙燒壽司；而魚背肉（菲力）肌肉組織緊密、肉厚且刺少，適合「奶油香煎」、「清蒸」、「低溫舒肥」或「紙包烤」，能呈現多汁純淨的細嫩瓣狀肉質。'
+    q: '台灣俗語「一午、二紅衫、三鯧、四馬加」代表什麼意思？為什麼首選午仔魚？',
+    a: '這是台灣早期漁民評選最好吃魚類的排行榜：「一午」指午仔魚、「二紅衫」指嘉鱲或紅衫、「三鯧」指白鯧、「四馬加」指土魠魚。午仔魚之所以榮登榜首，是因為其油脂豐富細緻、肉質如凝脂般細嫩，且體內幾無細小暗刺，無論清蒸、乾煎、煮湯或做成一夜干皆極為美味，是全家大小的最佳選擇。'
   },
   {
-    q: '「生食級」魚肉與一般煎烤用魚排的標準差在哪裡？',
-    a: '生食級（Sashimi Grade）肉品必須經過嚴格的超低溫急速冷凍（通常為 -60°C 深度凍結），以徹底消滅可能存在的寄生蟲與細菌，且在加工、分切與冷鏈運送過程中具備極高衛生標準。一般超市標示生鮮或煎烤用的魚排，請務必完全加熱熟化後食用。'
+    q: '全魚利用的典範：虱目魚各部位該怎麼買、怎麼煮？',
+    a: '虱目魚是台灣全魚利用最徹底的魚種：魚肚（側線下方腹肉）油脂最肥美，適合乾煎或煮薑絲湯；魚柳（去骨魚菲力）無刺極嫩，適合快炒或炸魚柳；魚皮（帶薄層魚肉）富含膠質，汆燙佐芥末醬油膏爽脆無比；魚嶺（背脊骨邊肉）適合乾煎酥炸下酒；魚頭臉頰肉鮮美適合紅燒；魚腸則是台南在地老饕必點的薑絲快炒珍味。'
   },
   {
-    q: '香煎魚排如何做到「魚皮酥脆、魚肉不碎裂」？',
-    a: '掌握三大秘訣：1. 下鍋前務必以廚房紙巾「將魚身表面水分徹底吸乾」；2. 熱鍋下適量油，魚皮朝下後用鍋鏟輕壓 15 秒防止蜷曲；3. 定型前切勿隨意翻動，待魚皮煎至金黃焦酥能輕易脫離鍋面時再翻面煎熟即可。'
+    q: '香煎魚排如何做到「魚皮金黃酥脆、魚肉多汁不碎裂」？',
+    a: '掌握三大秘訣：1. 下鍋前務必用紙巾「將魚身表面水分徹底吸乾」；2. 熱鍋下適量油，魚皮朝下入鍋後，用鍋鏟輕壓 15 秒防止魚皮受熱蜷曲；3. 定型前切勿隨意翻動，待魚皮煎至金黃焦酥能輕易脫離鍋面時再翻面煎熟即可。'
   }
 ];

@@ -6,12 +6,21 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
   const primal = FISH_PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || FISH_PRIMAL_AREAS[2];
 
   const getCutIdFromExtendedName = (name) => {
-    if (name.includes('鮭魚菲力') || name.includes('鱸魚') || name.includes('石斑') || name.includes('鯛魚')) return 'salmon-fillet';
-    if (name.includes('鮪魚') || name.includes('大腹') || name.includes('虱目魚')) return 'tuna-otoro';
-    if (name.includes('下巴')) return 'salmon-collar';
-    if (name.includes('魚頭')) return 'fish-head-pot';
-    if (name.includes('白帶魚') || name.includes('魚尾')) return 'ribbonfish-cut';
-    return 'salmon-fillet';
+    if (name.includes('虱目魚肚')) return 'milkfish-belly-cut';
+    if (name.includes('虱目魚柳') || name.includes('魚柳')) return 'milkfish-loin-cut';
+    if (name.includes('午仔魚') || name.includes('午仔')) return 'threadfin-steak';
+    if (name.includes('金目鱸') || name.includes('七星鱸') || name.includes('鱸魚')) return 'barramundi-fillet';
+    if (name.includes('白鯧')) return 'pomfret-steak';
+    if (name.includes('土魠魚') || name.includes('土魠')) return 'spanish-mackerel';
+    if (name.includes('鮭魚菲力') || name.includes('鮭魚排')) return 'salmon-fillet-cut';
+    if (name.includes('下巴') || name.includes('青魽') || name.includes('海鱺')) return 'amberjack-collar';
+    if (name.includes('黑鮪魚') || name.includes('大腹') || name.includes('赤身') || name.includes('鮪魚')) return 'tuna-otoro-cut';
+    if (name.includes('鯖魚') || name.includes('竹筴魚')) return 'mackerel-fillet';
+    if (name.includes('烏魚子') || name.includes('烏魚')) return 'mullet-bottarga';
+    if (name.includes('龍虎斑') || name.includes('石斑')) return 'grouper-fillet';
+    if (name.includes('魚皮') || name.includes('魚腸')) return 'milkfish-belly-cut';
+    if (name.includes('魚頭') || name.includes('砂鍋')) return 'fish-head';
+    return 'threadfin-steak';
   };
 
   return (
@@ -27,7 +36,7 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
                 style={{ backgroundColor: primal.color }}
               />
               <span className="text-xs font-serif italic text-charcoal-muted tracking-wider">
-                魚類部位分切 · {primal.enName}
+                魚類通用部位 · {primal.enName}
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-charcoal flex items-baseline gap-2">
@@ -55,7 +64,7 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              常見熱門細分切（點擊看規格）
+              台灣熱門代表魚種與分切（點擊看規格）
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -124,7 +133,7 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
           className="text-xs font-semibold text-beef-burgundy hover:underline flex items-center gap-1"
         >
           <BookOpen className="w-3.5 h-3.5" />
-          瀏覽魚類海鮮 12 大熱門部位卡片
+          瀏覽台灣 12 款精選魚種與部位卡片
         </a>
       </div>
     </div>
