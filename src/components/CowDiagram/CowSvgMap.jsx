@@ -14,14 +14,14 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
       <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-parchment-200">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-charcoal-muted">
           <Info className="w-4 h-4 text-beef-burgundy" />
-          <span>點擊牛身色塊探索 8 大部位解剖細節</span>
+          <span>點擊牛身部位探索 8 大美式分切解剖細節</span>
         </div>
         <div className="text-xs text-charcoal-muted hidden sm:block">
           當前選中：<span className="font-bold text-beef-burgundy">{activePrimal.name} ({activePrimal.enName})</span>
         </div>
       </div>
 
-      {/* SVG 牛隻部位向量圖 */}
+      {/* SVG 古典肉舖版畫風格牛隻部位圖 */}
       <div className="relative w-full aspect-[16/9] max-h-[500px] flex items-center justify-center">
         <svg
           viewBox="0 0 1000 580"
@@ -29,50 +29,76 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            {/* 45 度古典版畫排線紋理 */}
-            <pattern id="etchingLines" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="0" y2="8" stroke="#1C1917" strokeWidth="0.75" opacity="0.22" />
+            {/* 45 度古典銅版畫排線紋理 */}
+            <pattern id="beefEtching" width="7" height="7" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="7" stroke="#1C1917" strokeWidth="0.8" opacity="0.22" />
             </pattern>
-            {/* 交叉排線陰影 */}
-            <pattern id="etchingCross" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="0" y2="10" stroke="#1C1917" strokeWidth="0.75" opacity="0.25" />
-              <line x1="0" y1="0" x2="10" y2="0" stroke="#1C1917" strokeWidth="0.75" opacity="0.25" />
+            {/* 交叉陰影紋理 */}
+            <pattern id="beefCrossHatch" width="9" height="9" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="9" stroke="#1C1917" strokeWidth="0.75" opacity="0.25" />
+              <line x1="0" y1="0" x2="9" y2="0" stroke="#1C1917" strokeWidth="0.75" opacity="0.25" />
             </pattern>
-            {/* 濾鏡與陰影 */}
-            <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#1C1917" floodOpacity="0.2" />
+            {/* 選中發光效果 */}
+            <filter id="beefGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#1C1917" floodOpacity="0.22" />
             </filter>
           </defs>
 
-          {/* 牛隻解剖輪廓底稿背景 (牛頭、牛角、牛尾、蹄部) */}
-          <g className="opacity-90" fill="#E4DCCF" stroke="#1C1917" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            {/* 牛頭與臉部 */}
-            <path d="M 80,180 C 70,160 50,170 35,210 C 25,235 30,280 45,300 C 60,315 90,320 115,290 C 130,270 145,260 160,250 Z" />
-            {/* 牛角 */}
-            <path d="M 75,175 C 65,130 90,95 110,90 C 105,115 95,145 85,170 Z" fill="#6B4C38" />
-            <path d="M 95,170 C 95,120 120,90 140,80 C 130,110 115,145 105,168 Z" fill="#5A3E2D" />
-            {/* 牛耳 */}
-            <path d="M 125,200 C 145,190 170,205 160,225 C 145,225 135,215 125,200 Z" fill="#CFC3B2" />
-            {/* 眼睛與鼻孔刻線 */}
-            <circle cx="85" cy="225" r="4" fill="#1C1917" />
-            <ellipse cx="45" cy="285" rx="5" ry="3" fill="#1C1917" />
-            <path d="M 40,295 Q 60,305 75,290" fill="none" strokeWidth="2" />
+          {/* ========================================================
+              底層：寫實古典牛隻輪廓素描 (牛頭、牛角、牛腿、牛蹄、牛尾)
+              ======================================================== */}
+          <g className="opacity-95" fill="#E8E1D5" stroke="#1C1917" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            
+            {/* 牛尾 (優美自然垂落) */}
+            <path d="M 875,250 C 900,280 910,340 905,400 C 900,435 912,470 916,495 C 908,495 898,470 896,430 C 894,370 885,300 870,250 Z" fill="#D5CBB9" />
+            {/* 尾毛束 */}
+            <path d="M 912,485 C 925,510 930,535 918,550 C 908,540 902,515 908,485 Z" fill="#5A3E2D" />
 
-            {/* 牛尾 */}
-            <path d="M 870,220 C 895,240 910,290 905,360 C 900,400 915,440 920,470 C 910,475 895,450 895,410 C 895,350 885,270 865,220 Z" fill="#CFC3B2" />
-            {/* 尾毛 */}
-            <path d="M 915,450 C 930,480 935,510 925,530 C 915,520 905,490 915,450 Z" fill="#6B4C38" />
+            {/* 後腿延伸至蹄部 (遠側後腿) */}
+            <path d="M 720,430 L 730,525 L 755,525 L 748,430 Z" fill="#C5B8A5" />
+            <path d="M 728,525 L 725,548 L 758,548 L 755,525 Z" fill="#3D2B1F" />
 
-            {/* 前腳蹄部 */}
-            <path d="M 230,480 L 225,540 L 265,540 L 260,480 Z" fill="#423023" />
-            <path d="M 330,480 L 325,540 L 365,540 L 360,480 Z" fill="#423023" />
-            {/* 後腳蹄部 */}
-            <path d="M 720,480 L 715,540 L 755,540 L 750,480 Z" fill="#423023" />
-            <path d="M 820,480 L 815,540 L 855,540 L 850,480 Z" fill="#423023" />
+            {/* 前腿延伸至蹄部 (遠側前腿) */}
+            <path d="M 285,420 L 290,525 L 315,525 L 310,420 Z" fill="#C5B8A5" />
+            <path d="M 288,525 L 285,548 L 318,548 L 315,525 Z" fill="#3D2B1F" />
+
+            {/* 近側前腿骨骼輪廓 (連至前蹄) */}
+            <path d="M 200,440 L 205,525 L 235,525 L 230,440 Z" fill="#B3A28D" />
+            <path d="M 203,525 L 200,548 L 238,548 L 235,525 Z" fill="#2E1F16" />
+
+            {/* 近側後腿骨骼輪廓 (連至後蹄) */}
+            <path d="M 810,440 L 815,525 L 845,525 L 840,440 Z" fill="#B3A28D" />
+            <path d="M 813,525 L 810,548 L 848,548 L 845,525 Z" fill="#2E1F16" />
+
+            {/* 典雅寫實牛頭、耳朵與優美牛角 */}
+            {/* 遠側牛角 */}
+            <path d="M 100,165 C 90,120 115,85 135,78 C 128,105 118,135 110,165 Z" fill="#5A3E2D" stroke="#1C1917" strokeWidth="2" />
+            {/* 遠側耳朵 */}
+            <path d="M 125,185 C 145,175 168,190 160,205 C 145,205 135,195 125,185 Z" fill="#C5B8A5" />
+            
+            {/* 牛頭主體 (額頭、口鼻、下顎與喉部垂皮) */}
+            <path
+              d="M 155,230 C 135,195 105,175 80,185 C 60,195 45,225 35,260 C 28,290 35,320 55,335 C 75,348 105,345 135,310 C 150,290 160,265 170,250 Z"
+              fill="#E8E1D5"
+              stroke="#1C1917"
+              strokeWidth="2.5"
+            />
+            {/* 近側牛角 */}
+            <path d="M 85,180 C 72,135 95,95 118,88 C 112,115 102,150 92,180 Z" fill="#78553E" stroke="#1C1917" strokeWidth="2.5" />
+            {/* 近側耳朵 */}
+            <path d="M 130,210 C 155,200 178,218 168,235 C 150,235 140,225 130,210 Z" fill="#D5CBB9" stroke="#1C1917" strokeWidth="2" />
+            
+            {/* 牛臉部寫實細節 (眼睛、口鼻孔、唇線與面部刻線) */}
+            <circle cx="85" cy="225" r="5" fill="#1C1917" />
+            <circle cx="87" cy="223" r="1.5" fill="#FAF8F5" />
+            <ellipse cx="48" cy="295" rx="6" ry="4" fill="#1C1917" />
+            <path d="M 40,305 C 55,320 75,320 85,308" fill="none" stroke="#1C1917" strokeWidth="2.2" />
+            {/* 喉部垂皮折線 (Dewlap) */}
+            <path d="M 95,335 C 120,370 150,390 180,395" fill="none" stroke="#1C1917" strokeWidth="2" strokeDasharray="3 3" opacity="0.6" />
           </g>
 
           {/* ========================================================
-              8 大分切色塊主體 (美式 Primal Cuts)
+              8 大解剖分切色塊主體 (8 Primal Cuts - 自然生物肌肉分界線)
               ======================================================== */}
 
           {/* 1. 肩胛部 Chuck (#B84A39 陶土磚紅) */}
@@ -81,26 +107,25 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
             onClick={() => onSelectPrimal('chuck')}
             onMouseEnter={() => setHoveredPrimalId('chuck')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'chuck' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'chuck' ? 'url(#beefGlow)' : undefined}
           >
             <path
-              d="M 160,250 C 180,210 220,165 300,160 L 375,160 L 375,305 L 290,305 L 290,370 L 220,360 L 205,320 L 160,250 Z"
+              d="M 160,240 C 185,185 240,155 330,150 L 375,155 L 375,305 L 290,305 L 275,385 C 240,390 200,380 180,335 C 165,300 155,265 160,240 Z"
               fill={selectedPrimalId === 'chuck' ? '#C95543' : '#B84A39'}
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'chuck' ? 4 : 2.5}
             />
             <path
-              d="M 160,250 C 180,210 220,165 300,160 L 375,160 L 375,305 L 290,305 L 290,370 L 220,360 L 205,320 L 160,250 Z"
-              fill="url(#etchingLines)"
+              d="M 160,240 C 185,185 240,155 330,150 L 375,155 L 375,305 L 290,305 L 275,385 C 240,390 200,380 180,335 C 165,300 155,265 160,240 Z"
+              fill="url(#beefEtching)"
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'chuck' ? 4 : 2.5}
             />
-            {/* 標籤文字 */}
-            <text x="270" y="240" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
+            <text x="270" y="235" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
               肩胛部
             </text>
-            <text x="270" y="262" textAnchor="middle" fill="#FAF8F5" fontSize="14" opacity="0.95" className="font-serif italic pointer-events-none">
-              CHUCK
+            <text x="270" y="258" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
+              CHUCK (板腱·翼板)
             </text>
           </g>
 
@@ -110,24 +135,24 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
             onClick={() => onSelectPrimal('rib')}
             onMouseEnter={() => setHoveredPrimalId('rib')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'rib' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'rib' ? 'url(#beefGlow)' : undefined}
           >
             <path
-              d="M 375,160 L 525,160 L 525,280 L 375,280 Z"
+              d="M 375,155 C 440,152 505,152 530,156 L 530,305 L 375,305 Z"
               fill={selectedPrimalId === 'rib' ? '#E5A54B' : '#D8963E'}
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'rib' ? 4 : 2.5}
             />
             <path
-              d="M 375,160 L 525,160 L 525,280 L 375,280 Z"
-              fill="url(#etchingLines)"
+              d="M 375,155 C 440,152 505,152 530,156 L 530,305 L 375,305 Z"
+              fill="url(#beefEtching)"
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'rib' ? 4 : 2.5}
             />
-            <text x="450" y="215" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none">
+            <text x="452" y="225" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="22" className="font-sans pointer-events-none">
               肋脊部
             </text>
-            <text x="450" y="237" textAnchor="middle" fill="#1C1917" fontSize="14" opacity="0.9" className="font-serif italic pointer-events-none">
+            <text x="452" y="248" textAnchor="middle" fill="#1C1917" fontSize="13" opacity="0.9" className="font-serif italic pointer-events-none">
               RIB (肋眼·牛小排)
             </text>
           </g>
@@ -138,25 +163,25 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
             onClick={() => onSelectPrimal('loin')}
             onMouseEnter={() => setHoveredPrimalId('loin')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'loin' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'loin' ? 'url(#beefGlow)' : undefined}
           >
             <path
-              d="M 525,160 L 690,165 L 690,290 L 525,280 Z"
+              d="M 530,156 C 580,160 640,165 700,175 L 700,315 L 530,305 Z"
               fill={selectedPrimalId === 'loin' ? '#6C836C' : '#5B705B'}
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'loin' ? 4 : 2.5}
             />
             <path
-              d="M 525,160 L 690,165 L 690,290 L 525,280 Z"
-              fill="url(#etchingLines)"
+              d="M 530,156 C 580,160 640,165 700,175 L 700,315 L 530,305 Z"
+              fill="url(#beefEtching)"
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'loin' ? 4 : 2.5}
             />
-            <text x="607" y="218" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
+            <text x="615" y="225" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
               腰脊部
             </text>
-            <text x="607" y="240" textAnchor="middle" fill="#FAF8F5" fontSize="14" opacity="0.95" className="font-serif italic pointer-events-none">
-              LOIN (菲力·紐約客)
+            <text x="615" y="248" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
+              LOIN (菲力·紐約客·沙朗)
             </text>
           </g>
 
@@ -166,25 +191,25 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
             onClick={() => onSelectPrimal('round')}
             onMouseEnter={() => setHoveredPrimalId('round')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'round' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'round' ? 'url(#beefGlow)' : undefined}
           >
             <path
-              d="M 690,165 C 750,175 830,195 870,225 C 885,270 880,360 850,420 L 780,420 L 780,330 L 690,290 Z"
+              d="M 700,175 C 760,185 830,205 875,250 C 885,290 880,360 860,430 L 780,430 L 795,350 L 700,315 Z"
               fill={selectedPrimalId === 'round' ? '#922C3E' : '#7C2333'}
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'round' ? 4 : 2.5}
             />
             <path
-              d="M 690,165 C 750,175 830,195 870,225 C 885,270 880,360 850,420 L 780,420 L 780,330 L 690,290 Z"
-              fill="url(#etchingLines)"
+              d="M 700,175 C 760,185 830,205 875,250 C 885,290 880,360 860,430 L 780,430 L 795,350 L 700,315 Z"
+              fill="url(#beefEtching)"
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'round' ? 4 : 2.5}
             />
-            <text x="785" y="270" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
+            <text x="785" y="280" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
               後腿部
             </text>
-            <text x="785" y="292" textAnchor="middle" fill="#FAF8F5" fontSize="14" opacity="0.95" className="font-serif italic pointer-events-none">
-              ROUND
+            <text x="785" y="303" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
+              ROUND (臀肉·和尚頭)
             </text>
           </g>
 
@@ -194,53 +219,53 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
             onClick={() => onSelectPrimal('brisket')}
             onMouseEnter={() => setHoveredPrimalId('brisket')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'brisket' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'brisket' ? 'url(#beefGlow)' : undefined}
           >
             <path
-              d="M 290,305 L 375,305 L 375,395 L 290,395 Z"
-              fill={selectedPrimalId === 'brisket' ? '#B8A38B' : '#A89279'}
+              d="M 290,305 L 375,305 L 375,410 L 275,410 L 290,305 Z"
+              fill={selectedPrimalId === 'brisket' ? '#B8A48D' : '#A89279'}
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'brisket' ? 4 : 2.5}
             />
             <path
-              d="M 290,305 L 375,305 L 375,395 L 290,395 Z"
-              fill="url(#etchingCross)"
+              d="M 290,305 L 375,305 L 375,410 L 275,410 L 290,305 Z"
+              fill="url(#beefCrossHatch)"
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'brisket' ? 4 : 2.5}
             />
-            <text x="332" y="348" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="17" className="font-sans pointer-events-none drop-shadow">
+            <text x="332" y="355" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="16" className="font-sans pointer-events-none">
               前胸部
             </text>
-            <text x="332" y="368" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
+            <text x="332" y="375" textAnchor="middle" fill="#1C1917" fontSize="11" opacity="0.9" className="font-serif italic pointer-events-none">
               BRISKET
             </text>
           </g>
 
-          {/* 6. 胸腹部 Short Plate (#D26C42 珊瑚橘) */}
+          {/* 6. 胸腹部 Plate (#D26C42 珊瑚橘) */}
           <g
             className="cursor-pointer transition-all duration-200"
             onClick={() => onSelectPrimal('plate')}
             onMouseEnter={() => setHoveredPrimalId('plate')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'plate' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'plate' ? 'url(#beefGlow)' : undefined}
           >
             <path
-              d="M 375,280 L 525,280 L 525,395 L 375,395 Z"
+              d="M 375,305 L 530,305 L 530,410 C 475,415 420,415 375,410 Z"
               fill={selectedPrimalId === 'plate' ? '#DF7B52' : '#D26C42'}
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'plate' ? 4 : 2.5}
             />
             <path
-              d="M 375,280 L 525,280 L 525,395 L 375,395 Z"
-              fill="url(#etchingLines)"
+              d="M 375,305 L 530,305 L 530,410 C 475,415 420,415 375,410 Z"
+              fill="url(#beefEtching)"
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'plate' ? 4 : 2.5}
             />
-            <text x="450" y="335" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="18" className="font-sans pointer-events-none drop-shadow">
+            <text x="452" y="350" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="19" className="font-sans pointer-events-none drop-shadow">
               胸腹部
             </text>
-            <text x="450" y="355" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              PLATE (牛五花)
+            <text x="452" y="372" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
+              PLATE (牛五花·牛腩)
             </text>
           </g>
 
@@ -250,87 +275,73 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
             onClick={() => onSelectPrimal('flank')}
             onMouseEnter={() => setHoveredPrimalId('flank')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'flank' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'flank' ? 'url(#beefGlow)' : undefined}
           >
             <path
-              d="M 525,280 L 690,290 L 690,395 L 525,395 Z"
-              fill={selectedPrimalId === 'flank' ? '#444C56' : '#333A42'}
+              d="M 530,305 L 700,315 L 700,380 C 650,405 580,412 530,410 Z"
+              fill={selectedPrimalId === 'flank' ? '#444D57' : '#333A42'}
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'flank' ? 4 : 2.5}
             />
             <path
-              d="M 525,280 L 690,290 L 690,395 L 525,395 Z"
-              fill="url(#etchingLines)"
+              d="M 530,305 L 700,315 L 700,380 C 650,405 580,412 530,410 Z"
+              fill="url(#beefEtching)"
               stroke="#FAF8F5"
               strokeWidth={selectedPrimalId === 'flank' ? 4 : 2.5}
             />
-            <text x="607" y="335" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="18" className="font-sans pointer-events-none drop-shadow">
+            <text x="615" y="352" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="18" className="font-sans pointer-events-none drop-shadow">
               腹脇部
             </text>
-            <text x="607" y="355" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              FLANK
+            <text x="615" y="372" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
+              FLANK (牛腩條·側腹)
             </text>
           </g>
 
-          {/* 8. 腱子部 Shank (#6B4C38 雕刻深褐) */}
-          {/* 前腱 Fore Shank */}
+          {/* 8. 腱子部 Shank (#6B4C38 雕刻深褐 - 前腱與後腱) */}
           <g
             className="cursor-pointer transition-all duration-200"
             onClick={() => onSelectPrimal('shank')}
             onMouseEnter={() => setHoveredPrimalId('shank')}
             onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'shank' ? 'url(#softGlow)' : undefined}
+            filter={selectedPrimalId === 'shank' ? 'url(#beefGlow)' : undefined}
           >
+            {/* 前腱肉塊 */}
             <path
-              d="M 220,360 L 290,370 L 290,470 L 230,470 Z"
-              fill={selectedPrimalId === 'shank' ? '#7D5A44' : '#6B4C38'}
+              d="M 215,370 L 275,385 L 275,445 L 205,440 Z"
+              fill={selectedPrimalId === 'shank' ? '#7F5B44' : '#6B4C38'}
               stroke="#FAF8F5"
-              strokeWidth={selectedPrimalId === 'shank' ? 4 : 2.5}
+              strokeWidth={selectedPrimalId === 'shank' ? 3.5 : 2}
             />
             <path
-              d="M 220,360 L 290,370 L 290,470 L 230,470 Z"
-              fill="url(#etchingCross)"
+              d="M 215,370 L 275,385 L 275,445 L 205,440 Z"
+              fill="url(#beefCrossHatch)"
               stroke="#FAF8F5"
-              strokeWidth={selectedPrimalId === 'shank' ? 4 : 2.5}
+              strokeWidth={selectedPrimalId === 'shank' ? 3.5 : 2}
             />
-            <text x="258" y="425" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="14" className="font-sans pointer-events-none">
+            <text x="242" y="415" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="14" className="font-sans pointer-events-none drop-shadow">
               前腱
             </text>
-          </g>
 
-          {/* 後腱 Hind Shank */}
-          <g
-            className="cursor-pointer transition-all duration-200"
-            onClick={() => onSelectPrimal('shank')}
-            onMouseEnter={() => setHoveredPrimalId('shank')}
-            onMouseLeave={() => setHoveredPrimalId(null)}
-            filter={selectedPrimalId === 'shank' ? 'url(#softGlow)' : undefined}
-          >
+            {/* 後腱肉塊 */}
             <path
-              d="M 780,330 L 780,470 L 720,470 L 690,395 L 780,330 Z"
-              fill={selectedPrimalId === 'shank' ? '#7D5A44' : '#6B4C38'}
+              d="M 700,360 L 795,350 L 780,440 L 705,430 Z"
+              fill={selectedPrimalId === 'shank' ? '#7F5B44' : '#6B4C38'}
               stroke="#FAF8F5"
-              strokeWidth={selectedPrimalId === 'shank' ? 4 : 2.5}
+              strokeWidth={selectedPrimalId === 'shank' ? 3.5 : 2}
             />
             <path
-              d="M 780,330 L 780,470 L 720,470 L 690,395 L 780,330 Z"
-              fill="url(#etchingCross)"
+              d="M 700,360 L 795,350 L 780,440 L 705,430 Z"
+              fill="url(#beefCrossHatch)"
               stroke="#FAF8F5"
-              strokeWidth={selectedPrimalId === 'shank' ? 4 : 2.5}
+              strokeWidth={selectedPrimalId === 'shank' ? 3.5 : 2}
             />
-            <text x="745" y="415" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="14" className="font-sans pointer-events-none">
+            <text x="745" y="402" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="15" className="font-sans pointer-events-none drop-shadow">
               後腱
             </text>
           </g>
 
-          {/* 全局刻線裝飾與出版物風格外框線 */}
+          {/* 外框裝飾線與圖說 */}
           <rect x="10" y="10" width="980" height="560" fill="none" stroke="#1C1917" strokeWidth="1" strokeDasharray="6 4" opacity="0.4" />
-          <circle cx="20" cy="20" r="3" fill="#1C1917" opacity="0.5" />
-          <circle cx="980" cy="20" r="3" fill="#1C1917" opacity="0.5" />
-          <circle cx="20" cy="560" r="3" fill="#1C1917" opacity="0.5" />
-          <circle cx="980" cy="560" r="3" fill="#1C1917" opacity="0.5" />
-
-          {/* 雜誌圖表批註標籤 (Annotation Callouts) */}
           <g className="font-serif italic text-xs" fill="#1C1917" opacity="0.85">
             <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">FIG. 01 — PRIMAL BEEF CUT ANATOMY</text>
             <text x="30" y="70" className="text-xs">Standard USDA 8 Primal Breakdown System</text>
@@ -338,10 +349,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
         </svg>
       </div>
 
-      {/* 底部色票快速切換標籤列（手機與桌面通用） */}
+      {/* 底部色票快速切換標籤列 */}
       <div className="mt-4 pt-4 border-t border-parchment-200">
         <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2">
-          快速切換大分切：
+          快速切換美式 8 大分切：
         </div>
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {PRIMAL_AREAS.map((primal) => {
@@ -358,7 +369,6 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               >
                 <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: primal.color }} />
                 <span>{primal.name}</span>
-                <span className="text-[10px] opacity-75 font-serif">{primal.enName}</span>
               </button>
             );
           })}
