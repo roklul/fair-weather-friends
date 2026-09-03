@@ -1,6 +1,6 @@
 import React from 'react';
 
-// 建立輕量專屬向量圖示庫，完全避開 lucide 全量 1850+ 模組加載與 Rollup 構建瓶頸
+// 建立輕量專屬向量圖示庫，完全避開外部依賴與 Rollup 構建瓶頸
 const createIcon = (svgContent) => ({ className = "w-4 h-4", ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -234,5 +234,23 @@ export const X = createIcon(
 export const Heart = createIcon(
   <>
     <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+  </>
+);
+
+export const Fish = createIcon(
+  <>
+    <path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.46-3.44 6-7 6s-7.56-2.54-8.5-6Z" />
+    <path d="M18 12v.5" />
+    <path d="M16 17.93a1 1 0 0 1-.7.27c-.28 0-.5-.22-.5-.5a1 1 0 0 1 1-1h.2" />
+    <path d="M2 16l4.5-4L2 8c1.5 1.5 1.5 6.5 0 8Z" />
+    <circle cx="18" cy="10" r="1" fill="currentColor" />
+  </>
+);
+
+export const Layers = createIcon(
+  <>
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 17 12 22 22 17" />
+    <polyline points="2 12 12 17 22 12" />
   </>
 );

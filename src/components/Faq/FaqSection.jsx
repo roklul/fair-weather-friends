@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
-import { FAQS_DATA } from '../../data/beefData';
+import React, { useState, useEffect } from 'react';
 import { HelpCircle, ChevronDown, ChevronUp } from '../Icons';
 
-export default function FaqSection() {
+export default function FaqSection({ activeCategory, faqsData }) {
   const [openIndex, setOpenIndex] = useState(0);
+
+  useEffect(() => {
+    setOpenIndex(0);
+  }, [activeCategory]);
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? -1 : index);
   };
+
+  const categoryTitle = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
 
   return (
     <section id="faq" className="py-16 sm:py-20 bg-parchment-200/50 border-t border-parchment-300">
@@ -20,16 +25,16 @@ export default function FaqSection() {
             <span>名詞釐清 · 常見迷思問答</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-            常見問答 FAQ
+            {categoryTitle}常見問答 FAQ
           </h2>
           <p className="text-charcoal-muted text-sm sm:text-base">
-            解答台灣消費者在選購牛肉與餐酒搭配時最容易混淆的專有名詞與料理疑問。
+            解答台灣消費者在選購{categoryTitle}、烹調火候與餐酒搭配時最容易混淆的專有名詞與料理疑問。
           </p>
         </div>
 
         {/* 摺疊問答清單 */}
         <div className="space-y-4">
-          {FAQS_DATA.map((faq, idx) => {
+          {faqsData.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div

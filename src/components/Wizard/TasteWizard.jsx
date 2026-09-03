@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
-import { WIZARD_DATA, BEEF_CUTS_DATA } from '../../data/beefData';
-import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, ArrowRight, CheckCircle2, RotateCcw } from '../Icons';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, Layers, Fish, ArrowRight, CheckCircle2, RotateCcw } from '../Icons';
 
-export default function TasteWizard({ onOpenCutModal }) {
-  const [selectedTexture, setSelectedTexture] = useState('fatty');
-  const [selectedCooking, setSelectedCooking] = useState('steak');
+export default function TasteWizard({ activeCategory, wizardData, cutsData, onOpenCutModal }) {
+  const [selectedTexture, setSelectedTexture] = useState(wizardData.textures[0].id);
+  const [selectedCooking, setSelectedCooking] = useState(wizardData.cookingMethods[0].id);
+
+  // 當分類切換時重設選項為當前資料庫首項
+  useEffect(() => {
+    if (wizardData && wizardData.textures.length > 0) {
+      setSelectedTexture(wizardData.textures[0].id);
+      setSelectedCooking(wizardData.cookingMethods[0].id);
+    }
+  }, [activeCategory, wizardData]);
 
   // 圖示動態映射
   const iconMap = {
@@ -17,31 +24,31 @@ export default function TasteWizard({ onOpenCutModal }) {
     Soup,
     Zap,
     Wind,
+    Layers,
+    Fish,
   };
 
   const getIcon = (iconName) => iconMap[iconName] || Sparkles;
 
-  // 計算推薦肉品清單（結合口感與料理）
-  const activeTextureObj = WIZARD_DATA.textures.find((t) => t.id === selectedTexture);
-  const activeCookingObj = WIZARD_DATA.cookingMethods.find((c) => c.id === selectedCooking);
+  // 計算推薦肉品清單
+  const activeTextureObj = wizardData.textures.find((t) => t.id === selectedTexture);
+  const activeCookingObj = wizardData.cookingMethods.find((c) => c.id === selectedCooking);
 
-  // 取得重疊或推薦清單
   const textureMatches = activeTextureObj ? activeTextureObj.recommendedIds : [];
   const cookingMatches = activeCookingObj ? activeCookingObj.recommendedIds : [];
 
-  // 完美交集
   const perfectMatches = textureMatches.filter((id) => cookingMatches.includes(id));
-  
-  // 綜合推薦 ID（交集優先，接著是料理推薦）
   const recommendedIds = Array.from(new Set([...perfectMatches, ...cookingMatches, ...textureMatches])).slice(0, 4);
   const recommendedCuts = recommendedIds
-    .map((id) => BEEF_CUTS_DATA.find((cut) => cut.id === id))
+    .map((id) => cutsData.find((cut) => cut.id === id))
     .filter(Boolean);
 
   const handleReset = () => {
-    setSelectedTexture('fatty');
-    setSelectedCooking('steak');
+    setSelectedTexture(wizardData.textures[0].id);
+    setSelectedCooking(wizardData.cookingMethods[0].id);
   };
+
+  const categoryName = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
 
   return (
     <section id="wizard" className="py-16 sm:py-20 bg-parchment-200/60 border-y border-parchment-300 relative overflow-hidden">
@@ -51,13 +58,13 @@ export default function TasteWizard({ onOpenCutModal }) {
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
             <Sparkles className="w-3.5 h-3.5 text-amber-700" />
-            <span>智能選肉助手 · 2 步鎖定理想肉品</span>
+            <span>智能選肉助手 · 2 步鎖定理想{categoryName}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-            你想怎麼吃？快速選肉決策小工具
+            你想怎麼吃？{categoryName}快速選購小工具
           </h2>
           <p className="text-charcoal-muted text-sm sm:text-base">
-            不必死背所有專業分切名詞。只要選擇你今天想享受的「口感」與「料理方式」，演算法將即時為您推薦最適肉品與火候指南。
+            不必死背繁複的分切專有名詞。只要選擇你今天想享受的「口感」與「料理方式」，系統將即時為您推薦最適部位與火候指南。
           </p>
         </div>
 
@@ -72,11 +79,11 @@ export default function TasteWizard({ onOpenCutModal }) {
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-bold text-charcoal flex items-center gap-2">
                   <span className="w-6 h-6 rounded-full bg-beef-burgundy text-white flex items-center justify-center text-xs font-mono">1</span>
-                  你偏好的口感與脂肪特性？
+                  你偏好的口感與油脂特性？
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {WIZARD_DATA.textures.map((item) => {
+                {wizardData.textures.map((item) => {
                   const IconComponent = getIcon(item.icon);
                   const isSelected = selectedTexture === item.id;
                   return (
@@ -114,7 +121,7 @@ export default function TasteWizard({ onOpenCutModal }) {
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {WIZARD_DATA.cookingMethods.map((item) => {
+                {wizardData.cookingMethods.map((item) => {
                   const IconComponent = getIcon(item.icon);
                   const isSelected = selectedCooking === item.id;
                   return (
@@ -161,7 +168,7 @@ export default function TasteWizard({ onOpenCutModal }) {
             <div className="flex items-center justify-between border-b border-parchment-200 pb-3">
               <div>
                 <span className="text-xs font-serif italic text-charcoal-muted">Recommendation</span>
-                <h3 className="text-lg font-bold font-serif text-charcoal">為您精選的推薦部位</h3>
+                <h3 className="text-lg font-bold font-serif text-charcoal">為您精選的推薦{categoryName}部位</h3>
               </div>
               <span className="px-2.5 py-1 rounded-full bg-beef-burgundy text-white text-xs font-mono font-bold">
                 {recommendedCuts.length} 款首選
@@ -196,7 +203,7 @@ export default function TasteWizard({ onOpenCutModal }) {
                       )}
                     </div>
 
-                    {/* 簡明指標 */}
+                    {/* 簡明三維指標 */}
                     <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-parchment-200/80 text-xs">
                       <div>
                         <span className="text-charcoal-muted text-[10px] block">軟嫩度</span>
@@ -240,7 +247,7 @@ export default function TasteWizard({ onOpenCutModal }) {
                 href="#cuts-library"
                 className="text-xs text-charcoal-muted hover:text-beef-burgundy underline inline-flex items-center gap-1"
               >
-                查看全部 12 款細切部位與酒款搭配矩陣 →
+                查看全部 12 款{categoryName}部位卡片與佐餐指南 →
               </a>
             </div>
 

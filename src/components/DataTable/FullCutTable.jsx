@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import { BEEF_CUTS_DATA, PRIMAL_AREAS } from '../../data/beefData';
-import { BookOpen, Search, ChevronRight, ExternalLink } from '../Icons';
+import React, { useState, useEffect } from 'react';
+import { BookOpen, Search, ExternalLink } from '../Icons';
 
-export default function FullCutTable({ onOpenModal }) {
+export default function FullCutTable({ activeCategory, cutsData, primalAreas, onOpenModal }) {
   const [filterPrimal, setFilterPrimal] = useState('all');
   const [query, setQuery] = useState('');
 
-  const filteredData = BEEF_CUTS_DATA.filter((item) => {
+  useEffect(() => {
+    setFilterPrimal('all');
+    setQuery('');
+  }, [activeCategory]);
+
+  const filteredData = cutsData.filter((item) => {
     const matchesPrimal = filterPrimal === 'all' || item.primalId === filterPrimal;
     const matchesQuery =
       item.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -15,6 +19,8 @@ export default function FullCutTable({ onOpenModal }) {
       item.primalName.toLowerCase().includes(query.toLowerCase());
     return matchesPrimal && matchesQuery;
   });
+
+  const categoryTitle = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
 
   return (
     <section id="comparison-table" className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,10 +32,10 @@ export default function FullCutTable({ onOpenModal }) {
           <span>全景對照 · 快速決策速查表</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-          熱門牛肉部位規格總覽比較表
+          熱門{categoryTitle}部位規格總覽比較表
         </h2>
         <p className="text-charcoal-muted text-sm sm:text-base">
-          一覽 12 大熱門部位的牛身區域、油脂口感、代表料理與建議酒款，方便快速橫向比對。
+          一覽 12 款熱門部位的解剖區域、油脂口感、代表料理與建議酒款，方便快速橫向比對。
         </p>
       </div>
 
@@ -42,8 +48,8 @@ export default function FullCutTable({ onOpenModal }) {
             onChange={(e) => setFilterPrimal(e.target.value)}
             className="text-xs bg-parchment-100 border border-parchment-300 rounded-lg px-3 py-2 text-charcoal focus:outline-hidden focus:ring-2 focus:ring-beef-burgundy"
           >
-            <option value="all">全部大分切 (All Primals)</option>
-            {PRIMAL_AREAS.map((p) => (
+            <option value="all">全部分切區域 (All Parts)</option>
+            {primalAreas.map((p) => (
               <option key={p.id} value={p.id}>
                 {p.name} ({p.enName})
               </option>
@@ -55,7 +61,7 @@ export default function FullCutTable({ onOpenModal }) {
           <Search className="w-3.5 h-3.5 text-charcoal-muted absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="搜尋部位或別名..."
+            placeholder={`搜尋${categoryTitle}部位或別名...`}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 text-xs bg-parchment-100 border border-parchment-300 rounded-lg text-charcoal placeholder:text-charcoal-muted/60 focus:outline-hidden focus:ring-2 focus:ring-beef-burgundy"
@@ -70,8 +76,8 @@ export default function FullCutTable({ onOpenModal }) {
             <thead>
               <tr className="bg-parchment-200/80 border-b border-parchment-300 text-charcoal font-serif font-bold">
                 <th className="py-3.5 px-4">部位名稱</th>
-                <th className="py-3.5 px-4">標準英文</th>
-                <th className="py-3.5 px-4">牛身位置</th>
+                <th className="py-3.5 px-4">標準英文名稱</th>
+                <th className="py-3.5 px-4">解剖位置</th>
                 <th className="py-3.5 px-4">油脂與口感</th>
                 <th className="py-3.5 px-4">最適合料理</th>
                 <th className="py-3.5 px-4">建議搭配酒款</th>
