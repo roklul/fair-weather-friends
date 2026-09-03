@@ -5,19 +5,19 @@ export default function Hero({ activeCategory, onQuickFilter }) {
   // 依品類動態配置文案與快速意圖
   const config = {
     beef: {
-      tagline: '肉舖職人 × 現代餐酒指南 · 全面解密美式 8 大分切',
+      tagline: '肉舖職人 × 現代侍酒指南 · 全面解密美式 8 大分切',
       mainTitle: '從部位開始，找到最適合你的那塊牛肉',
       highlightWord: '牛肉',
       subtitle: '從肋眼、菲力、牛小排到牛腱與牛腩，一次看懂牛肉來自哪裡、適合怎麼煮，以及該搭配什麼酒。',
       quote: '牛肉不是只有「嫩」或「柴」；不同部位的脂肪、纖維與結締組織，決定了它最適合的火候與料理方式。',
       quickActions: [
-        { label: '我想煎牛排', icon: UtensilsCrossed, filter: { type: 'cooking', val: '家庭牛排' }, color: 'hover:border-beef-burgundy hover:text-beef-burgundy' },
-        { label: '我想煮牛肉麵', icon: Soup, filter: { type: 'cooking', val: '牛肉麵' }, color: 'hover:border-amber-700 hover:text-amber-800' },
-        { label: '我想吃火鍋', icon: Soup, filter: { type: 'cooking', val: '火鍋 / 壽喜燒' }, color: 'hover:border-orange-600 hover:text-orange-700' },
-        { label: '我想燒烤', icon: Flame, filter: { type: 'cooking', val: '日韓燒烤' }, color: 'hover:border-red-600 hover:text-red-700' },
-        { label: '我想燉煮', icon: Soup, filter: { type: 'cooking', val: '燉煮' }, color: 'hover:border-stone-700 hover:text-stone-800' },
-        { label: '我喜歡油花多', icon: Droplets, filter: { type: 'fat', val: 'high' }, color: 'hover:border-yellow-600 hover:text-yellow-700' },
-        { label: '我想找低脂瘦肉', icon: HeartPulse, filter: { type: 'fat', val: 'low' }, color: 'hover:border-emerald-700 hover:text-emerald-800' },
+        { label: '我想吃火鍋', icon: Soup, filter: { type: 'wizard', cookingId: 'hotpot', textureId: 'fatty' }, color: 'hover:border-orange-600 hover:text-orange-700' },
+        { label: '我想煎牛排', icon: UtensilsCrossed, filter: { type: 'wizard', cookingId: 'steak', textureId: 'tender' }, color: 'hover:border-beef-burgundy hover:text-beef-burgundy' },
+        { label: '我想煮牛肉麵', icon: Soup, filter: { type: 'wizard', cookingId: 'beef-noodle', textureId: 'gelatinous' }, color: 'hover:border-amber-700 hover:text-amber-800' },
+        { label: '我想燒烤', icon: Flame, filter: { type: 'wizard', cookingId: 'bbq', textureId: 'fatty' }, color: 'hover:border-red-600 hover:text-red-700' },
+        { label: '我想燉煮', icon: Soup, filter: { type: 'wizard', cookingId: 'stew', textureId: 'gelatinous' }, color: 'hover:border-stone-700 hover:text-stone-800' },
+        { label: '我喜歡油花多', icon: Droplets, filter: { type: 'wizard', textureId: 'fatty', cookingId: 'steak' }, color: 'hover:border-yellow-600 hover:text-yellow-700' },
+        { label: '我想找低脂瘦肉', icon: HeartPulse, filter: { type: 'wizard', textureId: 'lean', cookingId: 'steak' }, color: 'hover:border-emerald-700 hover:text-emerald-800' },
         { label: '幫我選搭配的酒', icon: Wine, filter: { type: 'anchor', val: 'wine-pairing' }, color: 'hover:border-purple-800 hover:text-purple-900' }
       ]
     },
@@ -25,15 +25,16 @@ export default function Hero({ activeCategory, onQuickFilter }) {
       tagline: '台灣肉舖常用命名 × 國際分切對照 · 實戰料理選肉指南',
       mainTitle: '找到最適合今天料理的那塊豬肉',
       highlightWord: '豬肉',
-      subtitle: '從梅花、五花、松阪到大里肌與蹄膀，一次看懂豬肉部位特性、中英對照，以及完美去膩的佐餐酒。',
+      subtitle: '從梅花、五花、松阪到大里肌與蹄膀，一次看懂豬肉部位特性、中英對照，以及完美去膩的佐餐酒與啤酒。',
       quote: '五花肉適合久燉慢熬，小里肌適合極速短烹；掌握不同部位的脂肪與筋膜，下廚絕不再踩雷。',
       quickActions: [
-        { label: '我想煮控肉東坡肉', icon: Soup, filter: { type: 'cooking', val: '台式焢肉' }, color: 'hover:border-amber-700 hover:text-amber-800' },
-        { label: '我想做酥脆炸豬排', icon: UtensilsCrossed, filter: { type: 'cooking', val: '炸豬排' }, color: 'hover:border-yellow-700 hover:text-yellow-800' },
-        { label: '我想吃脆彈松阪燒肉', icon: Flame, filter: { type: 'cooking', val: '燒肉' }, color: 'hover:border-red-600 hover:text-red-700' },
-        { label: '我想煮花生豬腳湯', icon: Soup, filter: { type: 'cooking', val: '豬腳湯' }, color: 'hover:border-orange-600 hover:text-orange-700' },
-        { label: '我想調手工水餃肉餡', icon: UtensilsCrossed, filter: { type: 'cooking', val: '肉餡' }, color: 'hover:border-stone-700 hover:text-stone-800' },
-        { label: '我想找低脂腰內肉', icon: HeartPulse, filter: { type: 'fat', val: 'low' }, color: 'hover:border-emerald-700 hover:text-emerald-800' },
+        { label: '我想煮控肉東坡肉', icon: Soup, filter: { type: 'wizard', cookingId: 'stew-braise', textureId: 'fatty' }, color: 'hover:border-amber-700 hover:text-amber-800' },
+        { label: '我想做酥脆炸豬排', icon: UtensilsCrossed, filter: { type: 'wizard', cookingId: 'fry-cutlet', textureId: 'tender' }, color: 'hover:border-yellow-700 hover:text-yellow-800' },
+        { label: '我想吃脆彈松阪燒肉', icon: Flame, filter: { type: 'wizard', cookingId: 'bbq-grill', textureId: 'crispy' }, color: 'hover:border-red-600 hover:text-red-700' },
+        { label: '我想吃火鍋白切', icon: Soup, filter: { type: 'wizard', cookingId: 'hotpot', textureId: 'fatty' }, color: 'hover:border-orange-600 hover:text-orange-700' },
+        { label: '我想煮花生豬腳湯', icon: Soup, filter: { type: 'wizard', cookingId: 'soup-slow', textureId: 'gelatinous' }, color: 'hover:border-orange-600 hover:text-orange-700' },
+        { label: '我想調手工水餃肉餡', icon: UtensilsCrossed, filter: { type: 'wizard', cookingId: 'dumpling-filling', textureId: 'lean' }, color: 'hover:border-stone-700 hover:text-stone-800' },
+        { label: '我想找低脂腰內肉', icon: HeartPulse, filter: { type: 'wizard', textureId: 'tender', cookingId: 'fry-cutlet' }, color: 'hover:border-emerald-700 hover:text-emerald-800' },
         { label: '幫我選搭豬肉的酒', icon: Wine, filter: { type: 'anchor', val: 'wine-pairing' }, color: 'hover:border-purple-800 hover:text-purple-900' }
       ]
     },
@@ -41,16 +42,16 @@ export default function Hero({ activeCategory, onQuickFilter }) {
       tagline: '當令鮮魚部位圖鑑 × 頂級海味指南 · 產地海鮮佐餐風味學',
       mainTitle: '從魚頭到魚尾，挑選最鮮美的海鮮部位',
       highlightWord: '海味魚鮮',
-      subtitle: '從鮭魚菲力、鮪魚大腹、石斑清肉到烤魚下巴與砂鍋魚頭，掌握鮮魚部位油脂、去腥關鍵與白酒清酒搭配。',
-      quote: '魚背肉緊實細嫩宜香煎清蒸，魚腹肉豐腴濃郁宜刺身乾煎；以明亮酸度白酒洗刷魚油，成就純淨海味。',
+      subtitle: '從鮭魚菲力、鮪魚大腹、石斑清肉到烤魚下巴與砂鍋魚頭，掌握鮮魚部位油脂、去腥關鍵與白酒、清酒、啤酒搭配。',
+      quote: '魚背肉緊實細嫩宜香煎清蒸，魚腹肉豐腴濃郁宜刺身乾煎；以明亮酸度白酒或爽俐生啤酒洗刷魚油，成就純淨海味。',
       quickActions: [
-        { label: '我想煎脆皮鮭魚排', icon: UtensilsCrossed, filter: { type: 'cooking', val: '香煎' }, color: 'hover:border-orange-600 hover:text-orange-700' },
-        { label: '我想吃頂級刺身大腹', icon: Sparkles, filter: { type: 'cooking', val: '刺身' }, color: 'hover:border-rose-600 hover:text-rose-700' },
-        { label: '我想清蒸龍虎斑', icon: Soup, filter: { type: 'cooking', val: '清蒸' }, color: 'hover:border-emerald-700 hover:text-emerald-800' },
-        { label: '我想烤居酒屋魚下巴', icon: Flame, filter: { type: 'cooking', val: '鹽烤' }, color: 'hover:border-amber-700 hover:text-amber-800' },
-        { label: '我想煮砂鍋大魚頭', icon: Soup, filter: { type: 'cooking', val: '魚湯' }, color: 'hover:border-stone-700 hover:text-stone-800' },
-        { label: '我想減脂吃鯛魚排', icon: HeartPulse, filter: { type: 'fat', val: 'low' }, color: 'hover:border-teal-700 hover:text-teal-800' },
-        { label: '選海鮮白酒與清酒', icon: Wine, filter: { type: 'anchor', val: 'wine-pairing' }, color: 'hover:border-purple-800 hover:text-purple-900' }
+        { label: '我想清蒸龍虎斑', icon: Soup, filter: { type: 'wizard', cookingId: 'steam-fresh', textureId: 'tender-steam' }, color: 'hover:border-emerald-700 hover:text-emerald-800' },
+        { label: '我想煎脆皮鮭魚排', icon: UtensilsCrossed, filter: { type: 'wizard', cookingId: 'pan-sear', textureId: 'fatty-sear' }, color: 'hover:border-orange-600 hover:text-orange-700' },
+        { label: '我想吃頂級刺身大腹', icon: Sparkles, filter: { type: 'wizard', cookingId: 'sashimi-plate', textureId: 'sashimi-raw' }, color: 'hover:border-rose-600 hover:text-rose-700' },
+        { label: '我想烤居酒屋魚下巴', icon: Flame, filter: { type: 'wizard', cookingId: 'grill-bbq', textureId: 'offal-collagen' }, color: 'hover:border-amber-700 hover:text-amber-800' },
+        { label: '我想煮砂鍋大魚頭', icon: Soup, filter: { type: 'wizard', cookingId: 'soup-pot', textureId: 'tender-steam' }, color: 'hover:border-stone-700 hover:text-stone-800' },
+        { label: '我想少刺好入口', icon: HeartPulse, filter: { type: 'wizard', textureId: 'boneless-tender', cookingId: 'steam-fresh' }, color: 'hover:border-teal-700 hover:text-teal-800' },
+        { label: '選海鮮白酒/清酒/啤酒', icon: Wine, filter: { type: 'anchor', val: 'wine-pairing' }, color: 'hover:border-purple-800 hover:text-purple-900' }
       ]
     }
   };
@@ -98,7 +99,7 @@ export default function Hero({ activeCategory, onQuickFilter }) {
           <div className="pt-2">
             <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-3 flex items-center justify-center gap-2">
               <span className="h-px w-8 bg-parchment-400"></span>
-              快速選肉捷徑 · 點選你的料理目標
+              快速選肉捷徑 · 點選你的料理目標（自動連動選肉助手）
               <span className="h-px w-8 bg-parchment-400"></span>
             </div>
             

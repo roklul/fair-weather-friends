@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import CowSvgMap from '../components/CowDiagram/CowSvgMap';
@@ -51,6 +51,16 @@ export default function HomePage() {
   const [selectedPorkPrimal, setSelectedPorkPrimal] = useState('pork-shoulder');
   const [selectedFishPrimal, setSelectedFishPrimal] = useState('fish-dorsal');
 
+  // Wizard 選項狀態 (受控狀態)
+  const [beefTexture, setBeefTexture] = useState(BEEF_WIZARD_DATA.textures[0].id);
+  const [beefCooking, setBeefCooking] = useState(BEEF_WIZARD_DATA.cookingMethods[0].id);
+
+  const [porkTexture, setPorkTexture] = useState(PORK_WIZARD_DATA.textures[0].id);
+  const [porkCooking, setPorkCooking] = useState(PORK_WIZARD_DATA.cookingMethods[0].id);
+
+  const [fishTexture, setFishTexture] = useState(FISH_WIZARD_DATA.textures[0].id);
+  const [fishCooking, setFishCooking] = useState(FISH_WIZARD_DATA.cookingMethods[0].id);
+
   // Modal 彈窗狀態
   const [activeModalCut, setActiveModalCut] = useState(null);
 
@@ -64,7 +74,11 @@ export default function HomePage() {
       wizard: BEEF_WIZARD_DATA,
       faqs: BEEF_FAQS,
       activePrimal: selectedBeefPrimal,
-      setActivePrimal: setSelectedBeefPrimal
+      setActivePrimal: setSelectedBeefPrimal,
+      selectedTexture: beefTexture,
+      setSelectedTexture: setBeefTexture,
+      selectedCooking: beefCooking,
+      setSelectedCooking: setBeefCooking,
     },
     pork: {
       title: '豬肉',
@@ -74,7 +88,11 @@ export default function HomePage() {
       wizard: PORK_WIZARD_DATA,
       faqs: PORK_FAQS,
       activePrimal: selectedPorkPrimal,
-      setActivePrimal: setSelectedPorkPrimal
+      setActivePrimal: setSelectedPorkPrimal,
+      selectedTexture: porkTexture,
+      setSelectedTexture: setPorkTexture,
+      selectedCooking: porkCooking,
+      setSelectedCooking: setPorkCooking,
     },
     fish: {
       title: '魚類海鮮',
@@ -84,7 +102,11 @@ export default function HomePage() {
       wizard: FISH_WIZARD_DATA,
       faqs: FISH_FAQS,
       activePrimal: selectedFishPrimal,
-      setActivePrimal: setSelectedFishPrimal
+      setActivePrimal: setSelectedFishPrimal,
+      selectedTexture: fishTexture,
+      setSelectedTexture: setFishTexture,
+      selectedCooking: fishCooking,
+      setSelectedCooking: setFishCooking,
     }
   }[activeCategory];
 
@@ -96,17 +118,20 @@ export default function HomePage() {
     }
   };
 
-  // 處理 Hero 快速意圖按鈕點擊
+  // 處理 Hero 快速意圖按鈕點擊（精確連動 Wizard 選項與滾動）
   const handleQuickFilter = (filter) => {
     if (filter.type === 'anchor') {
       const el = document.getElementById(filter.val);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
-    } else if (filter.type === 'cooking') {
+    } else if (filter.type === 'wizard') {
+      if (filter.cookingId) {
+        currentData.setSelectedCooking(filter.cookingId);
+      }
+      if (filter.textureId) {
+        currentData.setSelectedTexture(filter.textureId);
+      }
       const wizardEl = document.getElementById('wizard');
       if (wizardEl) wizardEl.scrollIntoView({ behavior: 'smooth' });
-    } else if (filter.type === 'fat') {
-      const cutsEl = document.getElementById('cuts-library');
-      if (cutsEl) cutsEl.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -195,11 +220,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 選肉決策助手小工具 */}
+      {/* 選肉決策助手小工具 (精準受控連動) */}
       <TasteWizard
         activeCategory={activeCategory}
         wizardData={currentData.wizard}
         cutsData={currentData.cuts}
+        selectedTexture={currentData.selectedTexture}
+        setSelectedTexture={currentData.setSelectedTexture}
+        selectedCooking={currentData.selectedCooking}
+        setSelectedCooking={currentData.setSelectedCooking}
         onOpenCutModal={(cut) => setActiveModalCut(cut)}
       />
 
@@ -210,7 +239,7 @@ export default function HomePage() {
         onOpenModal={(cut) => setActiveModalCut(cut)}
       />
 
-      {/* 餐酒搭配科學專題與料理速查 */}
+      {/* 餐酒搭配科學專題與料理速查（含啤酒與在地名酒） */}
       <WinePairingSection
         activeCategory={activeCategory}
         winePrinciples={currentData.winePrinciples}

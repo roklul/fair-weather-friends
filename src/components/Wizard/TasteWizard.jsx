@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, Layers, Fish, ArrowRight, CheckCircle2, RotateCcw } from '../Icons';
 
-export default function TasteWizard({ activeCategory, wizardData, cutsData, onOpenCutModal }) {
-  const [selectedTexture, setSelectedTexture] = useState(wizardData.textures[0].id);
-  const [selectedCooking, setSelectedCooking] = useState(wizardData.cookingMethods[0].id);
-
-  // 當分類切換時重設選項為當前資料庫首項
-  useEffect(() => {
-    if (wizardData && wizardData.textures.length > 0) {
-      setSelectedTexture(wizardData.textures[0].id);
-      setSelectedCooking(wizardData.cookingMethods[0].id);
-    }
-  }, [activeCategory, wizardData]);
-
+export default function TasteWizard({
+  activeCategory,
+  wizardData,
+  cutsData,
+  selectedTexture,
+  setSelectedTexture,
+  selectedCooking,
+  setSelectedCooking,
+  onOpenCutModal
+}) {
   // 圖示動態映射
   const iconMap = {
     Sparkles,
@@ -31,8 +29,8 @@ export default function TasteWizard({ activeCategory, wizardData, cutsData, onOp
   const getIcon = (iconName) => iconMap[iconName] || Sparkles;
 
   // 計算推薦肉品清單
-  const activeTextureObj = wizardData.textures.find((t) => t.id === selectedTexture);
-  const activeCookingObj = wizardData.cookingMethods.find((c) => c.id === selectedCooking);
+  const activeTextureObj = wizardData.textures.find((t) => t.id === selectedTexture) || wizardData.textures[0];
+  const activeCookingObj = wizardData.cookingMethods.find((c) => c.id === selectedCooking) || wizardData.cookingMethods[0];
 
   const textureMatches = activeTextureObj ? activeTextureObj.recommendedIds : [];
   const cookingMatches = activeCookingObj ? activeCookingObj.recommendedIds : [];
@@ -44,8 +42,10 @@ export default function TasteWizard({ activeCategory, wizardData, cutsData, onOp
     .filter(Boolean);
 
   const handleReset = () => {
-    setSelectedTexture(wizardData.textures[0].id);
-    setSelectedCooking(wizardData.cookingMethods[0].id);
+    if (wizardData && wizardData.textures.length > 0) {
+      setSelectedTexture(wizardData.textures[0].id);
+      setSelectedCooking(wizardData.cookingMethods[0].id);
+    }
   };
 
   const categoryName = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
@@ -64,7 +64,7 @@ export default function TasteWizard({ activeCategory, wizardData, cutsData, onOp
             你想怎麼吃？{categoryName}快速選購小工具
           </h2>
           <p className="text-charcoal-muted text-sm sm:text-base">
-            不必死背繁複的分切專有名詞。只要選擇你今天想享受的「口感」與「料理方式」，系統將即時為您推薦最適部位與火候指南。
+            不必死背繁複的分切專有名詞。只要選擇你今天想享受的「口感」與「料理方式」，系統將即時為您推薦最適部位、關鍵火候與佐餐酒指南。
           </p>
         </div>
 
@@ -247,7 +247,7 @@ export default function TasteWizard({ activeCategory, wizardData, cutsData, onOp
                 href="#cuts-library"
                 className="text-xs text-charcoal-muted hover:text-beef-burgundy underline inline-flex items-center gap-1"
               >
-                查看全部 12 款{categoryName}部位卡片與佐餐指南 →
+                查看全部 12 款{categoryName}部位卡片與侍酒指南 →
               </a>
             </div>
 
