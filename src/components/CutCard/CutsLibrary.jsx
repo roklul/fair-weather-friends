@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CutCard from './CutCard';
 import { BEEF_CUTS_DATA } from '../../data/beefData';
-import { Search, Filter, Utensils, Sparkles } from 'lucide-react';
+import { Search, Filter, Utensils, Sparkles } from '../Icons';
 
 export default function CutsLibrary({ onOpenModal }) {
   const [selectedFilter, setSelectedFilter] = useState('all');

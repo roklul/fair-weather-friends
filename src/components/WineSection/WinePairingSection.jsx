@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { WINE_PAIRING_PRINCIPLES } from '../../data/beefData';
-import { Wine, Sparkles, Droplets, Flame, CheckCircle, HelpCircle } from 'lucide-react';
+import { Wine, Sparkles, Droplets, Flame, CheckCircle, HelpCircle } from '../Icons';
 
 export default function WinePairingSection() {
   const [activeMethodTab, setActiveMethodTab] = useState(0);

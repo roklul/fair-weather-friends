@@ -1,6 +1,6 @@
 import React from 'react';
 import { PRIMAL_AREAS } from '../../data/beefData';
-import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from 'lucide-react';
+import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from '../Icons';
 
 export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName, onOpenCutModalById }) {
   const primal = PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || PRIMAL_AREAS[1];

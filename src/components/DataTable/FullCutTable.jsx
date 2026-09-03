@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BEEF_CUTS_DATA, PRIMAL_AREAS } from '../../data/beefData';
-import { BookOpen, Search, ChevronRight, ExternalLink } from 'lucide-react';
+import { BookOpen, Search, ChevronRight, ExternalLink } from '../Icons';
 
 export default function FullCutTable({ onOpenModal }) {
   const [filterPrimal, setFilterPrimal] = useState('all');

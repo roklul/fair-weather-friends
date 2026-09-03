@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Wine, Utensils, BookOpen, HelpCircle, Menu, X, Sparkles } from 'lucide-react';
+import { Compass, Wine, Utensils, BookOpen, HelpCircle, Menu, X, Sparkles } from './Icons';
 
 export default function Navbar({ onOpenWizard }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

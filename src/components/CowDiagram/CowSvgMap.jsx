@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PRIMAL_AREAS } from '../../data/beefData';
-import { Info, Sparkles, Check, ChevronRight } from 'lucide-react';
+import { Info, Sparkles, Check, ChevronRight } from '../Icons';
 
 export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName }) {
   const [hoveredPrimalId, setHoveredPrimalId] = useState(null);

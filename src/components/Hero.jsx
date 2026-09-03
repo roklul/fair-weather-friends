@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Soup, UtensilsCrossed, Sparkles, Wine, HeartPulse, Droplets, ArrowRight } from 'lucide-react';
+import { Flame, Soup, UtensilsCrossed, Sparkles, Wine, HeartPulse, Droplets, ArrowRight } from './Icons';
 
 export default function Hero({ onQuickFilter }) {
   const quickActions = [

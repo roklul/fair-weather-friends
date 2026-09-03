@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Wine, ArrowUp, Heart } from 'lucide-react';
+import { Sparkles, Wine, ArrowUp, Heart } from './Icons';
 
 export default function Footer({ onScrollTop }) {
   return (

@@ -11,7 +11,7 @@ import FaqSection from './components/Faq/FaqSection';
 import Footer from './components/Footer';
 import CutModal from './components/CutCard/CutModal';
 import { BEEF_CUTS_DATA } from './data/beefData';
-import { Compass, Sparkles } from 'lucide-react';
+import { Compass, Sparkles } from './components/Icons';
 
 export default function App() {
   const [selectedPrimalId, setSelectedPrimalId] = useState('rib');

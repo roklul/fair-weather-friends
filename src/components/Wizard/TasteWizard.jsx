@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { WIZARD_DATA, BEEF_CUTS_DATA } from '../../data/beefData';
-import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
+import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, ArrowRight, CheckCircle2, RotateCcw } from '../Icons';
 
 export default function TasteWizard({ onOpenCutModal }) {
   const [selectedTexture, setSelectedTexture] = useState('fatty');

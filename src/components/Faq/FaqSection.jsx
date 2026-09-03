@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FAQS_DATA } from '../../data/beefData';
-import { HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { HelpCircle, ChevronDown, ChevronUp } from '../Icons';
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);

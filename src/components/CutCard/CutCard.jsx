@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wine, Flame, ChevronRight, Sparkles } from 'lucide-react';
+import { Wine, Flame, ChevronRight, Sparkles } from '../Icons';
 
 export default function CutCard({ cut, onOpenModal }) {
   // 渲染 5 格條形/星級進度條

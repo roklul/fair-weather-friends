@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Flame, Wine, Compass, AlertCircle, Sparkles, CheckCircle, Info } from 'lucide-react';
+import { X, Flame, Wine, Compass, AlertCircle, Sparkles, CheckCircle, Info } from '../Icons';
 
 export default function CutModal({ cut, onClose }) {
   if (!cut) return null;
