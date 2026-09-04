@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { COCKTAILS_DATA, COCKTAIL_PAIRING_PRINCIPLES, DISH_TO_COCKTAIL_MATRIX } from '../../data/cocktailData';
 import { Wine, Sparkles, Utensils, Droplets, Flame, ArrowRight, BookOpen, CheckCircle2 } from '../Icons';
+import { TRANSLATIONS } from '../../data/translations';
 
-export default function CocktailSection({ onOpenCocktailModal }) {
+export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh-TW' }) {
   const [selectedMatcherTab, setSelectedMatcherTab] = useState('dish'); // 'dish' | 'flavor'
   const [selectedDishIdx, setSelectedDishIdx] = useState(0);
   const [selectedBaseSpirit, setSelectedBaseSpirit] = useState('all');
 
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const cLang = t.cocktail;
+
   const baseSpirits = [
-    { id: 'all', label: '全部 10 款經典調酒' },
-    { id: 'Bourbon / Rye', label: '威士忌基酒 (Whiskey)' },
-    { id: 'Gin', label: '琴酒基酒 (Gin)' },
-    { id: 'White Rum', label: '蘭姆酒基酒 (Rum)' },
-    { id: 'Tequila', label: '龍舌蘭基酒 (Tequila)' },
-    { id: 'Vodka', label: '伏特加基酒 (Vodka)' },
+    { id: 'all', label: currentLang === 'en' ? 'All 10 Cocktails' : currentLang === 'ja' ? '定番10選すべて' : '全部 10 款經典調酒' },
+    { id: 'Bourbon / Rye', label: currentLang === 'en' ? 'Whiskey Base' : currentLang === 'ja' ? 'ウイスキー' : '威士忌基酒 (Whiskey)' },
+    { id: 'Gin', label: currentLang === 'en' ? 'Gin Base' : currentLang === 'ja' ? 'ジン' : '琴酒基酒 (Gin)' },
+    { id: 'White Rum', label: currentLang === 'en' ? 'Rum Base' : currentLang === 'ja' ? 'ラム' : '蘭姆酒基酒 (Rum)' },
+    { id: 'Tequila', label: currentLang === 'en' ? 'Tequila Base' : currentLang === 'ja' ? 'テキーラ' : '龍舌蘭基酒 (Tequila)' },
+    { id: 'Vodka', label: currentLang === 'en' ? 'Vodka Base' : currentLang === 'ja' ? 'ウォッカ' : '伏特加基酒 (Vodka)' },
   ];
 
   const filteredCocktails = COCKTAILS_DATA.filter((c) => {
@@ -32,7 +36,7 @@ export default function CocktailSection({ onOpenCocktailModal }) {
         {/* 法規警語醒目頂部橫幅 */}
         <div className="bg-charcoal text-amber-300 py-3 px-4 rounded-xl border border-amber-400/30 text-center shadow-md">
           <span className="font-serif font-bold text-xs sm:text-sm tracking-widest uppercase">
-            🔞 禁止酒駕 · 未滿十八歲禁止飲酒 · 酒後不開車 安全有保障
+            {cLang.disclaimer}
           </span>
         </div>
 
@@ -40,13 +44,13 @@ export default function CocktailSection({ onOpenCocktailModal }) {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-purple-900 text-xs font-semibold tracking-wider uppercase">
             <Wine className="w-3.5 h-3.5 text-purple-800" />
-            <span>新維度風味探索 · 經典調酒 × 料理雙向配對系統</span>
+            <span>{cLang.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-            調酒與餐點的風味共振指南
+            {cLang.title}
           </h2>
           <p className="text-charcoal-muted text-sm sm:text-base leading-relaxed">
-            打破「紅肉配紅酒、白肉配白酒」的傳統框架。以「料理重量、油脂多寡、酸度、辣度與香氣」為核心，精準配對 10 款世界經典調酒！
+            {cLang.subtitle}
           </p>
         </div>
 
@@ -54,16 +58,16 @@ export default function CocktailSection({ onOpenCocktailModal }) {
         <div className="bg-parchment-50 p-6 sm:p-8 rounded-2xl border border-parchment-300 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-parchment-200 pb-4">
             <div>
-              <span className="text-xs font-serif italic text-charcoal-muted">Interactive Matcher</span>
+              <span className="text-xs font-serif italic text-charcoal-muted">{cLang.matcherBadge}</span>
               <h3 className="text-xl sm:text-2xl font-bold font-serif text-charcoal flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-beef-burgundy" />
-                從料理找調酒 · 智能即時配對
+                {cLang.matcherTitle}
               </h3>
             </div>
 
             {/* 料理情境快速標籤 */}
             <div className="text-xs text-charcoal-muted">
-              點選下方常見料理情境立即取得第一推薦與次選調酒：
+              {cLang.matcherSub}
             </div>
           </div>
 
@@ -73,7 +77,7 @@ export default function CocktailSection({ onOpenCocktailModal }) {
               <button
                 key={idx}
                 onClick={() => setSelectedDishIdx(idx)}
-                className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all whitespace-nowrap ${
                   selectedDishIdx === idx
                     ? 'bg-beef-burgundy text-white border-beef-burgundy shadow-xs'
                     : 'bg-parchment-100 text-charcoal border-parchment-300 hover:bg-parchment-200'
@@ -90,18 +94,20 @@ export default function CocktailSection({ onOpenCocktailModal }) {
             {/* 左側料理說明 (5 欄) */}
             <div className="lg:col-span-5 space-y-3 flex flex-col justify-between">
               <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-beef-burgundy">當前料理情境</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-beef-burgundy">
+                  {currentLang === 'en' ? 'Current Dining Scenario' : currentLang === 'ja' ? '選択中の料理シーン' : '當前料理情境'}
+                </div>
                 <h4 className="text-xl font-bold font-serif text-charcoal mt-0.5">{currentDishMatch.category}</h4>
                 <div className="text-xs text-charcoal-muted mt-1">
-                  <span className="font-bold text-charcoal">代表菜色：</span>{currentDishMatch.dishes}
+                  <span className="font-bold text-charcoal">{currentLang === 'en' ? 'Dishes:' : currentLang === 'ja' ? '代表料理:' : '代表菜色：'}</span>{currentDishMatch.dishes}
                 </div>
                 <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed pt-2">
-                  <span className="font-bold text-beef-burgundy">風味科學邏輯：</span>{currentDishMatch.rationale}
+                  <span className="font-bold text-beef-burgundy">{currentLang === 'en' ? 'Pairing Science:' : currentLang === 'ja' ? 'ペアリングの科学:' : '風味科學邏輯：'}</span>{currentDishMatch.rationale}
                 </p>
               </div>
 
               <div className="pt-3 border-t border-parchment-300/80 text-[11px] text-charcoal-muted">
-                💡 搭配原則：料理油脂越高，調酒酸度、氣泡或苦甜結構應越強以達平衡。
+                💡 {currentLang === 'en' ? 'Rule: Higher fat in food requires crisp acidity, bubbles, or bitter structure in cocktails.' : currentLang === 'ja' ? '基本原則: 料理の脂が濃いほど、カクテルの酸味・炭酸・ビター感が引き立ちます。' : '搭配原則：料理油脂越高，調酒酸度、氣泡或苦甜結構應越強以達平衡。'}
               </div>
             </div>
 
@@ -113,15 +119,19 @@ export default function CocktailSection({ onOpenCocktailModal }) {
                 <div className="bg-parchment-50 p-4 rounded-xl border-2 border-beef-burgundy shadow-sm flex flex-col justify-between space-y-3">
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-beef-burgundy text-white">
-                        第一首選推薦
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-beef-burgundy text-white whitespace-nowrap">
+                        {cLang.primaryPick}
                       </span>
                       <span className="text-xs text-charcoal-muted font-mono">{primaryCocktail.baseSpirit}</span>
                     </div>
 
                     <div className="mt-2">
-                      <h5 className="font-serif font-bold text-lg text-charcoal">{primaryCocktail.name}</h5>
-                      <span className="text-xs font-serif italic text-charcoal-muted">{primaryCocktail.enName}</span>
+                      <h5 className="font-serif font-bold text-lg text-charcoal">
+                        {currentLang === 'en' ? primaryCocktail.enName : primaryCocktail.name}
+                      </h5>
+                      <span className="text-xs font-serif italic text-charcoal-muted">
+                        {currentLang === 'en' ? primaryCocktail.name : primaryCocktail.enName}
+                      </span>
                     </div>
 
                     <p className="text-xs text-charcoal-light mt-1 line-clamp-2">
@@ -131,13 +141,13 @@ export default function CocktailSection({ onOpenCocktailModal }) {
 
                   <div className="pt-2 border-t border-parchment-200 flex items-center justify-between">
                     <span className="text-[11px] text-amber-900 font-medium">
-                      酒體：{'★'.repeat(primaryCocktail.bodyLevel)}{'☆'.repeat(5 - primaryCocktail.bodyLevel)}
+                      {currentLang === 'en' ? 'Body:' : currentLang === 'ja' ? '重さ:' : '酒體：'}{'★'.repeat(primaryCocktail.bodyLevel)}{'☆'.repeat(5 - primaryCocktail.bodyLevel)}
                     </span>
                     <button
                       onClick={() => onOpenCocktailModal(primaryCocktail)}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline shrink-0"
                     >
-                      <span>查看配方與步驟</span>
+                      <span>{cLang.viewRecipe}</span>
                       <ArrowRight className="w-3 h-3" />
                     </button>
                   </div>
@@ -149,15 +159,19 @@ export default function CocktailSection({ onOpenCocktailModal }) {
                 <div className="bg-parchment-50 p-4 rounded-xl border border-parchment-300 shadow-sm flex flex-col justify-between space-y-3">
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300">
-                        風格替代次選
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300 whitespace-nowrap">
+                        {cLang.secondaryPick}
                       </span>
                       <span className="text-xs text-charcoal-muted font-mono">{secondaryCocktail.baseSpirit}</span>
                     </div>
 
                     <div className="mt-2">
-                      <h5 className="font-serif font-bold text-lg text-charcoal">{secondaryCocktail.name}</h5>
-                      <span className="text-xs font-serif italic text-charcoal-muted">{secondaryCocktail.enName}</span>
+                      <h5 className="font-serif font-bold text-lg text-charcoal">
+                        {currentLang === 'en' ? secondaryCocktail.enName : secondaryCocktail.name}
+                      </h5>
+                      <span className="text-xs font-serif italic text-charcoal-muted">
+                        {currentLang === 'en' ? secondaryCocktail.name : secondaryCocktail.enName}
+                      </span>
                     </div>
 
                     <p className="text-xs text-charcoal-light mt-1 line-clamp-2">
@@ -167,13 +181,13 @@ export default function CocktailSection({ onOpenCocktailModal }) {
 
                   <div className="pt-2 border-t border-parchment-200 flex items-center justify-between">
                     <span className="text-[11px] text-amber-900 font-medium">
-                      酒體：{'★'.repeat(secondaryCocktail.bodyLevel)}{'☆'.repeat(5 - secondaryCocktail.bodyLevel)}
+                      {currentLang === 'en' ? 'Body:' : currentLang === 'ja' ? '重さ:' : '酒體：'}{'★'.repeat(secondaryCocktail.bodyLevel)}{'☆'.repeat(5 - secondaryCocktail.bodyLevel)}
                     </span>
                     <button
                       onClick={() => onOpenCocktailModal(secondaryCocktail)}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-charcoal hover:text-beef-burgundy hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-charcoal hover:text-beef-burgundy hover:underline shrink-0"
                     >
-                      <span>查看配方與步驟</span>
+                      <span>{cLang.viewRecipe}</span>
                       <ArrowRight className="w-3 h-3" />
                     </button>
                   </div>
@@ -191,10 +205,10 @@ export default function CocktailSection({ onOpenCocktailModal }) {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider">
                 <BookOpen className="w-3 h-3 text-amber-800" />
-                <span>全覽 10 款經典調酒庫</span>
+                <span>{currentLang === 'en' ? 'All 10 Classic Cocktails' : currentLang === 'ja' ? '定番カクテル10選一覧' : '全覽 10 款經典調酒庫'}</span>
               </div>
               <h3 className="text-2xl font-bold font-serif text-charcoal mt-1">
-                經典與現代經典調酒規格庫
+                {currentLang === 'en' ? 'Classic & Modern Cocktails Library' : currentLang === 'ja' ? 'カクテルレシピ＆スペック詳細' : '經典與現代經典調酒規格庫'}
               </h3>
             </div>
 
@@ -204,7 +218,7 @@ export default function CocktailSection({ onOpenCocktailModal }) {
                 <button
                   key={b.id}
                   onClick={() => setSelectedBaseSpirit(b.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all whitespace-nowrap ${
                     selectedBaseSpirit === b.id
                       ? 'bg-charcoal text-white border-charcoal shadow-xs'
                       : 'bg-parchment-50 text-charcoal border-parchment-300 hover:bg-parchment-100'
@@ -230,13 +244,15 @@ export default function CocktailSection({ onOpenCocktailModal }) {
                         {c.baseSpirit}
                       </div>
                       <h4 className="font-serif font-bold text-xl text-charcoal group-hover:text-beef-burgundy transition-colors">
-                        {c.name}
+                        {currentLang === 'en' ? c.enName : c.name}
                       </h4>
-                      <span className="text-xs font-serif italic text-charcoal-muted">{c.enName}</span>
+                      <span className="text-xs font-serif italic text-charcoal-muted">
+                        {currentLang === 'en' ? c.name : c.enName}
+                      </span>
                     </div>
 
-                    <span className="px-2 py-1 rounded-md text-[10px] font-bold bg-parchment-200 text-charcoal border border-parchment-300">
-                      難度: {'★'.repeat(c.difficulty)}{'☆'.repeat(5 - c.difficulty)}
+                    <span className="px-2 py-1 rounded-md text-[10px] font-bold bg-parchment-200 text-charcoal border border-parchment-300 whitespace-nowrap">
+                      {currentLang === 'en' ? 'Diff:' : currentLang === 'ja' ? '難易度:' : '難度:'} {'★'.repeat(c.difficulty)}{'☆'.repeat(5 - c.difficulty)}
                     </span>
                   </div>
 
@@ -247,7 +263,7 @@ export default function CocktailSection({ onOpenCocktailModal }) {
                   {/* 風味標籤 */}
                   <div className="flex flex-wrap gap-1">
                     {c.flavorTags.slice(0, 3).map((tag, idx) => (
-                      <span key={idx} className="px-2 py-0.5 rounded text-[10px] bg-parchment-100 border border-parchment-200 text-charcoal-muted font-medium">
+                      <span key={idx} className="px-2 py-0.5 rounded text-[10px] bg-parchment-100 border border-parchment-200 text-charcoal-muted font-medium whitespace-nowrap">
                         #{tag}
                       </span>
                     ))}
@@ -255,20 +271,22 @@ export default function CocktailSection({ onOpenCocktailModal }) {
 
                   {/* 代表搭餐 */}
                   <div className="bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-200 text-xs">
-                    <span className="font-bold text-emerald-950 block mb-0.5">🍽️ 最推薦搭餐：</span>
+                    <span className="font-bold text-emerald-950 block mb-0.5">
+                      🍽️ {currentLang === 'en' ? 'Top Food Pairing:' : currentLang === 'ja' ? 'おすすめ料理:' : '最推薦搭餐：'}
+                    </span>
                     <span className="text-emerald-900 text-[11px] line-clamp-2">{c.pairingFood[0].dish}</span>
                   </div>
                 </div>
 
                 <div className="pt-3 border-t border-parchment-200 flex items-center justify-between">
-                  <span className="text-[11px] text-charcoal-muted">
+                  <span className="text-[11px] text-charcoal-muted whitespace-nowrap">
                     {c.glassware.split(' ')[0]} · {c.method.split(' ')[0]}
                   </span>
                   <button
                     onClick={() => onOpenCocktailModal(c)}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline shrink-0"
                   >
-                    <span>配方與理由</span>
+                    <span>{cLang.viewRecipe}</span>
                     <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
@@ -282,7 +300,7 @@ export default function CocktailSection({ onOpenCocktailModal }) {
           <div className="border-b border-parchment-200 pb-3">
             <span className="text-xs font-serif italic text-charcoal-muted">Science of Cocktail Pairing</span>
             <h3 className="text-xl sm:text-2xl font-bold font-serif text-charcoal">
-              調酒搭餐的四大黃金判斷法則
+              {currentLang === 'en' ? 'Four Golden Principles of Cocktail Pairing' : currentLang === 'ja' ? 'カクテルペアリング 4大黄金ルール' : '調酒搭餐的四大黃金判斷法則'}
             </h3>
           </div>
 
@@ -306,10 +324,10 @@ export default function CocktailSection({ onOpenCocktailModal }) {
         {/* 底部法規警語與安全飲酒提醒 */}
         <div className="bg-charcoal text-parchment-200 p-6 rounded-2xl text-center space-y-2 border border-charcoal-muted/40">
           <div className="text-amber-400 font-serif font-bold text-base sm:text-lg tracking-widest uppercase">
-            🔞 禁止酒駕 · 未滿十八歲禁止飲酒 · 酒後不開車 安全有保障
+            {cLang.disclaimer}
           </div>
           <p className="text-xs text-parchment-400 max-w-xl mx-auto font-sans">
-            本專案提供之調酒配方與餐飲搭配僅供美食生活品味參考。飲酒請保持理性適量，短飲型高酒精度調酒宜慢啜享用，切勿酒後駕車。
+            {t.footer.legalDesc}
           </p>
         </div>
 

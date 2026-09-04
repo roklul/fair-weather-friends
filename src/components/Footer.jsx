@@ -1,8 +1,11 @@
 import React from 'react';
 import { Sparkles, ArrowUp, WineMeatBrandLogo } from './Icons';
+import { TRANSLATIONS } from '../data/translations';
 
-export default function Footer({ activeCategory }) {
-  const categoryTitle = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
+export default function Footer({ activeCategory, currentLang = 'zh-TW' }) {
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const f = t.footer;
+  const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
 
   return (
     <footer className="bg-charcoal text-parchment-200 pt-16 pb-12 border-t border-charcoal-muted/30">
@@ -12,26 +15,26 @@ export default function Footer({ activeCategory }) {
         <div className="bg-gradient-to-r from-beef-burgundy to-[#4a101b] rounded-2xl p-8 sm:p-10 mb-16 text-center space-y-4 shadow-xl border border-beef-red/30">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wider uppercase backdrop-blur-xs">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>找到你的專屬那塊肉</span>
+            <span>{f.ctaBadge}</span>
           </div>
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-white tracking-tight">
-            準備好為今晚的餐桌挑選完美的{categoryTitle}與佐餐調酒了嗎？
+            {f.ctaTitle}
           </h3>
           <p className="text-parchment-300 text-xs sm:text-sm max-w-2xl mx-auto font-sans leading-relaxed">
-            透過全方位解剖分切、科學餐酒與調酒風味搭配，讓每次下廚與聚餐都成為極致的風味享受。
+            {f.ctaSubtitle}
           </p>
           <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
             <a
               href="#wizard"
-              className="px-6 py-3 rounded-lg bg-parchment-50 text-charcoal hover:bg-white text-xs sm:text-sm font-bold shadow-md transition-all transform hover:-translate-y-0.5"
+              className="px-6 py-3 rounded-lg bg-parchment-50 text-charcoal hover:bg-white text-xs sm:text-sm font-bold shadow-md transition-all transform hover:-translate-y-0.5 whitespace-nowrap"
             >
-              開啟「你想怎麼吃？」選肉助手
+              {f.ctaWizardBtn}
             </a>
             <a
               href="#cocktails"
-              className="px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium border border-white/20 transition-all"
+              className="px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium border border-white/20 transition-all whitespace-nowrap"
             >
-              探索 10 款經典調酒搭餐
+              {f.ctaCocktailBtn}
             </a>
           </div>
         </div>
@@ -40,39 +43,39 @@ export default function Footer({ activeCategory }) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-charcoal-muted/30 text-xs text-parchment-300">
           <div className="space-y-3 md:col-span-2">
             <div className="flex items-center gap-3">
-              <WineMeatBrandLogo className="w-9 h-9" />
+              <WineMeatBrandLogo className="w-9 h-9 shrink-0" />
               <div className="flex flex-col">
                 <span className="font-serif font-bold text-xl text-white tracking-tight">
-                  酒肉朋友 <span className="text-xs font-mono font-normal text-amber-300/80">FAIR-WEATHER FRIENDS</span>
+                  {t.brandName} <span className="text-xs font-mono font-normal text-amber-300/80">{t.brandTag}</span>
                 </span>
                 <span className="text-[11px] text-parchment-400 font-sans">
-                  肉品與海鮮部位選購 × 料理侍酒指南
+                  {t.brandSubtitle}
                 </span>
               </div>
             </div>
             <p className="max-w-sm text-parchment-400 leading-relaxed font-sans pt-1">
-              全方位「肉品與海鮮部位選購 × 料理佐餐指南」，致力於將解剖分切、烹調火候、侍酒學與經典調酒風味學整合成一站式決策流程。
+              {f.desc}
             </p>
           </div>
 
           <div className="space-y-2">
-            <h4 className="font-serif font-bold text-sm text-white">快速導覽</h4>
+            <h4 className="font-serif font-bold text-sm text-white">{f.quickNav}</h4>
             <ul className="space-y-1.5 text-parchment-400">
-              <li><a href="#diagram-section" className="hover:text-white transition-colors">互動部位分切圖</a></li>
-              <li><a href="#wizard" className="hover:text-white transition-colors">智能選肉小工具</a></li>
-              <li><a href="#cuts-library" className="hover:text-white transition-colors">12 款熱門部位</a></li>
-              <li><a href="#wine-pairing" className="hover:text-white transition-colors">餐酒搭配科學矩陣</a></li>
-              <li><a href="#cocktails" className="hover:text-white transition-colors">10 款經典調酒搭餐</a></li>
+              <li><a href="#diagram-section" className="hover:text-white transition-colors">{t.nav.diagram}</a></li>
+              <li><a href="#wizard" className="hover:text-white transition-colors">{t.nav.wizard}</a></li>
+              <li><a href="#cuts-library" className="hover:text-white transition-colors">{t.nav.cuts}</a></li>
+              <li><a href="#wine-pairing" className="hover:text-white transition-colors">{t.nav.wine}</a></li>
+              <li><a href="#cocktails" className="hover:text-white transition-colors">{t.nav.cocktail}</a></li>
             </ul>
           </div>
 
           <div className="space-y-2">
-            <h4 className="font-serif font-bold text-sm text-white">理性飲酒與法規宣告</h4>
+            <h4 className="font-serif font-bold text-sm text-white">{f.legalTitle}</h4>
             <p className="text-amber-400/90 text-xs leading-relaxed font-bold">
-              🔞 禁止酒駕 · 酒後不開車 安全有保障 · 未滿十八歲禁止飲酒。
+              {f.legalWarning}
             </p>
             <p className="text-parchment-400 text-[11px] leading-relaxed">
-              本網站提供之餐酒與調酒搭配資訊僅供美食生活品味與廚藝研究參考。
+              {f.legalDesc}
             </p>
           </div>
         </div>
@@ -80,15 +83,15 @@ export default function Footer({ activeCategory }) {
         {/* 版權與回頂部 */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-parchment-400">
           <div>
-            © {new Date().getFullYear()} 酒肉朋友 (Fair-Weather Friends). All rights reserved.
+            © {new Date().getFullYear()} {t.brandName}. {f.rights}
           </div>
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-charcoal-light hover:bg-charcoal-muted text-parchment-200 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-charcoal-light hover:bg-charcoal-muted text-parchment-200 transition-colors whitespace-nowrap"
           >
             <ArrowUp className="w-3.5 h-3.5" />
-            <span>回到頂部</span>
+            <span>Top</span>
           </button>
         </div>
 

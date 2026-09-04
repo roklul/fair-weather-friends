@@ -20,6 +20,7 @@ import Footer from '../components/Footer';
 import CutModal from '../components/CutCard/CutModal';
 import DemoDisclaimer from '../components/Compliance/DemoDisclaimer';
 import { Compass } from '../components/Icons';
+import { TRANSLATIONS } from '../data/translations';
 
 // 資料庫引入
 import {
@@ -49,6 +50,9 @@ import {
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState('beef'); // 'beef' | 'pork' | 'fish'
   const [currentLang, setCurrentLang] = useState('zh-TW'); // 'zh-TW' | 'en' | 'ja'
+
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
   
   // 各品類選中之部位 ID
   const [selectedBeefPrimal, setSelectedBeefPrimal] = useState('rib');
@@ -72,7 +76,7 @@ export default function HomePage() {
   // 當前品類資料映射
   const currentData = {
     beef: {
-      title: '牛肉',
+      title: categoryTitle,
       primals: BEEF_PRIMALS,
       cuts: BEEF_CUTS_DATA,
       winePrinciples: BEEF_WINE_PRINCIPLES,
@@ -86,7 +90,7 @@ export default function HomePage() {
       setSelectedCooking: setBeefCooking,
     },
     pork: {
-      title: '豬肉',
+      title: categoryTitle,
       primals: PORK_PRIMALS,
       cuts: PORK_CUTS_DATA,
       winePrinciples: PORK_WINE_PRINCIPLES,
@@ -100,7 +104,7 @@ export default function HomePage() {
       setSelectedCooking: setPorkCooking,
     },
     fish: {
-      title: '魚類海鮮',
+      title: categoryTitle,
       primals: FISH_PRIMALS,
       cuts: FISH_CUTS_DATA,
       winePrinciples: FISH_WINE_PRINCIPLES,
@@ -143,7 +147,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col paper-texture">
       {/* 全站展示型免責與合規告示橫幅 */}
-      <DemoDisclaimer />
+      <DemoDisclaimer currentLang={currentLang} />
 
       {/* 頂部導覽列 (含品類切換器與多語系選擇) */}
       <Navbar
@@ -160,6 +164,7 @@ export default function HomePage() {
       <Hero
         activeCategory={activeCategory}
         onQuickFilter={handleQuickFilter}
+        currentLang={currentLang}
       />
 
       {/* 互動式部位解剖向量圖 Section */}
@@ -167,13 +172,13 @@ export default function HomePage() {
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
             <Compass className="w-3.5 h-3.5 text-amber-800" />
-            <span>解剖圖鑑 · {currentData.title}分切系統</span>
+            <span>{t.anatomy.badge} · {currentData.title}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-            互動{currentData.title}部位圖
+            {t.anatomy.title} ({currentData.title})
           </h2>
           <p className="text-charcoal-muted text-sm sm:text-base">
-            點選下方{currentData.title}向量色塊，立即查看部位解剖位置、肉質特色、推薦料理與延伸細分切清單。
+            {t.anatomy.subtitle}
           </p>
         </div>
 
@@ -239,6 +244,7 @@ export default function HomePage() {
         selectedCooking={currentData.selectedCooking}
         setSelectedCooking={currentData.setSelectedCooking}
         onOpenCutModal={(cut) => setActiveModalCut(cut)}
+        currentLang={currentLang}
       />
 
       {/* 12 款精選細切部位卡片庫 */}
@@ -257,6 +263,7 @@ export default function HomePage() {
       {/* 經典調酒搭餐專題（10 款調酒 × 料理雙向配對） */}
       <CocktailSection
         onOpenCocktailModal={(cocktail) => setActiveModalCocktail(cocktail)}
+        currentLang={currentLang}
       />
 
       {/* 規格比較表 */}
@@ -276,6 +283,7 @@ export default function HomePage() {
       {/* 頁尾 */}
       <Footer
         activeCategory={activeCategory}
+        currentLang={currentLang}
       />
 
       {/* 部位詳情 Modal 彈窗 */}
