@@ -525,3 +525,9 @@ export const DISH_TO_COCKTAIL_MATRIX = [
     rationale: '現萃義式濃縮與咖啡利口酒的甜苦烘烤調性，為甜點劃下最優雅的句點。'
   }
 ];
+
+// 受控展示資料邊界保護：全面標記 isDemo 與 isPurchasable
+COCKTAILS_DATA.forEach(cocktail => {
+  cocktail.isDemo = true;
+  cocktail.isPurchasable = false;
+});

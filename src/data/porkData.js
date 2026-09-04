@@ -502,3 +502,9 @@ export const PORK_FAQS_DATA = [
     a: '這是常見的迷思！豬肉搭酒的黃金法則在於「料理風味與油脂厚度」，而非紅白酒二分法。例如：油脂豐富的東坡肉適合高酸微甜的 Riesling 白酒；煙燻 BBQ 烤肋排則需要果味濃厚的 Zinfandel 紅酒；細緻的炸腰內豬排搭配優雅的黑皮諾紅酒相得益彰。關鍵在於避免高單寧且粗澀的年輕紅酒即可。'
   }
 ];
+
+// 受控展示資料邊界保護：全面標記 isDemo 與 isPurchasable
+PORK_CUTS_DATA.forEach(cut => {
+  cut.isDemo = true;
+  cut.isPurchasable = false;
+});

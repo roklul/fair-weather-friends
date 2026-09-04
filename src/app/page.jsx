@@ -18,6 +18,7 @@ import FullCutTable from '../components/DataTable/FullCutTable';
 import FaqSection from '../components/Faq/FaqSection';
 import Footer from '../components/Footer';
 import CutModal from '../components/CutCard/CutModal';
+import DemoDisclaimer from '../components/Compliance/DemoDisclaimer';
 import { Compass } from '../components/Icons';
 
 // 資料庫引入
@@ -140,7 +141,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col paper-texture">
-      
+      {/* 全站展示型免責與合規告示橫幅 */}
+      <DemoDisclaimer />
+
       {/* 頂部導覽列 (含品類切換器) */}
       <Navbar
         activeCategory={activeCategory}

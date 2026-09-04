@@ -507,3 +507,9 @@ export const FISH_FAQS_DATA = [
     a: '掌握三大秘訣：1. 下鍋前務必用紙巾「將魚身表面水分徹底吸乾」；2. 熱鍋下適量油，魚皮朝下入鍋後，用鍋鏟輕壓 15 秒防止魚皮受熱蜷曲；3. 定型前切勿隨意翻動，待魚皮煎至金黃焦酥能輕易脫離鍋面時再翻面煎熟即可。'
   }
 ];
+
+// 受控展示資料邊界保護：全面標記 isDemo 與 isPurchasable
+FISH_CUTS_DATA.forEach(cut => {
+  cut.isDemo = true;
+  cut.isPurchasable = false;
+});

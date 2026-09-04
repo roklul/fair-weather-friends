@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, Layers, Fish, ArrowRight, CheckCircle2, RotateCcw } from '../Icons';
+import { calculateRecommendation } from '../../domain/recommendation/calculateRecommendation';
 
 export default function TasteWizard({
   activeCategory,
@@ -28,18 +29,14 @@ export default function TasteWizard({
 
   const getIcon = (iconName) => iconMap[iconName] || Sparkles;
 
-  // 計算推薦肉品清單
-  const activeTextureObj = wizardData.textures.find((t) => t.id === selectedTexture) || wizardData.textures[0];
-  const activeCookingObj = wizardData.cookingMethods.find((c) => c.id === selectedCooking) || wizardData.cookingMethods[0];
-
-  const textureMatches = activeTextureObj ? activeTextureObj.recommendedIds : [];
-  const cookingMatches = activeCookingObj ? activeCookingObj.recommendedIds : [];
-
-  const perfectMatches = textureMatches.filter((id) => cookingMatches.includes(id));
-  const recommendedIds = Array.from(new Set([...perfectMatches, ...cookingMatches, ...textureMatches])).slice(0, 4);
-  const recommendedCuts = recommendedIds
-    .map((id) => cutsData.find((cut) => cut.id === id))
-    .filter(Boolean);
+  // 使用 Domain 層純函式計算推薦結果（解耦畫面與計算邏輯）
+  const { perfectMatches, recommendedCuts } = calculateRecommendation({
+    textureId: selectedTexture,
+    cookingId: selectedCooking,
+    cutsData,
+    wizardData,
+    maxLimit: 4
+  });
 
   const handleReset = () => {
     if (wizardData && wizardData.textures.length > 0) {

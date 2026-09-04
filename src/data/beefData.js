@@ -114,10 +114,12 @@ export const PRIMAL_AREAS = [
   }
 ];
 
-// 12 款精選細切肉品資料庫
+// 12 款精選細切肉品資料庫 (受控展示資料)
 export const BEEF_CUTS_DATA = [
   {
     id: 'ribeye',
+    isDemo: true,
+    isPurchasable: false,
     name: '肋眼',
     enName: 'Ribeye Steak',
     aliases: '肉眼、沙朗 (台灣俗稱)',
@@ -521,3 +523,10 @@ export const FAQS_DATA = [
     a: '不一定！紅酒的單寧與深色水果香氣確實是紅肉油脂的經典解法，但並非唯一解答。例如：帶有奶油烤桶香氣與高酸度的桶陳 Chardonnay（白酒），非常適合搭配油花豐厚的厚切肋眼；清爽酸香的香檳或乾型氣泡酒（Brut Champagne），能極佳地洗刷牛五花或燒烤牛小排的油膩感；而青草香氣鮮明的白蘇維濃 (Sauvignon Blanc) 則與搭配阿根廷青醬 (Chimichurri) 的腹脇牛排相得益彰。'
   }
 ];
+
+// 受控展示資料邊界保護：全面標記 isDemo 與 isPurchasable
+BEEF_CUTS_DATA.forEach(cut => {
+  cut.isDemo = true;
+  cut.isPurchasable = false;
+});
+
