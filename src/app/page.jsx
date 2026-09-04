@@ -244,6 +244,7 @@ export default function HomePage() {
         selectedCooking={currentData.selectedCooking}
         setSelectedCooking={currentData.setSelectedCooking}
         onOpenCutModal={(cut) => setActiveModalCut(cut)}
+        onOpenCocktailModal={(cocktail) => setActiveModalCocktail(cocktail)}
         currentLang={currentLang}
       />
 

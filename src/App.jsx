@@ -49,6 +49,10 @@ export default function App() {
   const [selectedPorkPrimal, setSelectedPorkPrimal] = useState('pork-shoulder');
   const [selectedFishPrimal, setSelectedFishPrimal] = useState('fish-loin');
 
+  // Wizard 選項狀態
+  const [selectedTexture, setSelectedTexture] = useState(BEEF_WIZARD_DATA.textures[0].id);
+  const [selectedCooking, setSelectedCooking] = useState(BEEF_WIZARD_DATA.cookingMethods[0].id);
+
   // Modal 彈窗狀態
   const [activeModalCut, setActiveModalCut] = useState(null);
 
@@ -198,6 +202,10 @@ export default function App() {
         activeCategory={activeCategory}
         wizardData={currentData.wizard}
         cutsData={currentData.cuts}
+        selectedTexture={selectedTexture}
+        setSelectedTexture={setSelectedTexture}
+        selectedCooking={selectedCooking}
+        setSelectedCooking={setSelectedCooking}
         onOpenCutModal={(cut) => setActiveModalCut(cut)}
       />
 

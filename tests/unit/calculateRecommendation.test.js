@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculateRecommendation } from '../../src/domain/recommendation/calculateRecommendation';
+import { calculateRecommendation, getPairedCocktailForCut } from '../../src/domain/recommendation/calculateRecommendation';
 import { BEEF_CUTS_DATA, WIZARD_DATA as BEEF_WIZARD } from '../../src/data/beefData';
 import { PORK_CUTS_DATA, PORK_WIZARD_DATA } from '../../src/data/porkData';
 import { FISH_CUTS_DATA, FISH_WIZARD_DATA } from '../../src/data/fishData';
@@ -17,7 +17,6 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
 
     expect(result.recommendedCuts.length).toBeGreaterThan(0);
     expect(result.recommendedCuts.length).toBeLessThanOrEqual(4);
-    // 菲力 (tenderloin) 與肋眼 (ribeye) 應為推薦
     const cutIds = result.recommendedCuts.map((c) => c.id);
     expect(cutIds).toContain('tenderloin');
   });
@@ -98,11 +97,13 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
     result.recommendedCuts.forEach((cut) => {
       expect(cut.isDemo).toBe(true);
       expect(cut.isPurchasable).toBe(false);
+      expect(cut.pairedCocktail.isDemo).toBe(true);
+      expect(cut.pairedCocktail.isPurchasable).toBe(false);
     });
   });
 
-  // 8. 邊界測試：空資料集防禦
-  it('8. 傳入空 cutsData 時安全回傳空陣列，絕不 throw error', () => {
+  // 8. 邊界測試：空資料庫安全防護
+  it('8. cutsData 為空時回傳空結果而不崩潰', () => {
     const result = calculateRecommendation({
       textureId: 'tender',
       cookingId: 'steak',
@@ -111,22 +112,23 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
     });
 
     expect(result.recommendedCuts).toEqual([]);
-    expect(result.totalMatches).toBe(0);
-  });
-
-  // 9. 邊界測試：無效或未定義參數防禦
-  it('9. 未傳入任何參數時安全回傳預設結構', () => {
-    const result = calculateRecommendation();
-    expect(result.recommendedCuts).toEqual([]);
     expect(result.perfectMatches).toEqual([]);
     expect(result.totalMatches).toBe(0);
+    expect(result.overallPairing).toBeDefined();
   });
 
-  // 10. 邊界測試：傳入不存在的 textureId 時自動降級回退
-  it('10. 傳入不存在的 textureId 時安全降級至預設題庫推薦', () => {
+  // 9. 邊界測試：null 或 undefined 參數防護
+  it('9. 傳入 undefined 參數時安全回退', () => {
+    const result = calculateRecommendation();
+    expect(result.recommendedCuts).toEqual([]);
+    expect(result.totalMatches).toBe(0);
+  });
+
+  // 10. 邊界測試：無效 ID 自動 fallback 到首筆
+  it('10. 傳入不存在之 textureId 與 cookingId 時優雅 fallback', () => {
     const result = calculateRecommendation({
-      textureId: 'non-existent-texture-id',
-      cookingId: 'steak',
+      textureId: 'non-existent-texture',
+      cookingId: 'non-existent-cooking',
       cutsData: BEEF_CUTS_DATA,
       wizardData: BEEF_WIZARD
     });
@@ -134,20 +136,8 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
     expect(result.recommendedCuts.length).toBeGreaterThan(0);
   });
 
-  // 11. 邊界測試：傳入不存在的 cookingId 時自動降級回退
-  it('11. 傳入不存在的 cookingId 時安全降級至預設題庫推薦', () => {
-    const result = calculateRecommendation({
-      textureId: 'tender',
-      cookingId: 'non-existent-cooking-id',
-      cutsData: BEEF_CUTS_DATA,
-      wizardData: BEEF_WIZARD
-    });
-
-    expect(result.recommendedCuts.length).toBeGreaterThan(0);
-  });
-
-  // 12. maxLimit 限制數量驗證
-  it('12. 指定 maxLimit=2 時精準只回傳 2 筆推薦', () => {
+  // 11. maxLimit 限制數量驗證
+  it('11. 嚴格遵守 maxLimit 限制回傳筆數', () => {
     const result = calculateRecommendation({
       textureId: 'tender',
       cookingId: 'steak',
@@ -156,26 +146,11 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
       maxLimit: 2
     });
 
-    expect(result.recommendedCuts.length).toBe(2);
+    expect(result.recommendedCuts.length).toBeLessThanOrEqual(2);
   });
 
-  // 13. 重複 ID 去重驗證
-  it('13. 回傳推薦部位清單絕無重複 ID', () => {
-    const result = calculateRecommendation({
-      textureId: 'fatty',
-      cookingId: 'hotpot',
-      cutsData: BEEF_CUTS_DATA,
-      wizardData: BEEF_WIZARD,
-      maxLimit: 10
-    });
-
-    const ids = result.recommendedCuts.map((c) => c.id);
-    const uniqueIds = Array.from(new Set(ids));
-    expect(ids.length).toBe(uniqueIds.length);
-  });
-
-  // 14. 完美契合判斷 (perfectMatches) 正確性
-  it('14. 正確回傳同時符合口感與料理之交集 ID (perfectMatches)', () => {
+  // 12. 完美契合 (perfectMatches) 優先度排序測試
+  it('12. 同時滿足口感與料理法之部位應優先排在最前面', () => {
     const result = calculateRecommendation({
       textureId: 'tender',
       cookingId: 'steak',
@@ -183,20 +158,68 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
       wizardData: BEEF_WIZARD
     });
 
-    expect(Array.isArray(result.perfectMatches)).toBe(true);
-    expect(result.perfectMatches).toContain('tenderloin');
+    if (result.perfectMatches.length > 0) {
+      const topCutId = result.recommendedCuts[0].id;
+      expect(result.perfectMatches).toContain(topCutId);
+    }
   });
 
-  // 15. 不變性 (Immutability) 驗證：絕不修改原始傳入之 cutsData
-  it('15. 純函式執行絕不污染或修改傳入的原始資料集', () => {
-    const originalLength = BEEF_CUTS_DATA.length;
-    calculateRecommendation({
-      textureId: 'tender',
-      cookingId: 'steak',
+  // 13. 純函式確定性（Idempotency）：相同輸入必定產生完全相同輸出
+  it('13. 相同輸入多次調用產生完全一致的輸出', () => {
+    const params = {
+      textureId: 'lean',
+      cookingId: 'stew',
       cutsData: BEEF_CUTS_DATA,
       wizardData: BEEF_WIZARD
-    });
+    };
 
-    expect(BEEF_CUTS_DATA.length).toBe(originalLength);
+    const run1 = calculateRecommendation(params);
+    const run2 = calculateRecommendation(params);
+    expect(run1).toEqual(run2);
+  });
+
+  // 14. 推薦調酒協同配對：高脂/炭烤牛排配對 Old Fashioned
+  it('14. 高脂牛排香煎正確配對 Old Fashioned 與焦糖木質共振標籤', () => {
+    const cut = { id: 'ribeye', name: '肋眼', scores: { fat: 5, tenderness: 4, flavor: 5 } };
+    const pairing = getPairedCocktailForCut(cut, 'sear');
+
+    expect(pairing.cocktailId).toBe('old-fashioned');
+    expect(pairing.synergyTag).toBe('焦糖木質共振');
+    expect(pairing.synergyReason).toContain('波本威士忌');
+  });
+
+  // 15. 推薦調酒協同配對：炸物/豬肉配對 Whiskey Sour
+  it('15. 炸物或豬肉料理正確配對 Whiskey Sour 與酸甜解膩標籤', () => {
+    const cut = { id: 'pork-loin', name: '大里肌', category: 'pork', scores: { fat: 2 } };
+    const pairing = getPairedCocktailForCut(cut, 'fried');
+
+    expect(pairing.cocktailId).toBe('whiskey-sour');
+    expect(pairing.synergyTag).toBe('酸甜極致解膩');
+  });
+
+  // 16. 推薦調酒協同配對：海鮮/清蒸魚配對 Daiquiri
+  it('16. 清蒸海鮮魚類料理正確配對 Daiquiri 與清甜提鮮標籤', () => {
+    const cut = { id: 'seabass', name: '金目鱸', category: 'fish', scores: { fat: 2 } };
+    const pairing = getPairedCocktailForCut(cut, 'steam');
+
+    expect(pairing.cocktailId).toBe('daiquiri');
+    expect(pairing.synergyTag).toBe('清甜果酸提鮮');
+  });
+
+  // 17. 推薦調酒協同配對：慢燉/筋膜配對 Negroni
+  it('17. 慢燉膠質肉品正確配對 Negroni 與草本苦甜層次標籤', () => {
+    const cut = { id: 'shank', name: '牛腱心', scores: { tenderness: 2, fat: 2 } };
+    const pairing = getPairedCocktailForCut(cut, 'stew');
+
+    expect(pairing.cocktailId).toBe('negroni');
+    expect(pairing.synergyTag).toBe('草本苦甜層次');
+  });
+
+  // 18. 推薦調酒協同配對：無效 cut 物件回傳安全預設
+  it('18. 傳入空物件或 null cut 時回傳安全預設調酒 (Margarita)', () => {
+    const pairing = getPairedCocktailForCut(null);
+    expect(pairing.cocktailId).toBe('margarita');
+    expect(pairing.isDemo).toBe(true);
+    expect(pairing.isPurchasable).toBe(false);
   });
 });

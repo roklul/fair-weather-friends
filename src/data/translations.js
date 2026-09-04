@@ -99,6 +99,9 @@ export const TRANSLATIONS = {
       scoreFat: '油脂感',
       scoreFlavor: '風味濃郁',
       detailBtn: '規格詳情',
+      pairedCocktailLabel: '🍸 推薦搭餐調酒',
+      viewCocktailRecipe: '調製酒譜與科學理由 →',
+      synergyLabel: '風味協同亮點：',
       allCutsLink: '查看全部 12 款精選部位卡片與侍酒指南 →',
     },
     cutsLibrary: {
@@ -245,6 +248,9 @@ export const TRANSLATIONS = {
       scoreFat: 'Fat / Marbling',
       scoreFlavor: 'Flavor Richness',
       detailBtn: 'View Specs',
+      pairedCocktailLabel: '🍸 Paired Cocktail',
+      viewCocktailRecipe: 'Recipe & Science →',
+      synergyLabel: 'Flavor Synergy:',
       allCutsLink: 'Explore all 12 featured cuts & sommelier guides →',
     },
     cutsLibrary: {
@@ -391,6 +397,9 @@ export const TRANSLATIONS = {
       scoreFat: '脂・サシ',
       scoreFlavor: '旨味の濃さ',
       detailBtn: '詳細スペック',
+      pairedCocktailLabel: '🍸 おすすめペアリングカクテル',
+      viewCocktailRecipe: 'レシピと根拠を見る →',
+      synergyLabel: '風味シナジー：',
       allCutsLink: '厳選12部位のカードとペアリングガイドを見る →',
     },
     cutsLibrary: {
