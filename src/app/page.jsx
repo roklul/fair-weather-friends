@@ -48,6 +48,7 @@ import {
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState('beef'); // 'beef' | 'pork' | 'fish'
+  const [currentLang, setCurrentLang] = useState('zh-TW'); // 'zh-TW' | 'en' | 'ja'
   
   // 各品類選中之部位 ID
   const [selectedBeefPrimal, setSelectedBeefPrimal] = useState('rib');
@@ -144,13 +145,15 @@ export default function HomePage() {
       {/* 全站展示型免責與合規告示橫幅 */}
       <DemoDisclaimer />
 
-      {/* 頂部導覽列 (含品類切換器) */}
+      {/* 頂部導覽列 (含品類切換器與多語系選擇) */}
       <Navbar
         activeCategory={activeCategory}
         onSelectCategory={(cat) => {
           setActiveCategory(cat);
           setActiveModalCut(null);
         }}
+        currentLang={currentLang}
+        onSelectLang={setCurrentLang}
       />
 
       {/* 首屏 Hero */}
