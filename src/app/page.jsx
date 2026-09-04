@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import CowSvgMap from '../components/CowDiagram/CowSvgMap';
@@ -12,6 +12,8 @@ import FishDetailPanel from '../components/CowDiagram/FishDetailPanel';
 import TasteWizard from '../components/Wizard/TasteWizard';
 import CutsLibrary from '../components/CutCard/CutsLibrary';
 import WinePairingSection from '../components/WineSection/WinePairingSection';
+import CocktailSection from '../components/CocktailSection/CocktailSection';
+import CocktailModal from '../components/CocktailSection/CocktailModal';
 import FullCutTable from '../components/DataTable/FullCutTable';
 import FaqSection from '../components/Faq/FaqSection';
 import Footer from '../components/Footer';
@@ -63,6 +65,7 @@ export default function HomePage() {
 
   // Modal 彈窗狀態
   const [activeModalCut, setActiveModalCut] = useState(null);
+  const [activeModalCocktail, setActiveModalCocktail] = useState(null);
 
   // 當前品類資料映射
   const currentData = {
@@ -245,6 +248,11 @@ export default function HomePage() {
         winePrinciples={currentData.winePrinciples}
       />
 
+      {/* 經典調酒搭餐專題（10 款調酒 × 料理雙向配對） */}
+      <CocktailSection
+        onOpenCocktailModal={(cocktail) => setActiveModalCocktail(cocktail)}
+      />
+
       {/* 規格比較表 */}
       <FullCutTable
         activeCategory={activeCategory}
@@ -268,6 +276,12 @@ export default function HomePage() {
       <CutModal
         cut={activeModalCut}
         onClose={() => setActiveModalCut(null)}
+      />
+
+      {/* 調酒詳情 Modal 彈窗 */}
+      <CocktailModal
+        cocktail={activeModalCocktail}
+        onClose={() => setActiveModalCocktail(null)}
       />
 
     </div>

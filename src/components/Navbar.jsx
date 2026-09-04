@@ -15,6 +15,7 @@ export default function Navbar({ activeCategory, onSelectCategory }) {
     { name: '選肉決策助手', href: '#wizard', icon: Sparkles },
     { name: '12 大熱門部位', href: '#cuts-library', icon: Utensils },
     { name: '餐酒搭配科學', href: '#wine-pairing', icon: Wine },
+    { name: '經典調酒搭餐', href: '#cocktails', icon: Sparkles },
     { name: '規格比較表', href: '#comparison-table', icon: BookOpen },
     { name: '常見問答', href: '#faq', icon: HelpCircle },
   ];
