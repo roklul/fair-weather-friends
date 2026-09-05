@@ -106,6 +106,7 @@ Next.js 14 App Router (Presentation Layer)
 | **10** | **資料治理與安全** | 排除敏感 .env，最小化資料傳輸 | 建立 `.env.example`，無任何私鑰或個資提交於前端 |
 | **11** | **防禦性程式設計** | 處理空陣列、無效 ID、網路異常等極端情境 | 所有函式均具備預設參數與防禦性 fallback |
 | **12** | **可觀測性與演進** | 保留未來正式化之擴充接點（API Adapter） | 模組化介面，未來可無痛切換為後端 Microservices 或 LLM |
+| **13** | **AI 設計合約規格** | 建立統一 DESIGN.md，防範 AI 產生通用樣式與視覺跳 Tone | 建立根目錄 `DESIGN.md`，定義 Design Tokens、元件規範與 Anti-patterns |
 
 ---
 
