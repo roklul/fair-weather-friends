@@ -11,6 +11,47 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
   const getPrimal = (id) => PORK_PRIMAL_AREAS.find((p) => p.id === id) || PORK_PRIMAL_AREAS[0];
   const activePrimal = getLocalizedPrimal(getPrimal(selectedPrimalId || hoveredPrimalId || 'pork-shoulder'), currentLang);
 
+  const svgLabels = {
+    'zh-TW': {
+      figTitle: 'FIG. 02 — TAIWAN PORK CUT ANATOMY',
+      figSub: 'Standard Taiwan Culinary 8 Primal Breakdown System',
+      neck: { main: '頸頰部', sub: '松阪豬·嘴邊肉' },
+      shoulder: { main: '肩胛部', sub: '梅花肉 · 胛心肉' },
+      loin: { main: '背脊部 (大里肌)', sub: 'LOIN (炸豬排·排骨)' },
+      tenderloin: { main: '小里肌', sub: '腰內肉·極嫩' },
+      ribs: { main: '肋排部 (Ribs)', sub: '腩排 · 烤肋排' },
+      belly: { main: '腹脅部 (五花肉 · 三層肉)', sub: 'BELLY (焢肉·東坡肉·培根)' },
+      frontLeg: { main: '前腿與蹄膀', sub: '腿庫 · 滷肉' },
+      hindLeg: { main: '後腿與蹄部', sub: 'HAM (肉餡·肉燥·豬腳)' },
+    },
+    'en': {
+      figTitle: 'FIG. 02 — TAIWAN PORK CUT ANATOMY',
+      figSub: 'Standard Taiwan Culinary 8 Primal Breakdown System',
+      neck: { main: 'Pork Jowl', sub: 'Neck · Matsusaka' },
+      shoulder: { main: 'Shoulder', sub: 'Boston Butt · Blade' },
+      loin: { main: 'Pork Loin', sub: 'LOIN (Tonkatsu · Chops)' },
+      tenderloin: { main: 'Tenderloin', sub: 'Filet · Ultra Lean' },
+      ribs: { main: 'Pork Ribs', sub: 'Spare Ribs · BBQ' },
+      belly: { main: 'Pork Belly', sub: 'BELLY (Bacon · Braise)' },
+      frontLeg: { main: 'Front Picnic', sub: 'Hock · Trotters' },
+      hindLeg: { main: 'Ham & Leg', sub: 'HAM (Prosciutto · Meatballs)' },
+    },
+    'ja': {
+      figTitle: 'FIG. 02 — 台湾豚肉 8大部位解剖図',
+      figSub: '台湾料理基準 8大部位分割システム',
+      neck: { main: 'ネック・トントロ', sub: '豚トロ・頬肉' },
+      shoulder: { main: '肩ロース', sub: '梅花・ボストンバット' },
+      loin: { main: 'ロース (大里肌)', sub: 'LOIN (とんかつ・ソテー)' },
+      tenderloin: { main: 'ヒレ・腰内', sub: '小里肌・極上柔らか' },
+      ribs: { main: 'スペアリブ', sub: '肋排・骨付きカルビ' },
+      belly: { main: '豚バラ・三枚肉', sub: 'BELLY (角煮・東坡肉)' },
+      frontLeg: { main: '前ウデ・豚足', sub: '腿庫・煮込み用' },
+      hindLeg: { main: 'モモ・後腿', sub: 'HAM (生ハム・肉団子)' },
+    }
+  };
+
+  const labels = svgLabels[currentLang] || svgLabels['zh-TW'];
+
   return (
     <div className="relative w-full bg-parchment-50 border border-parchment-300 rounded-2xl p-4 sm:p-6 shadow-sm overflow-hidden">
       {/* 頂部引導指示 */}
@@ -121,10 +162,10 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-neck' ? 4 : 2.5}
             />
             <text x="180" y="260" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="16" className="font-sans pointer-events-none drop-shadow">
-              頸頰部
+              {labels.neck.main}
             </text>
             <text x="180" y="278" textAnchor="middle" fill="#FAF8F5" fontSize="11" opacity="0.95" className="font-serif italic pointer-events-none">
-              松阪豬·嘴邊肉
+              {labels.neck.sub}
             </text>
           </g>
 
@@ -149,10 +190,10 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-shoulder' ? 4 : 2.5}
             />
             <text x="305" y="225" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
-              肩胛部
+              {labels.shoulder.main}
             </text>
             <text x="305" y="248" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
-              梅花肉 · 胛心肉
+              {labels.shoulder.sub}
             </text>
           </g>
 
@@ -177,10 +218,10 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-loin' ? 4 : 2.5}
             />
             <text x="480" y="205" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
-              背脊部 (大里肌)
+              {labels.loin.main}
             </text>
             <text x="480" y="225" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
-              LOIN (炸豬排·排骨)
+              {labels.loin.sub}
             </text>
           </g>
 
@@ -205,10 +246,10 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-tenderloin' ? 4 : 2.5}
             />
             <text x="650" y="210" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="16" className="font-sans pointer-events-none drop-shadow">
-              小里肌
+              {labels.tenderloin.main}
             </text>
             <text x="650" y="228" textAnchor="middle" fill="#FAF8F5" fontSize="11" opacity="0.95" className="font-serif italic pointer-events-none">
-              腰內肉·極嫩
+              {labels.tenderloin.sub}
             </text>
           </g>
 
@@ -233,10 +274,10 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-ribs' ? 4 : 2.5}
             />
             <text x="465" y="298" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="17" className="font-sans pointer-events-none">
-              肋排部 (Ribs)
+              {labels.ribs.main}
             </text>
             <text x="465" y="316" textAnchor="middle" fill="#1C1917" fontSize="11" opacity="0.9" className="font-serif italic pointer-events-none">
-              腩排 · 烤肋排
+              {labels.ribs.sub}
             </text>
           </g>
 
@@ -261,10 +302,10 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-belly' ? 4 : 2.5}
             />
             <text x="540" y="370" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
-              腹脅部 (五花肉 · 三層肉)
+              {labels.belly.main}
             </text>
             <text x="540" y="390" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
-              BELLY (焢肉·東坡肉·培根)
+              {labels.belly.sub}
             </text>
           </g>
 
@@ -289,10 +330,10 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-front-leg' ? 4 : 2.5}
             />
             <text x="300" y="365" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="16" className="font-sans pointer-events-none">
-              前腿與蹄膀
+              {labels.frontLeg.main}
             </text>
             <text x="300" y="382" textAnchor="middle" fill="#1C1917" fontSize="11" opacity="0.9" className="font-serif italic pointer-events-none">
-              腿庫 · 滷肉
+              {labels.frontLeg.sub}
             </text>
           </g>
 
@@ -317,18 +358,18 @@ export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'pork-hind-leg' ? 4 : 2.5}
             />
             <text x="795" y="300" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
-              後腿與蹄部
+              {labels.hindLeg.main}
             </text>
             <text x="795" y="322" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
-              HAM (肉餡·肉燥·豬腳)
+              {labels.hindLeg.sub}
             </text>
           </g>
 
           {/* 外框裝飾線與圖說 */}
           <rect x="10" y="10" width="980" height="560" fill="none" stroke="#1C1917" strokeWidth="1" strokeDasharray="6 4" opacity="0.4" />
           <g className="font-serif italic text-xs" fill="#1C1917" opacity="0.85">
-            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">FIG. 02 — TAIWAN PORK CUT ANATOMY</text>
-            <text x="30" y="70" className="text-xs">Standard Taiwan Culinary 8 Primal Breakdown System</text>
+            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">{labels.figTitle}</text>
+            <text x="30" y="70" className="text-xs">{labels.figSub}</text>
           </g>
         </svg>
       </div>

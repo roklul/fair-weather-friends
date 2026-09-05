@@ -11,6 +11,38 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
   const getPrimal = (id) => FISH_PRIMAL_AREAS.find((p) => p.id === id) || FISH_PRIMAL_AREAS[2];
   const activePrimal = getLocalizedPrimal(getPrimal(selectedPrimalId || hoveredPrimalId || 'fish-dorsal'), currentLang);
 
+  const svgLabels = {
+    'zh-TW': {
+      figTitle: 'FIG. 03 — TAIWAN FISH & SEAFOOD CUT ANATOMY',
+      figSub: '9 Universal Culinary Anatomical Breakdown System',
+      head: { main: '魚頭部', sub: '臉頰膠質·砂鍋湯' },
+      collar: { main: '魚下巴', sub: '琵琶骨·鹽烤' },
+      dorsal: { main: '背肉 / 背脊肉 (Dorsal)', sub: '午仔魚 · 鱸魚 · 白鯧 · 清蒸香煎主力' },
+      belly: { main: '腹肉 / 魚肚 (Belly · Toro)', sub: '虱目魚肚 · 黑鮪大腹 · 濃郁油脂精華' },
+      tail: { main: '尾段', sub: '白帶魚·紅燒' },
+    },
+    'en': {
+      figTitle: 'FIG. 03 — TAIWAN FISH & SEAFOOD CUT ANATOMY',
+      figSub: '9 Universal Culinary Anatomical Breakdown System',
+      head: { main: 'Fish Head', sub: 'Collagen & Broth' },
+      collar: { main: 'Fish Collar', sub: 'Kama · Salt Grill' },
+      dorsal: { main: 'Dorsal Loin (Fillet)', sub: 'Sea Bass · Salmon · Steamed & Seared' },
+      belly: { main: 'Ventral Belly (Toro)', sub: 'Otoro · Salmon Belly · Rich Omega-3' },
+      tail: { main: 'Tail Cut', sub: 'Slow Braise · Collagen' },
+    },
+    'ja': {
+      figTitle: 'FIG. 03 — 台湾海鮮 魚体解剖図',
+      figSub: '海鮮料理基準 部位分割システム',
+      head: { main: '魚頭・兜', sub: 'コラーゲン・アラ汁' },
+      collar: { main: 'カマ・下巴', sub: '塩焼き・居酒屋' },
+      dorsal: { main: '背肉 (魚フィレ・ロイン)', sub: 'スズキ・サーモン・清蒸ムニエル' },
+      belly: { main: '腹肉 / 魚肚 (ハラス・大トロ)', sub: '大トロ・ハラス・濃厚な脂の旨味' },
+      tail: { main: '尾肉・テール', sub: '甘辛煮付け・照り焼き' },
+    }
+  };
+
+  const labels = svgLabels[currentLang] || svgLabels['zh-TW'];
+
   return (
     <div className="relative w-full bg-parchment-50 border border-parchment-300 rounded-2xl p-4 sm:p-6 shadow-sm overflow-hidden">
       {/* 頂部引導指示 */}
@@ -113,10 +145,10 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'fish-head' ? 4 : 2.5}
             />
             <text x="155" y="215" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="19" className="font-sans pointer-events-none">
-              魚頭部
+              {labels.head.main}
             </text>
             <text x="155" y="238" textAnchor="middle" fill="#1C1917" fontSize="12" opacity="0.9" className="font-serif italic pointer-events-none">
-              臉頰膠質·砂鍋湯
+              {labels.head.sub}
             </text>
           </g>
 
@@ -141,10 +173,10 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'fish-collar' ? 4 : 2.5}
             />
             <text x="268" y="352" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="14" className="font-sans pointer-events-none drop-shadow">
-              魚下巴
+              {labels.collar.main}
             </text>
             <text x="268" y="370" textAnchor="middle" fill="#FAF8F5" fontSize="10" opacity="0.95" className="font-serif italic pointer-events-none">
-              琵琶骨·鹽烤
+              {labels.collar.sub}
             </text>
           </g>
 
@@ -169,10 +201,10 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'fish-dorsal' ? 4 : 2.5}
             />
             <text x="460" y="218" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
-              背肉 / 背脊肉 (Dorsal)
+              {labels.dorsal.main}
             </text>
             <text x="460" y="242" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              午仔魚 · 鱸魚 · 白鯧 · 清蒸香煎主力
+              {labels.dorsal.sub}
             </text>
           </g>
 
@@ -197,10 +229,10 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'fish-belly' ? 4 : 2.5}
             />
             <text x="495" y="338" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="20" className="font-sans pointer-events-none drop-shadow">
-              腹肉 / 魚肚 (Belly · Toro)
+              {labels.belly.main}
             </text>
             <text x="495" y="360" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              虱目魚肚 · 黑鮪大腹 · 濃郁油脂精華
+              {labels.belly.sub}
             </text>
           </g>
 
@@ -225,18 +257,18 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
               strokeWidth={selectedPrimalId === 'fish-tail' ? 4 : 2.5}
             />
             <text x="748" y="275" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="18" className="font-sans pointer-events-none drop-shadow">
-              尾段
+              {labels.tail.main}
             </text>
             <text x="748" y="296" textAnchor="middle" fill="#FAF8F5" fontSize="11" opacity="0.95" className="font-serif italic pointer-events-none">
-              白帶魚·紅燒
+              {labels.tail.sub}
             </text>
           </g>
 
           {/* 外框裝飾線與圖說 */}
           <rect x="10" y="10" width="980" height="560" fill="none" stroke="#1C1917" strokeWidth="1" strokeDasharray="6 4" opacity="0.4" />
           <g className="font-serif italic text-xs" fill="#1C1917" opacity="0.85">
-            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">FIG. 03 — TAIWAN FISH & SEAFOOD CUT ANATOMY</text>
-            <text x="30" y="70" className="text-xs">9 Universal Culinary Anatomical Breakdown System</text>
+            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">{labels.figTitle}</text>
+            <text x="30" y="70" className="text-xs">{labels.figSub}</text>
           </g>
         </svg>
       </div>

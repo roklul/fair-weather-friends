@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { COCKTAILS_DATA, DISH_TO_COCKTAIL_MATRIX } from '../../data/cocktailData';
 import { getLocalizedCocktail, getLocalizedCocktailPrinciples, getLocalizedDishMatrix } from '../../data/cocktailI18n';
-import { Wine, Sparkles, ArrowRight, BookOpen } from '../Icons';
+import { Wine, Sparkles, ArrowRight, BookOpen, ChevronDown, ChevronUp } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 
 export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh-TW' }) {
   const [selectedDishIdx, setSelectedDishIdx] = useState(0);
   const [selectedBaseSpirit, setSelectedBaseSpirit] = useState('all');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const cLang = t.cocktail;
@@ -39,11 +40,27 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
     })
     .map((c) => getLocalizedCocktail(c, currentLang));
 
+  // 判斷是否需要收納折疊：未選特定基酒且未展開時，只顯示前 6 款
+  const shouldLimit = selectedBaseSpirit === 'all' && !isExpanded;
+  const displayedCocktails = shouldLimit ? filteredCocktails.slice(0, 6) : filteredCocktails;
+
+  const expandLabel = currentLang === 'en'
+    ? `Show All ${filteredCocktails.length} Cocktails`
+    : currentLang === 'ja'
+    ? `全 ${filteredCocktails.length} 種のカクテルをすべて表示`
+    : `展開查看全部 ${filteredCocktails.length} 款調酒庫`;
+
+  const collapseLabel = currentLang === 'en'
+    ? 'Show Less'
+    : currentLang === 'ja'
+    ? '折りたたむ'
+    : '收合精選調酒';
+
   const cocktailPrinciples = getLocalizedCocktailPrinciples(currentLang);
 
   return (
-    <section id="cocktails" className="py-16 sm:py-24 bg-parchment-200/70 border-t border-parchment-300 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section id="cocktails" className="py-12 sm:py-16 bg-parchment-200/70 border-t border-parchment-300 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* 法規警語醒目頂部橫幅 */}
         <div className="bg-charcoal text-amber-300 py-3 px-4 rounded-xl border border-amber-400/30 text-center shadow-md">
@@ -89,7 +106,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
               <button
                 key={idx}
                 onClick={() => setSelectedDishIdx(idx)}
-                className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all whitespace-nowrap ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all whitespace-nowrap cursor-pointer ${
                   selectedDishIdx === idx
                     ? 'bg-beef-burgundy text-white border-beef-burgundy shadow-xs'
                     : 'bg-parchment-100 text-charcoal border-parchment-300 hover:bg-parchment-200'
@@ -159,7 +176,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                     </span>
                     <button
                       onClick={() => onOpenCocktailModal(primaryCocktail)}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline shrink-0"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline shrink-0 cursor-pointer"
                     >
                       <span>{cLang.viewRecipe}</span>
                       <ArrowRight className="w-3 h-3" />
@@ -201,7 +218,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                     </span>
                     <button
                       onClick={() => onOpenCocktailModal(secondaryCocktail)}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-charcoal hover:text-beef-burgundy hover:underline shrink-0"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-charcoal hover:text-beef-burgundy hover:underline shrink-0 cursor-pointer"
                     >
                       <span>{cLang.viewRecipe}</span>
                       <ArrowRight className="w-3 h-3" />
@@ -233,8 +250,11 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
               {baseSpirits.map((b) => (
                 <button
                   key={b.id}
-                  onClick={() => setSelectedBaseSpirit(b.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all whitespace-nowrap ${
+                  onClick={() => {
+                    setSelectedBaseSpirit(b.id);
+                    if (b.id !== 'all') setIsExpanded(true);
+                  }}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all whitespace-nowrap cursor-pointer ${
                     selectedBaseSpirit === b.id
                       ? 'bg-charcoal text-white border-charcoal shadow-xs'
                       : 'bg-parchment-50 text-charcoal border-parchment-300 hover:bg-parchment-100'
@@ -248,7 +268,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
 
           {/* 調酒卡片網格 (3 欄) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCocktails.map((c) => (
+            {displayedCocktails.map((c) => (
               <div
                 key={c.id}
                 className="bg-parchment-50 rounded-2xl border border-parchment-300 p-5 shadow-sm hover:border-beef-burgundy hover:shadow-md transition-all flex flex-col justify-between group space-y-4"
@@ -304,7 +324,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                   </span>
                   <button
                     onClick={() => onOpenCocktailModal(c)}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline shrink-0"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-beef-burgundy hover:underline shrink-0 cursor-pointer"
                   >
                     <span>{cLang.viewRecipe}</span>
                     <ArrowRight className="w-3 h-3" />
@@ -313,6 +333,28 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
               </div>
             ))}
           </div>
+
+          {/* 展開 / 收合控制按鈕 */}
+          {filteredCocktails.length > 6 && selectedBaseSpirit === 'all' && (
+            <div className="flex justify-center pt-2">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-parchment-50 hover:bg-parchment-100 text-charcoal border border-parchment-300 font-bold text-xs sm:text-sm shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer"
+              >
+                {isExpanded ? (
+                  <>
+                    <span>{collapseLabel}</span>
+                    <ChevronUp className="w-4 h-4 text-beef-burgundy" />
+                  </>
+                ) : (
+                  <>
+                    <span>{expandLabel}</span>
+                    <ChevronDown className="w-4 h-4 text-beef-burgundy" />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* 4 大調酒餐搭科學判斷模型 */}

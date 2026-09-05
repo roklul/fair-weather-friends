@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import CutCard from './CutCard';
-import { Search, Utensils } from '../Icons';
+import { Search, Utensils, ChevronDown, ChevronUp } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 
 export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, currentLang = 'zh-TW' }) {
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const cl = t.cutsLibrary;
   const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
@@ -86,10 +87,11 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
   const langKey = ['en', 'ja'].includes(currentLang) ? currentLang : 'zh-TW';
   const filterTabs = categoryFilters[activeCategory]?.[langKey] || categoryFilters.beef['zh-TW'];
 
-  // 重設篩選標籤
+  // 重設篩選標籤與展開狀態
   useEffect(() => {
     setSelectedFilter('all');
     setSearchQuery('');
+    setIsExpanded(false);
   }, [activeCategory]);
 
   const filteredCuts = cutsData.filter((cut) => {
@@ -131,11 +133,27 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
     return true;
   });
 
+  // 判斷是否需要收納折疊：若未搜尋且未選特定分類且未展開，則只顯示前 6 筆
+  const shouldLimit = selectedFilter === 'all' && searchQuery.trim() === '' && !isExpanded;
+  const displayedCuts = shouldLimit ? filteredCuts.slice(0, 6) : filteredCuts;
+
+  const expandLabel = currentLang === 'en'
+    ? `Show All ${filteredCuts.length} Cuts`
+    : currentLang === 'ja'
+    ? `全 ${filteredCuts.length} 部位をすべて表示`
+    : `展開查看全部 ${filteredCuts.length} 款部位`;
+
+  const collapseLabel = currentLang === 'en'
+    ? 'Show Less'
+    : currentLang === 'ja'
+    ? '折りたたむ'
+    : '收合精選清單';
+
   return (
-    <section id="cuts-library" className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="cuts-library" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       {/* 標題與引言 */}
-      <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+      <div className="text-center max-w-3xl mx-auto mb-8 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-beef-burgundy/10 border border-beef-burgundy/30 text-beef-burgundy text-xs font-semibold tracking-wider uppercase">
           <Utensils className="w-3.5 h-3.5" />
           <span>{cl.badge} ({categoryTitle})</span>
@@ -167,11 +185,11 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
           {/* 統計筆數 */}
           <div className="text-xs text-charcoal-muted font-medium self-end md:self-center">
             {currentLang === 'en' ? (
-              <>Showing: <span className="font-bold text-beef-burgundy">{filteredCuts.length}</span> / {cutsData.length} items</>
+              <>Showing: <span className="font-bold text-beef-burgundy">{displayedCuts.length}</span> / {cutsData.length} items</>
             ) : currentLang === 'ja' ? (
-              <>該当: <span className="font-bold text-beef-burgundy">{filteredCuts.length}</span> / {cutsData.length} 件</>
+              <>該当: <span className="font-bold text-beef-burgundy">{displayedCuts.length}</span> / {cutsData.length} 件</>
             ) : (
-              <>符合條件：<span className="font-bold text-beef-burgundy">{filteredCuts.length}</span> / {cutsData.length} 款品項</>
+              <>符合條件：<span className="font-bold text-beef-burgundy">{displayedCuts.length}</span> / {cutsData.length} 款品項</>
             )}
           </div>
         </div>
@@ -181,7 +199,10 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
           {filterTabs.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setSelectedFilter(cat.id)}
+              onClick={() => {
+                setSelectedFilter(cat.id);
+                if (cat.id !== 'all') setIsExpanded(true);
+              }}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 selectedFilter === cat.id
                   ? 'bg-beef-burgundy text-white border-beef-burgundy shadow-xs'
@@ -194,12 +215,36 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
         </div>
       </div>
 
-      {/* 12 款卡片網格 (3 欄) */}
-      {filteredCuts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCuts.map((cut) => (
-            <CutCard key={cut.id} cut={cut} onOpenModal={onOpenModal} currentLang={currentLang} />
-          ))}
+      {/* 卡片網格 (3 欄) */}
+      {displayedCuts.length > 0 ? (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayedCuts.map((cut) => (
+              <CutCard key={cut.id} cut={cut} onOpenModal={onOpenModal} currentLang={currentLang} />
+            ))}
+          </div>
+
+          {/* 展開 / 收合控制按鈕 */}
+          {filteredCuts.length > 6 && selectedFilter === 'all' && searchQuery.trim() === '' && (
+            <div className="flex justify-center pt-4">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-parchment-100 hover:bg-parchment-200 text-charcoal border border-parchment-300 font-bold text-xs sm:text-sm shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer"
+              >
+                {isExpanded ? (
+                  <>
+                    <span>{collapseLabel}</span>
+                    <ChevronUp className="w-4 h-4 text-beef-burgundy" />
+                  </>
+                ) : (
+                  <>
+                    <span>{expandLabel}</span>
+                    <ChevronDown className="w-4 h-4 text-beef-burgundy" />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-center py-16 bg-parchment-50 rounded-2xl border border-parchment-300">

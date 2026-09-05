@@ -20,7 +20,7 @@ import FaqSection from '../components/Faq/FaqSection';
 import Footer from '../components/Footer';
 import CutModal from '../components/CutCard/CutModal';
 import DemoDisclaimer from '../components/Compliance/DemoDisclaimer';
-import { Compass } from '../components/Icons';
+import { Compass, Sparkles } from '../components/Icons';
 import { TRANSLATIONS } from '../data/translations';
 
 // 資料庫引入
@@ -120,6 +120,23 @@ export default function HomePage() {
     }
   }[activeCategory];
 
+  const [activeGuideTab, setActiveGuideTab] = useState('diagram'); // 'diagram' | 'wizard'
+
+  // 監聽網址 hash 錨點以自動切換 Tab
+  React.useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash === '#diagram-section') {
+        setActiveGuideTab('diagram');
+      } else if (hash === '#wizard') {
+        setActiveGuideTab('wizard');
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   // 處理由名稱或 ID 開啟 Modal
   const handleOpenCutModalById = (cutId) => {
     const targetCut = currentData.cuts.find((c) => c.id === cutId);
@@ -131,17 +148,27 @@ export default function HomePage() {
   // 處理 Hero 快速意圖按鈕點擊（精確連動 Wizard 選項與滾動）
   const handleQuickFilter = (filter) => {
     if (filter.type === 'anchor') {
-      const el = document.getElementById(filter.val);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (filter.val === 'diagram-section') {
+        setActiveGuideTab('diagram');
+      } else if (filter.val === 'wizard') {
+        setActiveGuideTab('wizard');
+      }
+      setTimeout(() => {
+        const el = document.getElementById(filter.val) || document.getElementById('guide-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
     } else if (filter.type === 'wizard') {
+      setActiveGuideTab('wizard');
       if (filter.cookingId) {
         currentData.setSelectedCooking(filter.cookingId);
       }
       if (filter.textureId) {
         currentData.setSelectedTexture(filter.textureId);
       }
-      const wizardEl = document.getElementById('wizard');
-      if (wizardEl) wizardEl.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const wizardEl = document.getElementById('wizard') || document.getElementById('guide-section');
+        if (wizardEl) wizardEl.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
     }
   };
 
@@ -168,92 +195,129 @@ export default function HomePage() {
         currentLang={currentLang}
       />
 
-      {/* 互動式部位解剖向量圖 Section */}
-      <section id="diagram-section" className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
-            <Compass className="w-3.5 h-3.5 text-amber-800" />
-            <span>{t.anatomy.badge} · {currentData.title}</span>
+      {/* 肉品百科與決策中心 (Tab 整合精緻收納) */}
+      <section id="guide-section" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        
+        {/* 雙 Tab 切換控制列 */}
+        <div className="flex flex-col items-center mb-8">
+          <div className="inline-flex p-1.5 rounded-2xl bg-parchment-200 border border-parchment-300 shadow-inner max-w-md w-full sm:w-auto">
+            <button
+              onClick={() => setActiveGuideTab('diagram')}
+              className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeGuideTab === 'diagram'
+                  ? 'bg-charcoal text-white shadow-md'
+                  : 'text-charcoal-muted hover:text-charcoal hover:bg-parchment-100'
+              }`}
+            >
+              <Compass className="w-4 h-4" />
+              <span>{currentLang === 'en' ? 'Anatomy Diagram' : currentLang === 'ja' ? '解剖図マップ' : '🥩 互動部位解剖地圖'}</span>
+            </button>
+            <button
+              onClick={() => setActiveGuideTab('wizard')}
+              className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeGuideTab === 'wizard'
+                  ? 'bg-beef-burgundy text-white shadow-md'
+                  : 'text-charcoal-muted hover:text-charcoal hover:bg-parchment-100'
+              }`}
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>{currentLang === 'en' ? 'Taste & Cooking Wizard' : currentLang === 'ja' ? '食感・調理ウィザード' : '🧭 口感與料理決策助手'}</span>
+            </button>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-            {t.anatomy.title} ({currentData.title})
-          </h2>
-          <p className="text-charcoal-muted text-sm sm:text-base">
-            {t.anatomy.subtitle}
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* 左側向量地圖 (7 欄) */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            {activeCategory === 'beef' && (
-              <CowSvgMap
-                selectedPrimalId={selectedBeefPrimal}
-                onSelectPrimal={(id) => setSelectedBeefPrimal(id)}
-                onSelectCutByName={handleOpenCutModalById}
-                currentLang={currentLang}
-              />
-            )}
-            {activeCategory === 'pork' && (
-              <PorkSvgMap
-                selectedPrimalId={selectedPorkPrimal}
-                onSelectPrimal={(id) => setSelectedPorkPrimal(id)}
-                onSelectCutByName={handleOpenCutModalById}
-                currentLang={currentLang}
-              />
-            )}
-            {activeCategory === 'fish' && (
-              <FishSvgMap
-                selectedPrimalId={selectedFishPrimal}
-                onSelectPrimal={(id) => setSelectedFishPrimal(id)}
-                onSelectCutByName={handleOpenCutModalById}
-                currentLang={currentLang}
-              />
-            )}
-          </div>
+        {/* Tab 1: 互動式部位解剖向量圖 */}
+        {activeGuideTab === 'diagram' && (
+          <div id="diagram-section" className="animate-fadeIn">
+            <div className="text-center max-w-3xl mx-auto mb-8 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
+                <Compass className="w-3.5 h-3.5 text-amber-800" />
+                <span>{t.anatomy.badge} · {currentData.title}</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
+                {t.anatomy.title} ({currentData.title})
+              </h2>
+              <p className="text-charcoal-muted text-sm sm:text-base">
+                {t.anatomy.subtitle}
+              </p>
+            </div>
 
-          {/* 右側部位資訊面板 (5 欄) */}
-          <div className="lg:col-span-5">
-            {activeCategory === 'beef' && (
-              <PrimalDetailPanel
-                selectedPrimalId={selectedBeefPrimal}
-                onOpenCutModalById={handleOpenCutModalById}
-                currentLang={currentLang}
-              />
-            )}
-            {activeCategory === 'pork' && (
-              <PorkDetailPanel
-                selectedPrimalId={selectedPorkPrimal}
-                onOpenCutModalById={handleOpenCutModalById}
-                currentLang={currentLang}
-              />
-            )}
-            {activeCategory === 'fish' && (
-              <FishDetailPanel
-                selectedPrimalId={selectedFishPrimal}
-                onOpenCutModalById={handleOpenCutModalById}
-                currentLang={currentLang}
-              />
-            )}
-          </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              {/* 左側向量地圖 (7 欄) */}
+              <div className="lg:col-span-7 flex flex-col justify-center">
+                {activeCategory === 'beef' && (
+                  <CowSvgMap
+                    selectedPrimalId={selectedBeefPrimal}
+                    onSelectPrimal={(id) => setSelectedBeefPrimal(id)}
+                    onSelectCutByName={handleOpenCutModalById}
+                    currentLang={currentLang}
+                  />
+                )}
+                {activeCategory === 'pork' && (
+                  <PorkSvgMap
+                    selectedPrimalId={selectedPorkPrimal}
+                    onSelectPrimal={(id) => setSelectedPorkPrimal(id)}
+                    onSelectCutByName={handleOpenCutModalById}
+                    currentLang={currentLang}
+                  />
+                )}
+                {activeCategory === 'fish' && (
+                  <FishSvgMap
+                    selectedPrimalId={selectedFishPrimal}
+                    onSelectPrimal={(id) => setSelectedFishPrimal(id)}
+                    onSelectCutByName={handleOpenCutModalById}
+                    currentLang={currentLang}
+                  />
+                )}
+              </div>
 
-        </div>
+              {/* 右側部位資訊面板 (5 欄) */}
+              <div className="lg:col-span-5">
+                {activeCategory === 'beef' && (
+                  <PrimalDetailPanel
+                    selectedPrimalId={selectedBeefPrimal}
+                    onOpenCutModalById={handleOpenCutModalById}
+                    currentLang={currentLang}
+                  />
+                )}
+                {activeCategory === 'pork' && (
+                  <PorkDetailPanel
+                    selectedPrimalId={selectedPorkPrimal}
+                    onOpenCutModalById={handleOpenCutModalById}
+                    currentLang={currentLang}
+                  />
+                )}
+                {activeCategory === 'fish' && (
+                  <FishDetailPanel
+                    selectedPrimalId={selectedFishPrimal}
+                    onOpenCutModalById={handleOpenCutModalById}
+                    currentLang={currentLang}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: 選肉決策助手小工具 */}
+        {activeGuideTab === 'wizard' && (
+          <div id="wizard" className="animate-fadeIn">
+            <TasteWizard
+              activeCategory={activeCategory}
+              wizardData={currentData.wizard}
+              cutsData={currentData.cuts}
+              selectedTexture={currentData.selectedTexture}
+              setSelectedTexture={currentData.setSelectedTexture}
+              selectedCooking={currentData.selectedCooking}
+              setSelectedCooking={currentData.setSelectedCooking}
+              onOpenCutModal={(cut) => setActiveModalCut(cut)}
+              onOpenCocktailModal={(cocktail) => setActiveModalCocktail(cocktail)}
+              currentLang={currentLang}
+            />
+          </div>
+        )}
+
       </section>
-
-      {/* 選肉決策助手小工具 (精準受控連動) */}
-      <TasteWizard
-        activeCategory={activeCategory}
-        wizardData={currentData.wizard}
-        cutsData={currentData.cuts}
-        selectedTexture={currentData.selectedTexture}
-        setSelectedTexture={currentData.setSelectedTexture}
-        selectedCooking={currentData.selectedCooking}
-        setSelectedCooking={currentData.setSelectedCooking}
-        onOpenCutModal={(cut) => setActiveModalCut(cut)}
-        onOpenCocktailModal={(cocktail) => setActiveModalCocktail(cocktail)}
-        currentLang={currentLang}
-      />
 
       {/* AI 智能侍酒師與料理顧問 (BYOK 模式 + 防幻覺事實護欄) */}
       <AiSommelierSection currentLang={currentLang} />

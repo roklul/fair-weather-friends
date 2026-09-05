@@ -11,6 +11,50 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
   const getPrimal = (id) => PRIMAL_AREAS.find((p) => p.id === id) || PRIMAL_AREAS[0];
   const activePrimal = getLocalizedPrimal(getPrimal(selectedPrimalId || hoveredPrimalId || 'rib'), currentLang);
 
+  const svgLabels = {
+    'zh-TW': {
+      figTitle: 'FIG. 01 — PRIMAL BEEF CUT ANATOMY',
+      figSub: 'Standard USDA 8 Primal Breakdown System',
+      chuck: { main: '肩胛部', sub: 'CHUCK (板腱·翼板)' },
+      rib: { main: '肋脊部', sub: 'RIB (肋眼·牛小排)' },
+      loin: { main: '腰脊部', sub: 'LOIN (菲力·紐約客·沙朗)' },
+      round: { main: '後腿部', sub: 'ROUND (臀肉·和尚頭)' },
+      brisket: { main: '前胸部', sub: 'BRISKET' },
+      plate: { main: '胸腹部', sub: 'PLATE (牛五花·牛腩)' },
+      flank: { main: '腹脇部', sub: 'FLANK (牛腩條·側腹)' },
+      shankFore: '前腱',
+      shankHind: '後腱',
+    },
+    'en': {
+      figTitle: 'FIG. 01 — PRIMAL BEEF CUT ANATOMY',
+      figSub: 'Standard USDA 8 Primal Breakdown System',
+      chuck: { main: 'Chuck', sub: 'Shoulder · Flat Iron' },
+      rib: { main: 'Rib', sub: 'Ribeye · Short Rib' },
+      loin: { main: 'Loin', sub: 'Strip · Tenderloin' },
+      round: { main: 'Round', sub: 'Rump · Knuckle' },
+      brisket: { main: 'Brisket', sub: 'Breast & Flat' },
+      plate: { main: 'Short Plate', sub: 'Belly · Bacon' },
+      flank: { main: 'Flank', sub: 'Abdominal · Skirt' },
+      shankFore: 'Fore Shank',
+      shankHind: 'Hind Shank',
+    },
+    'ja': {
+      figTitle: 'FIG. 01 — 牛肉 8大部位解剖図',
+      figSub: 'USDA基準 8大部位分割システム',
+      chuck: { main: '肩ロース', sub: 'CHUCK (ミスジ・ザブトン)' },
+      rib: { main: 'リブロース', sub: 'RIB (リブ・カルビ)' },
+      loin: { main: 'サーロイン・ヒレ', sub: 'LOIN (ロイン・ヒレ)' },
+      round: { main: 'モモ・後腿', sub: 'ROUND (ウチモモ・シンタマ)' },
+      brisket: { main: 'ブリスケット', sub: '肩バラ・前胸' },
+      plate: { main: 'ショートプレート', sub: 'PLATE (牛バラ・カルビ)' },
+      flank: { main: 'フランク', sub: 'FLANK (ささみ・腹脇)' },
+      shankFore: '前スネ',
+      shankHind: '後スネ',
+    }
+  };
+
+  const labels = svgLabels[currentLang] || svgLabels['zh-TW'];
+
   return (
     <div className="relative w-full bg-parchment-50 border border-parchment-300 rounded-2xl p-4 sm:p-6 shadow-sm overflow-hidden">
       {/* 頂部引導指示 */}
@@ -125,10 +169,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'chuck' ? 4 : 2.5}
             />
             <text x="270" y="235" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
-              肩胛部
+              {labels.chuck.main}
             </text>
             <text x="270" y="258" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              CHUCK (板腱·翼板)
+              {labels.chuck.sub}
             </text>
           </g>
 
@@ -153,10 +197,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'rib' ? 4 : 2.5}
             />
             <text x="452" y="225" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="22" className="font-sans pointer-events-none">
-              肋脊部
+              {labels.rib.main}
             </text>
             <text x="452" y="248" textAnchor="middle" fill="#1C1917" fontSize="13" opacity="0.9" className="font-serif italic pointer-events-none">
-              RIB (肋眼·牛小排)
+              {labels.rib.sub}
             </text>
           </g>
 
@@ -181,10 +225,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'loin' ? 4 : 2.5}
             />
             <text x="615" y="225" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
-              腰脊部
+              {labels.loin.main}
             </text>
             <text x="615" y="248" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              LOIN (菲力·紐約客·沙朗)
+              {labels.loin.sub}
             </text>
           </g>
 
@@ -209,10 +253,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'round' ? 4 : 2.5}
             />
             <text x="785" y="280" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="21" className="font-sans pointer-events-none drop-shadow">
-              後腿部
+              {labels.round.main}
             </text>
             <text x="785" y="303" textAnchor="middle" fill="#FAF8F5" fontSize="13" opacity="0.95" className="font-serif italic pointer-events-none">
-              ROUND (臀肉·和尚頭)
+              {labels.round.sub}
             </text>
           </g>
 
@@ -237,10 +281,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'brisket' ? 4 : 2.5}
             />
             <text x="332" y="355" textAnchor="middle" fill="#1C1917" fontWeight="bold" fontSize="16" className="font-sans pointer-events-none">
-              前胸部
+              {labels.brisket.main}
             </text>
             <text x="332" y="375" textAnchor="middle" fill="#1C1917" fontSize="11" opacity="0.9" className="font-serif italic pointer-events-none">
-              BRISKET
+              {labels.brisket.sub}
             </text>
           </g>
 
@@ -265,10 +309,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'plate' ? 4 : 2.5}
             />
             <text x="452" y="350" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="19" className="font-sans pointer-events-none drop-shadow">
-              胸腹部
+              {labels.plate.main}
             </text>
             <text x="452" y="372" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
-              PLATE (牛五花·牛腩)
+              {labels.plate.sub}
             </text>
           </g>
 
@@ -293,10 +337,10 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'flank' ? 4 : 2.5}
             />
             <text x="615" y="352" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="18" className="font-sans pointer-events-none drop-shadow">
-              腹脇部
+              {labels.flank.main}
             </text>
             <text x="615" y="372" textAnchor="middle" fill="#FAF8F5" fontSize="12" opacity="0.95" className="font-serif italic pointer-events-none">
-              FLANK (牛腩條·側腹)
+              {labels.flank.sub}
             </text>
           </g>
 
@@ -322,7 +366,7 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'shank' ? 3.5 : 2}
             />
             <text x="242" y="415" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="14" className="font-sans pointer-events-none drop-shadow">
-              前腱
+              {labels.shankFore}
             </text>
 
             {/* 後腱肉塊 */}
@@ -339,15 +383,15 @@ export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCu
               strokeWidth={selectedPrimalId === 'shank' ? 3.5 : 2}
             />
             <text x="745" y="402" textAnchor="middle" fill="#FAF8F5" fontWeight="bold" fontSize="15" className="font-sans pointer-events-none drop-shadow">
-              後腱
+              {labels.shankHind}
             </text>
           </g>
 
           {/* 外框裝飾線與圖說 */}
           <rect x="10" y="10" width="980" height="560" fill="none" stroke="#1C1917" strokeWidth="1" strokeDasharray="6 4" opacity="0.4" />
           <g className="font-serif italic text-xs" fill="#1C1917" opacity="0.85">
-            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">FIG. 01 — PRIMAL BEEF CUT ANATOMY</text>
-            <text x="30" y="70" className="text-xs">Standard USDA 8 Primal Breakdown System</text>
+            <text x="30" y="50" className="font-sans font-bold text-sm tracking-wider">{labels.figTitle}</text>
+            <text x="30" y="70" className="text-xs">{labels.figSub}</text>
           </g>
         </svg>
       </div>

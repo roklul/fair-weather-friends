@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Search, ExternalLink } from '../Icons';
+import { BookOpen, Search, ExternalLink, ChevronDown, ChevronUp } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { getLocalizedCut } from '../../data/cutsI18n';
@@ -7,6 +7,7 @@ import { getLocalizedCut } from '../../data/cutsI18n';
 export default function FullCutTable({ activeCategory, cutsData, primalAreas, onOpenModal, currentLang = 'zh-TW' }) {
   const [filterPrimal, setFilterPrimal] = useState('all');
   const [query, setQuery] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const tb = t.table;
   const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
@@ -14,6 +15,7 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
   useEffect(() => {
     setFilterPrimal('all');
     setQuery('');
+    setIsExpanded(false);
   }, [activeCategory]);
 
   const filteredData = cutsData.filter((item) => {
@@ -26,11 +28,26 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
     return matchesPrimal && matchesQuery;
   });
 
+  const shouldLimit = filterPrimal === 'all' && query.trim() === '' && !isExpanded;
+  const displayedData = shouldLimit ? filteredData.slice(0, 6) : filteredData;
+
+  const expandLabel = currentLang === 'en'
+    ? `Show All ${filteredData.length} Specifications`
+    : currentLang === 'ja'
+    ? `全 ${filteredData.length} 品目のスペック表をすべて表示`
+    : `展開完整規格比較表 (共 ${filteredData.length} 筆)`;
+
+  const collapseLabel = currentLang === 'en'
+    ? 'Show Less'
+    : currentLang === 'ja'
+    ? '折りたたむ'
+    : '收合規格比較表';
+
   return (
-    <section id="comparison-table" className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="comparison-table" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       {/* 區塊標題 */}
-      <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+      <div className="text-center max-w-3xl mx-auto mb-8 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200 border border-stone-300 text-charcoal text-xs font-semibold tracking-wider uppercase">
           <BookOpen className="w-3.5 h-3.5" />
           <span>{tb.badge}</span>
@@ -49,7 +66,10 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
           <span className="text-xs font-bold text-charcoal-muted">{tb.filterPrimal}</span>
           <select
             value={filterPrimal}
-            onChange={(e) => setFilterPrimal(e.target.value)}
+            onChange={(e) => {
+              setFilterPrimal(e.target.value);
+              if (e.target.value !== 'all') setIsExpanded(true);
+            }}
             className="text-xs bg-parchment-100 border border-parchment-300 rounded-lg px-3 py-2 text-charcoal focus:outline-hidden focus:ring-2 focus:ring-beef-burgundy"
           >
             <option value="all">{tb.allPrimals}</option>
@@ -70,14 +90,14 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
             type="text"
             placeholder={tb.searchPlaceholder}
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 text-xs bg-parchment-100 border border-parchment-300 rounded-lg text-charcoal placeholder:text-charcoal-muted/60 focus:outline-hidden focus:ring-2 focus:ring-beef-burgundy"
           />
         </div>
       </div>
 
       {/* 響應式表格容器 */}
-      <div className="bg-parchment-50 border border-parchment-300 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-parchment-50 border border-parchment-300 rounded-2xl shadow-sm overflow-hidden space-y-4">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs sm:text-sm font-sans">
             <thead>
@@ -92,14 +112,14 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
               </tr>
             </thead>
             <tbody className="divide-y divide-parchment-200 text-charcoal-light">
-              {filteredData.length === 0 ? (
+              {displayedData.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="py-8 text-center text-charcoal-muted">
                     {tb.emptySearch}
                   </td>
                 </tr>
               ) : (
-                filteredData.map((rawItem) => {
+                displayedData.map((rawItem) => {
                   const item = getLocalizedCut(rawItem, currentLang);
                   const cutDisplayName = currentLang === 'en' ? (item.enName || item.name) : item.name;
                   const cutSubName = currentLang === 'en' ? (item.aliases || rawItem.name) : (item.enName || rawItem.enName);
@@ -139,6 +159,28 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
             </tbody>
           </table>
         </div>
+
+        {/* 展開 / 收合控制按鈕 */}
+        {filteredData.length > 6 && filterPrimal === 'all' && query.trim() === '' && (
+          <div className="flex justify-center p-4 bg-parchment-100/50 border-t border-parchment-200">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-parchment-50 hover:bg-parchment-200 text-charcoal border border-parchment-300 font-bold text-xs sm:text-sm shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer"
+            >
+              {isExpanded ? (
+                <>
+                  <span>{collapseLabel}</span>
+                  <ChevronUp className="w-4 h-4 text-beef-burgundy" />
+                </>
+              ) : (
+                <>
+                  <span>{expandLabel}</span>
+                  <ChevronDown className="w-4 h-4 text-beef-burgundy" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
 
     </section>
