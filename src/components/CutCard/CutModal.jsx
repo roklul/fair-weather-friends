@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Flame, Wine, Compass, AlertCircle, Sparkles, CheckCircle, Info } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
+import { getLocalizedCut } from '../../data/cutsI18n';
 
 export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
   if (!cut) return null;
@@ -8,8 +9,10 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const m = t.modal || {};
   const w = t.wizard;
-  const cutDisplayName = currentLang === 'en' ? cut.enName : cut.name;
-  const cutSubName = currentLang === 'en' ? cut.name : cut.enName;
+  const localizedCut = getLocalizedCut(cut, currentLang);
+
+  const cutDisplayName = currentLang === 'en' ? (localizedCut.enName || localizedCut.name) : localizedCut.name;
+  const cutSubName = currentLang === 'en' ? (localizedCut.aliases || cut.name) : (localizedCut.enName || cut.enName);
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
@@ -25,19 +28,19 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-semibold uppercase tracking-wider text-beef-burgundy">
-                {cut.primalName}
+                {localizedCut.primalName}
               </span>
-              <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${cut.tagColor}`}>
-                {cut.tagBadge}
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${localizedCut.tagColor}`}>
+                {localizedCut.tagBadge}
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal flex items-baseline gap-3">
               {cutDisplayName}
               <span className="text-base font-serif italic text-charcoal-muted">{cutSubName}</span>
             </h2>
-            {cut.aliases && (
+            {localizedCut.aliases && (
               <p className="text-xs text-charcoal-muted mt-1">
-                {currentLang === 'en' ? `Aliases: ${cut.aliases}` : currentLang === 'ja' ? `別名: ${cut.aliases}` : `常見別名：${cut.aliases}`}
+                {currentLang === 'en' ? `Aliases: ${localizedCut.aliases}` : currentLang === 'ja' ? `別名: ${localizedCut.aliases}` : `常見別名：${localizedCut.aliases}`}
               </p>
             )}
           </div>
@@ -61,7 +64,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
               1. {m.primalSource || '解剖位置與來源'} (Anatomical Position)
             </h4>
             <p className="text-sm text-charcoal-light bg-parchment-100 p-3.5 rounded-xl border border-parchment-200 leading-relaxed">
-              {cut.locationDesc}
+              {localizedCut.locationDesc}
             </p>
           </div>
 
@@ -77,9 +80,9 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
                 <span className="text-xs text-charcoal-muted block mb-1">{w.scoreTenderness}</span>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-mono font-bold text-emerald-800">
-                    {'★'.repeat(cut.scores?.tenderness || 3)}{'☆'.repeat(5 - (cut.scores?.tenderness || 3))}
+                    {'★'.repeat(localizedCut.scores?.tenderness || 3)}{'☆'.repeat(5 - (localizedCut.scores?.tenderness || 3))}
                   </span>
-                  <span className="text-xs font-mono font-bold">({cut.scores?.tenderness || 3}/5)</span>
+                  <span className="text-xs font-mono font-bold">({localizedCut.scores?.tenderness || 3}/5)</span>
                 </div>
               </div>
 
@@ -87,9 +90,9 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
                 <span className="text-xs text-charcoal-muted block mb-1">{w.scoreFat}</span>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-mono font-bold text-amber-600">
-                    {'★'.repeat(cut.scores?.fat || 3)}{'☆'.repeat(5 - (cut.scores?.fat || 3))}
+                    {'★'.repeat(localizedCut.scores?.fat || 3)}{'☆'.repeat(5 - (localizedCut.scores?.fat || 3))}
                   </span>
-                  <span className="text-xs font-mono font-bold">({cut.scores?.fat || 3}/5)</span>
+                  <span className="text-xs font-mono font-bold">({localizedCut.scores?.fat || 3}/5)</span>
                 </div>
               </div>
 
@@ -97,15 +100,15 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
                 <span className="text-xs text-charcoal-muted block mb-1">{w.scoreFlavor}</span>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-mono font-bold text-beef-burgundy">
-                    {'★'.repeat(cut.scores?.flavor || 3)}{'☆'.repeat(5 - (cut.scores?.flavor || 3))}
+                    {'★'.repeat(localizedCut.scores?.flavor || 3)}{'☆'.repeat(5 - (localizedCut.scores?.flavor || 3))}
                   </span>
-                  <span className="text-xs font-mono font-bold">({cut.scores?.flavor || 3}/5)</span>
+                  <span className="text-xs font-mono font-bold">({localizedCut.scores?.flavor || 3}/5)</span>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
-              {cut.keywords?.map((kw, idx) => (
+              {localizedCut.keywords?.map((kw, idx) => (
                 <span key={idx} className="px-2.5 py-1 rounded bg-parchment-200 text-charcoal text-xs font-medium">
                   ✓ #{kw}
                 </span>
@@ -120,7 +123,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
               3. {t.cutsLibrary?.cookingLabel || '推薦料理方式'} (Recommended Cooking)
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {cut.cookingMethods?.map((method, idx) => (
+              {localizedCut.cookingMethods?.map((method, idx) => (
                 <div key={idx} className="p-3 bg-parchment-100 rounded-xl border border-parchment-200">
                   <div className="font-bold text-sm text-charcoal mb-1 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
@@ -139,7 +142,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
               4. {t.cutsLibrary?.donenessLabel || '推薦熟度與火候原則'} (Thermal Control)
             </h4>
             <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 font-medium leading-relaxed">
-              {cut.donenessTip}
+              {localizedCut.donenessTip}
             </div>
           </div>
 
@@ -152,26 +155,24 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
             <div className="p-4 bg-purple-50/70 border border-purple-200 rounded-xl space-y-3 text-xs sm:text-sm">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-bold text-purple-950">{t.wine?.recWineHeader || '推薦酒款'}：</span>
-                {cut.winePairing?.wines?.map((wineItem, idx) => (
-                  <span key={idx} className="px-2.5 py-0.5 rounded bg-purple-100/80 text-purple-900 font-serif italic text-xs border border-purple-300">
-                    {wineItem}
-                  </span>
-                ))}
+                <span className="px-2.5 py-0.5 rounded bg-purple-100/80 text-purple-900 font-serif italic text-xs border border-purple-300">
+                  {localizedCut.winePairingDisplay || localizedCut.winePairing?.wines?.join(' · ')}
+                </span>
               </div>
 
-              {cut.winePairing?.styleSummary && (
+              {localizedCut.winePairing?.styleSummary && (
                 <div>
                   <span className="font-bold text-purple-950 block mb-1">
                     {currentLang === 'en' ? 'Style Summary:' : currentLang === 'ja' ? 'スタイル概要:' : '搭酒風味風格：'}
                   </span>
-                  <p className="text-purple-900 font-serif italic text-xs">{cut.winePairing.styleSummary}</p>
+                  <p className="text-purple-900 font-serif italic text-xs">{localizedCut.winePairing.styleSummary}</p>
                 </div>
               )}
 
-              {cut.winePairing?.rationale && (
+              {localizedCut.winePairing?.rationale && (
                 <div className="pt-2 border-t border-purple-200 text-purple-950 text-xs leading-relaxed">
                   <span className="font-bold">{w.synergyLabel || '風味科學理由：'}</span>
-                  {cut.winePairing.rationale}
+                  {localizedCut.winePairing.rationale}
                 </div>
               )}
             </div>
@@ -194,3 +195,4 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
     </div>
   );
 }
+

@@ -122,10 +122,10 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
 
     // 魚類海鮮篩選
     if (activeCategory === 'fish') {
-      if (selectedFilter === 'fish-sear') return ['salmon-fillet', 'grouper-fillet', 'barramundi-fillet', 'cod-steak', 'tilapia-fillet'].includes(cut.id);
-      if (selectedFilter === 'fish-fatty') return ['tuna-otoro', 'milkfish-belly', 'salmon-collar'].includes(cut.id);
-      if (selectedFilter === 'fish-pot') return ['fish-head-pot', 'ribbonfish-cut', 'mackerel-steak'].includes(cut.id);
-      if (selectedFilter === 'fish-special') return ['mullet-roe', 'mackerel-steak', 'tuna-otoro'].includes(cut.id);
+      if (selectedFilter === 'fish-sear') return ['salmon-fillet-cut', 'grouper-fillet', 'barramundi-fillet', 'threadfin-steak', 'spanish-mackerel'].includes(cut.id);
+      if (selectedFilter === 'fish-fatty') return ['tuna-otoro-cut', 'milkfish-belly-cut', 'amberjack-collar', 'mackerel-fillet'].includes(cut.id);
+      if (selectedFilter === 'fish-pot') return ['barramundi-fillet', 'grouper-fillet', 'pomfret-steak', 'milkfish-belly-cut'].includes(cut.id);
+      if (selectedFilter === 'fish-special') return ['mullet-bottarga', 'milkfish-loin-cut', 'spanish-mackerel', 'tuna-otoro-cut'].includes(cut.id);
     }
 
     return true;

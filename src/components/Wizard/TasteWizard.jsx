@@ -3,6 +3,7 @@ import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Za
 import { calculateRecommendation } from '../../domain/recommendation/calculateRecommendation';
 import { COCKTAILS_DATA } from '../../data/cocktailData';
 import { TRANSLATIONS } from '../../data/translations';
+import { getLocalizedCut, getLocalizedWizardData } from '../../data/cutsI18n';
 
 export default function TasteWizard({
   activeCategory,
@@ -19,6 +20,7 @@ export default function TasteWizard({
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const w = t.wizard;
   const categoryName = t.categories[activeCategory]?.shortLabel || activeCategory;
+  const localizedWizardData = getLocalizedWizardData(wizardData, activeCategory, currentLang);
 
   // 圖示動態映射
   const iconMap = {
@@ -47,9 +49,9 @@ export default function TasteWizard({
   });
 
   const handleReset = () => {
-    if (wizardData && wizardData.textures.length > 0) {
-      setSelectedTexture(wizardData.textures[0].id);
-      setSelectedCooking(wizardData.cookingMethods[0].id);
+    if (localizedWizardData && localizedWizardData.textures.length > 0) {
+      setSelectedTexture(localizedWizardData.textures[0].id);
+      setSelectedCooking(localizedWizardData.cookingMethods[0].id);
     }
   };
 
@@ -93,7 +95,7 @@ export default function TasteWizard({
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {wizardData.textures.map((item) => {
+                {localizedWizardData.textures.map((item) => {
                   const IconComponent = getIcon(item.icon);
                   const isSelected = selectedTexture === item.id;
                   return (
@@ -131,7 +133,7 @@ export default function TasteWizard({
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {wizardData.cookingMethods.map((item) => {
+                {localizedWizardData.cookingMethods.map((item) => {
                   const IconComponent = getIcon(item.icon);
                   const isSelected = selectedCooking === item.id;
                   return (
@@ -186,12 +188,15 @@ export default function TasteWizard({
             </div>
 
             <div className="space-y-3.5">
-              {recommendedCuts.map((cut, idx) => {
+              {recommendedCuts.map((rawCut, idx) => {
+                const cut = getLocalizedCut(rawCut, currentLang);
                 const isTopPick = perfectMatches.includes(cut.id) || idx === 0;
                 const pairing = cut.pairedCocktail || {};
                 const synergyTagText = currentLang === 'en' ? pairing.synergyTagEn : currentLang === 'ja' ? pairing.synergyTagJa : pairing.synergyTag;
                 const synergyReasonText = currentLang === 'en' ? pairing.synergyReasonEn : currentLang === 'ja' ? pairing.synergyReasonJa : pairing.synergyReason;
                 const cocktailDisplayName = currentLang === 'en' ? pairing.cocktailEnName : pairing.cocktailName;
+                const cutDisplayName = currentLang === 'en' ? cut.enName || cut.name : cut.name;
+                const cutSubName = currentLang === 'en' ? cut.aliases || rawCut.name : cut.enName;
 
                 return (
                   <div
@@ -202,9 +207,9 @@ export default function TasteWizard({
                       <div>
                         <div className="flex items-center gap-2">
                           <h4 className="font-serif font-bold text-lg text-charcoal group-hover:text-beef-burgundy transition-colors">
-                            {currentLang === 'en' ? cut.enName : cut.name}
+                            {cutDisplayName}
                           </h4>
-                          <span className="text-xs text-charcoal-muted font-serif italic">{currentLang === 'en' ? cut.name : cut.enName}</span>
+                          <span className="text-xs text-charcoal-muted font-serif italic">{cutSubName}</span>
                         </div>
                         <div className="text-xs text-beef-burgundy font-medium mt-0.5">
                           {cut.primalName} · {cut.tagBadge}
@@ -268,7 +273,7 @@ export default function TasteWizard({
 
                     <div className="mt-3 flex items-center justify-between pt-2">
                       <span className="text-[11px] text-charcoal-muted line-clamp-1 pr-2">
-                        {cut.donenessTip ? `${cut.donenessTip.slice(0, 24)}...` : ''}
+                        {cut.donenessTip ? `${cut.donenessTip.slice(0, 32)}...` : ''}
                       </span>
                       <button
                         onClick={() => onOpenCutModal(cut)}

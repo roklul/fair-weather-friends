@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BookOpen, Search, ExternalLink } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 import { getLocalizedPrimal } from '../../data/primalsI18n';
+import { getLocalizedCut } from '../../data/cutsI18n';
 
 export default function FullCutTable({ activeCategory, cutsData, primalAreas, onOpenModal, currentLang = 'zh-TW' }) {
   const [filterPrimal, setFilterPrimal] = useState('all');
@@ -82,7 +83,7 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
             <thead>
               <tr className="bg-parchment-200/80 border-b border-parchment-300 text-charcoal font-serif font-bold">
                 <th className="py-3.5 px-4">{tb.thName}</th>
-                <th className="py-3.5 px-4">{currentLang === 'en' ? 'Chinese Name' : 'English / Scientific'}</th>
+                <th className="py-3.5 px-4">{currentLang === 'en' ? 'Chinese / Aliases' : currentLang === 'ja' ? '英語 / 原名' : 'English / Scientific'}</th>
                 <th className="py-3.5 px-4">{tb.thPrimal}</th>
                 <th className="py-3.5 px-4">{tb.thFat}</th>
                 <th className="py-3.5 px-4">{tb.thCooking}</th>
@@ -98,9 +99,10 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
                   </td>
                 </tr>
               ) : (
-                filteredData.map((item) => {
-                  const cutDisplayName = currentLang === 'en' ? item.enName : item.name;
-                  const cutSubName = currentLang === 'en' ? item.name : item.enName;
+                filteredData.map((rawItem) => {
+                  const item = getLocalizedCut(rawItem, currentLang);
+                  const cutDisplayName = currentLang === 'en' ? (item.enName || item.name) : item.name;
+                  const cutSubName = currentLang === 'en' ? (item.aliases || rawItem.name) : (item.enName || rawItem.enName);
                   const lp = getLocalizedPrimal({ id: item.primalId, name: item.primalName }, currentLang);
 
                   return (
@@ -117,9 +119,9 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
                         </span>
                       </td>
                       <td className="py-3.5 px-4">{item.tagBadge}</td>
-                      <td className="py-3.5 px-4">{item.cookingMethods.map((m) => m.name).join(' · ')}</td>
+                      <td className="py-3.5 px-4">{item.cookingRecommendations || item.cookingMethods?.map((m) => m.name).join(' · ')}</td>
                       <td className="py-3.5 px-4 font-serif italic text-purple-950 font-medium">
-                        {item.winePairing?.wines?.[0] || '—'}
+                        {item.winePairingDisplay || item.winePairing?.wines?.[0] || '—'}
                       </td>
                       <td className="py-3.5 px-4 text-center">
                         <button
@@ -142,3 +144,4 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
     </section>
   );
 }
+
