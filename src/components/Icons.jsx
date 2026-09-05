@@ -218,6 +218,13 @@ export const ArrowRight = createIcon(
   </>
 );
 
+export const ArrowLeft = createIcon(
+  <>
+    <line x1="19" y1="12" x2="5" y2="12" />
+    <polyline points="12 19 5 12 12 5" />
+  </>
+);
+
 export const ArrowUp = createIcon(
   <>
     <line x1="12" y1="19" x2="12" y2="5" />

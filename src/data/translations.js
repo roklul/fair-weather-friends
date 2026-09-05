@@ -17,6 +17,7 @@ export const TRANSLATIONS = {
       cocktail: '經典調酒搭餐',
       table: '規格比較表',
       faq: '常見問答',
+      etiquette: '🍽️ 餐桌禮儀指南',
       startBtn: '開始選肉',
     },
     demoBanner: {
@@ -214,6 +215,7 @@ export const TRANSLATIONS = {
       cocktail: 'Classic Cocktails',
       table: 'Cut Specs Matrix',
       faq: 'FAQ',
+      etiquette: '🍽️ Dining Etiquette',
       startBtn: 'Start Pairing',
     },
     demoBanner: {
@@ -411,6 +413,7 @@ export const TRANSLATIONS = {
       cocktail: 'カクテルペアリング',
       table: '部位比較表',
       faq: 'よくある質問',
+      etiquette: '🍽️ テーブルマナー',
       startBtn: '診断開始',
     },
     demoBanner: {

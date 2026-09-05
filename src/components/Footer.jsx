@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Sparkles, ArrowUp, WineMeatBrandLogo } from './Icons';
 import { TRANSLATIONS } from '../data/translations';
 
@@ -30,12 +31,12 @@ export default function Footer({ activeCategory, currentLang = 'zh-TW' }) {
             >
               {f.ctaWizardBtn}
             </a>
-            <a
-              href="#cocktails"
-              className="px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium border border-white/20 transition-all whitespace-nowrap"
+            <Link
+              href="/etiquette"
+              className="px-6 py-3 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 text-xs sm:text-sm font-bold border border-amber-400/40 transition-all whitespace-nowrap"
             >
-              {f.ctaCocktailBtn}
-            </a>
+              {t.nav.etiquette || '🍽️ 餐桌禮儀指南'}
+            </Link>
           </div>
         </div>
 
@@ -66,6 +67,7 @@ export default function Footer({ activeCategory, currentLang = 'zh-TW' }) {
               <li><a href="#cuts-library" className="hover:text-white transition-colors">{t.nav.cuts}</a></li>
               <li><a href="#wine-pairing" className="hover:text-white transition-colors">{t.nav.wine}</a></li>
               <li><a href="#cocktails" className="hover:text-white transition-colors">{t.nav.cocktail}</a></li>
+              <li><Link href="/etiquette" className="text-amber-300 hover:text-white transition-colors font-semibold">{t.nav.etiquette || '🍽️ 餐桌禮儀指南'}</Link></li>
             </ul>
           </div>
 

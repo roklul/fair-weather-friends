@@ -1,4 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Compass, Wine, Utensils, BookOpen, HelpCircle, Menu, X, Sparkles, WineMeatBrandLogo } from './Icons';
 import { TRANSLATIONS } from '../data/translations';
 
@@ -98,9 +101,17 @@ export default function Navbar({
             ))}
           </nav>
 
-          {/* 右側操作區：多語系切換 + CTA + 手機選單按鈕 */}
+          {/* 右側操作區：餐桌禮儀 + 多語系切換 + CTA + 手機選單按鈕 */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
+            {/* 餐桌禮儀專題入口 */}
+            <Link
+              href="/etiquette"
+              className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-amber-300 bg-amber-50 hover:bg-amber-100 text-xs font-bold text-amber-950 shadow-2xs transition-all whitespace-nowrap"
+            >
+              <span>{t.nav.etiquette}</span>
+            </Link>
+
             {/* 多語系切換器 (Language Selector) */}
             <div className="relative">
               <button
@@ -159,6 +170,20 @@ export default function Navbar({
       {/* 響應式下拉選單 */}
       {mobileMenuOpen && (
         <div className="2xl:hidden border-b border-parchment-300 bg-parchment-100 px-4 pt-3 pb-6 space-y-3 animate-fadeIn shadow-lg">
+          
+          {/* 餐桌禮儀專區快速跳轉 */}
+          <Link
+            href="/etiquette"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-between p-2.5 rounded-lg text-xs font-bold bg-amber-100/90 text-amber-950 border border-amber-300 shadow-2xs"
+          >
+            <span className="flex items-center gap-1.5">
+              <span>🍽️</span>
+              <span>{t.nav.etiquette}</span>
+            </span>
+            <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-amber-200/80 rounded font-bold">NEW</span>
+          </Link>
+
           <div className="text-xs font-bold text-charcoal-muted uppercase mb-1">切換品類：</div>
           <div className="grid grid-cols-3 gap-2">
             {categories.map((cat) => (
