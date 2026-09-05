@@ -37,8 +37,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        serif: ['"Playfair Display"', '"Instrument Serif"', '"Georgia"', 'serif'],
-        sans: ['"Inter"', '"Noto Sans TC"', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Noto Serif TC"', '"Noto Serif JP"', '"Songti TC"', '"Georgia"', 'serif'],
+        sans: ['"Inter"', '"Noto Sans TC"', '"Noto Sans JP"', '"PingFang TC"', '"Microsoft JhengHei"', 'sans-serif'],
       }
     },
   },

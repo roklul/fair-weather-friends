@@ -226,8 +226,8 @@ export const TRANSLATIONS = {
     hero: {
       beef: {
         tagline: 'Butchery Craft × Sommelier Guide · USDA 8 Primal Cuts',
-        mainTitlePrefix: 'Find your perfect cut from the source:',
-        highlightWord: 'The Ideal Beef Cut',
+        mainTitlePrefix: 'Find your perfect cut from',
+        highlightWord: 'The Ideal Beef Selection',
         subtitle: 'From Ribeye, Filet Mignon, Short Ribs to Shank & Brisket. Learn anatomical origins, cooking methods, and drink pairings.',
         quote: 'Beef is more than just "tender" or "tough"; fat distribution, muscle fibers, and connective tissues dictate ideal culinary techniques.',
         quickActions: [

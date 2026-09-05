@@ -7,6 +7,9 @@
     background-color: #F7F4ED;
     color: #1C1917;
     font-feature-settings: "palt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
