@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Wine, Utensils, CheckCircle2, AlertCircle, Key, Eye, EyeOff, RotateCcw, ArrowRight } from '../Icons';
 import { AI_SOMMELIER_I18N } from '../../data/aiSommelierI18n';
+import AiReportViewer from './AiReportViewer';
 
 export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
   const t = AI_SOMMELIER_I18N[currentLang] || AI_SOMMELIER_I18N['zh-TW'];
@@ -408,44 +409,17 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
 
         {/* 4. 結構化 AI 建議結果卡片 */}
         {recommendationResult && (
-          <div className="bg-parchment-50 p-6 sm:p-8 rounded-2xl border-2 border-beef-burgundy shadow-xl space-y-6 animate-fadeIn">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-parchment-300 pb-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-beef-burgundy text-white flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-amber-300" />
-                </div>
-                <div>
-                  <h3 className="font-serif font-bold text-xl sm:text-2xl text-charcoal">
-                    {t.results.title}
-                  </h3>
-                  <span className="text-xs text-charcoal-muted">
-                    依據風味協同科學與部位百科生成
-                  </span>
-                </div>
-              </div>
-
-              <button
-                onClick={() => {
-                  window.scrollTo({ top: document.getElementById('ai-sommelier')?.offsetTop - 80, behavior: 'smooth' });
-                }}
-                className="text-xs font-bold text-beef-burgundy hover:underline flex items-center gap-1 cursor-pointer"
-              >
-                <span>{t.results.reGenerateBtn}</span>
-              </button>
-            </div>
-
-            {/* Markdown 渲染內容 */}
-            <div className="prose prose-stone max-w-none text-charcoal font-sans text-xs sm:text-sm leading-relaxed space-y-4 whitespace-pre-wrap">
-              {recommendationResult}
-            </div>
-
-            {/* 底部免責警語 */}
-            <div className="pt-4 border-t border-parchment-200 text-center text-[11px] text-charcoal-muted">
-              {t.results.disclaimer}
-            </div>
-          </div>
+          <AiReportViewer
+            rawText={recommendationResult}
+            currentLang={currentLang}
+            onReset={() => {
+              window.scrollTo({
+                top: document.getElementById('ai-sommelier')?.offsetTop - 80,
+                behavior: 'smooth'
+              });
+            }}
+          />
         )}
-
       </div>
     </section>
   );
