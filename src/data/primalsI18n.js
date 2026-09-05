@@ -394,6 +394,32 @@ export const PRIMALS_I18N = {
       idealWine: ['台湾陳年特級紹興酒', 'メルロー', '台湾金牌ビール']
     }
   },
+  'pork-ham-trotter': {
+    'zh-TW': {
+      name: '後腿與蹄部 (後腿·豬蹄)',
+      positioning: '高瘦肉比、火腿與貢丸香腸基底',
+      description: '豬後臀與後大腿部位，肌肉量全豬最大、脂肪極低，是製作金華火腿、義式火腿、台式貢丸與香腸的基礎用肉。',
+      extendedCuts: ['後腿瘦肉塊', '後腿絞肉', '後豬蹄 (富含膠質)', '風乾火腿原塊'],
+      recommendedCooking: ['古法烘製肉乾', '手工彈牙貢丸', '花生燉豬腳膠原湯', '金華火腿老母雞老火湯'],
+      idealWine: ['Chianti (奇揚地)', 'Barbera (巴貝拉)', '台灣 18 天生啤酒']
+    },
+    'en': {
+      name: 'Ham & Trotters (Rear Leg)',
+      positioning: 'High Lean Ratio · Foundation of Prosciutto & Meatballs',
+      description: 'Located in the rear hind leg and rump. Large muscle blocks with low fat content, prized for curing prosciutto, ham, and crafting juicy meatballs.',
+      extendedCuts: ['Ham Lean Blocks', 'Minced Pork Leg', 'Hind Trotters', 'Cured Ham'],
+      recommendedCooking: ['Artisanal Pork Jerky', 'Handmade Taiwanese Meatballs', 'Peanut & Trotter Collagen Broth'],
+      idealWine: ['Chianti', 'Barbera', 'Taiwan 18-Day Draft Beer']
+    },
+    'ja': {
+      name: 'モモ・豚足 (後腿·生ハム)',
+      positioning: '高タンパク低脂質 · 生ハムや手作り肉団子のベース',
+      description: '豚の後ろ脚とお尻。脂肪が少なくキメの整った赤身肉で、生ハム（プロシュート）や金華ハム、プリプリの手作り肉団子の原料として使われます。',
+      extendedCuts: ['豚モモ赤身ブロック', '豚モモ挽肉', '後豚足 (コラーゲン)', '熟成生ハム用原木'],
+      recommendedCooking: ['自家製ポークジャーキー', '手作り肉団子・つみれ', '落花生と豚足のコラーゲンスープ'],
+      idealWine: ['キャンティ (Chianti)', 'バルベーラ (Barbera)', '台湾18天生ビール']
+    }
+  },
   'pork-hind-leg': {
     'zh-TW': {
       name: '後腿與蹄部 (後腿·豬腳)',
@@ -421,85 +447,7 @@ export const PRIMALS_I18N = {
     }
   },
 
-  // 魚類海鮮 5 大部位
-  'fish-dorsal': {
-    'zh-TW': {
-      name: '背肉 (魚菲力·厚切背排)',
-      positioning: '肌肉緊實、低脂無刺、香煎與清蒸主力',
-      description: '魚隻背鰭兩側厚實肌群，運動量大、組織緊密細緻，脂肪含量均勻，是頂級西式乾煎魚排與中式清蒸鮮魚的黃金首選。',
-      extendedCuts: ['鮭魚厚切菲力 (Loin)', '金目鱸魚清肉排', '龍虎斑清肉排', '鮪魚赤身排'],
-      recommendedCooking: ['法式香草奶油乾煎', '古法樹子蔥油清蒸', '日式味噌西京燒', '低溫慢烤魚排'],
-      idealWine: ['Sauvignon Blanc (白蘇維濃)', 'Pinot Grigio (灰皮諾)', '純米吟釀清酒']
-    },
-    'en': {
-      name: 'Dorsal Loin (Fish Fillet)',
-      positioning: 'Firm Texture · Low Fat & Boneless · Pan-Sear Star',
-      description: 'Thick muscular loins along the upper spine. Tight, refined flake with clean flavor, ideal for delicate steaming and crispy skin pan-searing.',
-      extendedCuts: ['Salmon Loin Fillet', 'Sea Bass Supreme Fillet', 'Grouper Fillet', 'Tuna Akami Steak'],
-      recommendedCooking: ['Crispy Skin Pan-Sear with Herb Butter', 'Steamed Fillet with Ginger & Scallions', 'Miso Saikyo-yaki'],
-      idealWine: ['Sauvignon Blanc', 'Pinot Grigio', 'Junmai Ginjo Sake']
-    },
-    'ja': {
-      name: '背肉 (魚フィレ・ロイン)',
-      positioning: '身が締まり低脂肪 · 清蒸やムニエルに最適',
-      description: '背びれに沿った厚みのある筋肉。身が細やかに締まっておりクセがなく、パリッとした皮目のソテーやネギ生姜蒸しに抜群です。',
-      extendedCuts: ['サーモンロインフィレ', 'スズキの切り身', 'ハタの上身', '本マグロ赤身'],
-      recommendedCooking: ['ハーブバタームニエル', 'ネギ生姜の中華風清蒸', '西京焼き', 'オーブンロースト'],
-      idealWine: ['ソーヴィニヨン・ブラン', 'ピノ・グリージョ', '純米吟醸日本酒']
-    }
-  },
-  'fish-ventral': {
-    'zh-TW': {
-      name: '腹肉 (魚腩·大腹·哈拉斯)',
-      positioning: '油脂極致豐腴、頂級生魚片與炙燒之王',
-      description: '魚腹腔兩側包覆內臟的軟嫩肌肉，富含 Omega-3 不飽和脂肪酸，油脂融點低，入口即化且甘香濃郁。',
-      extendedCuts: ['黑鮪魚大腹 (Otoro)', '鮭魚肚條 (Belly Strip / Harasu)', '龍膽石斑魚肚', '紅甘肚刺身'],
-      recommendedCooking: ['頂級生魚片刺身 (Sashimi)', '直火炭烤鹽燒魚腹', '噴槍炙燒壽司 (Aburi)', '薑絲鮮魚肚湯'],
-      idealWine: ['乾型香檳 (Brut Champagne)', 'Chablis (夏布利白酒)', '辛口純米酒 (Dry Sake)']
-    },
-    'en': {
-      name: 'Ventral Belly (Toro / Harasu)',
-      positioning: 'Ultimate Rich Marbling · King of Sashimi & Aburi',
-      description: 'Located along the lower ventral belly. Packed with rich Omega-3 fatty acids with a low melting point that dissolves delightfully across the palate.',
-      extendedCuts: ['Bluefin Tuna Otoro', 'Salmon Belly Strips (Harasu)', 'Giant Grouper Belly', 'Amberjack Belly'],
-      recommendedCooking: ['Prime Raw Sashimi', 'Charcoal Salt-Grilled Belly', 'Flame-Seared Aburi Sushi', 'Ginger Fish Belly Soup'],
-      idealWine: ['Brut Champagne', 'Chablis', 'Dry Junmai Sake']
-    },
-    'ja': {
-      name: '腹肉 (ハラス・大トロ)',
-      positioning: '極上の脂の乗り · 刺身と炙り寿司の頂点',
-      description: '内臓を包むお腹の部位。豊富なオメガ3脂肪酸を含み、融点が低いため口の中に入れた瞬間に甘い脂がとろけます。',
-      extendedCuts: ['本マグロ大トロ (Otoro)', 'サーモンハラス', 'タマカイ・ハタ腹肉', 'カンパチ大トロ'],
-      recommendedCooking: ['極上生刺身', 'ハラスの塩焼き', '炙り握り寿司', '生姜と魚腹のスープ'],
-      idealWine: ['辛口シャンパン (Brut Champagne)', 'シャブリ (Chablis)', '辛口純米酒']
-    }
-  },
-  'fish-collar': {
-    'zh-TW': {
-      name: '魚下巴 (喉頰肉·魚胸鰭連帶部)',
-      positioning: '皮脆油香膠質滿點、日料居酒屋靈魂下酒菜',
-      description: '魚鰓後方連同胸鰭周邊的三角形肌肉，兼具結實活動肌、厚潤魚皮與豐富天然魚油，是炭烤料理的無冕之王。',
-      extendedCuts: ['鮭魚下巴 (Salmon Collar)', '紅甘魚下巴 (Hamachi Kama)', '海鱸魚下巴', '龍虎斑下巴'],
-      recommendedCooking: ['日式居酒屋鹽烤魚下巴', '炭火醬燒', '空氣炸鍋酥烤', '酸菜魚下巴煲'],
-      idealWine: ['台灣 18 天生啤酒', '吟釀辛口清酒', '威士忌 Highball (高球調酒)']
-    },
-    'en': {
-      name: 'Fish Collar (Kama / Throat & Cheek)',
-      positioning: 'Crispy Skin, Rich Fat & Collagen · Izakaya Favorite',
-      description: 'Located behind the gills around the pectoral fins. Dense active muscle combined with rich fat pockets that crisp up gorgeously over charcoal.',
-      extendedCuts: ['Salmon Collar', 'Yellowtail Collar (Hamachi Kama)', 'Sea Bass Collar', 'Grouper Collar'],
-      recommendedCooking: ['Izakaya Salt-Grilled Kama', 'Charcoal Tare Glaze', 'Crispy Air-Fried Collar'],
-      idealWine: ['Taiwan 18-Day Draft Beer', 'Dry Ginjo Sake', 'Whiskey Highball']
-    },
-    'ja': {
-      name: 'カマ・魚下巴 (喉・頬肉)',
-      positioning: 'パリパリの皮とジューシーな脂 · 居酒屋の絶品おつまみ',
-      description: 'エラの後ろから胸ビレ周辺の部位。よく動かす筋肉とたっぷりのコラーゲン、良質な魚脂が詰まっており、塩焼きにすると最高です。',
-      extendedCuts: ['サーモンカマ', 'ブリ・カンパチカマ (Hamachi Kama)', 'スズキのカマ', 'ハタのカマ'],
-      recommendedCooking: ['居酒屋風カマの塩焼き', '照り焼き・タレ焼き', 'サクサクノンフライヤー焼き'],
-      idealWine: ['台湾18天生ビール', '辛口吟醸酒', 'ウイスキーハイボール']
-    }
-  },
+  // 魚類海鮮 9 大部位
   'fish-head': {
     'zh-TW': {
       name: '魚頭 (骨髓·魚眼窩·膠質精華)',
@@ -526,9 +474,139 @@ export const PRIMALS_I18N = {
       idealWine: ['金門高粱酒', '紹興酒', '無濾過生原酒']
     }
   },
+  'fish-collar': {
+    'zh-TW': {
+      name: '魚下巴 (琵琶骨·喉頰肉)',
+      positioning: '皮脆油香膠質滿點、日料居酒屋靈魂下酒菜',
+      description: '魚鰓後方連同胸鰭周邊的三角形肌肉，兼具結實活動肌、厚潤魚皮與豐富天然魚油，是炭烤料理的無冕之王。',
+      extendedCuts: ['鮭魚下巴 (Salmon Collar)', '紅甘魚下巴 (Hamachi Kama)', '海鱸魚下巴', '龍虎斑下巴'],
+      recommendedCooking: ['日式居酒屋鹽烤魚下巴', '炭火醬燒', '空氣炸鍋酥烤', '酸菜魚下巴煲'],
+      idealWine: ['台灣 18 天生啤酒', '吟釀辛口清酒', '威士忌 Highball (高球調酒)']
+    },
+    'en': {
+      name: 'Fish Collar (Kama / Throat & Cheek)',
+      positioning: 'Crispy Skin, Rich Fat & Collagen · Izakaya Favorite',
+      description: 'Located behind the gills around the pectoral fins. Dense active muscle combined with rich fat pockets that crisp up gorgeously over charcoal.',
+      extendedCuts: ['Salmon Collar', 'Yellowtail Collar (Hamachi Kama)', 'Sea Bass Collar', 'Grouper Collar'],
+      recommendedCooking: ['Izakaya Salt-Grilled Kama', 'Charcoal Tare Glaze', 'Crispy Air-Fried Collar'],
+      idealWine: ['Taiwan 18-Day Draft Beer', 'Dry Ginjo Sake', 'Whiskey Highball']
+    },
+    'ja': {
+      name: '魚下巴・カマ (喉・頬肉)',
+      positioning: 'パリパリの皮とジューシーな脂 · 居酒屋の絶品おつまみ',
+      description: 'エラの後ろから胸ビレ周辺的部位。よく動かす筋肉とたっぷりのコラーゲン、良質な魚脂が詰まっており、塩焼きにすると最高です。',
+      extendedCuts: ['サーモンカマ', 'ブリ・カンパチカマ (Hamachi Kama)', 'スズキのカマ', 'ハタのカマ'],
+      recommendedCooking: ['居酒屋風カマの塩焼き', '照り焼き・タレ焼き', 'サクサクノンフライヤー焼き'],
+      idealWine: ['台湾18天生ビール', '辛口吟醸酒', 'ウイスキーハイボール']
+    }
+  },
+  'fish-dorsal': {
+    'zh-TW': {
+      name: '背肉 / 背脊肉 (魚菲力·厚切背排)',
+      positioning: '肌肉緊實、低脂無刺、香煎與清蒸主力',
+      description: '魚隻背鰭兩側厚實肌群，運動量大、組織緊密細緻，脂肪含量均勻，是頂級西式乾煎魚排與中式清蒸鮮魚的黃金首選。',
+      extendedCuts: ['鮭魚厚切菲力 (Loin)', '金目鱸魚清肉排', '龍虎斑清肉排', '鮪魚赤身排'],
+      recommendedCooking: ['法式香草奶油乾煎', '古法樹子蔥油清蒸', '日式味噌西京燒', '低溫慢烤魚排'],
+      idealWine: ['Sauvignon Blanc (白蘇維濃)', 'Pinot Grigio (灰皮諾)', '純米吟釀清酒']
+    },
+    'en': {
+      name: 'Dorsal Loin (Fish Fillet)',
+      positioning: 'Firm Texture · Low Fat & Boneless · Pan-Sear Star',
+      description: 'Thick muscular loins along the upper spine. Tight, refined flake with clean flavor, ideal for delicate steaming and crispy skin pan-searing.',
+      extendedCuts: ['Salmon Loin Fillet', 'Sea Bass Supreme Fillet', 'Grouper Fillet', 'Tuna Akami Steak'],
+      recommendedCooking: ['Crispy Skin Pan-Sear with Herb Butter', 'Steamed Fillet with Ginger & Scallions', 'Miso Saikyo-yaki'],
+      idealWine: ['Sauvignon Blanc', 'Pinot Grigio', 'Junmai Ginjo Sake']
+    },
+    'ja': {
+      name: '背肉・ロイン (魚フィレ)',
+      positioning: '身が締まり低脂肪 · 清蒸やムニエルに最適',
+      description: '背びれに沿った厚みのある筋肉。身が細やかに締まっておりクセがなく、パリッとした皮目のソテーやネギ生姜蒸しに抜群です。',
+      extendedCuts: ['サーモンロインフィレ', 'スズキの切り身', 'ハタの上身', '本マグロ赤身'],
+      recommendedCooking: ['ハーブバタームニエル', 'ネギ生姜の中華風清蒸', '西京焼き', 'オーブンロースト'],
+      idealWine: ['ソーヴィニヨン・ブラン', 'ピノ・グリージョ', '純米吟醸日本酒']
+    }
+  },
+  'fish-belly': {
+    'zh-TW': {
+      name: '腹肉 / 魚肚 (Toro / 魚腩)',
+      positioning: '油脂極致豐腴、頂級生魚片與炙燒之王',
+      description: '魚腹腔兩側包覆內臟的軟嫩肌肉，富含 Omega-3 不飽和脂肪酸，油脂融點低，入口即化且甘香濃郁。',
+      extendedCuts: ['黑鮪魚大腹 (Otoro)', '鮭魚肚條 (Belly Strip / Harasu)', '龍膽石斑魚肚', '紅甘肚刺身'],
+      recommendedCooking: ['頂級生魚片刺身 (Sashimi)', '直火炭烤鹽燒魚腹', '噴槍炙燒壽司 (Aburi)', '薑絲鮮魚肚湯'],
+      idealWine: ['乾型香檳 (Brut Champagne)', 'Chablis (夏布利白酒)', '辛口純米酒 (Dry Sake)']
+    },
+    'en': {
+      name: 'Ventral Belly (Toro / Harasu)',
+      positioning: 'Ultimate Rich Marbling · King of Sashimi & Aburi',
+      description: 'Located along the lower ventral belly. Packed with rich Omega-3 fatty acids with a low melting point that dissolves delightfully across the palate.',
+      extendedCuts: ['Bluefin Tuna Otoro', 'Salmon Belly Strips (Harasu)', 'Giant Grouper Belly', 'Amberjack Belly'],
+      recommendedCooking: ['Prime Raw Sashimi', 'Charcoal Salt-Grilled Belly', 'Flame-Seared Aburi Sushi', 'Ginger Fish Belly Soup'],
+      idealWine: ['Brut Champagne', 'Chablis', 'Dry Junmai Sake']
+    },
+    'ja': {
+      name: '腹肉・魚肚 (ハラス・大トロ)',
+      positioning: '極上の脂の乗り · 刺身と炙り寿司の頂点',
+      description: '内臓を包むお腹の部位。豊富なオメガ3脂肪酸を含み、融点が低いため口の中に入れた瞬間に甘い脂がとろけます。',
+      extendedCuts: ['本マグロ大トロ (Otoro)', 'サーモンハラス', 'タマカイ・ハタ腹肉', 'カンパチ大トロ'],
+      recommendedCooking: ['極上生刺身', 'ハラスの塩焼き', '炙り握り寿司', '生姜と魚腹のスープ'],
+      idealWine: ['辛口シャンパン (Brut Champagne)', 'シャブリ (Chablis)', '辛口純米酒']
+    }
+  },
+  'fish-ventral': {
+    'zh-TW': {
+      name: '腹肉 / 魚肚 (Toro / 魚腩)',
+      positioning: '油脂極致豐腴、頂級生魚片與炙燒之王',
+      description: '魚腹腔兩側包覆內臟的軟嫩肌肉，富含 Omega-3 不飽和脂肪酸，油脂融點低，入口即化且甘香濃郁。',
+      extendedCuts: ['黑鮪魚大腹 (Otoro)', '鮭魚肚條 (Belly Strip / Harasu)', '龍膽石斑魚肚', '紅甘肚刺身'],
+      recommendedCooking: ['頂級生魚片刺身 (Sashimi)', '直火炭烤鹽燒魚腹', '噴槍炙燒壽司 (Aburi)', '薑絲鮮魚肚湯'],
+      idealWine: ['乾型香檳 (Brut Champagne)', 'Chablis (夏布利白酒)', '辛口純米酒 (Dry Sake)']
+    },
+    'en': {
+      name: 'Ventral Belly (Toro / Harasu)',
+      positioning: 'Ultimate Rich Marbling · King of Sashimi & Aburi',
+      description: 'Located along the lower ventral belly. Packed with rich Omega-3 fatty acids with a low melting point that dissolves delightfully across the palate.',
+      extendedCuts: ['Bluefin Tuna Otoro', 'Salmon Belly Strips (Harasu)', 'Giant Grouper Belly', 'Amberjack Belly'],
+      recommendedCooking: ['Prime Raw Sashimi', 'Charcoal Salt-Grilled Belly', 'Flame-Seared Aburi Sushi', 'Ginger Fish Belly Soup'],
+      idealWine: ['Brut Champagne', 'Chablis', 'Dry Junmai Sake']
+    },
+    'ja': {
+      name: '腹肉・魚肚 (ハラス・大トロ)',
+      positioning: '極上の脂の乗り · 刺身と炙り寿司の頂点',
+      description: '内臓を包むお腹の部位。豊富なオメガ3脂肪酸を含み、融点が低いため口の中に入れた瞬間に甘い脂がとろけます。',
+      extendedCuts: ['本マグロ大トロ (Otoro)', 'サーモンハラス', 'タマカイ・ハタ腹肉', 'カンパチ大トロ'],
+      recommendedCooking: ['極上生刺身', 'ハラスの塩焼き', '炙り握り寿司', '生姜と魚腹のスープ'],
+      idealWine: ['辛口シャンパン (Brut Champagne)', 'シャブリ (Chablis)', '辛口純米酒']
+    }
+  },
+  'fish-loin': {
+    'zh-TW': {
+      name: '魚柳 / 菲力 (無刺清肉)',
+      positioning: '無刺極嫩、家庭與西餐萬用魚排',
+      description: '去骨去刺後取出的整條主肌肉，質地最為細嫩無負擔，適合老人小孩與健身族群快炒、香煎或酥炸。',
+      extendedCuts: ['虱目魚柳 (魚菲力)', '鮭魚菲力排', '台灣鯛清肉片', '金目鱸魚菲力'],
+      recommendedCooking: ['奶油香煎魚柳', '日式酥炸魚柳條', '蔥爆魚柳快炒', '低溫舒肥魚排'],
+      idealWine: ['Sauvignon Blanc (白蘇維濃)', 'Pinot Noir (黑皮諾)', '未過桶白酒']
+    },
+    'en': {
+      name: 'Fish Loin (Tenderloin Fillet)',
+      positioning: 'Ultra Tender & Boneless · Universal Pan-Sear Fillet',
+      description: 'Boneless center cut of the main muscular band. Extremely delicate and lean, perfect for light searing, stir-fries, and crispy cutlets.',
+      extendedCuts: ['Milkfish Tenderloin', 'Salmon Prime Fillet', 'Tilapia Fillet', 'Sea Bass Supreme'],
+      recommendedCooking: ['Herb Butter Pan-Sear', 'Crispy Golden Fish Strips', 'Scallion Fish Stir-Fry', 'Sous-vide Fillet'],
+      idealWine: ['Sauvignon Blanc', 'Light Pinot Noir', 'Unoaked Chardonnay']
+    },
+    'ja': {
+      name: '魚柳・フィレ (骨なし赤身)',
+      positioning: '骨なし極上柔らか · 万能ソテーフィレ',
+      description: '骨と皮を完全に取り除いた中心筋肉。極めて柔らかくヘルシーで、ムニエル、炒め物、フライに最適です。',
+      extendedCuts: ['サバヒーフィレ', 'サーモンヒレ排', 'タイラピア清肉', 'スズキフィレ'],
+      recommendedCooking: ['ハーブバターソテー', 'サクサク白身フライ', 'ネギと魚の中華炒め', '低温調理フィレ'],
+      idealWine: ['ソーヴィニヨン・ブラン', 'ライトピノ・ノワール', '辛口白ワイン']
+    }
+  },
   'fish-tail': {
     'zh-TW': {
-      name: '魚尾與皮 (天然明膠·活動肌排)',
+      name: '尾段 / 尾肉 (天然明膠)',
       positioning: '極高結締組織、紅燒慢燉與魚皮凍首選',
       description: '魚隻尾柄肌肉與整尾厚實魚皮，運動頻率最高、富含天然明膠蛋白，適合長時間燜燒或熬製成彈牙爽口的天然魚皮凍。',
       extendedCuts: ['石斑魚尾段排', '鮭魚尾排', '涼拌深海魚皮', '手工膠原魚皮凍'],
@@ -544,12 +622,90 @@ export const PRIMALS_I18N = {
       idealWine: ['Taiwan Gold Medal Beer', 'Dry Rosé', 'Junmai Sake']
     },
     'ja': {
-      name: '尾肉・魚皮 (天然ゼラチン・コラーゲン)',
+      name: '尾肉・テール (天然ゼラチン)',
       positioning: '筋肉質でゼラチン質豊富 · 煮付けや皮ポン酢に',
       description: '魚の中で最も激しく動かす尾びれの筋肉と厚い皮。良質な天然ゼラチンと弾力ある赤身が特徴で、煮付けやコラーゲンスープに最適です。',
       extendedCuts: ['ハタの尾肉切り身', 'サーモンテールステーキ', '味付け魚皮', 'コラーゲン煮凝り'],
       recommendedCooking: ['魚テールの甘辛煮付け', 'サッパリ魚皮ポン酢', '薬膳コラーゲンスープ', '照り焼き'],
-      idealWine: ['台湾金牌ビール', '辛口ロゼワイン', '純米酒']
+      idealWine: ['台灣金牌ビール', '辛口ロゼワイン', '純米酒']
+    }
+  },
+  'fish-skin': {
+    'zh-TW': {
+      name: '魚皮 / 皮油 (膠原蛋白)',
+      positioning: '膠質Q彈、汆燙涼拌與酥炸極品',
+      description: '表皮與緊連的皮下脂肪層，富含膠原蛋白與天然明膠，汆燙滑溜 Q 彈、高溫酥炸則如薯片般酥脆。',
+      extendedCuts: ['無刺虱目魚皮', '涼拌石斑魚皮', '脆炸鮭魚皮', '深海鱈魚皮'],
+      recommendedCooking: ['汆燙佐芥末醬油膏', '薑絲魚皮湯', '泰式涼拌魚皮', '酥炸鹹蛋黃魚皮'],
+      idealWine: ['Brut 氣泡酒', '乾型白酒 (Dry Riesling)', '冰鎮吟釀清酒']
+    },
+    'en': {
+      name: 'Fish Skin & Sub-Fat (Collagen Rich)',
+      positioning: 'Springy Collagen · Chilled Salad & Crispy Deep Fry',
+      description: 'Skin and subcutaneous fat layers packed with gelatinous collagen. Silky and bouncy when blanched, delightfully crisp when fried.',
+      extendedCuts: ['Milkfish Skin', 'Grouper Chilled Skin', 'Crispy Salmon Skin', 'Cod Skin Chips'],
+      recommendedCooking: ['Blanched with Wasabi Soy Dip', 'Ginger Fish Skin Broth', 'Thai Spicy Chilled Skin', 'Salted Egg Yolk Crispy Skin'],
+      idealWine: ['Brut Champagne / Cava', 'Dry Riesling', 'Chilled Ginjo Sake']
+    },
+    'ja': {
+      name: '魚皮・皮油 (コラーゲン)',
+      positioning: 'プリプリのコラーゲン · 湯引きポン酢とサクサク揚げ',
+      description: '皮と皮下脂肪層。豊富な天然コラーゲンを含み、湯引きするとプルプル食感、揚げるとチップスのようにサクサクになります。',
+      extendedCuts: ['サバヒー皮', 'ハタの湯引き皮', 'サーモンスキンクリスプ', 'タラ皮チップス'],
+      recommendedCooking: ['ワサビ醤油の湯引き', '生姜魚皮スープ', 'タイ風スパイシーサラダ', '塩卵フライ'],
+      idealWine: ['辛口スパークリング', '辛口リースリング', '冷酒吟醸']
+    }
+  },
+  'fish-bone': {
+    'zh-TW': {
+      name: '魚骨 / 魚嶺 (高湯骨髓)',
+      positioning: '骨邊焦香與天然海味高湯精華',
+      description: '包含魚脊椎骨、背鰭骨肉（魚嶺）與骨髓，煎炸後骨酥肉香下酒一絕；熬湯則能釋放極致天然海鮮甜味。',
+      extendedCuts: ['香煎虱目魚嶺', '海鮮魚骨高湯包', '酥炸魚骨酥', '三杯魚骨煲'],
+      recommendedCooking: ['乾煎椒鹽虱目魚嶺', '法式海鮮魚高湯 (Fumet)', '酥炸魚骨酥', '藥膳魚骨老火湯'],
+      idealWine: ['清爽白酒 (Muscadet)', '台灣 18 天生啤酒', '辛口清酒']
+    },
+    'en': {
+      name: 'Fish Bone & Ridge (Broth & Crunch)',
+      positioning: 'Savory Bone Crunch · Rich Seafood Dashi Stock',
+      description: 'Spinal column, dorsal fin ridge meat, and rich marrow. Releases umami-rich broth when simmered, and serves as an addictive crispy bar snack when fried.',
+      extendedCuts: ['Crispy Milkfish Ridge', 'Artisanal Fish Stock Base', 'Deep Fried Fish Crunch', 'Sanbei Claypot Bone'],
+      recommendedCooking: ['Salt & Pepper Pan-Fried Ridge', 'Classic Fish Fumet Broth', 'Golden Crispy Fish Bone Snack', 'Herbal Bone Soup'],
+      idealWine: ['Muscadet Sevre et Maine', 'Taiwan 18-Day Draft Beer', 'Dry Honjozo Sake']
+    },
+    'ja': {
+      name: '魚骨・魚嶺 (出汁・唐揚げ)',
+      positioning: '香ばしい骨周りの旨味 · 極上海鮮出汁',
+      description: '中骨、背びれ周辺の骨付き肉（魚嶺）、骨髄。煮込むと濃厚な出汁が取れ、カリッと揚げると最高のおつまみになります。',
+      extendedCuts: ['サバヒー背骨揚げ', '天然海鮮出汁パック', '骨せんべい', '三杯仕立て骨煮込み'],
+      recommendedCooking: ['塩コショウ魚嶺焼き', 'フレンチ魚出汁 (Fumet)', 'カリカリ骨せんべい', '藥膳魚骨スープ'],
+      idealWine: ['ミュスカデ (Muscadet)', '台湾18天生ビール', '辛口本醸造酒']
+    }
+  },
+  'fish-offal': {
+    'zh-TW': {
+      name: '內臟 / 魚卵 / 白子 (老饕珍味)',
+      positioning: '老饕珍味、濃郁鹹鮮下酒霸主',
+      description: '包含魚卵巢（烏魚子）、魚腸、魚膘（白子）與魚肝，風味濃烈、鮮味極度濃縮，是台菜與居酒屋的老饕級食材。',
+      extendedCuts: ['野生頂級烏魚子', '乾煎虱目魚腸', '麻油烏魚膘 (白子)', '香煎黃金魚卵'],
+      recommendedCooking: ['58 高粱酒炙燒烏魚子', '九層塔薑絲快炒魚腸', '麻油紅燒烏魚膘', '乾煎魚卵佐美乃滋'],
+      idealWine: ['金門 58 高粱酒', 'Fino Sherry (雪莉酒)', '純米清酒 (Junmai Sake)', 'Champagne (香檳)']
+    },
+    'en': {
+      name: 'Offal, Roe & Milt (Gourmet Delicacy)',
+      positioning: 'Connoisseur Caviar & Roe · Intense Umami Pairing',
+      description: 'Bottarga (mullet roe), liver, milt (shirako), and gizzards. Dense, deeply savory aromatics prized in fine Taiwanese and Japanese Izakaya traditions.',
+      extendedCuts: ['Wild Mullet Bottarga', 'Pan-Fried Fish Gizzards', 'Sesame Oil Mullet Milt (Shirako)', 'Golden Pan-Seared Roe'],
+      recommendedCooking: ['Flame-Torched Kaoliang Bottarga', 'Basil & Ginger Flash Stir-Fry', 'Sesame Oil Braised Milt', 'Pan-Fried Roe with Kewpie'],
+      idealWine: ['Kinmen 58 Kaoliang', 'Fino Sherry', 'Junmai Sake', 'Brut Champagne']
+    },
+    'ja': {
+      name: '内臓・魚卵・白子 (老舗珍味)',
+      positioning: '濃厚な海の旨味 · 酒飲みの至高珍味',
+      description: 'カラスミ（卵巣）、白子、魚腸、あん肝など。凝縮された濃厚なコクと磯の香りが広がる最高級の酒の肴です。',
+      extendedCuts: ['極上天然カラスミ', 'サバヒー腸の香ばし焼き', 'ごま油香る白子ソテー', '黄金魚卵焼き'],
+      recommendedCooking: ['高粱酒炙りカラスミ', '台湾バジルと魚腸炒め', '白子のごま油煮込み', '香ばし魚卵マヨネーズ添え'],
+      idealWine: ['金門高粱酒', 'フィノ・シェリー (Fino Sherry)', '純米酒', 'シャンパン']
     }
   }
 };
