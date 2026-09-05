@@ -10,6 +10,7 @@ import PorkDetailPanel from '../components/CowDiagram/PorkDetailPanel';
 import FishSvgMap from '../components/CowDiagram/FishSvgMap';
 import FishDetailPanel from '../components/CowDiagram/FishDetailPanel';
 import TasteWizard from '../components/Wizard/TasteWizard';
+import AiSommelierSection from '../components/AiSommelier/AiSommelierSection';
 import CutsLibrary from '../components/CutCard/CutsLibrary';
 import WinePairingSection from '../components/WineSection/WinePairingSection';
 import CocktailSection from '../components/CocktailSection/CocktailSection';
@@ -253,6 +254,9 @@ export default function HomePage() {
         onOpenCocktailModal={(cocktail) => setActiveModalCocktail(cocktail)}
         currentLang={currentLang}
       />
+
+      {/* AI 智能侍酒師與料理顧問 (BYOK 模式 + 防幻覺事實護欄) */}
+      <AiSommelierSection currentLang={currentLang} />
 
       {/* 12 款精選細切部位卡片庫 */}
       <CutsLibrary

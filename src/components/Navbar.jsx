@@ -33,6 +33,7 @@ export default function Navbar({
   const navLinks = [
     { name: t.nav.diagram, href: '#diagram-section', icon: Compass },
     { name: t.nav.wizard, href: '#wizard', icon: Sparkles },
+    { name: t.nav.aiSommelier, href: '#ai-sommelier', icon: Sparkles },
     { name: t.nav.cuts, href: '#cuts-library', icon: Utensils },
     { name: t.nav.wine, href: '#wine-pairing', icon: Wine },
     { name: t.nav.cocktail, href: '#cocktails', icon: Sparkles },
@@ -86,9 +87,18 @@ export default function Navbar({
             })}
           </div>
 
-          {/* 右側操作區：餐桌禮儀 + 多語系切換 + CTA + 手機選單按鈕 */}
+          {/* 右側操作區：AI 侍酒師 + 餐桌禮儀 + 多語系切換 + CTA + 手機選單按鈕 */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
+            {/* AI 侍酒師專屬快速入口 */}
+            <a
+              href="#ai-sommelier"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-beef-burgundy/40 bg-beef-burgundy/10 hover:bg-beef-burgundy hover:text-white text-xs font-bold text-beef-burgundy shadow-2xs transition-all whitespace-nowrap"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-beef-burgundy group-hover:text-white" />
+              <span>{t.nav.aiSommelier}</span>
+            </a>
+
             {/* 餐桌禮儀專題入口 */}
             <Link
               href="/etiquette"
