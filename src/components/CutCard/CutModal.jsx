@@ -1,8 +1,15 @@
 import React from 'react';
 import { X, Flame, Wine, Compass, AlertCircle, Sparkles, CheckCircle, Info } from '../Icons';
+import { TRANSLATIONS } from '../../data/translations';
 
-export default function CutModal({ cut, onClose }) {
+export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
   if (!cut) return null;
+
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const m = t.modal || {};
+  const w = t.wizard;
+  const cutDisplayName = currentLang === 'en' ? cut.enName : cut.name;
+  const cutSubName = currentLang === 'en' ? cut.name : cut.enName;
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
@@ -25,17 +32,19 @@ export default function CutModal({ cut, onClose }) {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal flex items-baseline gap-3">
-              {cut.name}
-              <span className="text-base font-serif italic text-charcoal-muted">{cut.enName}</span>
+              {cutDisplayName}
+              <span className="text-base font-serif italic text-charcoal-muted">{cutSubName}</span>
             </h2>
             {cut.aliases && (
-              <p className="text-xs text-charcoal-muted mt-1">常見別名：{cut.aliases}</p>
+              <p className="text-xs text-charcoal-muted mt-1">
+                {currentLang === 'en' ? `Aliases: ${cut.aliases}` : currentLang === 'ja' ? `別名: ${cut.aliases}` : `常見別名：${cut.aliases}`}
+              </p>
             )}
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-parchment-300 text-charcoal-muted hover:text-charcoal transition-colors"
+            className="p-2 rounded-full hover:bg-parchment-300 text-charcoal-muted hover:text-charcoal transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -45,11 +54,11 @@ export default function CutModal({ cut, onClose }) {
         {/* 滾動主體內容區 (7 大標準面向) */}
         <div className="p-6 overflow-y-auto space-y-6 text-charcoal font-sans">
           
-          {/* 1. 位於牛的哪裡 */}
+          {/* 1. 解剖位置 */}
           <div className="space-y-2">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Compass className="w-4 h-4 text-beef-burgundy" />
-              1. 位於牛的哪裡 (Anatomical Position)
+              1. {m.primalSource || '解剖位置與來源'} (Anatomical Position)
             </h4>
             <p className="text-sm text-charcoal-light bg-parchment-100 p-3.5 rounded-xl border border-parchment-200 leading-relaxed">
               {cut.locationDesc}
@@ -60,45 +69,45 @@ export default function CutModal({ cut, onClose }) {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-amber-600" />
-              2. 肉質與油脂特色 (Meat & Fat Profile)
+              2. {w.scoreFlavor}與{w.scoreFat}特色 (Meat & Fat Profile)
             </h4>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-parchment-100 p-4 rounded-xl border border-parchment-200">
               <div>
-                <span className="text-xs text-charcoal-muted block mb-1">軟嫩度 (Tenderness)</span>
+                <span className="text-xs text-charcoal-muted block mb-1">{w.scoreTenderness}</span>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-mono font-bold text-emerald-800">
-                    {'★'.repeat(cut.scores.tenderness)}{'☆'.repeat(5 - cut.scores.tenderness)}
+                    {'★'.repeat(cut.scores?.tenderness || 3)}{'☆'.repeat(5 - (cut.scores?.tenderness || 3))}
                   </span>
-                  <span className="text-xs font-mono font-bold">({cut.scores.tenderness}/5)</span>
+                  <span className="text-xs font-mono font-bold">({cut.scores?.tenderness || 3}/5)</span>
                 </div>
               </div>
 
               <div>
-                <span className="text-xs text-charcoal-muted block mb-1">油脂感 (Marbling)</span>
+                <span className="text-xs text-charcoal-muted block mb-1">{w.scoreFat}</span>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-mono font-bold text-amber-600">
-                    {'★'.repeat(cut.scores.fat)}{'☆'.repeat(5 - cut.scores.fat)}
+                    {'★'.repeat(cut.scores?.fat || 3)}{'☆'.repeat(5 - (cut.scores?.fat || 3))}
                   </span>
-                  <span className="text-xs font-mono font-bold">({cut.scores.fat}/5)</span>
+                  <span className="text-xs font-mono font-bold">({cut.scores?.fat || 3}/5)</span>
                 </div>
               </div>
 
               <div>
-                <span className="text-xs text-charcoal-muted block mb-1">牛肉風味 (Flavor)</span>
+                <span className="text-xs text-charcoal-muted block mb-1">{w.scoreFlavor}</span>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-mono font-bold text-beef-burgundy">
-                    {'★'.repeat(cut.scores.flavor)}{'☆'.repeat(5 - cut.scores.flavor)}
+                    {'★'.repeat(cut.scores?.flavor || 3)}{'☆'.repeat(5 - (cut.scores?.flavor || 3))}
                   </span>
-                  <span className="text-xs font-mono font-bold">({cut.scores.flavor}/5)</span>
+                  <span className="text-xs font-mono font-bold">({cut.scores?.flavor || 3}/5)</span>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
-              {cut.keywords.map((kw, idx) => (
+              {cut.keywords?.map((kw, idx) => (
                 <span key={idx} className="px-2.5 py-1 rounded bg-parchment-200 text-charcoal text-xs font-medium">
-                  ✓ {kw}
+                  ✓ #{kw}
                 </span>
               ))}
             </div>
@@ -108,10 +117,10 @@ export default function CutModal({ cut, onClose }) {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Flame className="w-4 h-4 text-red-600" />
-              3. 推薦料理方式 (Recommended Cooking Methods)
+              3. {t.cutsLibrary?.cookingLabel || '推薦料理方式'} (Recommended Cooking)
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {cut.cookingMethods.map((method, idx) => (
+              {cut.cookingMethods?.map((method, idx) => (
                 <div key={idx} className="p-3 bg-parchment-100 rounded-xl border border-parchment-200">
                   <div className="font-bold text-sm text-charcoal mb-1 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
@@ -127,7 +136,7 @@ export default function CutModal({ cut, onClose }) {
           <div className="space-y-2">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-amber-700" />
-              4. 推薦熟度與火候原則 (Doneness & Thermal Control)
+              4. {t.cutsLibrary?.donenessLabel || '推薦熟度與火候原則'} (Thermal Control)
             </h4>
             <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 font-medium leading-relaxed">
               {cut.donenessTip}
@@ -138,27 +147,33 @@ export default function CutModal({ cut, onClose }) {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Wine className="w-4 h-4 text-purple-700" />
-              5. 餐酒搭配與風味理由 (Wine Pairing & Flavor Science)
+              5. {m.wineRationale || '餐酒搭配與風味理由'} (Pairing & Flavor Science)
             </h4>
             <div className="p-4 bg-purple-50/70 border border-purple-200 rounded-xl space-y-3 text-xs sm:text-sm">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-bold text-purple-950">推薦品種：</span>
-                {cut.winePairing.wines.map((w, idx) => (
+                <span className="font-bold text-purple-950">{t.wine?.recWineHeader || '推薦酒款'}：</span>
+                {cut.winePairing?.wines?.map((wineItem, idx) => (
                   <span key={idx} className="px-2.5 py-0.5 rounded bg-purple-100/80 text-purple-900 font-serif italic text-xs border border-purple-300">
-                    {w}
+                    {wineItem}
                   </span>
                 ))}
               </div>
 
-              <div>
-                <span className="font-bold text-purple-950 block mb-1">搭酒風味風格：</span>
-                <p className="text-purple-900 font-serif italic text-xs">{cut.winePairing.styleSummary}</p>
-              </div>
+              {cut.winePairing?.styleSummary && (
+                <div>
+                  <span className="font-bold text-purple-950 block mb-1">
+                    {currentLang === 'en' ? 'Style Summary:' : currentLang === 'ja' ? 'スタイル概要:' : '搭酒風味風格：'}
+                  </span>
+                  <p className="text-purple-900 font-serif italic text-xs">{cut.winePairing.styleSummary}</p>
+                </div>
+              )}
 
-              <div className="pt-2 border-t border-purple-200 text-purple-950 text-xs leading-relaxed">
-                <span className="font-bold">風味科學理由：</span>
-                {cut.winePairing.rationale}
-              </div>
+              {cut.winePairing?.rationale && (
+                <div className="pt-2 border-t border-purple-200 text-purple-950 text-xs leading-relaxed">
+                  <span className="font-bold">{w.synergyLabel || '風味科學理由：'}</span>
+                  {cut.winePairing.rationale}
+                </div>
+              )}
             </div>
           </div>
 
@@ -168,9 +183,9 @@ export default function CutModal({ cut, onClose }) {
         <div className="p-4 border-t border-parchment-300 bg-parchment-100 flex justify-end">
           <button
             onClick={onClose}
-            className="px-5 py-2.5 bg-charcoal hover:bg-charcoal-light text-white rounded-lg text-xs font-bold transition-colors"
+            className="px-5 py-2.5 bg-charcoal hover:bg-charcoal-light text-white rounded-lg text-xs font-bold transition-colors cursor-pointer"
           >
-            完成並關閉視窗
+            {m.close || '完成並關閉視窗'}
           </button>
         </div>
 

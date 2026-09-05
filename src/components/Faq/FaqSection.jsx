@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { HelpCircle, ChevronDown, ChevronUp } from '../Icons';
+import { TRANSLATIONS } from '../../data/translations';
 
-export default function FaqSection({ activeCategory, faqsData }) {
+export default function FaqSection({ activeCategory, faqsData, currentLang = 'zh-TW' }) {
   const [openIndex, setOpenIndex] = useState(0);
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const f = t.faq;
+  const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
 
   useEffect(() => {
     setOpenIndex(0);
@@ -12,8 +16,6 @@ export default function FaqSection({ activeCategory, faqsData }) {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
-  const categoryTitle = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
-
   return (
     <section id="faq" className="py-16 sm:py-20 bg-parchment-200/50 border-t border-parchment-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,13 +24,13 @@ export default function FaqSection({ activeCategory, faqsData }) {
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-200 border border-stone-300 text-charcoal text-xs font-semibold tracking-wider uppercase">
             <HelpCircle className="w-3.5 h-3.5 text-beef-burgundy" />
-            <span>名詞釐清 · 常見迷思問答</span>
+            <span>{f.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-            {categoryTitle}常見問答 FAQ
+            {categoryTitle}{f.title}
           </h2>
           <p className="text-charcoal-muted text-sm sm:text-base">
-            解答台灣消費者在選購{categoryTitle}、烹調火候與餐酒搭配時最容易混淆的專有名詞與料理疑問。
+            {f.subtitle}
           </p>
         </div>
 
@@ -43,7 +45,7 @@ export default function FaqSection({ activeCategory, faqsData }) {
               >
                 <button
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-parchment-100 transition-colors"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-parchment-100 transition-colors cursor-pointer"
                 >
                   <span className="font-serif font-bold text-base sm:text-lg text-charcoal flex items-center gap-3">
                     <span className="w-6 h-6 rounded-full bg-beef-burgundy/10 text-beef-burgundy flex items-center justify-center text-xs font-mono shrink-0">

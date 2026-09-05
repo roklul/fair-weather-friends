@@ -191,6 +191,7 @@ export default function HomePage() {
                 selectedPrimalId={selectedBeefPrimal}
                 onSelectPrimal={(id) => setSelectedBeefPrimal(id)}
                 onSelectCutByName={handleOpenCutModalById}
+                currentLang={currentLang}
               />
             )}
             {activeCategory === 'pork' && (
@@ -198,6 +199,7 @@ export default function HomePage() {
                 selectedPrimalId={selectedPorkPrimal}
                 onSelectPrimal={(id) => setSelectedPorkPrimal(id)}
                 onSelectCutByName={handleOpenCutModalById}
+                currentLang={currentLang}
               />
             )}
             {activeCategory === 'fish' && (
@@ -205,6 +207,7 @@ export default function HomePage() {
                 selectedPrimalId={selectedFishPrimal}
                 onSelectPrimal={(id) => setSelectedFishPrimal(id)}
                 onSelectCutByName={handleOpenCutModalById}
+                currentLang={currentLang}
               />
             )}
           </div>
@@ -215,18 +218,21 @@ export default function HomePage() {
               <PrimalDetailPanel
                 selectedPrimalId={selectedBeefPrimal}
                 onOpenCutModalById={handleOpenCutModalById}
+                currentLang={currentLang}
               />
             )}
             {activeCategory === 'pork' && (
               <PorkDetailPanel
                 selectedPrimalId={selectedPorkPrimal}
                 onOpenCutModalById={handleOpenCutModalById}
+                currentLang={currentLang}
               />
             )}
             {activeCategory === 'fish' && (
               <FishDetailPanel
                 selectedPrimalId={selectedFishPrimal}
                 onOpenCutModalById={handleOpenCutModalById}
+                currentLang={currentLang}
               />
             )}
           </div>
@@ -253,12 +259,14 @@ export default function HomePage() {
         activeCategory={activeCategory}
         cutsData={currentData.cuts}
         onOpenModal={(cut) => setActiveModalCut(cut)}
+        currentLang={currentLang}
       />
 
       {/* 餐酒搭配科學專題與料理速查（含啤酒與在地名酒） */}
       <WinePairingSection
         activeCategory={activeCategory}
         winePrinciples={currentData.winePrinciples}
+        currentLang={currentLang}
       />
 
       {/* 經典調酒搭餐專題（10 款調酒 × 料理雙向配對） */}
@@ -273,12 +281,14 @@ export default function HomePage() {
         cutsData={currentData.cuts}
         primalAreas={currentData.primals}
         onOpenModal={(cut) => setActiveModalCut(cut)}
+        currentLang={currentLang}
       />
 
       {/* 常見問答 FAQ */}
       <FaqSection
         activeCategory={activeCategory}
         faqsData={currentData.faqs}
+        currentLang={currentLang}
       />
 
       {/* 頁尾 */}
@@ -291,6 +301,7 @@ export default function HomePage() {
       <CutModal
         cut={activeModalCut}
         onClose={() => setActiveModalCut(null)}
+        currentLang={currentLang}
       />
 
       {/* 調酒詳情 Modal 彈窗 */}

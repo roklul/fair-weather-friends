@@ -1,24 +1,31 @@
 import React from 'react';
 import { PRIMAL_AREAS } from '../../data/beefData';
+import { getLocalizedPrimal } from '../../data/primalsI18n';
+import { TRANSLATIONS } from '../../data/translations';
 import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from '../Icons';
 
-export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName, onOpenCutModalById }) {
-  const primal = PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || PRIMAL_AREAS[1];
+export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName, onOpenCutModalById, currentLang = 'zh-TW' }) {
+  const rawPrimal = PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || PRIMAL_AREAS[1];
+  const primal = getLocalizedPrimal(rawPrimal, currentLang);
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const a = t.anatomy;
 
   // 映射延伸部位名稱至細切 ID
   const getCutIdFromExtendedName = (name) => {
-    if (name.includes('肋眼')) return 'ribeye';
-    if (name.includes('菲力')) return 'tenderloin';
-    if (name.includes('紐約客')) return 'new-york-strip';
-    if (name.includes('沙朗')) return 'sirloin';
-    if (name.includes('牛小排')) return 'short-rib';
-    if (name.includes('板腱')) return 'top-blade';
-    if (name.includes('翼板')) return 'flat-iron';
-    if (name.includes('前胸') || name.includes('牛腩')) return 'brisket-cut';
-    if (name.includes('牛五花')) return 'short-plate-cut';
-    if (name.includes('腹脇') || name.includes('法蘭克')) return 'flank-cut';
-    if (name.includes('腱')) return 'beef-shank';
-    if (name.includes('臀肉') || name.includes('和尚頭') || name.includes('頭刀')) return 'round-rump';
+    const n = name.toLowerCase();
+    if (n.includes('肋眼') || n.includes('ribeye') || n.includes('リブロース')) return 'ribeye';
+    if (n.includes('老饕') || n.includes('spinalis') || n.includes('リブキャップ')) return 'ribeye';
+    if (n.includes('菲力') || n.includes('tenderloin') || n.includes('ヒレ') || n.includes('フィレ')) return 'tenderloin';
+    if (n.includes('紐約客') || n.includes('strip') || n.includes('サーロイン')) return 'new-york-strip';
+    if (n.includes('沙朗') || n.includes('sirloin') || n.includes('ランプ')) return 'sirloin';
+    if (n.includes('牛小排') || n.includes('short rib') || n.includes('ショートリブ')) return 'short-rib';
+    if (n.includes('板腱') || n.includes('top blade') || n.includes('ミスジ')) return 'top-blade';
+    if (n.includes('翼板') || n.includes('flat iron') || n.includes('ザブトン')) return 'flat-iron';
+    if (n.includes('前胸') || n.includes('牛腩') || n.includes('brisket') || n.includes('ブリスケット')) return 'brisket-cut';
+    if (n.includes('牛五花') || n.includes('short plate') || n.includes('牛バラ') || n.includes('カルビ')) return 'short-plate-cut';
+    if (n.includes('腹脇') || n.includes('flank') || n.includes('フランク') || n.includes('ささみ')) return 'flank-cut';
+    if (n.includes('腱') || n.includes('shank') || n.includes('スネ')) return 'beef-shank';
+    if (n.includes('臀肉') || n.includes('round') || n.includes('モモ')) return 'round-rump';
     return null;
   };
 
@@ -35,7 +42,7 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
                 style={{ backgroundColor: primal.color }}
               />
               <span className="text-xs font-serif italic text-charcoal-muted tracking-wider">
-                美式 8 大分切 · {primal.enName}
+                {t.categories.beef.subtitle} · {primal.enName}
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-charcoal flex items-baseline gap-2">
@@ -51,7 +58,7 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5 flex items-center gap-1.5">
             <Compass className="w-3.5 h-3.5 text-beef-burgundy" />
-            解剖位置與肉質特性
+            {a.anatomyTitle}
           </div>
           <p className="text-sm text-charcoal-light leading-relaxed font-sans bg-parchment-100 p-3 rounded-lg border border-parchment-200">
             {primal.description}
@@ -63,7 +70,7 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              常見熱門細分切（點擊看規格）
+              {a.popularCuts}
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -75,7 +82,7 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
                   onClick={() => cutId && onOpenCutModalById(cutId)}
                   className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${
                     cutId
-                      ? 'bg-parchment-100 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy border-parchment-300 shadow-2xs'
+                      ? 'bg-parchment-100 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy border-parchment-300 shadow-2xs cursor-pointer'
                       : 'bg-parchment-200/50 text-charcoal-muted border-parchment-300 cursor-default'
                   }`}
                 >
@@ -91,7 +98,7 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
             <Flame className="w-3.5 h-3.5 text-red-600" />
-            推薦烹調方式
+            {a.cookingTitle}
           </div>
           <div className="flex flex-wrap gap-1.5">
             {primal.recommendedCooking.map((cook, idx) => (
@@ -105,19 +112,19 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
           </div>
         </div>
 
-        {/* 理想葡萄酒搭配 */}
+        {/* 推薦適配酒款 */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
-            <Wine className="w-3.5 h-3.5 text-purple-700" />
-            推薦佐餐酒款品種
+            <Wine className="w-3.5 h-3.5 text-beef-burgundy" />
+            {a.wineTitle}
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {primal.idealWine.map((wine, idx) => (
+            {primal.idealWine.map((wName, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 rounded bg-purple-50 border border-purple-200 text-purple-950 text-xs font-medium font-serif italic"
+                className="px-2.5 py-1 rounded bg-purple-50 border border-purple-200 text-purple-900 text-xs font-serif font-medium"
               >
-                {wine}
+                {wName}
               </span>
             ))}
           </div>
@@ -125,14 +132,14 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
 
       </div>
 
-      {/* 底部行動導引 */}
-      <div className="pt-4 mt-4 border-t border-parchment-200 flex items-center justify-between">
+      {/* 底部跳轉部位庫錨點 */}
+      <div className="pt-4 mt-6 border-t border-parchment-200">
         <a
           href="#cuts-library"
-          className="text-xs font-semibold text-beef-burgundy hover:underline flex items-center gap-1"
+          className="w-full py-2.5 px-4 rounded-xl bg-parchment-200 hover:bg-beef-burgundy hover:text-white text-charcoal text-xs font-semibold transition-all flex items-center justify-center gap-2 group"
         >
-          <BookOpen className="w-3.5 h-3.5" />
-          瀏覽該部位於 12 大熱門肉品卡片
+          <BookOpen className="w-4 h-4 text-beef-burgundy group-hover:text-white transition-colors" />
+          <span>{a.browseCuts}</span>
         </a>
       </div>
     </div>

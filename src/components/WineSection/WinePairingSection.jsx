@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Wine, Sparkles, Droplets, Flame } from '../Icons';
+import { TRANSLATIONS } from '../../data/translations';
 
-export default function WinePairingSection({ activeCategory, winePrinciples }) {
+export default function WinePairingSection({ activeCategory, winePrinciples, currentLang = 'zh-TW' }) {
   const [activeMethodTab, setActiveMethodTab] = useState(0);
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const w = t.wine;
+  const currentCategoryName = t.categories[activeCategory]?.shortLabel || activeCategory;
 
   // 依品類定義專屬料理情境佐餐速查（含葡萄酒、台灣啤酒、高粱、紹興與清酒）
   const cookingMatrices = {
@@ -139,85 +143,57 @@ export default function WinePairingSection({ activeCategory, winePrinciples }) {
     ],
     fish: [
       {
-        method: '居酒屋鹽烤魚下巴 / 蒲燒鯛魚 / 一夜干',
-        meatExamples: '鮭魚下巴、青甘下巴、午仔魚一夜干',
-        characteristics: '外皮焦脆爆汁、醬香濃稠、炭火香氣',
-        principles: '焦香爆汁海鮮與台灣 18 天生啤酒、日本辛口清酒是居酒屋靈魂組合！',
+        method: '古法清蒸鮮魚 / 蔥油淋汁',
+        meatExamples: '龍虎斑、金目鱸、石斑清肉排',
+        characteristics: '細緻膠質魚皮、清甜魚肉肌理、蔥薑清香',
+        principles: '以帶柑橘、白花香氣的干型白酒或純米吟釀清酒，襯托魚肉極致鮮甜。',
         recommendedWines: [
-          '🍺 台灣 18 天生啤酒 (居酒屋無敵神搭)',
-          '🍶 辛口本釀造清酒 (Dry Sake)',
           '🍷 Sauvignon Blanc (白蘇維濃)',
-          '🍾 Cava 氣泡酒'
-        ],
-        tastingNotes: '辛口爽俐 · 芭樂百香果 · 乾脆俐落'
-      },
-      {
-        method: '古法樹子蔥油清蒸',
-        meatExamples: '龍虎斑、金目鱸魚、白鯧、格陵蘭扁鱈',
-        characteristics: '破布子甘甜、魚肉細嫩原汁、蔥薑清香',
-        principles: '清蒸講究純淨鮮甜，法國夏布利、日本純米吟釀或台灣金牌啤酒能極大化魚肉旨味。',
-        recommendedWines: [
-          '🍷 Chablis (夏布利白酒)',
           '🍶 純米吟釀清酒 (Junmai Ginjo)',
-          '🍷 Pinot Grigio (灰皮諾)',
-          '🍺 台灣金牌啤酒'
+          '🍷 Pinot Grigio (灰皮諾)'
         ],
-        tastingNotes: '冷冽礦石感 · 鮮爽檸檬皮 · 細膩優雅'
+        tastingNotes: '青草白花 · 萊姆柑橘 · 乾淨俐落'
       },
       {
-        method: '頂級刺身生食 / 炙燒大腹',
-        meatExamples: '黑鮪魚大腹 (Otoro)、鮭魚腹刺身',
-        characteristics: '生食冰鎮、天然生魚油脂入口即化、現磨山葵',
-        principles: '大腹濃郁油脂與年份香檳的綿密氣泡是極致享受；純米大吟釀更能激發海味鮮甜。',
+        method: '厚切香煎魚排 / 奶油檸檬汁',
+        meatExamples: '鮭魚菲力、鱈魚排、海鱸魚',
+        characteristics: '金黃酥脆魚皮、豐潤油脂、奶油焦香',
+        principles: '奶油與魚脂需要過橡木桶夏多內或高酸度香檳切開油感。',
         recommendedWines: [
-          '🍶 純米大吟釀 (Junmai Daiginjo)',
-          '🍾 Blanc de Blancs 香檳',
-          '🍷 Pinot Noir (黑皮諾)'
+          '🍷 橡木桶 Chardonnay (夏多內)',
+          '🍾 頂級香檳 (Brut Champagne)',
+          '🍷 Chenin Blanc (白詩南)'
         ],
-        tastingNotes: '純淨米香旨味 · 綿密酵母氣泡 · 極致滑順'
+        tastingNotes: '烤榛果奶油 · 熟成青蘋果 · 細緻綿密泡沫'
       },
       {
-        method: '脆皮奶油香煎魚排',
-        meatExamples: '鮭魚菲力、土魠魚排、白帶魚段',
-        characteristics: '魚皮金黃酥脆、迷迭香大蒜奶油淋醬、多汁肉瓣',
-        principles: '高油脂煎魚適合桶陳 Chardonnay 的奶油堅果香，或紐西蘭白蘇維濃的熱帶果酸。',
+        method: '生食刺身大腹 / 握壽司',
+        meatExamples: '黑鮪魚大腹、鮭魚肚刺身、紅甘肚',
+        characteristics: '極高低熔點油脂、入口即化、甘甜無渣',
+        principles: '以超辛口清酒或夏布利白酒洗滌油膜，引爆濃郁旨味。',
         recommendedWines: [
-          '🍷 桶陳 Chardonnay (夏多內)',
-          '🍷 Sauvignon Blanc (白蘇維濃)',
-          '🍺 精釀小麥啤酒 (White Ale)'
+          '🍶 超辛口純米大吟釀 (Dry Daiginjo)',
+          '🍷 Chablis (夏布利白酒)',
+          '🍾 零添糖香檳 (Brut Nature)'
         ],
-        tastingNotes: '烤奶油青蘋果 · 百香果酸香 · 乾爽收尾'
+        tastingNotes: '礦石鹹鮮 · 銳利酸度 · 旨味加乘'
       },
       {
-        method: '沙茶砂鍋魚頭 / 薑絲魚骨湯',
-        meatExamples: '砂鍋大魚頭、石斑魚骨湯',
-        characteristics: '沙茶辛香、濃稠膠原白湯、大白菜甘甜',
-        principles: '濃郁沙茶與高湯適合天然米香醇厚的純米清酒、冰高粱或清爽金牌啤酒。',
+        method: '居酒屋鹽烤魚下巴 / 炭烤魚頭',
+        meatExamples: '鮭魚下巴、紅甘下巴、烤魚頭',
+        characteristics: '厚潤焦香魚皮、高油脂、炭火焦香',
+        principles: '炭烤魚油需要台灣生啤酒、威士忌 Highball 或果香飽滿的愛爾啤酒消解油膩。',
         recommendedWines: [
-          '🍶 純米清酒 (Junmai Sake)',
-          '🥃 金門高粱酒 38 度 (去腥提甘)',
-          '🍺 台灣金牌啤酒',
-          '🍷 Unoaked Chardonnay'
+          '🍺 台灣 18 天生啤酒 (爽脆氣泡)',
+          '🥃 威士忌 Highball (蘇打威士忌)',
+          '🍺 精釀雙料 IPA (Double IPA)'
         ],
-        tastingNotes: '醇厚米香 · 圓潤包覆 · 鮮甜加乘'
-      },
-      {
-        method: '野生烏魚子炙燒切片',
-        meatExamples: '野生烏魚子',
-        characteristics: '濃郁鹹鮮、高粱酒香、溏心黏牙',
-        principles: '經典搭配 58 度金門高粱、香檳氣泡或西班牙 Fino 雪莉酒，甘甜不腥。',
-        recommendedWines: [
-          '🥃 金門 58 度高粱酒 (經典炙燒與純飲)',
-          '🍾 Champagne / 氣泡酒 (洗刷黏牙感)',
-          '🍷 Fino Sherry (西班牙雪莉酒)'
-        ],
-        tastingNotes: '高粱穀香 · 酵母堅果香 · 完美鹹甜共振'
+        tastingNotes: '麥芽爽脆 · 柑橘酒花 · 碳酸解油'
       }
     ]
   };
 
   const currentMatrix = cookingMatrices[activeCategory] || cookingMatrices.beef;
-  const currentCategoryName = activeCategory === 'beef' ? '牛肉' : activeCategory === 'pork' ? '豬肉' : '魚類海鮮';
 
   return (
     <section id="wine-pairing" className="py-16 sm:py-20 bg-parchment-200/50 border-y border-parchment-300">
@@ -227,13 +203,13 @@ export default function WinePairingSection({ activeCategory, winePrinciples }) {
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-purple-900 text-xs font-semibold tracking-wider uppercase">
             <Wine className="w-3.5 h-3.5 text-purple-800" />
-            <span>風味科學指南 · {currentCategoryName}餐酒/啤酒/在地酒搭配全攻略</span>
+            <span>{w.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
-            {currentCategoryName}與酒類搭配的判斷科學
+            {currentCategoryName}{w.title}
           </h2>
           <p className="text-charcoal-muted text-sm sm:text-base">
-            不只葡萄酒！涵蓋「台灣 18 天生啤酒、金門高粱、紹興酒、日本清酒與經典葡萄酒」，從火候、醬汁到油脂，掌握餐酒黃金平衡。
+            {w.subtitle}
           </p>
         </div>
 
@@ -264,7 +240,7 @@ export default function WinePairingSection({ activeCategory, winePrinciples }) {
                       <span>{item.meatType || item.method}</span>
                       <span className="text-beef-burgundy font-mono">{item.wineStyle || item.wineFocus}</span>
                     </div>
-                    <div className="text-charcoal-muted">推薦酒款：{item.examples || item.picks}</div>
+                    <div className="text-charcoal-muted">{w.recWineHeader}：{item.examples || item.picks}</div>
                   </div>
                 ))}
               </div>
@@ -277,9 +253,9 @@ export default function WinePairingSection({ activeCategory, winePrinciples }) {
           <div className="mb-6">
             <h3 className="text-xl font-bold font-serif text-charcoal flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-beef-burgundy" />
-              {currentCategoryName}料理情境佐餐酒速查矩陣（含啤酒與在地名酒）
+              {w.interactiveTitle}
             </h3>
-            <p className="text-xs text-charcoal-muted mt-1">點選下方常見料理方式，查看風味調性、經典葡萄酒與台灣在地酒搭配指南：</p>
+            <p className="text-xs text-charcoal-muted mt-1">{w.interactiveSub}</p>
           </div>
 
           {/* 橫向分頁按鈕 */}
@@ -288,7 +264,7 @@ export default function WinePairingSection({ activeCategory, winePrinciples }) {
               <button
                 key={idx}
                 onClick={() => setActiveMethodTab(idx)}
-                className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                   activeMethodTab === idx
                     ? 'bg-beef-burgundy text-white border-beef-burgundy shadow-xs'
                     : 'bg-parchment-100 text-charcoal border-parchment-300 hover:bg-parchment-200'
@@ -307,30 +283,27 @@ export default function WinePairingSection({ activeCategory, winePrinciples }) {
                 <div className="md:col-span-7 space-y-3">
                   <div className="text-lg font-serif font-bold text-charcoal">{current.method}</div>
                   <div className="text-xs text-charcoal-muted">
-                    <span className="font-bold text-charcoal">代表部位：</span>{current.meatExamples}
-                  </div>
-                  <div className="text-xs text-charcoal-muted">
-                    <span className="font-bold text-charcoal">風味特徵：</span>{current.characteristics}
+                    <span className="font-bold text-charcoal">{w.charHeader}</span>{current.characteristics}
                   </div>
                   <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed pt-1">
-                    <span className="font-bold text-beef-burgundy">搭酒科學：</span>{current.principles}
+                    <span className="font-bold text-beef-burgundy">{w.principleHeader}</span>{current.principles}
                   </p>
                 </div>
 
                 <div className="md:col-span-5 bg-purple-50/80 p-4 rounded-xl border border-purple-200 space-y-3">
                   <div className="text-xs font-bold uppercase tracking-wider text-purple-950 flex items-center gap-1.5">
                     <Wine className="w-4 h-4 text-purple-700" />
-                    推薦佐餐酒與在地酒款
+                    {w.recWineHeader}
                   </div>
                   <div className="space-y-2">
-                    {current.recommendedWines.map((w, i) => (
+                    {current.recommendedWines.map((wineItem, i) => (
                       <div key={i} className="text-xs font-sans text-purple-950 font-medium bg-purple-100/60 px-2.5 py-1.5 rounded-lg border border-purple-200/60">
-                        {w}
+                        {wineItem}
                       </div>
                     ))}
                   </div>
                   <div className="pt-2 border-t border-purple-200/80 text-[11px] text-purple-950">
-                    <span className="font-bold">風味關鍵：</span>{current.tastingNotes}
+                    <span className="font-bold">{w.flavorKeyHeader}</span>{current.tastingNotes}
                   </div>
                 </div>
               </div>

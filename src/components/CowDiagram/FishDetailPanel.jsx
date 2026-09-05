@@ -1,26 +1,23 @@
 import React from 'react';
 import { FISH_PRIMAL_AREAS } from '../../data/fishData';
+import { getLocalizedPrimal } from '../../data/primalsI18n';
+import { TRANSLATIONS } from '../../data/translations';
 import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from '../Icons';
 
-export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }) {
-  const primal = FISH_PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || FISH_PRIMAL_AREAS[2];
+export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById, currentLang = 'zh-TW' }) {
+  const rawPrimal = FISH_PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || FISH_PRIMAL_AREAS[0];
+  const primal = getLocalizedPrimal(rawPrimal, currentLang);
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const a = t.anatomy;
 
   const getCutIdFromExtendedName = (name) => {
-    if (name.includes('虱目魚肚')) return 'milkfish-belly-cut';
-    if (name.includes('虱目魚柳') || name.includes('魚柳')) return 'milkfish-loin-cut';
-    if (name.includes('午仔魚') || name.includes('午仔')) return 'threadfin-steak';
-    if (name.includes('金目鱸') || name.includes('七星鱸') || name.includes('鱸魚')) return 'barramundi-fillet';
-    if (name.includes('白鯧')) return 'pomfret-steak';
-    if (name.includes('土魠魚') || name.includes('土魠')) return 'spanish-mackerel';
-    if (name.includes('鮭魚菲力') || name.includes('鮭魚排')) return 'salmon-fillet-cut';
-    if (name.includes('下巴') || name.includes('青魽') || name.includes('海鱺')) return 'amberjack-collar';
-    if (name.includes('黑鮪魚') || name.includes('大腹') || name.includes('赤身') || name.includes('鮪魚')) return 'tuna-otoro-cut';
-    if (name.includes('鯖魚') || name.includes('竹筴魚')) return 'mackerel-fillet';
-    if (name.includes('烏魚子') || name.includes('烏魚')) return 'mullet-bottarga';
-    if (name.includes('龍虎斑') || name.includes('石斑')) return 'grouper-fillet';
-    if (name.includes('魚皮') || name.includes('魚腸')) return 'milkfish-belly-cut';
-    if (name.includes('魚頭') || name.includes('砂鍋')) return 'fish-head';
-    return 'threadfin-steak';
+    const n = name.toLowerCase();
+    if (n.includes('菲力') || n.includes('loin') || n.includes('背肉') || n.includes('清肉') || n.includes('赤身') || n.includes('フィレ')) return 'salmon-loin';
+    if (n.includes('大腹') || n.includes('otoro') || n.includes('腹') || n.includes('ハラス') || n.includes('トロ')) return 'tuna-otoro-cut';
+    if (n.includes('下巴') || n.includes('collar') || n.includes('kama') || n.includes('カマ')) return 'salmon-collar';
+    if (n.includes('頭') || n.includes('head') || n.includes('兜')) return 'fish-head-cut';
+    if (n.includes('尾') || n.includes('皮') || n.includes('tail') || n.includes('skin')) return 'fish-tail-skin';
+    return null;
   };
 
   return (
@@ -36,7 +33,7 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
                 style={{ backgroundColor: primal.color }}
               />
               <span className="text-xs font-serif italic text-charcoal-muted tracking-wider">
-                魚類通用部位 · {primal.enName}
+                {t.categories.fish.subtitle} · {primal.enName}
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-charcoal flex items-baseline gap-2">
@@ -52,19 +49,19 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5 flex items-center gap-1.5">
             <Compass className="w-3.5 h-3.5 text-beef-burgundy" />
-            解剖位置與肉質特性
+            {a.anatomyTitle}
           </div>
           <p className="text-sm text-charcoal-light leading-relaxed font-sans bg-parchment-100 p-3 rounded-lg border border-parchment-200">
             {primal.description}
           </p>
         </div>
 
-        {/* 常見延伸市售海鮮部位 */}
+        {/* 常見延伸市售部位 (可直接點擊深入) */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              台灣熱門代表魚種與分切（點擊看規格）
+              {a.popularCuts}
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -76,7 +73,7 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
                   onClick={() => cutId && onOpenCutModalById(cutId)}
                   className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${
                     cutId
-                      ? 'bg-parchment-100 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy border-parchment-300 shadow-2xs'
+                      ? 'bg-parchment-100 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy border-parchment-300 shadow-2xs cursor-pointer'
                       : 'bg-parchment-200/50 text-charcoal-muted border-parchment-300 cursor-default'
                   }`}
                 >
@@ -92,7 +89,7 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
             <Flame className="w-3.5 h-3.5 text-red-600" />
-            推薦烹調方式
+            {a.cookingTitle}
           </div>
           <div className="flex flex-wrap gap-1.5">
             {primal.recommendedCooking.map((cook, idx) => (
@@ -106,19 +103,19 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
           </div>
         </div>
 
-        {/* 理想葡萄酒與清酒搭配 */}
+        {/* 推薦適配酒款 */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
-            <Wine className="w-3.5 h-3.5 text-purple-700" />
-            推薦佐餐酒款調性
+            <Wine className="w-3.5 h-3.5 text-beef-burgundy" />
+            {a.wineTitle}
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {primal.idealWine.map((wine, idx) => (
+            {primal.idealWine.map((wName, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 rounded bg-purple-50 border border-purple-200 text-purple-950 text-xs font-medium font-serif italic"
+                className="px-2.5 py-1 rounded bg-purple-50 border border-purple-200 text-purple-900 text-xs font-serif font-medium"
               >
-                {wine}
+                {wName}
               </span>
             ))}
           </div>
@@ -126,14 +123,14 @@ export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById }
 
       </div>
 
-      {/* 底部行動導引 */}
-      <div className="pt-4 mt-4 border-t border-parchment-200 flex items-center justify-between">
+      {/* 底部跳轉部位庫錨點 */}
+      <div className="pt-4 mt-6 border-t border-parchment-200">
         <a
           href="#cuts-library"
-          className="text-xs font-semibold text-beef-burgundy hover:underline flex items-center gap-1"
+          className="w-full py-2.5 px-4 rounded-xl bg-parchment-200 hover:bg-beef-burgundy hover:text-white text-charcoal text-xs font-semibold transition-all flex items-center justify-center gap-2 group"
         >
-          <BookOpen className="w-3.5 h-3.5" />
-          瀏覽台灣 12 款精選魚種與部位卡片
+          <BookOpen className="w-4 h-4 text-beef-burgundy group-hover:text-white transition-colors" />
+          <span>{a.browseCuts}</span>
         </a>
       </div>
     </div>

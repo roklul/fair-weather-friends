@@ -1,23 +1,29 @@
 import React from 'react';
 import { PORK_PRIMAL_AREAS } from '../../data/porkData';
+import { getLocalizedPrimal } from '../../data/primalsI18n';
+import { TRANSLATIONS } from '../../data/translations';
 import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from '../Icons';
 
-export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }) {
-  const primal = PORK_PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || PORK_PRIMAL_AREAS[0];
+export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById, currentLang = 'zh-TW' }) {
+  const rawPrimal = PORK_PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || PORK_PRIMAL_AREAS[0];
+  const primal = getLocalizedPrimal(rawPrimal, currentLang);
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+  const a = t.anatomy;
 
   const getCutIdFromExtendedName = (name) => {
-    if (name.includes('梅花')) return 'pork-butt';
-    if (name.includes('五花') || name.includes('三層')) return 'pork-belly-cut';
-    if (name.includes('松阪') || name.includes('雪花')) return 'matsusaka-pork';
-    if (name.includes('小里肌') || name.includes('腰內')) return 'pork-tenderloin-cut';
-    if (name.includes('大里肌') || name.includes('豬排')) return 'pork-loin-chop';
-    if (name.includes('肋排') || name.includes('腩排')) return 'pork-spare-ribs';
-    if (name.includes('蹄膀') || name.includes('腿庫')) return 'pork-hock-cut';
-    if (name.includes('嘴邊肉') || name.includes('頰')) return 'pork-jowl-cheek';
-    if (name.includes('胛心')) return 'pork-blade-shoulder';
-    if (name.includes('前腿')) return 'pork-front-picnic';
-    if (name.includes('後腿')) return 'pork-ham-leg';
-    if (name.includes('豬蹄') || name.includes('豬腳')) return 'pork-trotters-cut';
+    const n = name.toLowerCase();
+    if (n.includes('梅花') || n.includes('boston butt') || n.includes('肩ロース')) return 'pork-butt';
+    if (n.includes('五花') || n.includes('三層') || n.includes('pork belly') || n.includes('三枚肉') || n.includes('豚バラ')) return 'pork-belly-cut';
+    if (n.includes('松阪') || n.includes('雪花') || n.includes('matsusaka') || n.includes('トントロ')) return 'matsusaka-pork';
+    if (n.includes('小里肌') || n.includes('腰內') || n.includes('tenderloin') || n.includes('ヒレ')) return 'pork-tenderloin-cut';
+    if (n.includes('大里肌') || n.includes('豬排') || n.includes('pork chop') || n.includes('ロース') || n.includes('とんかつ')) return 'pork-loin-chop';
+    if (n.includes('肋排') || n.includes('腩排') || n.includes('spare ribs') || n.includes('スペアリブ')) return 'pork-spare-ribs';
+    if (n.includes('蹄膀') || n.includes('腿庫') || n.includes('hock') || n.includes('スネ')) return 'pork-hock-cut';
+    if (n.includes('嘴邊肉') || n.includes('頰') || n.includes('jowl') || n.includes('カシラ')) return 'pork-jowl-cheek';
+    if (n.includes('胛心') || n.includes('blade') || n.includes('ウデ')) return 'pork-blade-shoulder';
+    if (n.includes('前腿') || n.includes('picnic')) return 'pork-front-picnic';
+    if (n.includes('後腿') || n.includes('ham') || n.includes('モモ')) return 'pork-ham-leg';
+    if (n.includes('豬蹄') || n.includes('豬腳') || n.includes('trotters') || n.includes('豚足')) return 'pork-trotters-cut';
     return null;
   };
 
@@ -34,7 +40,7 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }
                 style={{ backgroundColor: primal.color }}
               />
               <span className="text-xs font-serif italic text-charcoal-muted tracking-wider">
-                豬肉部位分切 · {primal.enName}
+                {t.categories.pork.subtitle} · {primal.enName}
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-charcoal flex items-baseline gap-2">
@@ -50,7 +56,7 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5 flex items-center gap-1.5">
             <Compass className="w-3.5 h-3.5 text-beef-burgundy" />
-            解剖位置與肉質特性
+            {a.anatomyTitle}
           </div>
           <p className="text-sm text-charcoal-light leading-relaxed font-sans bg-parchment-100 p-3 rounded-lg border border-parchment-200">
             {primal.description}
@@ -62,7 +68,7 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              常見熱門細分切（點擊看規格）
+              {a.popularCuts}
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -74,7 +80,7 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }
                   onClick={() => cutId && onOpenCutModalById(cutId)}
                   className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${
                     cutId
-                      ? 'bg-parchment-100 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy border-parchment-300 shadow-2xs'
+                      ? 'bg-parchment-100 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy border-parchment-300 shadow-2xs cursor-pointer'
                       : 'bg-parchment-200/50 text-charcoal-muted border-parchment-300 cursor-default'
                   }`}
                 >
@@ -90,7 +96,7 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
             <Flame className="w-3.5 h-3.5 text-red-600" />
-            推薦烹調方式
+            {a.cookingTitle}
           </div>
           <div className="flex flex-wrap gap-1.5">
             {primal.recommendedCooking.map((cook, idx) => (
@@ -104,19 +110,19 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }
           </div>
         </div>
 
-        {/* 理想葡萄酒搭配 */}
+        {/* 推薦適配酒款 */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
-            <Wine className="w-3.5 h-3.5 text-purple-700" />
-            推薦佐餐酒款調性
+            <Wine className="w-3.5 h-3.5 text-beef-burgundy" />
+            {a.wineTitle}
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {primal.idealWine.map((wine, idx) => (
+            {primal.idealWine.map((wName, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 rounded bg-purple-50 border border-purple-200 text-purple-950 text-xs font-medium font-serif italic"
+                className="px-2.5 py-1 rounded bg-purple-50 border border-purple-200 text-purple-900 text-xs font-serif font-medium"
               >
-                {wine}
+                {wName}
               </span>
             ))}
           </div>
@@ -124,14 +130,14 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById }
 
       </div>
 
-      {/* 底部行動導引 */}
-      <div className="pt-4 mt-4 border-t border-parchment-200 flex items-center justify-between">
+      {/* 底部跳轉部位庫錨點 */}
+      <div className="pt-4 mt-6 border-t border-parchment-200">
         <a
           href="#cuts-library"
-          className="text-xs font-semibold text-beef-burgundy hover:underline flex items-center gap-1"
+          className="w-full py-2.5 px-4 rounded-xl bg-parchment-200 hover:bg-beef-burgundy hover:text-white text-charcoal text-xs font-semibold transition-all flex items-center justify-center gap-2 group"
         >
-          <BookOpen className="w-3.5 h-3.5" />
-          瀏覽豬肉 12 大熱門部位卡片
+          <BookOpen className="w-4 h-4 text-beef-burgundy group-hover:text-white transition-colors" />
+          <span>{a.browseCuts}</span>
         </a>
       </div>
     </div>

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { FISH_PRIMAL_AREAS } from '../../data/fishData';
+import { getLocalizedPrimal } from '../../data/primalsI18n';
+import { TRANSLATIONS } from '../../data/translations';
 import { Info, Sparkles, ChevronRight } from '../Icons';
 
-export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName }) {
+export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName, currentLang = 'zh-TW' }) {
   const [hoveredPrimalId, setHoveredPrimalId] = useState(null);
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
 
   const getPrimal = (id) => FISH_PRIMAL_AREAS.find((p) => p.id === id) || FISH_PRIMAL_AREAS[2];
-  const activePrimal = getPrimal(selectedPrimalId || hoveredPrimalId || 'fish-dorsal');
+  const activePrimal = getLocalizedPrimal(getPrimal(selectedPrimalId || hoveredPrimalId || 'fish-dorsal'), currentLang);
 
   return (
     <div className="relative w-full bg-parchment-50 border border-parchment-300 rounded-2xl p-4 sm:p-6 shadow-sm overflow-hidden">
@@ -14,10 +17,10 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
       <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-parchment-200">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-charcoal-muted">
           <Info className="w-4 h-4 text-beef-burgundy" />
-          <span>點擊魚體部位探索 9 大通用分切與料理指南</span>
+          <span>{t.anatomy.svgHint}</span>
         </div>
         <div className="text-xs text-charcoal-muted hidden sm:block">
-          當前選中：<span className="font-bold text-beef-burgundy">{activePrimal.name} ({activePrimal.enName})</span>
+          {t.anatomy.selectedPrefix}<span className="font-bold text-beef-burgundy">{activePrimal.name} ({activePrimal.enName})</span>
         </div>
       </div>
 
@@ -241,23 +244,24 @@ export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectC
       {/* 底部 9 大部位快速切換標籤列 */}
       <div className="mt-4 pt-4 border-t border-parchment-200">
         <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2">
-          快速切換 9 大通用魚體部位：
+          {t.anatomy.quickSwitch}
         </div>
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {FISH_PRIMAL_AREAS.map((primal) => {
             const isSelected = selectedPrimalId === primal.id;
+            const lp = getLocalizedPrimal(primal, currentLang);
             return (
               <button
                 key={primal.id}
                 onClick={() => onSelectPrimal(primal.id)}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium border transition-all ${
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium border transition-all cursor-pointer ${
                   isSelected
                     ? 'bg-charcoal text-white border-charcoal shadow-sm'
                     : 'bg-parchment-100 text-charcoal border-parchment-300 hover:bg-parchment-200'
                 }`}
               >
                 <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: primal.color }} />
-                <span>{primal.name}</span>
+                <span>{lp.name}</span>
               </button>
             );
           })}
