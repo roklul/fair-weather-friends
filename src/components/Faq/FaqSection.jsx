@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { HelpCircle, ChevronDown, ChevronUp } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
+import { getLocalizedFaqs } from '../../data/faqsI18n';
 
-export default function FaqSection({ activeCategory, faqsData, currentLang = 'zh-TW' }) {
+export default function FaqSection({ activeCategory, faqsData: propFaqsData, currentLang = 'zh-TW' }) {
   const [openIndex, setOpenIndex] = useState(0);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const f = t.faq;
   const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
+  const faqs = getLocalizedFaqs(activeCategory, currentLang) || propFaqsData || [];
 
   useEffect(() => {
     setOpenIndex(0);
@@ -36,7 +38,7 @@ export default function FaqSection({ activeCategory, faqsData, currentLang = 'zh
 
         {/* 摺疊問答清單 */}
         <div className="space-y-4">
-          {faqsData.map((faq, idx) => {
+          {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div

@@ -308,6 +308,7 @@ export default function HomePage() {
       <CocktailModal
         cocktail={activeModalCocktail}
         onClose={() => setActiveModalCocktail(null)}
+        currentLang={currentLang}
       />
 
     </div>

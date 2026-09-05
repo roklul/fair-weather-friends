@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { COCKTAILS_DATA, COCKTAIL_PAIRING_PRINCIPLES, DISH_TO_COCKTAIL_MATRIX } from '../../data/cocktailData';
-import { Wine, Sparkles, Utensils, Droplets, Flame, ArrowRight, BookOpen, CheckCircle2 } from '../Icons';
+import { COCKTAILS_DATA, DISH_TO_COCKTAIL_MATRIX } from '../../data/cocktailData';
+import { getLocalizedCocktail, getLocalizedCocktailPrinciples, getLocalizedDishMatrix } from '../../data/cocktailI18n';
+import { Wine, Sparkles, ArrowRight, BookOpen } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 
 export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh-TW' }) {
-  const [selectedMatcherTab, setSelectedMatcherTab] = useState('dish'); // 'dish' | 'flavor'
   const [selectedDishIdx, setSelectedDishIdx] = useState(0);
   const [selectedBaseSpirit, setSelectedBaseSpirit] = useState('all');
 
@@ -20,14 +20,26 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
     { id: 'Vodka', label: currentLang === 'en' ? 'Vodka Base' : currentLang === 'ja' ? 'ウォッカ' : '伏特加基酒 (Vodka)' },
   ];
 
-  const filteredCocktails = COCKTAILS_DATA.filter((c) => {
-    if (selectedBaseSpirit === 'all') return true;
-    return c.baseSpirit.includes(selectedBaseSpirit);
-  });
+  const localizedDishMatrix = getLocalizedDishMatrix(currentLang);
+  const dishMatrix = DISH_TO_COCKTAIL_MATRIX.map((item, idx) => ({
+    ...item,
+    ...(localizedDishMatrix[idx] || {})
+  }));
 
-  const currentDishMatch = DISH_TO_COCKTAIL_MATRIX[selectedDishIdx] || DISH_TO_COCKTAIL_MATRIX[0];
-  const primaryCocktail = COCKTAILS_DATA.find((c) => c.id === currentDishMatch.primaryCocktailId);
-  const secondaryCocktail = COCKTAILS_DATA.find((c) => c.id === currentDishMatch.secondaryCocktailId);
+  const currentDishMatch = dishMatrix[selectedDishIdx] || dishMatrix[0];
+  const rawPrimary = COCKTAILS_DATA.find((c) => c.id === currentDishMatch.primaryCocktailId);
+  const rawSecondary = COCKTAILS_DATA.find((c) => c.id === currentDishMatch.secondaryCocktailId);
+  const primaryCocktail = getLocalizedCocktail(rawPrimary, currentLang);
+  const secondaryCocktail = getLocalizedCocktail(rawSecondary, currentLang);
+
+  const filteredCocktails = COCKTAILS_DATA
+    .filter((c) => {
+      if (selectedBaseSpirit === 'all') return true;
+      return c.baseSpirit.includes(selectedBaseSpirit);
+    })
+    .map((c) => getLocalizedCocktail(c, currentLang));
+
+  const cocktailPrinciples = getLocalizedCocktailPrinciples(currentLang);
 
   return (
     <section id="cocktails" className="py-16 sm:py-24 bg-parchment-200/70 border-t border-parchment-300 relative overflow-hidden">
@@ -73,7 +85,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
 
           {/* 料理情境切換列 */}
           <div className="flex flex-wrap gap-2">
-            {DISH_TO_COCKTAIL_MATRIX.map((item, idx) => (
+            {dishMatrix.map((item, idx) => (
               <button
                 key={idx}
                 onClick={() => setSelectedDishIdx(idx)}
@@ -99,10 +111,10 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                 </div>
                 <h4 className="text-xl font-bold font-serif text-charcoal mt-0.5">{currentDishMatch.category}</h4>
                 <div className="text-xs text-charcoal-muted mt-1">
-                  <span className="font-bold text-charcoal">{currentLang === 'en' ? 'Dishes:' : currentLang === 'ja' ? '代表料理:' : '代表菜色：'}</span>{currentDishMatch.dishes}
+                  <span className="font-bold text-charcoal">{currentLang === 'en' ? 'Dishes: ' : currentLang === 'ja' ? '代表料理: ' : '代表菜色：'}</span>{currentDishMatch.dishes}
                 </div>
                 <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed pt-2">
-                  <span className="font-bold text-beef-burgundy">{currentLang === 'en' ? 'Pairing Science:' : currentLang === 'ja' ? 'ペアリングの科学:' : '風味科學邏輯：'}</span>{currentDishMatch.rationale}
+                  <span className="font-bold text-beef-burgundy">{currentLang === 'en' ? 'Pairing Science: ' : currentLang === 'ja' ? 'ペアリングの科学: ' : '風味科學邏輯：'}</span>{currentDishMatch.rationale}
                 </p>
               </div>
 
@@ -127,11 +139,13 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
 
                     <div className="mt-2">
                       <h5 className="font-serif font-bold text-lg text-charcoal">
-                        {currentLang === 'en' ? primaryCocktail.enName : primaryCocktail.name}
+                        {primaryCocktail.name}
                       </h5>
-                      <span className="text-xs font-serif italic text-charcoal-muted">
-                        {currentLang === 'en' ? primaryCocktail.name : primaryCocktail.enName}
-                      </span>
+                      {primaryCocktail.name !== primaryCocktail.enName && (
+                        <span className="text-xs font-serif italic text-charcoal-muted">
+                          {primaryCocktail.enName}
+                        </span>
+                      )}
                     </div>
 
                     <p className="text-xs text-charcoal-light mt-1 line-clamp-2">
@@ -141,7 +155,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
 
                   <div className="pt-2 border-t border-parchment-200 flex items-center justify-between">
                     <span className="text-[11px] text-amber-900 font-medium">
-                      {currentLang === 'en' ? 'Body:' : currentLang === 'ja' ? '重さ:' : '酒體：'}{'★'.repeat(primaryCocktail.bodyLevel)}{'☆'.repeat(5 - primaryCocktail.bodyLevel)}
+                      {currentLang === 'en' ? 'Body: ' : currentLang === 'ja' ? '重さ: ' : '酒體：'}{'★'.repeat(primaryCocktail.bodyLevel)}{'☆'.repeat(5 - primaryCocktail.bodyLevel)}
                     </span>
                     <button
                       onClick={() => onOpenCocktailModal(primaryCocktail)}
@@ -167,11 +181,13 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
 
                     <div className="mt-2">
                       <h5 className="font-serif font-bold text-lg text-charcoal">
-                        {currentLang === 'en' ? secondaryCocktail.enName : secondaryCocktail.name}
+                        {secondaryCocktail.name}
                       </h5>
-                      <span className="text-xs font-serif italic text-charcoal-muted">
-                        {currentLang === 'en' ? secondaryCocktail.name : secondaryCocktail.enName}
-                      </span>
+                      {secondaryCocktail.name !== secondaryCocktail.enName && (
+                        <span className="text-xs font-serif italic text-charcoal-muted">
+                          {secondaryCocktail.enName}
+                        </span>
+                      )}
                     </div>
 
                     <p className="text-xs text-charcoal-light mt-1 line-clamp-2">
@@ -181,7 +197,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
 
                   <div className="pt-2 border-t border-parchment-200 flex items-center justify-between">
                     <span className="text-[11px] text-amber-900 font-medium">
-                      {currentLang === 'en' ? 'Body:' : currentLang === 'ja' ? '重さ:' : '酒體：'}{'★'.repeat(secondaryCocktail.bodyLevel)}{'☆'.repeat(5 - secondaryCocktail.bodyLevel)}
+                      {currentLang === 'en' ? 'Body: ' : currentLang === 'ja' ? '重さ: ' : '酒體：'}{'★'.repeat(secondaryCocktail.bodyLevel)}{'☆'.repeat(5 - secondaryCocktail.bodyLevel)}
                     </span>
                     <button
                       onClick={() => onOpenCocktailModal(secondaryCocktail)}
@@ -244,15 +260,17 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                         {c.baseSpirit}
                       </div>
                       <h4 className="font-serif font-bold text-xl text-charcoal group-hover:text-beef-burgundy transition-colors">
-                        {currentLang === 'en' ? c.enName : c.name}
+                        {c.name}
                       </h4>
-                      <span className="text-xs font-serif italic text-charcoal-muted">
-                        {currentLang === 'en' ? c.name : c.enName}
-                      </span>
+                      {c.name !== c.enName && (
+                        <span className="text-xs font-serif italic text-charcoal-muted">
+                          {c.enName}
+                        </span>
+                      )}
                     </div>
 
                     <span className="px-2 py-1 rounded-md text-[10px] font-bold bg-parchment-200 text-charcoal border border-parchment-300 whitespace-nowrap">
-                      {currentLang === 'en' ? 'Diff:' : currentLang === 'ja' ? '難易度:' : '難度:'} {'★'.repeat(c.difficulty)}{'☆'.repeat(5 - c.difficulty)}
+                      {currentLang === 'en' ? 'Diff: ' : currentLang === 'ja' ? '難易度: ' : '難度: '}{'★'.repeat(c.difficulty)}{'☆'.repeat(5 - c.difficulty)}
                     </span>
                   </div>
 
@@ -270,17 +288,19 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                   </div>
 
                   {/* 代表搭餐 */}
-                  <div className="bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-200 text-xs">
-                    <span className="font-bold text-emerald-950 block mb-0.5">
-                      🍽️ {currentLang === 'en' ? 'Top Food Pairing:' : currentLang === 'ja' ? 'おすすめ料理:' : '最推薦搭餐：'}
-                    </span>
-                    <span className="text-emerald-900 text-[11px] line-clamp-2">{c.pairingFood[0].dish}</span>
-                  </div>
+                  {c.pairingFood && c.pairingFood[0] && (
+                    <div className="bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-200 text-xs">
+                      <span className="font-bold text-emerald-950 block mb-0.5">
+                        🍽️ {currentLang === 'en' ? 'Top Food Pairing:' : currentLang === 'ja' ? 'おすすめ料理:' : '最推薦搭餐：'}
+                      </span>
+                      <span className="text-emerald-900 text-[11px] line-clamp-2">{c.pairingFood[0].dish}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="pt-3 border-t border-parchment-200 flex items-center justify-between">
                   <span className="text-[11px] text-charcoal-muted whitespace-nowrap">
-                    {c.glassware.split(' ')[0]} · {c.method.split(' ')[0]}
+                    {c.glassware ? c.glassware.split(' ')[0] : ''} · {c.method ? c.method.split(' ')[0] : ''}
                   </span>
                   <button
                     onClick={() => onOpenCocktailModal(c)}
@@ -305,7 +325,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {COCKTAIL_PAIRING_PRINCIPLES.map((principle, idx) => (
+            {cocktailPrinciples.map((principle, idx) => (
               <div key={idx} className="p-4 rounded-xl bg-parchment-100 border border-parchment-200 space-y-2">
                 <div className="font-bold font-serif text-base text-beef-burgundy flex items-center gap-2">
                   <span className="w-6 h-6 rounded-full bg-beef-burgundy text-white flex items-center justify-center text-xs font-mono font-bold shrink-0">
