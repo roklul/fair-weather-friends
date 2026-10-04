@@ -22,6 +22,7 @@ import CutModal from '../components/CutCard/CutModal';
 import DemoDisclaimer from '../components/Compliance/DemoDisclaimer';
 import { Compass, Sparkles } from '../components/Icons';
 import { TRANSLATIONS } from '../data/translations';
+import { useLanguage } from '../context/LanguageContext';
 
 // 資料庫引入
 import {
@@ -50,9 +51,8 @@ import {
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState('beef'); // 'beef' | 'pork' | 'fish'
-  const [currentLang, setCurrentLang] = useState('zh-TW'); // 'zh-TW' | 'en' | 'ja'
+  const { currentLang, setCurrentLang, t } = useLanguage();
 
-  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
   
   // 各品類選中之部位 ID
@@ -210,7 +210,7 @@ export default function HomePage() {
               }`}
             >
               <Compass className="w-4 h-4" />
-              <span>{currentLang === 'en' ? 'Anatomy Diagram' : currentLang === 'ja' ? '解剖図マップ' : '🥩 互動部位解剖地圖'}</span>
+              <span>{t.nav.tabDiagram || (currentLang === 'en' ? 'Anatomical Diagram Map' : currentLang === 'ja' ? '部位解剖図マップ' : '互動部位解剖地圖')}</span>
             </button>
             <button
               onClick={() => setActiveGuideTab('wizard')}
@@ -221,7 +221,7 @@ export default function HomePage() {
               }`}
             >
               <Sparkles className="w-4 h-4" />
-              <span>{currentLang === 'en' ? 'Taste & Cooking Wizard' : currentLang === 'ja' ? '食感・調理ウィザード' : '🧭 口感與料理決策助手'}</span>
+              <span>{t.nav.tabWizard || (currentLang === 'en' ? 'Taste & Cooking Wizard' : currentLang === 'ja' ? '食感・調理診断ウィザード' : '口感與料理決策助手')}</span>
             </button>
           </div>
         </div>

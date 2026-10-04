@@ -8,9 +8,9 @@ export default function DiningScenarios({ data, currentLang }) {
   const [activeTab, setActiveTab] = useState('buffet'); // 'buffet' | 'banquet' | 'family'
 
   const tabs = [
-    { id: 'buffet', label: '🥗 自助餐 (Buffet)', icon: '🥗' },
-    { id: 'banquet', label: '🥂 正式宴會 (Banquet)', icon: '🥂' },
-    { id: 'family', label: '🏡 日常家庭與幼兒', icon: '🏡' },
+    { id: 'buffet', label: currentLang === 'en' ? '🥗 Buffet Dining' : currentLang === 'ja' ? '🥗 ビュッフェ' : '🥗 自助餐 (Buffet)', icon: '🥗' },
+    { id: 'banquet', label: currentLang === 'en' ? '🥂 Formal Banquet' : currentLang === 'ja' ? '🥂 正式な宴会' : '🥂 正式宴會 (Banquet)', icon: '🥂' },
+    { id: 'family', label: currentLang === 'en' ? '🏡 Family & Children' : currentLang === 'ja' ? '🏡 家庭・子ども連れ' : '🏡 日常家庭與幼兒', icon: '🏡' },
   ];
 
   return (
@@ -20,7 +20,7 @@ export default function DiningScenarios({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
           <Sparkles className="w-3.5 h-3.5 text-amber-800" />
-          <span>CHAPTER 07 · 三大核心用餐場合</span>
+          <span>{data.chapters?.c07 || 'CHAPTER 07 · 三大核心用餐場合'}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {scenarios.title}

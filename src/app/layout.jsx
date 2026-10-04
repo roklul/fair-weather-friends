@@ -1,4 +1,5 @@
 import './globals.css';
+import { LanguageProvider } from '../context/LanguageContext';
 
 export const metadata = {
   title: '酒肉朋友 | 肉品與海鮮部位選購 × 料理佐餐指南',
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="bg-parchment-100 text-charcoal font-sans antialiased selection:bg-beef-burgundy selection:text-white">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

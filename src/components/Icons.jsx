@@ -344,3 +344,11 @@ export const Share2 = createIcon(
     <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
   </>
 );
+
+export const Globe = createIcon(
+  <>
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </>
+);

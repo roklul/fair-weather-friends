@@ -10,8 +10,23 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById, 
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const a = t.anatomy;
 
-  const getCutIdFromExtendedName = (name) => {
-    const n = name.toLowerCase();
+  // 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
+  const PORK_EXTENDED_CUT_MAP = {
+    'pork-shoulder': ['pork-butt', 'pork-blade-shoulder', 'pork-butt'],
+    'pork-loin': ['pork-loin-chop', 'pork-loin-chop', 'pork-loin-chop'],
+    'pork-tenderloin': ['pork-tenderloin-cut', 'pork-tenderloin-cut', 'pork-tenderloin-cut'],
+    'pork-belly': ['pork-belly-cut', 'pork-belly-cut', 'pork-belly-cut', 'pork-belly-cut'],
+    'pork-ribs': ['pork-spare-ribs', 'pork-spare-ribs', 'pork-spare-ribs', 'pork-spare-ribs'],
+    'pork-neck': ['matsusaka-pork', 'pork-jowl-cheek', 'matsusaka-pork'],
+    'pork-front-leg': ['pork-hock-cut', 'pork-front-picnic', 'pork-hock-cut'],
+    'pork-ham-trotter': ['pork-ham-leg', 'pork-ham-leg', 'pork-trotters-cut', 'pork-ham-leg']
+  };
+
+  const getCutId = (primalId, idx, name) => {
+    if (PORK_EXTENDED_CUT_MAP[primalId]?.[idx]) {
+      return PORK_EXTENDED_CUT_MAP[primalId][idx];
+    }
+    const n = (name || '').toLowerCase();
     if (n.includes('梅花') || n.includes('boston butt') || n.includes('肩ロース')) return 'pork-butt';
     if (n.includes('五花') || n.includes('三層') || n.includes('pork belly') || n.includes('三枚肉') || n.includes('豚バラ')) return 'pork-belly-cut';
     if (n.includes('松阪') || n.includes('雪花') || n.includes('matsusaka') || n.includes('トントロ')) return 'matsusaka-pork';
@@ -73,7 +88,7 @@ export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById, 
           </div>
           <div className="flex flex-wrap gap-2">
             {primal.extendedCuts.map((cutName, idx) => {
-              const cutId = getCutIdFromExtendedName(cutName);
+              const cutId = getCutId(rawPrimal.id, idx, cutName);
               return (
                 <button
                   key={idx}

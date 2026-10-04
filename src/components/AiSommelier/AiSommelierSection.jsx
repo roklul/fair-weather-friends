@@ -102,12 +102,12 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || '呼叫 AI 侍酒師失敗，請確認 API Key 與網路連線。');
+        throw new Error(data.error || t.callFailedError);
       }
 
       setRecommendationResult(data.recommendation);
     } catch (err) {
-      setErrorMsg(err.message || '發生未知錯誤，請稍後再試。');
+      setErrorMsg(err.message || t.unknownError);
     } finally {
       setIsLoading(false);
     }
@@ -139,7 +139,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
               <span>{t.byokTitle}</span>
             </div>
             <div className="text-[11px] text-charcoal-muted">
-              🔒 零伺服器儲存 · 瀏覽器端直接發送
+              {t.zeroStorageNotice}
             </div>
           </div>
 

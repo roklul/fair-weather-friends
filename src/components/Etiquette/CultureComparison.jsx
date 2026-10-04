@@ -13,7 +13,7 @@ export default function CultureComparison({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
           <Sparkles className="w-3.5 h-3.5 text-amber-800" />
-          <span>CHAPTER 01 · 文化哲學對比</span>
+          <span>{data.chapters?.c01 || 'CHAPTER 01 · 文化哲學對比'}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {culture.title}

@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { X, Sparkles, Clock, Utensils, CheckCircle2, Droplets, Wine } from '../Icons';
+import { TRANSLATIONS } from '../../data/translations';
 
 export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose }) {
   const [servings, setServings] = useState(1);
+  const t = TRANSLATIONS[currentLang]?.zeroProof || TRANSLATIONS['zh-TW'].zeroProof;
 
   if (!mocktail) return null;
+
+  const displayName = currentLang === 'ja' ? (mocktail.jaName || mocktail.name) : currentLang === 'en' ? mocktail.enName : mocktail.name;
+  const displayCategory = currentLang === 'ja' ? (mocktail.categoryJa || mocktail.category) : currentLang === 'en' ? (mocktail.categoryEn || mocktail.category) : mocktail.category;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-charcoal/80 backdrop-blur-sm animate-fadeIn">
@@ -20,13 +25,13 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
                 0.0% ZERO-PROOF
               </span>
               <span className="text-xs font-mono font-bold text-amber-800 uppercase tracking-wider">
-                {mocktail.category}
+                {displayCategory}
               </span>
             </div>
             <h3 className="text-2xl font-serif font-bold text-charcoal flex items-center gap-2">
-              <span>{mocktail.name}</span>
+              <span>{displayName}</span>
             </h3>
-            {mocktail.name !== mocktail.enName && (
+            {displayName !== mocktail.enName && (
               <p className="text-xs font-serif italic text-charcoal-muted">
                 {mocktail.enName}
               </p>
@@ -53,7 +58,7 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
           <div className="space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-beef-burgundy" />
-              <span>風味特徵與三段品飲體驗</span>
+              <span>{t.flavorProfileTitle || '風味特徵與三段品飲體驗'}</span>
             </div>
 
             <div className="flex flex-wrap gap-1.5">
@@ -67,15 +72,15 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
             {mocktail.tastingNotes && (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 text-xs">
                 <div className="bg-white p-3 rounded-xl border border-parchment-300 shadow-xs">
-                  <span className="font-bold text-rose-800 block mb-1">初調 (Initial)</span>
+                  <span className="font-bold text-rose-800 block mb-1">{t.tastingInitial || '初調 (Initial)'}</span>
                   <span className="text-charcoal-muted leading-relaxed">{mocktail.tastingNotes.initial}</span>
                 </div>
                 <div className="bg-white p-3 rounded-xl border border-parchment-300 shadow-xs">
-                  <span className="font-bold text-amber-800 block mb-1">中調 (Mid-Palate)</span>
+                  <span className="font-bold text-amber-800 block mb-1">{t.tastingMid || '中調 (Mid-Palate)'}</span>
                   <span className="text-charcoal-muted leading-relaxed">{mocktail.tastingNotes.mid}</span>
                 </div>
                 <div className="bg-white p-3 rounded-xl border border-parchment-300 shadow-xs">
-                  <span className="font-bold text-emerald-800 block mb-1">尾韻 (Finish)</span>
+                  <span className="font-bold text-emerald-800 block mb-1">{t.tastingFinish || '尾韻 (Finish)'}</span>
                   <span className="text-charcoal-muted leading-relaxed">{mocktail.tastingNotes.finish}</span>
                 </div>
               </div>
@@ -88,12 +93,12 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
               <div className="flex items-center justify-between">
                 <div className="text-xs font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-1.5">
                   <Droplets className="w-4 h-4 text-purple-700" />
-                  <span>配方材料 ({mocktail.ratioText})</span>
+                  <span>{t.ingredientsTitle || '配方材料'} ({mocktail.ratioText})</span>
                 </div>
 
                 {/* 人數換算器 */}
                 <div className="flex items-center gap-2 text-xs bg-parchment-200 px-2.5 py-1 rounded-lg border border-parchment-300">
-                  <span className="text-charcoal font-medium">份數：</span>
+                  <span className="text-charcoal font-medium">{t.servingLabel || '份數：'}</span>
                   <div className="flex items-center gap-1 font-mono font-bold text-charcoal">
                     <button
                       onClick={() => setServings(Math.max(1, servings - 1))}
@@ -135,7 +140,7 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
             <div className="space-y-2">
               <div className="text-xs font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-charcoal-muted" />
-                <span>調製技法與流程步驟</span>
+                <span>{t.stepsTitle || '調製技法與流程步驟'}</span>
               </div>
               <ol className="bg-white p-4 rounded-2xl border border-parchment-300 space-y-2.5 text-xs sm:text-sm text-charcoal-light font-sans shadow-xs">
                 {mocktail.steps.map((step, idx) => (
@@ -154,7 +159,7 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
           <div className="space-y-3">
             <div className="text-xs font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-1.5">
               <Utensils className="w-4 h-4 text-emerald-700" />
-              <span>最佳搭餐料理與風味科學</span>
+              <span>{t.foodPairingLabel || '最佳搭餐料理與風味科學'}</span>
             </div>
 
             <div className="space-y-2">
@@ -174,7 +179,7 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
             {mocktail.flavorScience && (
               <div className="p-4 rounded-xl bg-teal-50/80 border border-teal-200 text-xs text-teal-950 space-y-1 shadow-xs">
                 <span className="font-bold block text-teal-900 flex items-center gap-1">
-                  🔬 分子風味協同原理：
+                  {t.flavorScienceBadge || '🔬 分子風味協同原理：'}
                 </span>
                 <p className="leading-relaxed font-sans">{mocktail.flavorScience}</p>
               </div>
@@ -185,13 +190,13 @@ export default function MocktailModal({ mocktail, currentLang = 'zh-TW', onClose
         {/* 底部按鈕 */}
         <div className="bg-charcoal px-6 py-4 flex items-center justify-between rounded-b-3xl">
           <span className="text-amber-300 text-xs font-serif font-bold">
-            🌱 100% 零酒精純淨特調 · 清醒品味無負擔
+            {t.legalNotice || '🌱 100% 零酒精純淨特調 · 清醒品味無負擔'}
           </span>
           <button
             onClick={onClose}
             className="px-5 py-2 rounded-xl bg-parchment-100 hover:bg-white text-charcoal font-bold text-xs transition-colors shrink-0 shadow-sm cursor-pointer"
           >
-            關閉詳細規格
+            {currentLang === 'en' ? 'Close' : currentLang === 'ja' ? '閉じる' : '關閉詳細規格'}
           </button>
         </div>
       </div>

@@ -10,9 +10,23 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const a = t.anatomy;
 
-  // 映射延伸部位名稱至細切 ID
-  const getCutIdFromExtendedName = (name) => {
-    const n = name.toLowerCase();
+  // 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
+  const BEEF_EXTENDED_CUT_MAP = {
+    chuck: ['top-blade', 'flat-iron', 'top-blade', 'top-blade'],
+    rib: ['ribeye', 'ribeye', 'short-rib', 'short-rib', 'ribeye'],
+    loin: ['tenderloin', 'new-york-strip', 'new-york-strip', 'tenderloin', 'sirloin'],
+    brisket: ['brisket-cut', 'brisket-cut', 'brisket-cut'],
+    plate: ['short-plate-cut', 'short-plate-cut', 'flank-cut', 'short-plate-cut'],
+    flank: ['flank-cut', 'flank-cut', 'flank-cut'],
+    round: ['round-rump', 'round-rump', 'round-rump', 'round-rump'],
+    shank: ['beef-shank', 'beef-shank', 'beef-shank', 'beef-shank']
+  };
+
+  const getCutId = (primalId, idx, name) => {
+    if (BEEF_EXTENDED_CUT_MAP[primalId]?.[idx]) {
+      return BEEF_EXTENDED_CUT_MAP[primalId][idx];
+    }
+    const n = (name || '').toLowerCase();
     if (n.includes('肋眼') || n.includes('ribeye') || n.includes('リブロース')) return 'ribeye';
     if (n.includes('老饕') || n.includes('spinalis') || n.includes('リブキャップ')) return 'ribeye';
     if (n.includes('菲力') || n.includes('tenderloin') || n.includes('ヒレ') || n.includes('フィレ')) return 'tenderloin';
@@ -75,7 +89,7 @@ export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName,
           </div>
           <div className="flex flex-wrap gap-2">
             {primal.extendedCuts.map((cutName, idx) => {
-              const cutId = getCutIdFromExtendedName(cutName);
+              const cutId = getCutId(rawPrimal.id, idx, cutName);
               return (
                 <button
                   key={idx}

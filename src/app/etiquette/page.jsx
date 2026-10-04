@@ -15,9 +15,10 @@ import CopyrightAndReliability from '../../components/Etiquette/CopyrightAndReli
 import InteractiveChecklist from '../../components/Etiquette/InteractiveChecklist';
 import EtiquetteFooter from '../../components/Etiquette/EtiquetteFooter';
 import { ETIQUETTE_DATA } from '../../data/etiquetteData';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function EtiquettePage() {
-  const [currentLang, setCurrentLang] = useState('zh-TW'); // 'zh-TW' | 'en' | 'ja'
+  const { currentLang, setCurrentLang } = useLanguage();
 
   const data = ETIQUETTE_DATA[currentLang] || ETIQUETTE_DATA['zh-TW'];
 

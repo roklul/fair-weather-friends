@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Compass, Wine, Utensils, BookOpen, HelpCircle, Menu, X, Sparkles, WineMeatBrandLogo } from './Icons';
+import { Compass, Wine, Utensils, BookOpen, HelpCircle, Menu, X, Sparkles, WineMeatBrandLogo, Globe } from './Icons';
 import { TRANSLATIONS } from '../data/translations';
 
 export default function Navbar({
@@ -13,6 +13,21 @@ export default function Navbar({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const langMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
+        setLangMenuOpen(false);
+      }
+    };
+    if (langMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [langMenuOpen]);
 
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
 
@@ -108,12 +123,13 @@ export default function Navbar({
             </Link>
 
             {/* 多語系切換器 (Language Selector) */}
-            <div className="relative">
+            <div className="relative" ref={langMenuRef}>
               <button
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
                 className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl border border-parchment-300 bg-parchment-50 hover:bg-parchment-200/80 text-xs font-semibold text-charcoal shadow-2xs transition-all whitespace-nowrap"
-                aria-label="Select Language"
+                aria-label={t.nav.selectLanguage || "Select Language"}
               >
+                <Globe className="w-3.5 h-3.5 text-charcoal-muted" />
                 <span>{currentLangObj.flag}</span>
                 <span className="hidden sm:inline">{currentLangObj.label}</span>
               </button>
@@ -162,6 +178,24 @@ export default function Navbar({
         </div>
       </div>
 
+      {/* 手機版快速品類切換列 (無須展開漢堡即可切換) */}
+      <div className="md:hidden flex items-center justify-around px-3 py-1.5 bg-parchment-200/70 border-t border-parchment-200 text-xs">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => onSelectCategory(cat.id)}
+            className={`flex items-center gap-1 px-3 py-1 rounded-lg font-bold transition-all ${
+              activeCategory === cat.id
+                ? 'bg-charcoal text-white shadow-xs'
+                : 'text-charcoal hover:bg-parchment-100'
+            }`}
+          >
+            <span>{cat.icon}</span>
+            <span>{cat.shortLabel || cat.label}</span>
+          </button>
+        ))}
+      </div>
+
       {/* 響應式下拉選單 */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-parchment-300 bg-parchment-100 px-4 pt-3 pb-6 space-y-3 animate-fadeIn shadow-lg">
@@ -179,7 +213,7 @@ export default function Navbar({
             <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-amber-200/80 rounded font-bold">NEW</span>
           </Link>
 
-          <div className="text-xs font-bold text-charcoal-muted uppercase mb-1">切換品類：</div>
+          <div className="text-xs font-bold text-charcoal-muted uppercase mb-1">{t.nav.selectCategory || '切換品類：'}</div>
           <div className="grid grid-cols-3 gap-2">
             {categories.map((cat) => (
               <button
@@ -215,7 +249,7 @@ export default function Navbar({
           </div>
 
           <div className="pt-2 border-t border-parchment-200 flex items-center justify-between">
-            <span className="text-xs text-charcoal-muted">多語系切換：</span>
+            <span className="text-xs text-charcoal-muted">{t.nav.languageLabel || '多語系切換：'}</span>
             <div className="flex gap-1.5">
               {languages.map((l) => (
                 <button

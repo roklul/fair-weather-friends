@@ -1,20 +1,108 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Utensils, Wine, Sparkles, BookOpen } from '../Icons';
+import { Utensils, BookOpen } from '../Icons';
+
+const WESTERN_UI = {
+  'zh-TW': {
+    simulatorTitle: '🍽️ 由外至內上菜模擬器：',
+    currentStage: '當前階段：',
+    principle: '由外至內 (Outside-In) 原則',
+    breadPlate: '麵包盤',
+    butterKnife: '奶油刀',
+    waterGlass: '水杯',
+    redWineGlass: '紅酒杯',
+    whiteWineGlass: '白酒杯',
+    dessertUtensils: '甜點匙 & 甜點叉 (柄向左右相反)',
+    servicePlate: '展示盤 / 主餐盤',
+    servicePlateSub: 'Service & Dinner Plate',
+    saladFork: '沙律叉',
+    dinnerFork: '主菜叉',
+    dinnerKnife: '主菜刀',
+    fishKnife: '魚/前菜刀',
+    soupSpoon: '湯匙',
+    outerFirst: '(外側/先)',
+    innerLater: '(內側/後)',
+    bladeInward: '(刃向內)',
+    napkin: '餐巾 (Napkin)',
+    napkinHint: '入座後置於膝上',
+    steps: [
+      { id: 'all', label: '全部餐位一覽', desc: '標準完整西餐餐位配置（三至四道菜規格）。' },
+      { id: 'appetizer', label: '1. 前菜/沙律階段', desc: '使用最外側的沙律叉（左最外）與前菜刀（右中間）。' },
+      { id: 'soup', label: '2. 湯品階段', desc: '使用右側最外側的圓形湯匙，由內向外舀取。' },
+      { id: 'main', label: '3. 主菜肉類階段', desc: '使用最靠餐盤的主菜刀（右手）與主菜叉（左手），切一口吃一口。' },
+      { id: 'dessert', label: '4. 甜點階段', desc: '使用餐盤正上方的甜點匙或甜點叉。' },
+    ],
+  },
+  'en': {
+    simulatorTitle: '🍽️ Outside-In Course Simulator:',
+    currentStage: 'Current Phase:',
+    principle: 'Outside-In Principle',
+    breadPlate: 'Bread Plate',
+    butterKnife: 'Butter Knife',
+    waterGlass: 'Water Goblet',
+    redWineGlass: 'Red Wine',
+    whiteWineGlass: 'White Wine',
+    dessertUtensils: 'Dessert Spoon & Fork (Opposite Handles)',
+    servicePlate: 'Service & Dinner Plate',
+    servicePlateSub: 'Service & Dinner Plate',
+    saladFork: 'Salad Fork',
+    dinnerFork: 'Dinner Fork',
+    dinnerKnife: 'Dinner Knife',
+    fishKnife: 'Fish/Appetizer Knife',
+    soupSpoon: 'Soup Spoon',
+    outerFirst: '(Outer / 1st)',
+    innerLater: '(Inner / 2nd)',
+    bladeInward: '(Blade In)',
+    napkin: 'Dinner Napkin',
+    napkinHint: 'Place on lap upon seating',
+    steps: [
+      { id: 'all', label: 'All Utensils', desc: 'Full standard Western place setting (3-4 courses).' },
+      { id: 'appetizer', label: '1. Appetizer / Salad', desc: 'Use the outermost salad fork (far left) and appetizer knife (middle right).' },
+      { id: 'soup', label: '2. Soup Course', desc: 'Use the outermost soup spoon on the right, scooping outwards.' },
+      { id: 'main', label: '3. Main Meat Course', desc: 'Use the inner dinner knife (right) and dinner fork (left), cutting bite by bite.' },
+      { id: 'dessert', label: '4. Dessert Course', desc: 'Use the dessert spoon or fork placed horizontally above the plate.' },
+    ],
+  },
+  'ja': {
+    simulatorTitle: '🍽️ 外側から内側へ コースシミュレーター：',
+    currentStage: '現在の段階：',
+    principle: '外側から内側へ (Outside-In) の原則',
+    breadPlate: 'パン皿',
+    butterKnife: 'バターナイフ',
+    waterGlass: '水用グラス',
+    redWineGlass: '赤ワイン',
+    whiteWineGlass: '白ワイン',
+    dessertUtensils: 'デザートスプーン＆フォーク (柄は互い違い)',
+    servicePlate: '位置皿 / メイン皿',
+    servicePlateSub: 'Service & Dinner Plate',
+    saladFork: 'サラダフォーク',
+    dinnerFork: 'メインフォーク',
+    dinnerKnife: 'メインナイフ',
+    fishKnife: '魚・前菜ナイフ',
+    soupSpoon: 'スープスプーン',
+    outerFirst: '(外側 / 先)',
+    innerLater: '(内側 / 後)',
+    bladeInward: '(刃は内向き)',
+    napkin: 'ナプキン (Napkin)',
+    napkinHint: '着席後に膝の上に置く',
+    steps: [
+      { id: 'all', label: '全体レイアウト', desc: '標準的な西洋料理のフルセッティング（3〜4コース仕様）。' },
+      { id: 'appetizer', label: '1. 前菜・サラダ', desc: '最も外側のサラダフォーク（左外側）と前菜ナイフ（右中間）を使用します。' },
+      { id: 'soup', label: '2. スープ', desc: '右側最も外側の丸いスープスプーンを使用し、内から外へすくいます。' },
+      { id: 'main', label: '3. メイン料理', desc: '皿に最も近いメインナイフ（右手）とメインフォーク（左手）を使用します。' },
+      { id: 'dessert', label: '4. デザート', desc: '皿の真上にあるデザートスプーンまたはデザートフォークを使用します。' },
+    ],
+  },
+};
 
 export default function WesternTableVisualizer({ data, currentLang }) {
   const { westernSetting } = data;
   const [selectedCourse, setSelectedCourse] = useState('all'); // 'all' | 'appetizer' | 'soup' | 'main' | 'dessert'
   const [highlightedUtensil, setHighlightedUtensil] = useState(null);
 
-  const courseSteps = [
-    { id: 'all', label: '全部餐位一覽', desc: '標準完整西餐餐位配置（三至四道菜規格）。' },
-    { id: 'appetizer', label: '1. 前菜/沙律階段', desc: '使用最外側的沙律叉（左最外）與前菜刀（右中間）。' },
-    { id: 'soup', label: '2. 湯品階段', desc: '使用右側最外側的圓形湯匙，由內向外舀取。' },
-    { id: 'main', label: '3. 主菜肉類階段', desc: '使用最靠餐盤的主菜刀（右手）與主菜叉（左手），切一口吃一口。' },
-    { id: 'dessert', label: '4. 甜點階段', desc: '使用餐盤正上方的甜點匙或甜點叉。' },
-  ];
+  const ui = WESTERN_UI[currentLang] || WESTERN_UI['zh-TW'];
+  const courseSteps = ui.steps;
 
   return (
     <section id="western-setting" className="py-14 sm:py-18 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full border-t border-parchment-300">
@@ -23,7 +111,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-semibold tracking-wider uppercase">
           <Utensils className="w-3.5 h-3.5 text-emerald-800" />
-          <span>CHAPTER 03 · 西餐餐位與餐具擺設</span>
+          <span>{data.chapters?.c03 || 'CHAPTER 03 · 西餐餐位與餐具擺設'}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {westernSetting.title}
@@ -40,7 +128,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-parchment-200">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-charcoal uppercase tracking-wider">
-              🍽️ 由外至內上菜模擬器：
+              {ui.simulatorTitle}
             </span>
           </div>
           <div className="flex flex-wrap gap-1.5">
@@ -62,8 +150,8 @@ export default function WesternTableVisualizer({ data, currentLang }) {
 
         {/* 當前道數說明提示條 */}
         <div className="mb-6 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-950 flex items-center justify-between">
-          <span>💡 <strong>當前階段：</strong> {courseSteps.find(s => s.id === selectedCourse)?.desc}</span>
-          <span className="text-amber-800 font-mono text-[11px] hidden sm:inline">由外至內 (Outside-In) 原則</span>
+          <span>💡 <strong>{ui.currentStage}</strong> {courseSteps.find(s => s.id === selectedCourse)?.desc}</span>
+          <span className="text-amber-800 font-mono text-[11px] hidden sm:inline">{ui.principle}</span>
         </div>
 
         {/* SVG 餐位畫布 */}
@@ -83,10 +171,10 @@ export default function WesternTableVisualizer({ data, currentLang }) {
               {/* 麵包盤 */}
               <circle cx="160" cy="110" r="55" fill="#EEEAE0" stroke="#CFC3B2" strokeWidth="2" />
               <circle cx="160" cy="110" r="38" fill="#FCFAF6" stroke="#CFC3B2" strokeWidth="1" />
-              <text x="160" y="114" textAnchor="middle" fontSize="11" fill="#6B4C38" fontWeight="bold">麵包盤</text>
+              <text x="160" y="114" textAnchor="middle" fontSize="11" fill="#6B4C38" fontWeight="bold">{ui.breadPlate}</text>
               {/* 奶油刀 (橫跨或斜置) */}
               <rect x="120" y="90" width="80" height="6" rx="3" fill="#A89279" transform="rotate(-30 160 90)" />
-              <text x="160" y="145" textAnchor="middle" fontSize="9" fill="#57534E">奶油刀</text>
+              <text x="160" y="145" textAnchor="middle" fontSize="9" fill="#57534E">{ui.butterKnife}</text>
             </g>
 
             {/* 2. 右上方：玻璃杯組 (水杯、紅酒杯、白酒杯) */}
@@ -97,7 +185,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                 <path d="M 478 100 Q 500 150 522 100 Z" fill="#BAE6FD" opacity="0.6" stroke="#38BDF8" strokeWidth="1.5" />
                 <line x1="500" y1="130" x2="500" y2="160" stroke="#38BDF8" strokeWidth="3" />
                 <ellipse cx="500" cy="160" rx="18" ry="5" fill="#E0F2FE" stroke="#38BDF8" strokeWidth="1.5" />
-                <text x="500" y="80" textAnchor="middle" fontSize="10" fill="#0369A1" fontWeight="bold">水杯</text>
+                <text x="500" y="80" textAnchor="middle" fontSize="10" fill="#0369A1" fontWeight="bold">{ui.waterGlass}</text>
               </g>
 
               {/* 紅酒杯 (Red Wine) - 中間 */}
@@ -106,7 +194,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                 <path d="M 540 115 Q 560 165 580 115 Z" fill="#FBCFE8" opacity="0.6" stroke="#DB2777" strokeWidth="1.5" />
                 <line x1="560" y1="145" x2="560" y2="175" stroke="#DB2777" strokeWidth="3" />
                 <ellipse cx="560" cy="175" rx="16" ry="4" fill="#FCE7F3" stroke="#DB2777" strokeWidth="1.5" />
-                <text x="560" y="98" textAnchor="middle" fontSize="10" fill="#9D174D" fontWeight="bold">紅酒杯</text>
+                <text x="560" y="98" textAnchor="middle" fontSize="10" fill="#9D174D" fontWeight="bold">{ui.redWineGlass}</text>
               </g>
 
               {/* 白酒杯 (White Wine) - 最右/較小 */}
@@ -115,7 +203,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                 <path d="M 603 130 Q 620 175 637 130 Z" fill="#FDE68A" opacity="0.6" stroke="#D97706" strokeWidth="1.5" />
                 <line x1="620" y1="155" x2="620" y2="185" stroke="#D97706" strokeWidth="3" />
                 <ellipse cx="620" cy="185" rx="14" ry="4" fill="#FEF3C7" stroke="#D97706" strokeWidth="1.5" />
-                <text x="620" y="115" textAnchor="middle" fontSize="10" fill="#B45309" fontWeight="bold">白酒杯</text>
+                <text x="620" y="115" textAnchor="middle" fontSize="10" fill="#B45309" fontWeight="bold">{ui.whiteWineGlass}</text>
               </g>
             </g>
 
@@ -148,7 +236,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
               />
               <path d="M 450 102 L 465 102 M 450 105 L 465 105 M 450 108 L 465 108" stroke={selectedCourse === 'dessert' ? '#D8963E' : '#7C2333'} strokeWidth="2" />
               <text x="400" y="75" textAnchor="middle" fontSize="10" fill="#7C2333" fontWeight="bold">
-                甜點匙 & 甜點叉 (柄向左右相反)
+                {ui.dessertUtensils}
               </text>
             </g>
 
@@ -161,10 +249,10 @@ export default function WesternTableVisualizer({ data, currentLang }) {
               {/* 餐盤中央花紋 */}
               <circle cx="400" cy="310" r="65" fill="#F7F4ED" stroke="#E1D9C9" strokeWidth="1" strokeDasharray="4 2" />
               <text x="400" y="305" textAnchor="middle" fontSize="14" fill="#1C1917" fontWeight="bold" fontFamily="serif">
-                展示盤 / 主餐盤
+                {ui.servicePlate}
               </text>
               <text x="400" y="325" textAnchor="middle" fontSize="10" fill="#57534E">
-                Service & Dinner Plate
+                {ui.servicePlateSub}
               </text>
             </g>
 
@@ -187,8 +275,8 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                 />
                 {/* 叉齒 */}
                 <path d="M 218 240 L 218 205 M 224 240 L 224 205 M 230 240 L 230 205" stroke={selectedCourse === 'appetizer' ? '#B84A39' : '#57534E'} strokeWidth="2.5" />
-                <text x="225" y="405" textAnchor="middle" fontSize="10" fill="#B84A39" fontWeight="bold">沙律叉</text>
-                <text x="225" y="420" textAnchor="middle" fontSize="8" fill="#57534E">(外側/先)</text>
+                <text x="225" y="405" textAnchor="middle" fontSize="10" fill="#B84A39" fontWeight="bold">{ui.saladFork}</text>
+                <text x="225" y="420" textAnchor="middle" fontSize="8" fill="#57534E">{ui.outerFirst}</text>
               </g>
 
               {/* 內側：主菜叉 (Dinner Fork) */}
@@ -206,8 +294,8 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                   className={selectedCourse === 'main' ? 'animate-pulse' : ''}
                 />
                 <path d="M 252 225 L 252 185 M 258 225 L 258 185 M 264 225 L 264 185 M 270 225 L 270 185" stroke={selectedCourse === 'main' ? '#B84A39' : '#1C1917'} strokeWidth="2.5" />
-                <text x="262" y="405" textAnchor="middle" fontSize="10" fill="#1C1917" fontWeight="bold">主菜叉</text>
-                <text x="262" y="420" textAnchor="middle" fontSize="8" fill="#57534E">(內側/後)</text>
+                <text x="262" y="405" textAnchor="middle" fontSize="10" fill="#1C1917" fontWeight="bold">{ui.dinnerFork}</text>
+                <text x="262" y="420" textAnchor="middle" fontSize="8" fill="#57534E">{ui.innerLater}</text>
               </g>
 
             </g>
@@ -230,8 +318,8 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                   className={selectedCourse === 'main' ? 'animate-pulse' : ''}
                 />
                 <path d="M 530 225 Q 520 185 530 185 L 544 185 L 544 225 Z" fill={selectedCourse === 'main' ? '#B84A39' : '#1C1917'} />
-                <text x="537" y="405" textAnchor="middle" fontSize="10" fill="#1C1917" fontWeight="bold">主菜刀</text>
-                <text x="537" y="420" textAnchor="middle" fontSize="8" fill="#57534E">(刃向內)</text>
+                <text x="537" y="405" textAnchor="middle" fontSize="10" fill="#1C1917" fontWeight="bold">{ui.dinnerKnife}</text>
+                <text x="537" y="420" textAnchor="middle" fontSize="8" fill="#57534E">{ui.bladeInward}</text>
               </g>
 
               {/* 中間：魚刀 / 前菜刀 */}
@@ -249,7 +337,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                   className={selectedCourse === 'appetizer' ? 'animate-pulse' : ''}
                 />
                 <path d="M 565 235 Q 556 198 565 198 L 577 198 L 577 235 Z" fill={selectedCourse === 'appetizer' ? '#B84A39' : '#57534E'} />
-                <text x="571" y="405" textAnchor="middle" fontSize="10" fill="#57534E" fontWeight="bold">魚/前菜刀</text>
+                <text x="571" y="405" textAnchor="middle" fontSize="10" fill="#57534E" fontWeight="bold">{ui.fishKnife}</text>
               </g>
 
               {/* 最外側：湯匙 (Soup Spoon) */}
@@ -267,8 +355,8 @@ export default function WesternTableVisualizer({ data, currentLang }) {
                   className={selectedCourse === 'soup' ? 'animate-pulse' : ''}
                 />
                 <ellipse cx="606" cy="215" rx="16" ry="24" fill={selectedCourse === 'soup' ? '#D8963E' : '#57534E'} />
-                <text x="606" y="405" textAnchor="middle" fontSize="10" fill="#D8963E" fontWeight="bold">湯匙</text>
-                <text x="606" y="420" textAnchor="middle" fontSize="8" fill="#57534E">(外側/先)</text>
+                <text x="606" y="405" textAnchor="middle" fontSize="10" fill="#D8963E" fontWeight="bold">{ui.soupSpoon}</text>
+                <text x="606" y="420" textAnchor="middle" fontSize="8" fill="#57534E">{ui.outerFirst}</text>
               </g>
 
             </g>
@@ -280,10 +368,10 @@ export default function WesternTableVisualizer({ data, currentLang }) {
             >
               <rect x="75" y="235" width="95" height="150" rx="8" fill="#FCFAF6" stroke="#B84A39" strokeWidth="2" strokeDasharray="4 2" />
               <text x="122" y="310" textAnchor="middle" fontSize="12" fill="#661824" fontWeight="bold" fontFamily="serif">
-                餐巾 (Napkin)
+                {ui.napkin}
               </text>
               <text x="122" y="330" textAnchor="middle" fontSize="9" fill="#57534E">
-                入座後置於膝上
+                {ui.napkinHint}
               </text>
             </g>
 
@@ -306,9 +394,9 @@ export default function WesternTableVisualizer({ data, currentLang }) {
           <table className="w-full text-left text-sm border-collapse min-w-[600px]">
             <thead>
               <tr className="border-b-2 border-parchment-300 bg-parchment-200/70 font-serif text-charcoal">
-                <th className="py-3 px-4 font-bold text-xs uppercase w-[22%]">餐位位置</th>
-                <th className="py-3 px-4 font-bold text-xs uppercase w-[33%] text-emerald-800">餐具名稱 (Name)</th>
-                <th className="py-3 px-4 font-bold text-xs uppercase w-[45%] text-charcoal-muted">主要用途與功能 (Usage)</th>
+                <th className="py-3 px-4 font-bold text-xs uppercase w-[22%]">{westernSetting.tableHeaders?.pos || '餐位位置'}</th>
+                <th className="py-3 px-4 font-bold text-xs uppercase w-[33%] text-emerald-800">{westernSetting.tableHeaders?.name || '餐具名稱 (Name)'}</th>
+                <th className="py-3 px-4 font-bold text-xs uppercase w-[45%] text-charcoal-muted">{westernSetting.tableHeaders?.usage || '主要用途與功能 (Usage)'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-parchment-200 font-sans">

@@ -13,7 +13,7 @@ export default function WesternDiningGuide({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-semibold tracking-wider uppercase">
           <Utensils className="w-3.5 h-3.5 text-emerald-800" />
-          <span>CHAPTER 05 · 西餐儀態與刀叉訊號</span>
+          <span>{data.chapters?.c05 || 'CHAPTER 05 · 西餐儀態與刀叉訊號'}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {westernFlow.title}

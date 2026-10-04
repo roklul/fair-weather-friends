@@ -2,6 +2,21 @@
 
 export const ETIQUETTE_DATA = {
   'zh-TW': {
+    isDemo: true,
+    isPurchasable: false,
+    advantagePrefix: '優勢',
+    chapters: {
+      c01: 'CHAPTER 01 · 文化哲學對比',
+      c02: 'CHAPTER 02 · 圓桌與座次哲學',
+      c03: 'CHAPTER 03 · 西餐餐位與餐具擺設',
+      c04: 'CHAPTER 04 · 中餐儀態與筷子禁忌',
+      c05: 'CHAPTER 05 · 西餐儀態與刀叉訊號',
+      c06: 'CHAPTER 06 · 13 大常見失禮行為對照',
+      c07: 'CHAPTER 07 · 三大核心用餐場合',
+      c08: 'CHAPTER 08 · 數位版權安全原則',
+      c09: 'CHAPTER 09 · 規則適用與判斷順序',
+      c10: 'CHAPTER 10 · 實用互動檢查清單'
+    },
     title: '中西餐餐桌禮儀指南',
     subtitle: '掌握文化結構差異、圓桌與長桌座次、餐位餐具語言、13 大失禮行為對照與實用檢查清單',
     brandTag: 'DINING ETIQUETTE',
@@ -150,6 +165,11 @@ export const ETIQUETTE_DATA = {
         '現代宴會更重視賓客舒適度、交談可能性與無障礙，不再僵化套用傳統性別交叉規則。'
       ],
       utensilsListTitle: '標準西餐餐具位置與功能辨識表',
+      tableHeaders: {
+        pos: '餐位位置',
+        name: '餐具名稱 (Name)',
+        usage: '主要用途與功能 (Usage)'
+      },
       utensils: [
         { pos: '餐盤左側 最外側', name: '前菜叉 / 沙律叉 (Salad Fork)', usage: '食用冷前菜、蔬菜沙律（尺寸較小）' },
         { pos: '餐盤左側 內側', name: '主菜叉 (Dinner Fork)', usage: '食用牛排、肉類或主要熱菜（尺寸較大、齒長）' },
@@ -515,6 +535,21 @@ export const ETIQUETTE_DATA = {
   },
 
   'en': {
+    isDemo: true,
+    isPurchasable: false,
+    advantagePrefix: 'Advantage',
+    chapters: {
+      c01: 'CHAPTER 01 · Cultural & Philosophical Comparison',
+      c02: 'CHAPTER 02 · Chinese Seating & Lazy Susan Etiquette',
+      c03: 'CHAPTER 03 · Western Place Setting & Utensils',
+      c04: 'CHAPTER 04 · Chinese Dining Conduct & Chopstick Taboos',
+      c05: 'CHAPTER 05 · Western Course Flow & Napkin Signals',
+      c06: 'CHAPTER 06 · 13 Common Dining Faux Pas Analysis',
+      c07: 'CHAPTER 07 · Strategies for 3 Major Dining Scenarios',
+      c08: 'CHAPTER 08 · Copyright Compliance & Originality Notice',
+      c09: 'CHAPTER 09 · Contextual Flexibility & Practical Judgment',
+      c10: 'CHAPTER 10 · Interactive Dining Checklist'
+    },
     title: 'Chinese & Western Dining Etiquette Guide',
     subtitle: 'Cultural differences, round & rectangular seating charts, cutlery signals, 13 common faux pas, and an interactive checklist.',
     brandTag: 'DINING ETIQUETTE',
@@ -623,6 +658,11 @@ export const ETIQUETTE_DATA = {
         'Modern events prioritize guest comfort, conversation, and accessibility over rigid historical gender rules.'
       ],
       utensilsListTitle: 'Standard Place Setting Cutlery Guide',
+      tableHeaders: {
+        pos: 'Position',
+        name: 'Utensil Name',
+        usage: 'Function & Usage'
+      },
       utensils: [
         { pos: 'Left of plate (Outermost)', name: 'Salad / Appetizer Fork', usage: 'For salads and cold appetizers (smaller size)' },
         { pos: 'Left of plate (Inner)', name: 'Dinner Fork', usage: 'For main meat/hot dishes (larger with longer tines)' },
@@ -890,6 +930,21 @@ export const ETIQUETTE_DATA = {
   },
 
   'ja': {
+    isDemo: true,
+    isPurchasable: false,
+    advantagePrefix: 'メリット',
+    chapters: {
+      c01: 'CHAPTER 01 · 文化と哲学の構造比較',
+      c02: 'CHAPTER 02 · 中華席順とターンテーブルのマナー',
+      c03: 'CHAPTER 03 · 西洋料理のテーブルセッティングとカトラリー',
+      c04: 'CHAPTER 04 · 中華の食事作法と箸のタブー',
+      c05: 'CHAPTER 05 · 西洋料理のコース進行とナプキンのサイン',
+      c06: 'CHAPTER 06 · 13大マナー違反の徹底解説',
+      c07: 'CHAPTER 07 · 3大食事シーンの実践的対応戦略',
+      c08: 'CHAPTER 08 · 著作権コンプライアンスと安全性',
+      c09: 'CHAPTER 09 · マナーの適用限界と柔軟な判断',
+      c10: 'CHAPTER 10 · 実践インタラクティブチェックリスト'
+    },
     title: '中華・西洋テーブルマナー完全ガイド',
     subtitle: '文化構造の違い、円卓・長机の席順、カトラリーシグナル、13の無作法比較、実践チェックリスト',
     brandTag: 'DINING ETIQUETTE',
@@ -998,6 +1053,11 @@ export const ETIQUETTE_DATA = {
         '現代では伝統的な男女交互の規則よりも、ゲストの快適さと会話のしやすさが重視されます。'
       ],
       utensilsListTitle: '標準テーブルセッティングとカトラリー一覧',
+      tableHeaders: {
+        pos: '配置位置',
+        name: 'カトラリー名称',
+        usage: '主な用途と機能'
+      },
       utensils: [
         { pos: '皿の左側 最も外側', name: '前菜フォーク / サラダフォーク', usage: '冷製前菜やサラダ用（やや小ぶり）' },
         { pos: '皿の左側 内側', name: 'メインフォーク (ディナーフォーク)', usage: '肉料理やメイン温菜用（刃が長く大型）' },

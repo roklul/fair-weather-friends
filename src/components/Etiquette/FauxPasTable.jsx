@@ -8,20 +8,21 @@ export default function FauxPasTable({ data, currentLang }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
+  const CAT_MAP = ['eating', 'eating', 'eating', 'utensils', 'utensils', 'eating', 'social', 'social', 'eating', 'social', 'eating', 'social', 'utensils'];
+
   const categories = [
     { id: 'all', label: fauxPas.filterAll },
-    { id: '開動與進食', label: fauxPas.filterStart },
-    { id: '餐具處理', label: fauxPas.filterUtensils },
-    { id: '社交舉止', label: fauxPas.filterSocial },
+    { id: 'eating', label: fauxPas.filterStart },
+    { id: 'utensils', label: fauxPas.filterUtensils },
+    { id: 'social', label: fauxPas.filterSocial },
   ];
 
-  const filteredList = fauxPas.list.filter((item) => {
+  const filteredList = fauxPas.list.filter((item, idx) => {
+    const itemCatId = item.catId || CAT_MAP[idx % CAT_MAP.length];
     const matchesCat =
       selectedCategory === 'all' ||
-      item.category === selectedCategory ||
-      (selectedCategory === '開動與進食' && (item.category.includes('進食') || item.category.includes('Eating') || item.category.includes('食べ方'))) ||
-      (selectedCategory === '餐具處理' && (item.category.includes('餐具') || item.category.includes('Cutlery') || item.category.includes('食器'))) ||
-      (selectedCategory === '社交舉止' && (item.category.includes('社交') || item.category.includes('Social') || item.category.includes('マナー')));
+      itemCatId === selectedCategory ||
+      item.category === selectedCategory;
 
     const matchesSearch =
       !searchTerm ||
@@ -40,7 +41,7 @@ export default function FauxPasTable({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
           <BookOpen className="w-3.5 h-3.5 text-amber-800" />
-          <span>CHAPTER 06 · 13 大常見失禮行為對照</span>
+          <span>{data.chapters?.c06 || 'CHAPTER 06 · 13 大常見失禮行為對照'}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {fauxPas.title}
@@ -74,7 +75,7 @@ export default function FauxPasTable({ data, currentLang }) {
         <div className="w-full sm:w-72 relative">
           <input
             type="text"
-            placeholder="搜尋失禮行為或改善對策..."
+            placeholder={currentLang === 'en' ? 'Search faux pas or advice...' : currentLang === 'ja' ? 'マナー違反や改善策を検索...' : '搜尋失禮行為或改善對策...'}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 text-xs bg-parchment-100 border border-parchment-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-beef-burgundy text-charcoal placeholder:text-charcoal-muted/60"
@@ -98,10 +99,10 @@ export default function FauxPasTable({ data, currentLang }) {
           <table className="w-full text-left text-sm border-collapse min-w-[720px]">
             <thead>
               <tr className="border-b-2 border-parchment-300 bg-parchment-200/70 font-serif text-charcoal">
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[18%]">行為樣態</th>
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-beef-burgundy">🥢 中餐場合問題</th>
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-emerald-800">🍴 西餐場合問題</th>
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[28%] text-amber-900">✨ 得體改善對策</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[18%]">{fauxPas.tableHeaders?.behavior || '行為樣態'}</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-beef-burgundy">🥢 {fauxPas.tableHeaders?.chinese || '中餐場合問題'}</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-emerald-800">🍴 {fauxPas.tableHeaders?.western || '西餐場合問題'}</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[28%] text-amber-900">✨ {fauxPas.tableHeaders?.improvement || '得體改善對策'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-parchment-200 font-sans">

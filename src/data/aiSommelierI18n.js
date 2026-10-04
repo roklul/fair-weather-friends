@@ -12,6 +12,9 @@ export const AI_SOMMELIER_I18N = {
     clearKeyLabel: '清除金鑰',
     keySavedNotice: '已儲存於本機',
     noKeyWarning: '⚠️ 請先輸入您的 OpenAI API Key 才能呼叫 AI 侍酒師。',
+    zeroStorageNotice: '🔒 零伺服器儲存 · 瀏覽器端直接發送',
+    callFailedError: '呼叫 AI 侍酒師失敗，請確認 API Key 與網路連線。',
+    unknownError: '發生未知錯誤，請稍後再試。',
     presetBadge: '💡 一鍵帶入經典情境：',
     presets: [
       {
@@ -103,6 +106,9 @@ export const AI_SOMMELIER_I18N = {
     clearKeyLabel: 'Clear Key',
     keySavedNotice: 'Saved locally',
     noKeyWarning: '⚠️ Please provide your OpenAI API Key to call the AI Sommelier.',
+    zeroStorageNotice: '🔒 Zero server storage · Sent directly from browser',
+    callFailedError: 'Failed to call AI Sommelier. Please verify your API Key and network connection.',
+    unknownError: 'An unknown error occurred. Please try again later.',
     presetBadge: '💡 Quick Scenario Presets:',
     presets: [
       {
@@ -194,6 +200,9 @@ export const AI_SOMMELIER_I18N = {
     clearKeyLabel: 'キーを消去',
     keySavedNotice: 'ローカルに保存済み',
     noKeyWarning: '⚠️ AIソムリエを呼び出すには OpenAI API Key を入力してください。',
+    zeroStorageNotice: '🔒 サーバー保存ゼロ · ブラウザから直接送信',
+    callFailedError: 'AIソムリエの呼び出しに失敗しました。APIキーとネットワーク接続を確認してください。',
+    unknownError: '不明なエラーが発生しました。しばらくしてからもう一度お試しください。',
     presetBadge: '💡 ワンクリックで定番シーンを設定：',
     presets: [
       {
