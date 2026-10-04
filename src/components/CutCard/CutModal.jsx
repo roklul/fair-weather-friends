@@ -61,7 +61,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
           <div className="space-y-2">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Compass className="w-4 h-4 text-beef-burgundy" />
-              1. {m.primalSource || '解剖位置與來源'}
+              1. {m.primalSource}
             </h4>
             <p className="text-sm text-charcoal-light bg-parchment-100 p-3.5 rounded-xl border border-parchment-200 leading-relaxed">
               {localizedCut.locationDesc}
@@ -72,7 +72,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-amber-600" />
-              2. {m.meatFatProfile || (currentLang === 'en' ? 'Meat & Fat Profile' : currentLang === 'ja' ? '肉質と脂の特徴' : '肉質與油脂特色')}
+              2. {m.meatFatProfile}
             </h4>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-parchment-100 p-4 rounded-xl border border-parchment-200">
@@ -120,7 +120,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Flame className="w-4 h-4 text-red-600" />
-              3. {m.cookingMethods || t.cutsLibrary?.cookingLabel || '推薦料理方式'}
+              3. {m.cookingMethods}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {localizedCut.cookingMethods?.map((method, idx) => (
@@ -139,7 +139,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
           <div className="space-y-2">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-amber-700" />
-              4. {m.thermalControl || t.cutsLibrary?.donenessLabel || '推薦熟度與火候原則'}
+              4. {m.thermalControl}
             </h4>
             <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 font-medium leading-relaxed">
               {localizedCut.donenessTip}
@@ -150,11 +150,11 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
           <div className="space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-charcoal-muted flex items-center gap-2">
               <Wine className="w-4 h-4 text-purple-700" />
-              5. {m.wineAndFlavor || m.wineRationale || '餐酒搭配與風味理由'}
+              5. {m.wineAndFlavor}
             </h4>
             <div className="p-4 bg-purple-50/70 border border-purple-200 rounded-xl space-y-3 text-xs sm:text-sm">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-bold text-purple-950">{t.wine?.recWineHeader || '推薦酒款'}：</span>
+                <span className="font-bold text-purple-950">{m.recWine}：</span>
                 <span className="px-2.5 py-0.5 rounded bg-purple-100/80 text-purple-900 font-serif italic text-xs border border-purple-300">
                   {localizedCut.winePairingDisplay || localizedCut.winePairing?.wines?.join(' · ')}
                 </span>
@@ -163,7 +163,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
               {localizedCut.winePairing?.styleSummary && (
                 <div>
                   <span className="font-bold text-purple-950 block mb-1">
-                    {currentLang === 'en' ? 'Style Summary:' : currentLang === 'ja' ? 'スタイル概要:' : '搭酒風味風格：'}
+                    {m.styleSummary}
                   </span>
                   <p className="text-purple-900 font-serif italic text-xs">{localizedCut.winePairing.styleSummary}</p>
                 </div>
@@ -171,7 +171,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
 
               {localizedCut.winePairing?.rationale && (
                 <div className="pt-2 border-t border-purple-200 text-purple-950 text-xs leading-relaxed">
-                  <span className="font-bold">{w.synergyLabel || '風味科學理由：'}</span>
+                  <span className="font-bold">{m.flavorRationale}</span>
                   {localizedCut.winePairing.rationale}
                 </div>
               )}
@@ -186,7 +186,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
             onClick={onClose}
             className="px-5 py-2.5 bg-charcoal hover:bg-charcoal-light text-white rounded-lg text-xs font-bold transition-colors cursor-pointer"
           >
-            {m.close || '完成並關閉視窗'}
+            {m.close}
           </button>
         </div>
 

@@ -10,58 +10,7 @@ export default function CocktailModal({ cocktail: rawCocktail, onClose, currentL
 
   if (!cocktail) return null;
 
-  const modalLabels = {
-    'zh-TW': {
-      flavorTitle: '風味輪廓與品飲筆記',
-      initial: '前段入口 (Initial)',
-      mid: '中段主體 (Mid)',
-      finish: '尾韻餘韻 (Finish)',
-      recipeTitle: '標準配方與比例',
-      servings: '換算份數：',
-      methodTitle: '專業調製步驟 (Method & Technique)',
-      pairingTitle: '餐飲搭配科學理由 (Food Pairing Rationale)',
-      avoidTitle: '⚠️ 不建議優先搭配：',
-      mocktailTitle: '無酒精友善版本',
-      recipeLabel: '配方：',
-      logicLabel: '風味邏輯：',
-      disclaimer: '🔞 禁止酒駕 · 未滿十八歲禁止飲酒 · 酒後不開車 安全有保障',
-      close: '關閉視窗'
-    },
-    'en': {
-      flavorTitle: 'Flavor Profile & Tasting Notes',
-      initial: 'Initial Palate (Attack)',
-      mid: 'Mid Palate (Body)',
-      finish: 'Finish & Lingering Notes',
-      recipeTitle: 'Standard Recipe & Ratio',
-      servings: 'Scale Servings:',
-      methodTitle: 'Method & Mixology Steps',
-      pairingTitle: 'Food Pairing Science & Rationale',
-      avoidTitle: '⚠️ Avoid Pairing With:',
-      mocktailTitle: 'Virgin Mocktail Option',
-      recipeLabel: 'Recipe: ',
-      logicLabel: 'Flavor Logic: ',
-      disclaimer: '🔞 Please Drink Responsibly · Underage Drinking Prohibited · Don\'t Drink & Drive',
-      close: 'Close'
-    },
-    'ja': {
-      flavorTitle: 'フレーバープロファイルとテイスティングノート',
-      initial: 'トップノート (口当たり)',
-      mid: 'ミドルノート (ボディ)',
-      finish: 'ラストノート (余韻)',
-      recipeTitle: '標準レシピと比率',
-      servings: '分量換算 (杯数):',
-      methodTitle: 'プロのメイキング手順',
-      pairingTitle: 'ペアリングの科学的理由',
-      avoidTitle: '⚠️ おすすめしない組み合わせ：',
-      mocktailTitle: 'ノンアルコール版 (モクテル)',
-      recipeLabel: 'レシピ：',
-      logicLabel: '風味の狙い：',
-      disclaimer: '🔞 飲酒運転は法律で禁止されています · 20歳未満の飲酒は禁止 · お酒は適量に',
-      close: '閉じる'
-    }
-  };
-
-  const m = modalLabels[currentLang] || modalLabels['zh-TW'];
+  const m = t.cocktailModal || TRANSLATIONS['zh-TW'].cocktailModal;
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-fadeIn">

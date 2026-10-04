@@ -4,43 +4,43 @@ import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { TRANSLATIONS } from '../../data/translations';
 import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from '../Icons';
 
+// 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
+export const PORK_EXTENDED_CUT_MAP = {
+  'pork-shoulder': ['pork-butt', 'pork-blade-shoulder', 'pork-butt'],
+  'pork-loin': ['pork-loin-chop', 'pork-loin-chop', 'pork-loin-chop'],
+  'pork-tenderloin': ['pork-tenderloin-cut', 'pork-tenderloin-cut', 'pork-tenderloin-cut'],
+  'pork-belly': ['pork-belly-cut', 'pork-belly-cut', 'pork-belly-cut', 'pork-belly-cut'],
+  'pork-ribs': ['pork-spare-ribs', 'pork-spare-ribs', 'pork-spare-ribs', 'pork-spare-ribs'],
+  'pork-neck': ['matsusaka-pork', 'pork-jowl-cheek', 'matsusaka-pork'],
+  'pork-front-leg': ['pork-hock-cut', 'pork-front-picnic', 'pork-hock-cut'],
+  'pork-ham-trotter': ['pork-ham-leg', 'pork-ham-leg', 'pork-trotters-cut', 'pork-ham-leg']
+};
+
+export const getCutId = (primalId, idx, name) => {
+  if (PORK_EXTENDED_CUT_MAP[primalId]?.[idx]) {
+    return PORK_EXTENDED_CUT_MAP[primalId][idx];
+  }
+  const n = (name || '').toLowerCase();
+  if (n.includes('梅花') || n.includes('boston butt') || n.includes('肩ロース')) return 'pork-butt';
+  if (n.includes('五花') || n.includes('三層') || n.includes('pork belly') || n.includes('三枚肉') || n.includes('豚バラ')) return 'pork-belly-cut';
+  if (n.includes('松阪') || n.includes('雪花') || n.includes('matsusaka') || n.includes('トントロ')) return 'matsusaka-pork';
+  if (n.includes('小里肌') || n.includes('腰內') || n.includes('tenderloin') || n.includes('ヒレ')) return 'pork-tenderloin-cut';
+  if (n.includes('大里肌') || n.includes('豬排') || n.includes('pork chop') || n.includes('ロース') || n.includes('とんかつ')) return 'pork-loin-chop';
+  if (n.includes('肋排') || n.includes('腩排') || n.includes('spare ribs') || n.includes('スペアリブ')) return 'pork-spare-ribs';
+  if (n.includes('蹄膀') || n.includes('腿庫') || n.includes('hock') || n.includes('スネ')) return 'pork-hock-cut';
+  if (n.includes('嘴邊肉') || n.includes('頰') || n.includes('jowl') || n.includes('カシラ')) return 'pork-jowl-cheek';
+  if (n.includes('胛心') || n.includes('blade') || n.includes('ウデ')) return 'pork-blade-shoulder';
+  if (n.includes('前腿') || n.includes('picnic')) return 'pork-front-picnic';
+  if (n.includes('後腿') || n.includes('ham') || n.includes('モモ')) return 'pork-ham-leg';
+  if (n.includes('豬蹄') || n.includes('豬腳') || n.includes('trotters') || n.includes('豚足')) return 'pork-trotters-cut';
+  return null;
+};
+
 export default function PorkDetailPanel({ selectedPrimalId, onOpenCutModalById, currentLang = 'zh-TW' }) {
   const rawPrimal = PORK_PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || PORK_PRIMAL_AREAS[0];
   const primal = getLocalizedPrimal(rawPrimal, currentLang);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const a = t.anatomy;
-
-  // 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
-  const PORK_EXTENDED_CUT_MAP = {
-    'pork-shoulder': ['pork-butt', 'pork-blade-shoulder', 'pork-butt'],
-    'pork-loin': ['pork-loin-chop', 'pork-loin-chop', 'pork-loin-chop'],
-    'pork-tenderloin': ['pork-tenderloin-cut', 'pork-tenderloin-cut', 'pork-tenderloin-cut'],
-    'pork-belly': ['pork-belly-cut', 'pork-belly-cut', 'pork-belly-cut', 'pork-belly-cut'],
-    'pork-ribs': ['pork-spare-ribs', 'pork-spare-ribs', 'pork-spare-ribs', 'pork-spare-ribs'],
-    'pork-neck': ['matsusaka-pork', 'pork-jowl-cheek', 'matsusaka-pork'],
-    'pork-front-leg': ['pork-hock-cut', 'pork-front-picnic', 'pork-hock-cut'],
-    'pork-ham-trotter': ['pork-ham-leg', 'pork-ham-leg', 'pork-trotters-cut', 'pork-ham-leg']
-  };
-
-  const getCutId = (primalId, idx, name) => {
-    if (PORK_EXTENDED_CUT_MAP[primalId]?.[idx]) {
-      return PORK_EXTENDED_CUT_MAP[primalId][idx];
-    }
-    const n = (name || '').toLowerCase();
-    if (n.includes('梅花') || n.includes('boston butt') || n.includes('肩ロース')) return 'pork-butt';
-    if (n.includes('五花') || n.includes('三層') || n.includes('pork belly') || n.includes('三枚肉') || n.includes('豚バラ')) return 'pork-belly-cut';
-    if (n.includes('松阪') || n.includes('雪花') || n.includes('matsusaka') || n.includes('トントロ')) return 'matsusaka-pork';
-    if (n.includes('小里肌') || n.includes('腰內') || n.includes('tenderloin') || n.includes('ヒレ')) return 'pork-tenderloin-cut';
-    if (n.includes('大里肌') || n.includes('豬排') || n.includes('pork chop') || n.includes('ロース') || n.includes('とんかつ')) return 'pork-loin-chop';
-    if (n.includes('肋排') || n.includes('腩排') || n.includes('spare ribs') || n.includes('スペアリブ')) return 'pork-spare-ribs';
-    if (n.includes('蹄膀') || n.includes('腿庫') || n.includes('hock') || n.includes('スネ')) return 'pork-hock-cut';
-    if (n.includes('嘴邊肉') || n.includes('頰') || n.includes('jowl') || n.includes('カシラ')) return 'pork-jowl-cheek';
-    if (n.includes('胛心') || n.includes('blade') || n.includes('ウデ')) return 'pork-blade-shoulder';
-    if (n.includes('前腿') || n.includes('picnic')) return 'pork-front-picnic';
-    if (n.includes('後腿') || n.includes('ham') || n.includes('モモ')) return 'pork-ham-leg';
-    if (n.includes('豬蹄') || n.includes('豬腳') || n.includes('trotters') || n.includes('豚足')) return 'pork-trotters-cut';
-    return null;
-  };
 
   return (
     <div className="bg-parchment-50 border border-parchment-300 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between h-full">

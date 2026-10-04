@@ -315,3 +315,11 @@ export const ZERO_PROOF_SAFETY_GUIDE = {
     }
   ]
 };
+
+export {
+  getLocalizedMocktail,
+  getLocalizedPillars,
+  getLocalizedTerminology,
+  getLocalizedSafetyGuide
+} from './mocktailI18n';
+

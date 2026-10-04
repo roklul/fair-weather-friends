@@ -213,7 +213,7 @@ export default function Navbar({
             <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-amber-200/80 rounded font-bold">NEW</span>
           </Link>
 
-          <div className="text-xs font-bold text-charcoal-muted uppercase mb-1">{t.nav.selectCategory || '切換品類：'}</div>
+          <div className="text-xs font-bold text-charcoal-muted uppercase mb-1">{t.nav.selectCategory}</div>
           <div className="grid grid-cols-3 gap-2">
             {categories.map((cat) => (
               <button
@@ -249,7 +249,7 @@ export default function Navbar({
           </div>
 
           <div className="pt-2 border-t border-parchment-200 flex items-center justify-between">
-            <span className="text-xs text-charcoal-muted">{t.nav.languageLabel || '多語系切換：'}</span>
+            <span className="text-xs text-charcoal-muted">{t.nav.languageLabel}</span>
             <div className="flex gap-1.5">
               {languages.map((l) => (
                 <button

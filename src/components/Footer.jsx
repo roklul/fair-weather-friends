@@ -35,7 +35,7 @@ export default function Footer({ activeCategory, currentLang = 'zh-TW' }) {
               href="/etiquette"
               className="px-6 py-3 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 text-xs sm:text-sm font-bold border border-amber-400/40 transition-all whitespace-nowrap"
             >
-              {t.nav.etiquette || '🍽️ 餐桌禮儀指南'}
+              {t.nav.etiquette}
             </Link>
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function Footer({ activeCategory, currentLang = 'zh-TW' }) {
               <li><a href="#cuts-library" className="hover:text-white transition-colors">{t.nav.cuts}</a></li>
               <li><a href="#wine-pairing" className="hover:text-white transition-colors">{t.nav.wine}</a></li>
               <li><a href="#cocktails" className="hover:text-white transition-colors">{t.nav.cocktail}</a></li>
-              <li><Link href="/etiquette" className="text-amber-300 hover:text-white transition-colors font-semibold">{t.nav.etiquette || '🍽️ 餐桌禮儀指南'}</Link></li>
+              <li><Link href="/etiquette" className="text-amber-300 hover:text-white transition-colors font-semibold">{t.nav.etiquette}</Link></li>
             </ul>
           </div>
 

@@ -6,6 +6,7 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const heroLangData = t.hero[activeCategory] || t.hero.beef;
+  const cover = t.hero?.heroCover || TRANSLATIONS['zh-TW'].hero.heroCover;
 
   // 圖示映射
   const getActionIcon = (label, filter) => {
@@ -128,7 +129,7 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
               {/* AI 封面圖片 */}
               <img
                 src="/images/hero-cover.jpg"
-                alt={t.hero.heroCover?.alt || '酒肉朋友 米其林極致餐酒學 AI 視覺封面'}
+                alt={cover.alt}
                 className="w-full h-auto object-cover aspect-[16/10] sm:aspect-[16/11] transition-transform duration-700 group-hover:scale-105"
               />
 
@@ -139,21 +140,21 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
               <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-semibold shadow-md">
                   <Sparkles className="w-3 h-3 text-amber-400" />
-                  <span>{t.hero.heroCover?.badge || '米其林星級視界 · AI 封面'}</span>
+                  <span>{cover.badge}</span>
                 </span>
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-beef-burgundy/80 backdrop-blur-md border border-amber-300/30 text-amber-200 text-[11px] font-medium shadow-md">
                   <Eye className="w-3 h-3" />
-                  <span>{t.hero.heroCover?.clickToZoom || '點擊看大圖'}</span>
+                  <span>{cover.clickToZoom}</span>
                 </span>
               </div>
 
               {/* 底部情境說明與特色標籤 */}
               <div className="absolute bottom-3 left-3 right-3 space-y-1.5 pointer-events-none">
                 <div className="text-white font-serif font-bold text-base sm:text-lg drop-shadow-md">
-                  {t.hero.heroCover?.title || '乾式熟成肋眼 × 典雅侍酒'}
+                  {cover.title}
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-parchment-200">
-                  {(t.hero.heroCover?.tags || ['🥩 5-7分熟粉嫩切面', '🍷 波爾多水晶杯', '🍸 工藝薄荷無調酒']).map((tag, idx) => (
+                  {cover.tags.map((tag, idx) => (
                     <span key={idx} className="px-2 py-0.5 rounded-md bg-white/15 backdrop-blur-sm border border-white/10">
                       {tag}
                     </span>
@@ -183,7 +184,7 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
             <button
               onClick={() => setIsLightboxOpen(false)}
               className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-black/70 hover:bg-black text-white hover:text-amber-300 transition-all border border-white/20 cursor-pointer"
-              aria-label={t.hero.heroCover?.closeAria || '關閉'}
+              aria-label={cover.closeAria}
             >
               <X className="w-5 h-5" />
             </button>
@@ -191,7 +192,7 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
             {/* 高解析度大圖 */}
             <img
               src="/images/hero-cover.jpg"
-              alt={t.hero.heroCover?.alt || '酒肉朋友 米其林極致餐酒學 AI 視覺封面 8K'}
+              alt={`${cover.alt} 8K`}
               className="w-full h-auto max-h-[75vh] object-contain mx-auto"
             />
 
@@ -199,15 +200,15 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
             <div className="p-5 bg-charcoal-dark border-t border-parchment-800 text-parchment-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <h3 className="font-serif font-bold text-lg text-amber-200">
-                  {t.hero.heroCover?.lightboxTitle || '酒肉朋友 · 頂級餐搭視覺封面 (Michelin Editorial Photography)'}
+                  {cover.lightboxTitle}
                 </h3>
                 <p className="text-xs text-parchment-400 mt-0.5 font-sans">
-                  {t.hero.heroCover?.lightboxDesc || '厚切乾式熟成牛排 · 鹽之花與迷迭香 · 波爾多晶透紅酒杯 · 薄荷柑橘工藝零酒精調酒'}
+                  {cover.lightboxDesc}
                 </p>
               </div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-parchment-800/60 border border-parchment-700 text-xs text-parchment-300">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>{t.hero.heroCover?.aiTag || 'AI 智能生成 · 8K 極致畫質'}</span>
+                <span>{cover.aiTag}</span>
               </div>
             </div>
           </div>

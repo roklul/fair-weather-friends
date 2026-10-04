@@ -16,14 +16,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const cLang = t.cocktail;
 
-  const baseSpirits = [
-    { id: 'all', label: currentLang === 'en' ? 'All 10 Cocktails' : currentLang === 'ja' ? '定番10選すべて' : '全部 10 款經典調酒' },
-    { id: 'Bourbon / Rye', label: currentLang === 'en' ? 'Whiskey Base' : currentLang === 'ja' ? 'ウイスキー' : '威士忌基酒 (Whiskey)' },
-    { id: 'Gin', label: currentLang === 'en' ? 'Gin Base' : currentLang === 'ja' ? 'ジン' : '琴酒基酒 (Gin)' },
-    { id: 'White Rum', label: currentLang === 'en' ? 'Rum Base' : currentLang === 'ja' ? 'ラム' : '蘭姆酒基酒 (Rum)' },
-    { id: 'Tequila', label: currentLang === 'en' ? 'Tequila Base' : currentLang === 'ja' ? 'テキーラ' : '龍舌蘭基酒 (Tequila)' },
-    { id: 'Vodka', label: currentLang === 'en' ? 'Vodka Base' : currentLang === 'ja' ? 'ウォッカ' : '伏特加基酒 (Vodka)' },
-  ];
+  const baseSpirits = cLang.baseSpirits || TRANSLATIONS['zh-TW'].cocktail.baseSpirits;
 
   const localizedDishMatrix = getLocalizedDishMatrix(currentLang);
   const dishMatrix = DISH_TO_COCKTAIL_MATRIX.map((item, idx) => ({
@@ -48,17 +41,11 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
   const shouldLimit = selectedBaseSpirit === 'all' && !isExpanded;
   const displayedCocktails = shouldLimit ? filteredCocktails.slice(0, 6) : filteredCocktails;
 
-  const expandLabel = currentLang === 'en'
-    ? `Show All ${filteredCocktails.length} Cocktails`
-    : currentLang === 'ja'
-    ? `全 ${filteredCocktails.length} 種のカクテルをすべて表示`
+  const expandLabel = typeof cLang.expandLabel === 'function'
+    ? cLang.expandLabel(filteredCocktails.length)
     : `展開查看全部 ${filteredCocktails.length} 款調酒庫`;
 
-  const collapseLabel = currentLang === 'en'
-    ? 'Show Less'
-    : currentLang === 'ja'
-    ? '折りたたむ'
-    : '收合精選調酒';
+  const collapseLabel = cLang.collapseLabel || '收合精選調酒';
 
   const cocktailPrinciples = getLocalizedCocktailPrinciples(currentLang);
 

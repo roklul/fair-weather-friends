@@ -13,7 +13,7 @@ export default function ChineseDiningGuide({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 border border-red-300 text-red-900 text-xs font-semibold tracking-wider uppercase">
           <Sparkles className="w-3.5 h-3.5 text-red-800" />
-          <span>{data.chapters?.c04 || 'CHAPTER 04 · 中餐儀態與筷子禁忌'}</span>
+          <span>{data.chapters?.c04}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {chineseFlow.title}

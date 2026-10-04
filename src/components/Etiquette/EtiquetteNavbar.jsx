@@ -1,18 +1,41 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { WineMeatBrandLogo, Sparkles, Menu, X, ArrowLeft, BookOpen, Utensils } from '../Icons';
+import { WineMeatBrandLogo, Sparkles, Menu, X, ArrowLeft, Globe } from '../Icons';
+import { useLanguage } from '../../context/LanguageContext';
+import { TRANSLATIONS } from '../../data/translations';
 
-export default function EtiquetteNavbar({ currentLang = 'zh-TW', onSelectLang }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [langMenuOpen, setLangMenuOpen] = useState(false);
-
-  const languages = [
+export default function EtiquetteNavbar({ currentLang: propLang, onSelectLang: propOnSelectLang }) {
+  const context = useLanguage();
+  const currentLang = context?.currentLang || propLang || 'zh-TW';
+  const onSelectLang = context?.setCurrentLang || propOnSelectLang;
+  const languages = context?.languages || [
     { code: 'zh-TW', label: '繁體中文', flag: '🇹🇼' },
     { code: 'en', label: 'English', flag: '🇺🇸' },
     { code: 'ja', label: '日本語', flag: '🇯🇵' },
   ];
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const langMenuRef = useRef(null);
+
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
+
+  // 點擊外部自動收合語言選單
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
+        setLangMenuOpen(false);
+      }
+    }
+    if (langMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [langMenuOpen]);
 
   const currentLangObj = languages.find((l) => l.code === currentLang) || languages[0];
 
@@ -137,12 +160,13 @@ export default function EtiquetteNavbar({ currentLang = 'zh-TW', onSelectLang })
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
             {/* 多語系切換器 */}
-            <div className="relative">
+            <div className="relative" ref={langMenuRef}>
               <button
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
                 className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-parchment-300 bg-parchment-50 hover:bg-parchment-200 text-xs font-semibold text-charcoal shadow-2xs transition-all whitespace-nowrap"
-                aria-label="Select Language"
+                aria-label={t.nav?.selectLanguage || 'Select Language'}
               >
+                <Globe className="w-3.5 h-3.5 text-charcoal-muted" />
                 <span>{currentLangObj.flag}</span>
                 <span className="hidden md:inline">{currentLangObj.label}</span>
               </button>
@@ -218,7 +242,7 @@ export default function EtiquetteNavbar({ currentLang = 'zh-TW', onSelectLang })
           </div>
 
           <div className="pt-2 border-t border-parchment-200 flex items-center justify-between">
-            <span className="text-xs text-charcoal-muted">多語系：</span>
+            <span className="text-xs text-charcoal-muted">{t.nav?.languageLabel || '多語系：'}</span>
             <div className="flex gap-1.5">
               {languages.map((l) => (
                 <button

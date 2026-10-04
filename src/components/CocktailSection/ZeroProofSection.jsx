@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import { Sparkles, Wine, Droplets, Utensils, BookOpen, ArrowRight, CheckCircle2, Info, Flame } from '../Icons';
+import { Sparkles, ArrowRight, Info } from '../Icons';
 import {
-  ZERO_PROOF_TERMINOLOGY,
-  ZERO_PROOF_PILLARS,
-  SIGNATURE_MOCKTAILS,
-  ZERO_PROOF_SAFETY_GUIDE
+  SIGNATURE_MOCKTAILS
 } from '../../data/mocktailData';
+import {
+  getLocalizedMocktail,
+  getLocalizedPillars,
+  getLocalizedTerminology,
+  getLocalizedSafetyGuide
+} from '../../data/mocktailI18n';
 import { TRANSLATIONS } from '../../data/translations';
 
 export default function ZeroProofSection({ currentLang = 'zh-TW', onSelectMocktail }) {
   const [activeTab, setActiveTab] = useState('recipes'); // 'recipes' | 'pillars' | 'terminology' | 'safety'
   const t = TRANSLATIONS[currentLang]?.zeroProof || TRANSLATIONS['zh-TW'].zeroProof;
+
+  const localizedPillars = getLocalizedPillars(currentLang);
+  const localizedTerminology = getLocalizedTerminology(currentLang);
+  const localizedSafety = getLocalizedSafetyGuide(currentLang);
 
   return (
     <div className="space-y-8 animate-fadeIn">
@@ -92,9 +99,10 @@ export default function ZeroProofSection({ currentLang = 'zh-TW', onSelectMockta
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SIGNATURE_MOCKTAILS.map((mocktail) => {
-              const displayName = currentLang === 'ja' ? (mocktail.jaName || mocktail.name) : currentLang === 'en' ? mocktail.enName : mocktail.name;
-              const displayCategory = currentLang === 'ja' ? (mocktail.categoryJa || mocktail.category) : currentLang === 'en' ? (mocktail.categoryEn || mocktail.category) : mocktail.category;
+            {SIGNATURE_MOCKTAILS.map((rawMocktail) => {
+              const mocktail = getLocalizedMocktail(rawMocktail, currentLang);
+              const displayName = mocktail.name;
+              const displayCategory = mocktail.category;
               return (
                 <div
                   key={mocktail.id}
@@ -139,7 +147,7 @@ export default function ZeroProofSection({ currentLang = 'zh-TW', onSelectMockta
                     {mocktail.pairingFood && mocktail.pairingFood[0] && (
                       <div className="bg-emerald-50/90 p-2.5 rounded-xl border border-emerald-200/80 text-xs">
                         <span className="font-bold text-emerald-950 block mb-0.5">
-                          {t.pairingTitle || '🍽️ 最推薦搭餐：'}
+                          {t.pairingTitle}
                         </span>
                         <span className="text-emerald-900 text-[11px] line-clamp-1">{mocktail.pairingFood[0].dish}</span>
                       </div>
@@ -154,7 +162,7 @@ export default function ZeroProofSection({ currentLang = 'zh-TW', onSelectMockta
                       type="button"
                       className="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 group-hover:underline shrink-0"
                     >
-                      <span>{t.viewRecipeBtn || '查看完整調製配方'}</span>
+                      <span>{t.viewRecipeBtn}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -171,12 +179,12 @@ export default function ZeroProofSection({ currentLang = 'zh-TW', onSelectMockta
           <div className="border-b border-parchment-300 pb-3">
             <span className="text-xs font-serif italic text-charcoal-muted">Ingredient Architecture</span>
             <h4 className="text-2xl font-serif font-bold text-charcoal">
-              {t.pillarsTitle || '無酒精調飲的六大核心原料系統'}
+              {t.pillarsTitle}
             </h4>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {ZERO_PROOF_PILLARS.map((pillar) => (
+            {localizedPillars.map((pillar) => (
               <div
                 key={pillar.id}
                 className="bg-white p-5 rounded-2xl border border-parchment-300 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all space-y-2.5"
@@ -207,18 +215,18 @@ export default function ZeroProofSection({ currentLang = 'zh-TW', onSelectMockta
           <div className="border-b border-parchment-300 pb-3">
             <span className="text-xs font-serif italic text-charcoal-muted">Spectrum of Names & Contexts</span>
             <h4 className="text-2xl font-serif font-bold text-charcoal">
-              {t.terminologyTitle || '從「仿雞尾酒」到「零酒精特調」：名稱演變與定位'}
+              {t.terminologyTitle}
             </h4>
           </div>
 
           <div className="bg-white rounded-2xl border border-parchment-300 overflow-hidden shadow-xs divide-y divide-parchment-200">
-            {ZERO_PROOF_TERMINOLOGY.map((term, idx) => (
+            {localizedTerminology.map((term, idx) => (
               <div key={idx} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-parchment-50 transition-colors">
                 <div className="space-y-1 sm:w-1/3">
                   <div className="flex items-center gap-2">
                     <span className="font-mono font-bold text-base text-emerald-900">{term.name}</span>
                   </div>
-                  <div className="text-xs font-bold text-beef-burgundy">{term.zhName}</div>
+                  <div className="text-xs font-bold text-beef-burgundy">{term.localizedName}</div>
                 </div>
                 <div className="text-xs sm:text-sm text-charcoal-light sm:w-1/2 leading-relaxed">
                   {term.meaning}
@@ -238,12 +246,12 @@ export default function ZeroProofSection({ currentLang = 'zh-TW', onSelectMockta
           <div className="border-b border-parchment-300 pb-3">
             <span className="text-xs font-serif italic text-charcoal-muted">Hygiene & Regulations</span>
             <h4 className="text-2xl font-serif font-bold text-charcoal">
-              {t.safetyTitle || ZERO_PROOF_SAFETY_GUIDE.title}
+              {localizedSafety.title}
             </h4>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {ZERO_PROOF_SAFETY_GUIDE.rules.map((rule, idx) => (
+            {localizedSafety.rules.map((rule, idx) => (
               <div key={idx} className="bg-white p-5 rounded-2xl border border-parchment-300 space-y-2 shadow-xs">
                 <div className="flex items-center gap-2 text-amber-800 font-bold text-sm">
                   <Info className="w-4 h-4 text-amber-700 shrink-0" />

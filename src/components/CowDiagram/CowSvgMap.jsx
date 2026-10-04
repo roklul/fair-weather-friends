@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { PRIMAL_AREAS } from '../../data/beefData';
 import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { TRANSLATIONS } from '../../data/translations';
-import { Info, Sparkles, Check, ChevronRight } from '../Icons';
+import { Info } from '../Icons';
 
-export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName, currentLang = 'zh-TW' }) {
+export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName: _onSelectCutByName, currentLang = 'zh-TW' }) {
   const [hoveredPrimalId, setHoveredPrimalId] = useState(null);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
 

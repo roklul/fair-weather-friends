@@ -4,44 +4,44 @@ import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { TRANSLATIONS } from '../../data/translations';
 import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from '../Icons';
 
+// 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
+export const BEEF_EXTENDED_CUT_MAP = {
+  chuck: ['top-blade', 'flat-iron', 'top-blade', 'top-blade'],
+  rib: ['ribeye', 'ribeye', 'short-rib', 'short-rib', 'ribeye'],
+  loin: ['tenderloin', 'new-york-strip', 'new-york-strip', 'tenderloin', 'sirloin'],
+  brisket: ['brisket-cut', 'brisket-cut', 'brisket-cut'],
+  plate: ['short-plate-cut', 'short-plate-cut', 'flank-cut', 'short-plate-cut'],
+  flank: ['flank-cut', 'flank-cut', 'flank-cut'],
+  round: ['round-rump', 'round-rump', 'round-rump', 'round-rump'],
+  shank: ['beef-shank', 'beef-shank', 'beef-shank', 'beef-shank']
+};
+
+export const getCutId = (primalId, idx, name) => {
+  if (BEEF_EXTENDED_CUT_MAP[primalId]?.[idx]) {
+    return BEEF_EXTENDED_CUT_MAP[primalId][idx];
+  }
+  const n = (name || '').toLowerCase();
+  if (n.includes('肋眼') || n.includes('ribeye') || n.includes('リブロース')) return 'ribeye';
+  if (n.includes('老饕') || n.includes('spinalis') || n.includes('リブキャップ')) return 'ribeye';
+  if (n.includes('菲力') || n.includes('tenderloin') || n.includes('ヒレ') || n.includes('フィレ')) return 'tenderloin';
+  if (n.includes('紐約客') || n.includes('strip') || n.includes('サーロイン')) return 'new-york-strip';
+  if (n.includes('沙朗') || n.includes('sirloin') || n.includes('ランプ')) return 'sirloin';
+  if (n.includes('牛小排') || n.includes('short rib') || n.includes('ショートリブ')) return 'short-rib';
+  if (n.includes('板腱') || n.includes('top blade') || n.includes('ミスジ')) return 'top-blade';
+  if (n.includes('翼板') || n.includes('flat iron') || n.includes('ザブトン')) return 'flat-iron';
+  if (n.includes('前胸') || n.includes('牛腩') || n.includes('brisket') || n.includes('ブリスケット')) return 'brisket-cut';
+  if (n.includes('牛五花') || n.includes('short plate') || n.includes('牛バラ') || n.includes('カルビ')) return 'short-plate-cut';
+  if (n.includes('腹脇') || n.includes('flank') || n.includes('フランク') || n.includes('ささみ')) return 'flank-cut';
+  if (n.includes('腱') || n.includes('shank') || n.includes('スネ')) return 'beef-shank';
+  if (n.includes('臀肉') || n.includes('round') || n.includes('モモ')) return 'round-rump';
+  return null;
+};
+
 export default function PrimalDetailPanel({ selectedPrimalId, onSelectCutByName, onOpenCutModalById, currentLang = 'zh-TW' }) {
   const rawPrimal = PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || PRIMAL_AREAS[1];
   const primal = getLocalizedPrimal(rawPrimal, currentLang);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const a = t.anatomy;
-
-  // 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
-  const BEEF_EXTENDED_CUT_MAP = {
-    chuck: ['top-blade', 'flat-iron', 'top-blade', 'top-blade'],
-    rib: ['ribeye', 'ribeye', 'short-rib', 'short-rib', 'ribeye'],
-    loin: ['tenderloin', 'new-york-strip', 'new-york-strip', 'tenderloin', 'sirloin'],
-    brisket: ['brisket-cut', 'brisket-cut', 'brisket-cut'],
-    plate: ['short-plate-cut', 'short-plate-cut', 'flank-cut', 'short-plate-cut'],
-    flank: ['flank-cut', 'flank-cut', 'flank-cut'],
-    round: ['round-rump', 'round-rump', 'round-rump', 'round-rump'],
-    shank: ['beef-shank', 'beef-shank', 'beef-shank', 'beef-shank']
-  };
-
-  const getCutId = (primalId, idx, name) => {
-    if (BEEF_EXTENDED_CUT_MAP[primalId]?.[idx]) {
-      return BEEF_EXTENDED_CUT_MAP[primalId][idx];
-    }
-    const n = (name || '').toLowerCase();
-    if (n.includes('肋眼') || n.includes('ribeye') || n.includes('リブロース')) return 'ribeye';
-    if (n.includes('老饕') || n.includes('spinalis') || n.includes('リブキャップ')) return 'ribeye';
-    if (n.includes('菲力') || n.includes('tenderloin') || n.includes('ヒレ') || n.includes('フィレ')) return 'tenderloin';
-    if (n.includes('紐約客') || n.includes('strip') || n.includes('サーロイン')) return 'new-york-strip';
-    if (n.includes('沙朗') || n.includes('sirloin') || n.includes('ランプ')) return 'sirloin';
-    if (n.includes('牛小排') || n.includes('short rib') || n.includes('ショートリブ')) return 'short-rib';
-    if (n.includes('板腱') || n.includes('top blade') || n.includes('ミスジ')) return 'top-blade';
-    if (n.includes('翼板') || n.includes('flat iron') || n.includes('ザブトン')) return 'flat-iron';
-    if (n.includes('前胸') || n.includes('牛腩') || n.includes('brisket') || n.includes('ブリスケット')) return 'brisket-cut';
-    if (n.includes('牛五花') || n.includes('short plate') || n.includes('牛バラ') || n.includes('カルビ')) return 'short-plate-cut';
-    if (n.includes('腹脇') || n.includes('flank') || n.includes('フランク') || n.includes('ささみ')) return 'flank-cut';
-    if (n.includes('腱') || n.includes('shank') || n.includes('スネ')) return 'beef-shank';
-    if (n.includes('臀肉') || n.includes('round') || n.includes('モモ')) return 'round-rump';
-    return null;
-  };
 
   return (
     <div className="bg-parchment-50 border border-parchment-300 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between h-full">

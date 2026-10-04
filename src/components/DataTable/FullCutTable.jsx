@@ -103,7 +103,7 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
             <thead>
               <tr className="bg-parchment-200/80 border-b border-parchment-300 text-charcoal font-serif font-bold">
                 <th className="py-3.5 px-4">{tb.thName}</th>
-                <th className="py-3.5 px-4">{tb.thSubName || (currentLang === 'en' ? 'Local Name / Aliases' : currentLang === 'ja' ? '英語名 / 別名' : '英文名稱 / 別名')}</th>
+                <th className="py-3.5 px-4">{tb.thSubName}</th>
                 <th className="py-3.5 px-4">{tb.thPrimal}</th>
                 <th className="py-3.5 px-4">{tb.thFat}</th>
                 <th className="py-3.5 px-4">{tb.thCooking}</th>

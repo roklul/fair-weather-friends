@@ -14,7 +14,7 @@ export default function CopyrightAndReliability({ data, currentLang }) {
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-300 text-blue-900 text-xs font-semibold tracking-wider uppercase">
             <span>🛡️</span>
-            <span>{data.chapters?.c08 || 'CHAPTER 08 · 數位版權安全原則'}</span>
+            <span>{data.chapters?.c08}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
             {copyrightSection.title}
@@ -63,7 +63,7 @@ export default function CopyrightAndReliability({ data, currentLang }) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {copyrightSection.vectorAdvantages.map((adv, idx) => (
             <div key={idx} className="p-4 rounded-xl bg-parchment-50 border border-parchment-300 text-xs text-charcoal-light leading-relaxed">
-              <span className="font-bold text-beef-burgundy mr-1">✓ {data.advantagePrefix || '優勢'} {idx + 1}：</span>
+              <span className="font-bold text-beef-burgundy mr-1">✓ {data.advantagePrefix} {idx + 1}：</span>
               {adv}
             </div>
           ))}
@@ -75,7 +75,7 @@ export default function CopyrightAndReliability({ data, currentLang }) {
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 border border-purple-300 text-purple-900 text-xs font-semibold tracking-wider uppercase">
             <span>🧭</span>
-            <span>{data.chapters?.c09 || 'CHAPTER 09 · 規則適用與判斷順序'}</span>
+            <span>{data.chapters?.c09}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
             {reliability.title}

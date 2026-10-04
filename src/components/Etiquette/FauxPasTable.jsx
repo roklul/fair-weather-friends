@@ -41,7 +41,7 @@ export default function FauxPasTable({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold tracking-wider uppercase">
           <BookOpen className="w-3.5 h-3.5 text-amber-800" />
-          <span>{data.chapters?.c06 || 'CHAPTER 06 · 13 大常見失禮行為對照'}</span>
+          <span>{data.chapters?.c06}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {fauxPas.title}
@@ -99,10 +99,10 @@ export default function FauxPasTable({ data, currentLang }) {
           <table className="w-full text-left text-sm border-collapse min-w-[720px]">
             <thead>
               <tr className="border-b-2 border-parchment-300 bg-parchment-200/70 font-serif text-charcoal">
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[18%]">{fauxPas.tableHeaders?.behavior || '行為樣態'}</th>
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-beef-burgundy">🥢 {fauxPas.tableHeaders?.chinese || '中餐場合問題'}</th>
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-emerald-800">🍴 {fauxPas.tableHeaders?.western || '西餐場合問題'}</th>
-                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[28%] text-amber-900">✨ {fauxPas.tableHeaders?.improvement || '得體改善對策'}</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[18%]">{fauxPas.tableHeaders?.behavior}</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-beef-burgundy">🥢 {fauxPas.tableHeaders?.chinese}</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[27%] text-emerald-800">🍴 {fauxPas.tableHeaders?.western}</th>
+                <th className="py-3.5 px-4 font-bold text-xs uppercase w-[28%] text-amber-900">✨ {fauxPas.tableHeaders?.improvement}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-parchment-200 font-sans">

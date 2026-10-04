@@ -4,37 +4,37 @@ import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { TRANSLATIONS } from '../../data/translations';
 import { Flame, Wine, Compass, ChevronRight, Sparkles, BookOpen } from '../Icons';
 
+// 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
+export const FISH_EXTENDED_CUT_MAP = {
+  'fish-head': ['milkfish-loin-cut', 'grouper-fillet', 'salmon-fillet-cut', 'amberjack-collar'],
+  'fish-collar': ['amberjack-collar', 'amberjack-collar', 'amberjack-collar', 'amberjack-collar'],
+  'fish-dorsal': ['threadfin-steak', 'barramundi-fillet', 'pomfret-steak', 'spanish-mackerel'],
+  'fish-belly': ['tuna-otoro-cut', 'milkfish-belly-cut', 'salmon-fillet-cut', 'amberjack-collar'],
+  'fish-loin': ['milkfish-loin-cut', 'salmon-fillet-cut', 'mackerel-fillet', 'barramundi-fillet'],
+  'fish-tail': ['spanish-mackerel', 'spanish-mackerel', 'threadfin-steak'],
+  'fish-skin': ['milkfish-belly-cut', 'grouper-fillet', 'salmon-fillet-cut'],
+  'fish-bone': ['barramundi-fillet', 'threadfin-steak', 'grouper-fillet'],
+  'fish-offal': ['mullet-bottarga', 'milkfish-belly-cut', 'mullet-bottarga', 'mullet-bottarga']
+};
+
+export const getCutId = (primalId, idx, name) => {
+  if (FISH_EXTENDED_CUT_MAP[primalId]?.[idx]) {
+    return FISH_EXTENDED_CUT_MAP[primalId][idx];
+  }
+  const n = (name || '').toLowerCase();
+  if (n.includes('菲力') || n.includes('loin') || n.includes('背肉') || n.includes('清肉') || n.includes('赤身') || n.includes('フィレ')) return 'salmon-fillet-cut';
+  if (n.includes('大腹') || n.includes('otoro') || n.includes('腹') || n.includes('ハラス') || n.includes('トロ')) return 'tuna-otoro-cut';
+  if (n.includes('下巴') || n.includes('collar') || n.includes('kama') || n.includes('カマ')) return 'amberjack-collar';
+  if (n.includes('頭') || n.includes('head') || n.includes('兜')) return 'grouper-fillet';
+  if (n.includes('尾') || n.includes('皮') || n.includes('tail') || n.includes('skin')) return 'spanish-mackerel';
+  return null;
+};
+
 export default function FishDetailPanel({ selectedPrimalId, onOpenCutModalById, currentLang = 'zh-TW' }) {
   const rawPrimal = FISH_PRIMAL_AREAS.find((p) => p.id === selectedPrimalId) || FISH_PRIMAL_AREAS[0];
   const primal = getLocalizedPrimal(rawPrimal, currentLang);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const a = t.anatomy;
-
-  // 確定性部位映射表 (Language-Agnostic Deterministic Primal Index Map)
-  const FISH_EXTENDED_CUT_MAP = {
-    'fish-head': ['milkfish-loin-cut', 'grouper-fillet', 'salmon-fillet-cut', 'amberjack-collar'],
-    'fish-collar': ['amberjack-collar', 'amberjack-collar', 'amberjack-collar', 'amberjack-collar'],
-    'fish-dorsal': ['threadfin-steak', 'barramundi-fillet', 'pomfret-steak', 'spanish-mackerel'],
-    'fish-belly': ['tuna-otoro-cut', 'milkfish-belly-cut', 'salmon-fillet-cut', 'amberjack-collar'],
-    'fish-loin': ['milkfish-loin-cut', 'salmon-fillet-cut', 'mackerel-fillet', 'barramundi-fillet'],
-    'fish-tail': ['spanish-mackerel', 'spanish-mackerel', 'threadfin-steak'],
-    'fish-skin': ['milkfish-belly-cut', 'grouper-fillet', 'salmon-fillet-cut'],
-    'fish-bone': ['barramundi-fillet', 'threadfin-steak', 'grouper-fillet'],
-    'fish-offal': ['mullet-bottarga', 'milkfish-belly-cut', 'mullet-bottarga', 'mullet-bottarga']
-  };
-
-  const getCutId = (primalId, idx, name) => {
-    if (FISH_EXTENDED_CUT_MAP[primalId]?.[idx]) {
-      return FISH_EXTENDED_CUT_MAP[primalId][idx];
-    }
-    const n = (name || '').toLowerCase();
-    if (n.includes('菲力') || n.includes('loin') || n.includes('背肉') || n.includes('清肉') || n.includes('赤身') || n.includes('フィレ')) return 'salmon-fillet-cut';
-    if (n.includes('大腹') || n.includes('otoro') || n.includes('腹') || n.includes('ハラス') || n.includes('トロ')) return 'tuna-otoro-cut';
-    if (n.includes('下巴') || n.includes('collar') || n.includes('kama') || n.includes('カマ')) return 'amberjack-collar';
-    if (n.includes('頭') || n.includes('head') || n.includes('兜')) return 'grouper-fillet';
-    if (n.includes('尾') || n.includes('皮') || n.includes('tail') || n.includes('skin')) return 'spanish-mackerel';
-    return null;
-  };
 
   return (
     <div className="bg-parchment-50 border border-parchment-300 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between h-full">

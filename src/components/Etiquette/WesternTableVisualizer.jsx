@@ -111,7 +111,7 @@ export default function WesternTableVisualizer({ data, currentLang }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-semibold tracking-wider uppercase">
           <Utensils className="w-3.5 h-3.5 text-emerald-800" />
-          <span>{data.chapters?.c03 || 'CHAPTER 03 · 西餐餐位與餐具擺設'}</span>
+          <span>{data.chapters?.c03}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {westernSetting.title}
@@ -394,9 +394,9 @@ export default function WesternTableVisualizer({ data, currentLang }) {
           <table className="w-full text-left text-sm border-collapse min-w-[600px]">
             <thead>
               <tr className="border-b-2 border-parchment-300 bg-parchment-200/70 font-serif text-charcoal">
-                <th className="py-3 px-4 font-bold text-xs uppercase w-[22%]">{westernSetting.tableHeaders?.pos || '餐位位置'}</th>
-                <th className="py-3 px-4 font-bold text-xs uppercase w-[33%] text-emerald-800">{westernSetting.tableHeaders?.name || '餐具名稱 (Name)'}</th>
-                <th className="py-3 px-4 font-bold text-xs uppercase w-[45%] text-charcoal-muted">{westernSetting.tableHeaders?.usage || '主要用途與功能 (Usage)'}</th>
+                <th className="py-3 px-4 font-bold text-xs uppercase w-[22%]">{westernSetting.tableHeaders?.pos}</th>
+                <th className="py-3 px-4 font-bold text-xs uppercase w-[33%] text-emerald-800">{westernSetting.tableHeaders?.name}</th>
+                <th className="py-3 px-4 font-bold text-xs uppercase w-[45%] text-charcoal-muted">{westernSetting.tableHeaders?.usage}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-parchment-200 font-sans">

@@ -251,7 +251,7 @@ export default function TasteWizard({
                         <div className="flex items-center justify-between gap-1 mb-1">
                           <span className="text-[11px] font-bold text-amber-900 flex items-center gap-1">
                             <Wine className="w-3.5 h-3.5 text-amber-700" />
-                            <span>{w.pairedCocktailLabel || '🍸 推薦搭餐調酒'}</span>
+                            <span>{w.pairedCocktailLabel}</span>
                           </span>
                           <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-200 text-amber-900">
                             {synergyTagText}
@@ -265,7 +265,7 @@ export default function TasteWizard({
                             onClick={() => handleCocktailClick(pairing.cocktailId)}
                             className="text-[10px] font-bold text-amber-800 hover:text-amber-950 underline inline-flex items-center gap-1 cursor-pointer"
                           >
-                            <span>{cocktailDisplayName} ({w.viewCocktailRecipe || '調酒酒譜 →'})</span>
+                            <span>{cocktailDisplayName} ({w.viewCocktailRecipe})</span>
                           </button>
                         </div>
                       </div>
