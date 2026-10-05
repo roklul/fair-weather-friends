@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, ChevronUp } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 import { getLocalizedFaqs } from '../../data/faqsI18n';
@@ -10,9 +10,11 @@ export default function FaqSection({ activeCategory, faqsData: propFaqsData, cur
   const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
   const faqs = getLocalizedFaqs(activeCategory, currentLang) || propFaqsData || [];
 
-  useEffect(() => {
+  const [prevCategory, setPrevCategory] = useState(activeCategory);
+  if (activeCategory !== prevCategory) {
+    setPrevCategory(activeCategory);
     setOpenIndex(0);
-  }, [activeCategory]);
+  }
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? -1 : index);

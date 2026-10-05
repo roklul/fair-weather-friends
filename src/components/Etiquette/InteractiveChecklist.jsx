@@ -11,7 +11,7 @@ export default function InteractiveChecklist({ data }) {
     try {
       const saved = localStorage.getItem('dining_etiquette_checklist');
       if (saved) {
-        setCheckedItems(JSON.parse(saved));
+        queueMicrotask(() => setCheckedItems(JSON.parse(saved)));
       }
     } catch {
       // ignore

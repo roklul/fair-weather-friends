@@ -21,7 +21,7 @@ export function LanguageProvider({ children, initialLang = 'zh-TW' }) {
     try {
       const saved = localStorage.getItem('fwf_lang');
       if (saved && (saved === 'zh-TW' || saved === 'en' || saved === 'ja')) {
-        setCurrentLangState(saved);
+        queueMicrotask(() => setCurrentLangState(saved));
         if (typeof document !== 'undefined') {
           document.documentElement.lang = saved;
         }

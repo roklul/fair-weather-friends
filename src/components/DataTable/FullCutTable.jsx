@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BookOpen, Search, ExternalLink, ChevronDown, ChevronUp } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 import { getLocalizedPrimal } from '../../data/primalsI18n';
@@ -12,11 +12,13 @@ export default function FullCutTable({ activeCategory, cutsData, primalAreas, on
   const tb = t.table;
   const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
 
-  useEffect(() => {
+  const [prevCategory, setPrevCategory] = useState(activeCategory);
+  if (activeCategory !== prevCategory) {
+    setPrevCategory(activeCategory);
     setFilterPrimal('all');
     setQuery('');
     setIsExpanded(false);
-  }, [activeCategory]);
+  }
 
   const filteredData = cutsData.filter((item) => {
     const matchesPrimal = filterPrimal === 'all' || item.primalId === filterPrimal;

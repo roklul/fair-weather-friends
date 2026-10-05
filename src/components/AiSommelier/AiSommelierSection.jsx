@@ -30,7 +30,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
     try {
       const savedKey = localStorage.getItem('fwf_openai_api_key');
       if (savedKey) {
-        setApiKey(savedKey);
+        queueMicrotask(() => setApiKey(savedKey));
       }
     } catch {
       // ignore storage access error
@@ -160,7 +160,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
                 type="button"
                 onClick={() => setShowKey(!showKey)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-charcoal-muted hover:text-charcoal cursor-pointer p-1"
-                aria-label="Toggle Key Visibility"
+                aria-label={t.toggleKeyVisibility || '切換金鑰顯示狀態'}
               >
                 {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>

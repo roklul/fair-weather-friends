@@ -48,7 +48,7 @@ export default function CutModal({ cut, onClose, currentLang = 'zh-TW' }) {
           <button
             onClick={onClose}
             className="p-2 rounded-full hover:bg-parchment-300 text-charcoal-muted hover:text-charcoal transition-colors cursor-pointer"
-            aria-label="Close modal"
+            aria-label={m.close || '關閉'}
           >
             <X className="w-6 h-6" />
           </button>

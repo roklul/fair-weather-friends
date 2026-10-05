@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CutCard from './CutCard';
 import { Search, Utensils, ChevronDown, ChevronUp } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
@@ -88,11 +88,13 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
   const filterTabs = categoryFilters[activeCategory]?.[langKey] || categoryFilters.beef['zh-TW'];
 
   // 重設篩選標籤與展開狀態
-  useEffect(() => {
+  const [prevCategory, setPrevCategory] = useState(activeCategory);
+  if (activeCategory !== prevCategory) {
+    setPrevCategory(activeCategory);
     setSelectedFilter('all');
     setSearchQuery('');
     setIsExpanded(false);
-  }, [activeCategory]);
+  }
 
   const filteredCuts = cutsData.filter((cut) => {
     const matchesSearch =
