@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Utensils, Sparkles, BookOpen } from '../Icons';
+import { Sparkles } from '../Icons';
 
 export default function DiningScenarios({ data, currentLang }) {
   const { scenarios } = data;

@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Compass, Sparkles, BookOpen } from '../Icons';
+import { Sparkles } from '../Icons';
 
-export default function ChineseDiningGuide({ data, currentLang }) {
+export default function ChineseDiningGuide({ data }) {
   const { chineseFlow } = data;
 
   return (

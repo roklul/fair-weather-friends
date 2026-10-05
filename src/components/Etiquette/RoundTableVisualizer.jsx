@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Compass, Sparkles, BookOpen, Utensils } from '../Icons';
+import { Compass, BookOpen } from '../Icons';
 
 export default function RoundTableVisualizer({ data, currentLang = 'zh-TW' }) {
   const { seating } = data;

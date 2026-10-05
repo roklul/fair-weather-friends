@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, Layers, Fish, ArrowRight, CheckCircle2, RotateCcw, Wine, Compass } from '../Icons';
+import { Sparkles, UtensilsCrossed, Flame, Soup, Droplets, Clock, HeartPulse, Zap, Wind, Layers, Fish, ArrowRight, CheckCircle2, RotateCcw, Wine } from '../Icons';
 import { calculateRecommendation } from '../../domain/recommendation/calculateRecommendation';
 import { COCKTAILS_DATA } from '../../data/cocktailData';
 import { TRANSLATIONS } from '../../data/translations';

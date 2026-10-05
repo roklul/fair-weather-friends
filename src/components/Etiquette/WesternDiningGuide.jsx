@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Utensils, Sparkles, BookOpen } from '../Icons';
+import { Utensils } from '../Icons';
 
-export default function WesternDiningGuide({ data, currentLang }) {
+export default function WesternDiningGuide({ data }) {
   const { westernFlow } = data;
 
   return (

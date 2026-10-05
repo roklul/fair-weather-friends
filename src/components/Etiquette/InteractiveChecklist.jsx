@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Sparkles, BookOpen } from '../Icons';
 
-export default function InteractiveChecklist({ data, currentLang }) {
+export default function InteractiveChecklist({ data }) {
   const { checklist, conclusion } = data;
   const [checkedItems, setCheckedItems] = useState({});
 
@@ -14,7 +13,7 @@ export default function InteractiveChecklist({ data, currentLang }) {
       if (saved) {
         setCheckedItems(JSON.parse(saved));
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
   }, []);
@@ -24,7 +23,7 @@ export default function InteractiveChecklist({ data, currentLang }) {
     setCheckedItems(next);
     try {
       localStorage.setItem('dining_etiquette_checklist', JSON.stringify(next));
-    } catch (e) {
+    } catch {
       // ignore
     }
   };
@@ -33,7 +32,7 @@ export default function InteractiveChecklist({ data, currentLang }) {
     setCheckedItems({});
     try {
       localStorage.removeItem('dining_etiquette_checklist');
-    } catch (e) {
+    } catch {
       // ignore
     }
   };

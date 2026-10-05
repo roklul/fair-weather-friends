@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Wine, Utensils, CheckCircle2, AlertCircle, Key, Eye, EyeOff, RotateCcw, ArrowRight } from '../Icons';
+import { Sparkles, AlertCircle, Key, Eye, EyeOff, RotateCcw, ArrowRight } from '../Icons';
 import { AI_SOMMELIER_I18N } from '../../data/aiSommelierI18n';
 import AiReportViewer from './AiReportViewer';
 
@@ -9,7 +9,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
   // BYOK State
   const [apiKey, setApiKey] = useState('');
   const [showKey, setShowKey] = useState(false);
-  const [saveToLocalStorage, setSaveToLocalStorage] = useState(true);
+  const [saveToLocalStorage] = useState(true);
 
   // Form State
   const [adults, setAdults] = useState(2);
@@ -32,7 +32,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
       if (savedKey) {
         setApiKey(savedKey);
       }
-    } catch (e) {
+    } catch {
       // ignore storage access error
     }
   }, []);
@@ -43,7 +43,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
     if (saveToLocalStorage) {
       try {
         localStorage.setItem('fwf_openai_api_key', val);
-      } catch (e) {}
+      } catch {}
     }
   };
 
@@ -51,7 +51,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
     setApiKey('');
     try {
       localStorage.removeItem('fwf_openai_api_key');
-    } catch (e) {}
+    } catch {}
   };
 
   // Apply Preset Scenario

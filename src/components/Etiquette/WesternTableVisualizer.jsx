@@ -400,19 +400,45 @@ export default function WesternTableVisualizer({ data, currentLang }) {
               </tr>
             </thead>
             <tbody className="divide-y divide-parchment-200 font-sans">
-              {westernSetting.utensils.map((u, i) => (
-                <tr key={i} className="hover:bg-parchment-100 transition-colors">
-                  <td className="py-3 px-4 font-bold text-charcoal text-xs whitespace-nowrap">
-                    {u.pos}
-                  </td>
-                  <td className="py-3 px-4 font-semibold text-emerald-900">
-                    {u.name}
-                  </td>
-                  <td className="py-3 px-4 text-charcoal-light text-xs leading-relaxed">
-                    {u.usage}
-                  </td>
-                </tr>
-              ))}
+              {westernSetting.utensils.map((u, i) => {
+                const UTENSIL_ROW_MAP = {
+                  saladFork: 0,
+                  dinnerFork: 1,
+                  plate: 2,
+                  dinnerKnife: 3,
+                  fishKnife: 4,
+                  soupSpoon: 5,
+                  dessert: 6,
+                  bread: 7,
+                  waterGlass: 8,
+                  redWineGlass: 8,
+                  whiteWineGlass: 8,
+                  napkin: 9,
+                };
+                const isHighlighted = highlightedUtensil && UTENSIL_ROW_MAP[highlightedUtensil] === i;
+                return (
+                  <tr
+                    key={i}
+                    onClick={() => {
+                      const matchKey = Object.keys(UTENSIL_ROW_MAP).find((k) => UTENSIL_ROW_MAP[k] === i);
+                      setHighlightedUtensil(highlightedUtensil === matchKey ? null : matchKey);
+                    }}
+                    className={`transition-colors cursor-pointer ${
+                      isHighlighted ? 'bg-amber-100/90 font-medium' : 'hover:bg-parchment-100'
+                    }`}
+                  >
+                    <td className="py-3 px-4 font-bold text-charcoal text-xs whitespace-nowrap">
+                      {u.pos}
+                    </td>
+                    <td className="py-3 px-4 font-semibold text-emerald-900">
+                      {u.name}
+                    </td>
+                    <td className="py-3 px-4 text-charcoal-light text-xs leading-relaxed">
+                      {u.usage}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

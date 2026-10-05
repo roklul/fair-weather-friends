@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Compass, Sparkles, BookOpen } from '../Icons';
+import { Sparkles, BookOpen } from '../Icons';
 
-export default function CultureComparison({ data, currentLang }) {
+export default function CultureComparison({ data }) {
   const { culture } = data;
 
   return (

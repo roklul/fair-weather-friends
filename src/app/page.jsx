@@ -21,7 +21,6 @@ import Footer from '../components/Footer';
 import CutModal from '../components/CutCard/CutModal';
 import DemoDisclaimer from '../components/Compliance/DemoDisclaimer';
 import { Compass, Sparkles } from '../components/Icons';
-import { TRANSLATIONS } from '../data/translations';
 import { useLanguage } from '../context/LanguageContext';
 
 // 資料庫引入
@@ -249,7 +248,6 @@ export default function HomePage() {
                   <CowSvgMap
                     selectedPrimalId={selectedBeefPrimal}
                     onSelectPrimal={(id) => setSelectedBeefPrimal(id)}
-                    onSelectCutByName={handleOpenCutModalById}
                     currentLang={currentLang}
                   />
                 )}
@@ -257,7 +255,6 @@ export default function HomePage() {
                   <PorkSvgMap
                     selectedPrimalId={selectedPorkPrimal}
                     onSelectPrimal={(id) => setSelectedPorkPrimal(id)}
-                    onSelectCutByName={handleOpenCutModalById}
                     currentLang={currentLang}
                   />
                 )}
@@ -265,7 +262,6 @@ export default function HomePage() {
                   <FishSvgMap
                     selectedPrimalId={selectedFishPrimal}
                     onSelectPrimal={(id) => setSelectedFishPrimal(id)}
-                    onSelectCutByName={handleOpenCutModalById}
                     currentLang={currentLang}
                   />
                 )}

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { PORK_PRIMAL_AREAS } from '../../data/porkData';
 import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { TRANSLATIONS } from '../../data/translations';
-import { Info, Sparkles, ChevronRight } from '../Icons';
+import { Info } from '../Icons';
 
-export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName, currentLang = 'zh-TW' }) {
+export default function PorkSvgMap({ selectedPrimalId, onSelectPrimal, currentLang = 'zh-TW' }) {
   const [hoveredPrimalId, setHoveredPrimalId] = useState(null);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
 

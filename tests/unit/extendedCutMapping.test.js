@@ -4,16 +4,12 @@ import { PORK_PRIMAL_AREAS, PORK_CUTS_DATA } from '../../src/data/porkData';
 import { FISH_PRIMAL_AREAS, FISH_CUTS_DATA } from '../../src/data/fishData';
 import {
   BEEF_EXTENDED_CUT_MAP,
-  getCutId as getBeefCutId,
-} from '../../src/components/CowDiagram/PrimalDetailPanel';
-import {
+  getBeefCutId,
   PORK_EXTENDED_CUT_MAP,
-  getCutId as getPorkCutId,
-} from '../../src/components/CowDiagram/PorkDetailPanel';
-import {
+  getPorkCutId,
   FISH_EXTENDED_CUT_MAP,
-  getCutId as getFishCutId,
-} from '../../src/components/CowDiagram/FishDetailPanel';
+  getFishCutId,
+} from '../../src/data/extendedCutMap';
 
 describe('Extended Cut Mapping Verification (Deterministic & Language-Agnostic)', () => {
   const validBeefCutIds = new Set(BEEF_CUTS_DATA.map((c) => c.id));

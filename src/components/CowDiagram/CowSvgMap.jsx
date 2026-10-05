@@ -4,7 +4,7 @@ import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { TRANSLATIONS } from '../../data/translations';
 import { Info } from '../Icons';
 
-export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName: _onSelectCutByName, currentLang = 'zh-TW' }) {
+export default function CowSvgMap({ selectedPrimalId, onSelectPrimal, currentLang = 'zh-TW' }) {
   const [hoveredPrimalId, setHoveredPrimalId] = useState(null);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
 

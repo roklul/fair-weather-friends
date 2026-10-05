@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { Sparkles, ArrowUp, WineMeatBrandLogo } from './Icons';
 import { TRANSLATIONS } from '../data/translations';
 
-export default function Footer({ activeCategory, currentLang = 'zh-TW' }) {
+const CURRENT_YEAR = 2026;
+
+export default function Footer({ currentLang = 'zh-TW' }) {
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const f = t.footer;
-  const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
 
   return (
     <footer className="bg-charcoal text-parchment-200 pt-16 pb-12 border-t border-charcoal-muted/30">
@@ -85,7 +86,7 @@ export default function Footer({ activeCategory, currentLang = 'zh-TW' }) {
         {/* 版權與回頂部 */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-parchment-400">
           <div>
-            © {new Date().getFullYear()} {t.brandName}. {f.rights}
+            © {CURRENT_YEAR} {t.brandName}. {f.rights}
           </div>
 
           <button

@@ -170,7 +170,7 @@ export default function Navbar({
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-xl text-charcoal hover:bg-parchment-200 transition-colors shrink-0"
-              aria-label="Toggle Menu"
+              aria-label={t.nav?.toggleMenu || '切換選單'}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

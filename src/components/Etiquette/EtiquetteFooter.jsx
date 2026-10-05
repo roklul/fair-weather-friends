@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { WineMeatBrandLogo, ArrowLeft } from '../Icons';
+import { WineMeatBrandLogo } from '../Icons';
 
 export default function EtiquetteFooter({ currentLang = 'zh-TW' }) {
   const footerText = {

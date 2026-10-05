@@ -1,10 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Sparkles, BookOpen } from '../Icons';
-
-export default function CopyrightAndReliability({ data, currentLang }) {
-  const { copyrightSection, reliability, copyrightNotice } = data;
+export default function CopyrightAndReliability({ data }) {
+  const { copyrightSection, reliability } = data;
 
   return (
     <section id="copyright" className="py-14 sm:py-18 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full border-t border-parchment-300">

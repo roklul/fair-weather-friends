@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { FISH_PRIMAL_AREAS } from '../../data/fishData';
 import { getLocalizedPrimal } from '../../data/primalsI18n';
 import { TRANSLATIONS } from '../../data/translations';
-import { Info, Sparkles, ChevronRight } from '../Icons';
+import { Info } from '../Icons';
 
-export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, onSelectCutByName, currentLang = 'zh-TW' }) {
+export default function FishSvgMap({ selectedPrimalId, onSelectPrimal, currentLang = 'zh-TW' }) {
   const [hoveredPrimalId, setHoveredPrimalId] = useState(null);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
 

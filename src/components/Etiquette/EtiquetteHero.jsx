@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Compass, Sparkles, BookOpen, Utensils, Wine } from '../Icons';
+import { Compass, Sparkles } from '../Icons';
 
 export default function EtiquetteHero({ data, currentLang }) {
   const pillars = {

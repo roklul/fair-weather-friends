@@ -1,5 +1,5 @@
 import React from 'react';
-import { Info, Sparkles } from '../Icons';
+import { Info } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 
 export default function DemoDisclaimer({ variant = 'banner', className = '', currentLang = 'zh-TW' }) {

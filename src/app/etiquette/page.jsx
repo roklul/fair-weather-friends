@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import DemoDisclaimer from '../../components/Compliance/DemoDisclaimer';
 import EtiquetteNavbar from '../../components/Etiquette/EtiquetteNavbar';
 import EtiquetteHero from '../../components/Etiquette/EtiquetteHero';

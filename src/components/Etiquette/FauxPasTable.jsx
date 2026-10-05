@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BookOpen, Sparkles } from '../Icons';
+import { BookOpen } from '../Icons';
 
 export default function FauxPasTable({ data, currentLang }) {
   const { fauxPas } = data;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wine, Flame, ChevronRight, Sparkles } from '../Icons';
+import { Wine, Flame, ChevronRight } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 import { getLocalizedCut } from '../../data/cutsI18n';
 

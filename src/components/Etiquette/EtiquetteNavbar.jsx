@@ -207,7 +207,7 @@ export default function EtiquetteNavbar({ currentLang: propLang, onSelectLang: p
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="2xl:hidden p-2 rounded-md text-charcoal hover:bg-parchment-200 transition-colors shrink-0"
-              aria-label="Toggle Menu"
+              aria-label={t.nav?.toggleMenu || '切換選單'}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

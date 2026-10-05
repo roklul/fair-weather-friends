@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Flame, Wine, Compass, AlertCircle, Sparkles, CheckCircle, Info } from '../Icons';
+import { X, Flame, Wine, Compass, AlertCircle, Sparkles } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 import { getLocalizedCut } from '../../data/cutsI18n';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { COCKTAILS_DATA, DISH_TO_COCKTAIL_MATRIX } from '../../data/cocktailData';
 import { getLocalizedCocktail, getLocalizedCocktailPrinciples, getLocalizedDishMatrix } from '../../data/cocktailI18n';
-import { Wine, Sparkles, ArrowRight, BookOpen, ChevronDown, ChevronUp, Droplets } from '../Icons';
+import { Wine, ArrowRight, BookOpen, ChevronDown, ChevronUp, Droplets } from '../Icons';
 import { TRANSLATIONS } from '../../data/translations';
 import ZeroProofSection from './ZeroProofSection';
 import MocktailModal from './MocktailModal';
@@ -86,7 +86,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
               }`}
             >
               <Wine className="w-4 h-4" />
-              <span>{currentLang === 'en' ? '10 Classic Cocktails' : currentLang === 'ja' ? '定番カクテル10選' : '經典調酒庫 (10款)'}</span>
+              <span>{cLang.tabClassic}</span>
             </button>
             <button
               onClick={() => setActiveBeverageTab('zero-proof')}
@@ -97,7 +97,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
               }`}
             >
               <Droplets className="w-4 h-4 text-emerald-400" />
-              <span>{currentLang === 'en' ? '🌱 Zero-Proof & Mocktail' : currentLang === 'ja' ? '🌱 ノンアルコール特選' : '🌱 零酒精特調專題 (Mocktail)'}</span>
+              <span>{cLang.tabZeroProof}</span>
             </button>
           </div>
         </div>
@@ -233,10 +233,10 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                 <div>
                   <div className="inline-flex items-center gap-1 text-xs font-bold font-mono text-amber-900 bg-amber-100 px-2.5 py-0.5 rounded border border-amber-300 uppercase tracking-wider">
                     <BookOpen className="w-3 h-3 text-amber-800" />
-                    <span>{currentLang === 'en' ? 'All 10 Classic Cocktails' : currentLang === 'ja' ? '定番カクテル10選一覧' : '全覽 10 款經典調酒庫'}</span>
+                    <span>{cLang.libraryBadge}</span>
                   </div>
                   <h3 className="text-2xl font-bold font-serif text-charcoal mt-1">
-                    {currentLang === 'en' ? 'Classic & Modern Cocktails Library' : currentLang === 'ja' ? 'カクテルレシピ＆スペック詳細' : '經典與現代經典調酒規格庫'}
+                    {cLang.libraryTitle}
                   </h3>
                 </div>
 
@@ -285,7 +285,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                         </div>
 
                         <span className="px-2 py-1 rounded-md text-[10px] font-bold bg-parchment-200 text-charcoal border border-parchment-300 whitespace-nowrap">
-                          {currentLang === 'en' ? 'Diff: ' : currentLang === 'ja' ? '難易度: ' : '難度: '}{'★'.repeat(c.difficulty)}{'☆'.repeat(5 - c.difficulty)}
+                          {cLang.difficultyLabel}{'★'.repeat(c.difficulty)}{'☆'.repeat(5 - c.difficulty)}
                         </span>
                       </div>
 
@@ -306,7 +306,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                       {c.pairingFood && c.pairingFood[0] && (
                         <div className="bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-200 text-xs">
                           <span className="font-bold text-emerald-950 block mb-0.5">
-                            🍽️ {currentLang === 'en' ? 'Top Food Pairing:' : currentLang === 'ja' ? 'おすすめ料理:' : '最推薦搭餐：'}
+                            🍽️ {cLang.topPairingLabel}
                           </span>
                           <span className="text-emerald-900 text-[11px] line-clamp-2">{c.pairingFood[0].dish}</span>
                         </div>
@@ -316,7 +316,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
                       {c.mocktailVersion && (
                         <div className="bg-amber-50/80 p-2 rounded-lg border border-amber-200 text-[11px] text-amber-900 flex items-center justify-between">
                           <span className="font-bold">🌱 {c.mocktailVersion.name}</span>
-                          <span className="text-[10px] text-amber-800">0.0% 版</span>
+                          <span className="text-[10px] text-amber-800">{cLang.zeroProofBadge}</span>
                         </div>
                       )}
                     </div>
@@ -365,7 +365,7 @@ export default function CocktailSection({ onOpenCocktailModal, currentLang = 'zh
               <div className="border-b border-parchment-200 pb-3">
                 <span className="text-xs font-serif italic text-charcoal-muted">Science of Cocktail Pairing</span>
                 <h3 className="text-xl sm:text-2xl font-bold font-serif text-charcoal">
-                  {currentLang === 'en' ? 'Four Golden Principles of Cocktail Pairing' : currentLang === 'ja' ? 'カクテルペアリング 4大黄金ルール' : '調酒搭餐的四大黃金判斷法則'}
+                  {cLang.principlesTitle}
                 </h3>
               </div>
 
