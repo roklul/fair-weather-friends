@@ -4,5 +4,13 @@
   "rules": {
     "react/rules-of-hooks": "error",
     "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/app/layout.jsx", "src/components/Icons.jsx", "src/context/LanguageContext.jsx"],
+      "rules": {
+        "react/only-export-components": "off"
+      }
+    }
+  ]
 }
