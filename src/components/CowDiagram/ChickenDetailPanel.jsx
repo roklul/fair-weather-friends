@@ -36,7 +36,7 @@ export default function ChickenDetailPanel({ selectedPrimalId, onOpenCutModalByI
           </div>
         </div>
 
-        {/* 解剖特徵說明 */}
+        {/* 解剖特徵說明與營養亮點 */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5 flex items-center gap-1.5">
             <Compass className="w-3.5 h-3.5 text-beef-burgundy" />
@@ -47,7 +47,7 @@ export default function ChickenDetailPanel({ selectedPrimalId, onOpenCutModalByI
           </p>
         </div>
 
-        {/* 常見延伸市售部位 (可直接點擊深入) */}
+        {/* 常見延伸市售部位 (可直接點擊深入看規格) */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
@@ -57,74 +57,73 @@ export default function ChickenDetailPanel({ selectedPrimalId, onOpenCutModalByI
           </div>
           <div className="flex flex-wrap gap-2">
             {primal.extendedCuts.map((cutName, idx) => {
-              const matchedCutId = getCutId(primal.id, idx, cutName);
-
+              const cutId = getCutId(rawPrimal.id, idx, cutName);
               return (
                 <button
                   key={idx}
-                  onClick={() => matchedCutId && onOpenCutModalById && onOpenCutModalById(matchedCutId)}
-                  disabled={!matchedCutId}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-all text-left flex items-center gap-1.5 ${
-                    matchedCutId
-                      ? 'bg-parchment-100 border-parchment-300 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy shadow-2xs cursor-pointer group'
-                      : 'bg-parchment-100/50 border-parchment-200 text-charcoal-muted cursor-default'
+                  onClick={() => cutId && onOpenCutModalById && onOpenCutModalById(cutId)}
+                  disabled={!cutId}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium border transition-all ${
+                    cutId
+                      ? 'bg-parchment-100 text-charcoal hover:bg-beef-burgundy hover:text-white hover:border-beef-burgundy border-parchment-300 shadow-2xs cursor-pointer'
+                      : 'bg-parchment-200/50 text-charcoal-muted border-parchment-300 cursor-default'
                   }`}
                 >
                   <span>{cutName}</span>
-                  {matchedCutId && (
-                    <ChevronRight className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity" />
-                  )}
+                  {cutId && <ChevronRight className="w-3 h-3 opacity-70" />}
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* 推薦烹調法 */}
+        {/* 推薦料理方式 */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
-            <Flame className="w-3.5 h-3.5 text-amber-600" />
+            <Flame className="w-3.5 h-3.5 text-red-600" />
             {a.cookingTitle}
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {primal.recommendedCooking.map((method, idx) => (
+            {primal.recommendedCooking.map((cook, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 text-xs rounded-md bg-stone-100 text-stone-700 border border-stone-200"
+                className="px-2.5 py-1 rounded bg-amber-50 border border-amber-200 text-amber-900 text-xs font-medium"
               >
-                {method}
+                {cook}
               </span>
             ))}
           </div>
         </div>
 
-        {/* 佐餐侍酒指南 */}
+        {/* 推薦適配酒款調性 */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2 flex items-center gap-1.5">
             <Wine className="w-3.5 h-3.5 text-beef-burgundy" />
             {a.wineTitle}
           </div>
-          <div className="p-3 rounded-xl bg-purple-50/70 border border-purple-100 text-xs text-charcoal font-sans space-y-1">
-            <div className="font-semibold text-purple-900 flex items-center gap-1">
-              <span>{a.recommendedWinePrefix}</span>
-            </div>
-            <p className="text-charcoal-light">
-              {primal.idealWine.join(' · ')}
-            </p>
+          <div className="flex flex-wrap gap-1.5">
+            {primal.idealWine.map((wName, idx) => (
+              <span
+                key={idx}
+                className="px-2.5 py-1 rounded bg-purple-50 border border-purple-200 text-purple-900 text-xs font-serif font-medium"
+              >
+                {wName}
+              </span>
+            ))}
           </div>
         </div>
 
       </div>
 
-      {/* 底部小提示 */}
-      <div className="mt-5 pt-3 border-t border-parchment-200 flex items-center justify-between text-xs text-charcoal-muted">
-        <span className="flex items-center gap-1 text-[11px]">
-          <BookOpen className="w-3.5 h-3.5 text-beef-burgundy" />
-          {a.clickTip}
-        </span>
-        <span className="text-[11px] font-mono bg-parchment-200 px-2 py-0.5 rounded text-charcoal">
-          ID: {primal.id}
-        </span>
+      {/* 底部跳轉部位庫錨點 (同豬肉與牛肉統一結構) */}
+      <div className="pt-4 mt-6 border-t border-parchment-200">
+        <a
+          href="#cuts-library"
+          className="w-full py-2.5 px-4 rounded-xl bg-parchment-200 hover:bg-beef-burgundy hover:text-white text-charcoal text-xs font-semibold transition-all flex items-center justify-center gap-2 group"
+        >
+          <BookOpen className="w-4 h-4 text-beef-burgundy group-hover:text-white transition-colors" />
+          <span>{a.browseCuts}</span>
+        </a>
       </div>
     </div>
   );

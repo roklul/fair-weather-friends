@@ -172,56 +172,56 @@ export const FAQS_I18N = {
   chicken: {
     'zh-TW': [
       {
-        q: '雞胸肉如何烹調才能真正多汁不乾柴？',
-        a: '雞胸肉乾柴的主因在於蛋白質在高於 68°C 時會劇烈收縮並擠出細胞水份。三大專業秘訣：1. 鹽水浸泡法（Brining）：烹調前浸泡於 3% 鹽水中 1-2 小時，改變肌球蛋白結構鎖住水分；2. 低溫舒肥（Sous-vide）：以 62°C-64°C 恆溫水浴烹煮 60 分鐘；3. 逆紋厚切：下刀時與肌肉纖維呈垂直切斷，入口立顯柔嫩。'
+        q: '台灣肉雞（白肉雞）、土雞與放山雞在體型、肉質與料理用途上有何差異？',
+        a: '根據農委會與市場實務統計，三大常見雞種特性分明：1. 白肉雞（肉雞）：生長週期短、體型較小、水分高且價格穩定，肉質極軟嫩但風味較淡，最適合炸雞排、香煎雞腿或低溫舒肥嫩雞胸；2. 土雞：體型較大（專業採購建議選 1.3-1.8 公斤全雞），肉質紮實多肉、纖維感明顯且肉香濃郁，是白斬雞、三杯雞、香菇燉湯與紅燒滷味的首選；3. 放山雞：活動量大、飼養期長（清蒸全雞建議約 1.5 公斤），皮Q肉韌富含膠質，最適合清蒸、白斬與老火煲湯。'
       },
       {
-        q: '居酒屋常聽到的「雞松阪」與「雞牡蠣 (Sot-l\'y-laisse)」是雞的哪裡？',
-        a: '兩者皆是燒鳥界的頂級老饕夢幻部位！「雞松阪」是雞脖子兩側去骨的純頸肉（せせり），每隻雞僅有少許幾十克，運動量大帶有如松阪豬般的彈脆咬勁；「雞牡蠣肉（ソリレス）」則是藏在雞背骨盆凹槽處的兩顆圓形肉球，法文原意為「只有傻瓜才會把它留在骨架上」，肉汁飽滿豐腴超越大腿排。'
+        q: '雞胸肉如何烹調才能真正多汁不乾柴？主廚有何火候秘訣？',
+        a: '蛋白質在 68°C 以上會劇烈收縮擠出水分。掌握三大科學秘訣：1. 增加水分保水：烹調前加入雞肉重量約 10% 的水輕拌（打水法）並上薄粉漿鎖水，或浸泡 3% 鹽水醃漬；2. 逆紋切肉：下刀時垂直切斷肌肉纖維，入口軟嫩不塞牙；3. 善用餘溫熟成：水煮時「小火微滾 3 分鐘、關火燜 10-12 分鐘」，以餘溫熟成肉質接近舒肥（舒肥機建議 60°C 烹調 60 分鐘）。安全食用中心溫度為 74°C，建議食物溫度計量測達 72°C 即離火，靠餘溫升至 74°C 剛剛好。'
       },
       {
-        q: '吃烤雞只能配白葡萄酒嗎？紅酒該怎麼挑？',
-        a: '完全打破迷思！雖然白肉搭白酒是經典，但烤雞的「脆皮」與「深色腿肉」非常適合紅酒。關鍵在於選擇「低到中等單寧、高酸度、果香奔放」的輕紅酒，例如法國勃根地黑皮諾 (Pinot Noir)、薄酒萊 (Gamay) 或義大利奇揚地 (Chianti)。過於厚重的重單寧紅酒（如波爾多卡本內）才會破壞禽肉的細緻感。'
+        q: '吃雞肉一定要搭配白葡萄酒嗎？三杯雞與醬烤雞該如何選酒？',
+        a: '完全打破「紅酒配紅肉、白酒配白肉」的傳統迷思！這套原則以西式清淡白肉料理為基礎，但台式與亞洲料理中「醬汁濃淡與烹調方式」才是主導依據：原味白斬雞與清蒸放山雞適合高酸度夏布利 (Chablis) 白酒；花雕醉雞適合微甜麗絲玲或溫飲黃酒；而醬油、黑麻油、老薑與九層塔濃郁的三杯雞、醬烤雞，單寧柔和、果香奔放的黑皮諾 (Pinot Noir) 或隆河丘紅酒能完美呼應醬香；炸雞與烤雞翅則首選香檳或冰涼生啤酒，以氣泡洗刷油脂。'
       },
       {
-        q: '台灣土雞、仿土雞與肉雞（白肉雞）在部位挑選上有何差異？',
-        a: '1. 肉雞（白肉雞）：飼育期短、肉質極度軟嫩多汁但肉味較淡，最適合炸雞、香煎雞排或低溫舒肥嫩雞胸；2. 仿土雞：肉質介於軟與韌之間，適合家常快炒、醬燒或香烤；3. 放山土雞：飼育期長且運動充沛，肌纖維結實富含膠質，最適合長時間慢燉雞湯、白斬雞或藥膳補湯，久熬骨肉不散且湯頭甘醇。'
+        q: '雞肉各部位營養差異如何？去皮與帶皮脂肪差多少？內臟與雞骨如何處理？',
+        a: '依據衛福部食品成分資料庫（每 100g 數據）：去皮雞胸僅 104 大卡、蛋白質高達 22.4g、脂肪僅 0.9g，帶皮則升至 219 大卡（脂肪 15.1g，脂肪高度集中於皮）；去皮雞腿 165 大卡（脂 8.9g），帶皮雞腿 173 大卡（脂 11.3g）；三節翅則達 210 大卡（脂 14.6g）。雞里肌（雞柳）更是每 100g 蛋白質 24.2g、脂肪僅 0.6g 的增肌極品。內臟處理：雞心與雞肝需以大盆清水旋轉徹底沖出血水除腥，滷製可加薑黃增香；雞骨與雞腳富含膠原蛋白，慢燉最能釋放甘醇黏唇膠質。'
       }
     ],
     'en': [
       {
-        q: 'How do you cook chicken breast so it stays succulent and never dry?',
-        a: 'Chicken breast dries out because muscle proteins contract violently above 68°C (155°F), expelling intracellular moisture. 3 chef secrets: 1. Brining: soak in a 3% equilibrium salt solution for 1-2 hours to restructure myosin; 2. Sous-vide: precision water bath at 62°C-64°C (144°F) for 60 minutes; 3. Cut across the grain: slice perpendicular to muscle fibers for effortless tenderness.'
+        q: 'How do Taiwanese broilers, heritage free-range chickens, and mountain chickens differ in butchery and cooking?',
+        a: 'Based on agricultural and market culinary standards: 1. Broilers (White Chicken): Short rearing cycle, high moisture, stable price. Meat is ultra-tender but mild, ideal for fried chicken cutlets and sous-vide breast. 2. Native Heritage Chickens: Larger frame (optimal whole weight 1.3-1.8 kg), firm and muscular fibers with deep chicken umami—the undisputed star for cold poached Bai Zhan Ji, Sanbei Chicken, and braised dishes. 3. Free-range Mountain Chickens: High activity and long growth (optimal whole weight ~1.5 kg), providing chewy gelatinous skin and dense collagen, unmatched for clear steaming and double-boiled broths.'
       },
       {
-        q: 'What exactly are "Seseri (Chicken Neck)" and "Chicken Oyster (Sot-l\'y-laisse)" at Yakitori bars?',
-        a: 'Both are cult-favorite yakitori delicacies! "Seseri" (Chicken Neck Meat) comes from the active muscles flanking the cervical spine, delivering a springy, crunchy snap similar to Matsusaka pork. "Chicken Oyster" (Sot-l\'y-laisse in French, meaning "only a fool leaves it behind") refers to two tender nuggets nestled in the pelvic hollow, offering juiciness surpassing prime thigh meat.'
+        q: 'How do you cook chicken breast so it stays luscious and never dry? What are the chef heat secrets?',
+        a: 'Muscle proteins violently seize up and expel juices above 68°C. Master the 3 golden secrets: 1. 10% Water Velveting / Brining: Massage in 10% water by meat weight with a light starch coat, or soak in 3% equilibrium brine to lock moisture. 2. Slice across the grain: Cut perpendicular to muscle fibers for effortless tenderness. 3. Carryover cooking: Simmer gently for 3 minutes, then turn off heat and steep covered for 10-12 minutes (or sous-vide at 60°C for 60 min). The safe USDA/MOHW internal temperature is 74°C (165°F); remove from heat at 72°C and let residual heat glide gently to 74°C.'
       },
       {
-        q: 'Can you only pair roast chicken with white wine? How should you select a red?',
-        a: 'Bust this myth! While white wine is standard for poultry, crispy chicken skin and dark thigh meat shine with red wine. The secret is choosing low-to-medium tannin, high-acid, fruit-forward reds such as Burgundy Pinot Noir, Cru Beaujolais (Gamay), or Italian Chianti. Avoid heavy, astringent Cabernet Sauvignon, which overpowers delicate bird fibers.'
+        q: 'Must chicken only be paired with white wine? How should one pair wines for Sanbei chicken and glazed poultry?',
+        a: 'Bust the conventional "red with red meat, white with white meat" dogma! That guideline assumes delicate Western poached fowl, whereas in Taiwanese and Asian cuisines, sauce concentration and cooking techniques rule pairing: pristine steamed chicken excels with high-acid Chablis; Shaoxing drunken chicken calls for off-dry Riesling or warm yellow wine; while rich soy sauce, sesame oil, ginger, and basil in Sanbei chicken match delightfully with silky, fruit-forward Pinot Noir or Côtes du Rhône reds; fried chicken wings pair impeccably with Champagne or crisp draft lager.'
       },
       {
-        q: 'How do free-range heritage chickens and standard broilers differ in culinary butchery?',
-        a: '1. Broilers (Commercial White Chicken): Young age and high water content yield ultra-tender, juicy meat perfect for fried chicken, quick pan-searing, and sous-vide breasts. 2. Crossbred Chickens: Balanced firmness ideal for stir-fries, soy glaze, and rotisserie roasting. 3. Free-Range Heritage Chickens: Mature bone density and abundant collagen fibers thrive in long-simmered herbal broths and traditional cold poached chicken (Bai Zhan Ji).'
+        q: 'What are the nutritional differences across chicken cuts? How should offal and bones be prepared?',
+        a: 'According to official MOHW food composition data (per 100g): skinless breast delivers only 104 kcal, 22.4g protein, and 0.9g fat, whereas skin-on jumps to 219 kcal with 15.1g fat (fat resides primarily in the skin). Skinless thigh is 165 kcal (8.9g fat) vs skin-on at 173 kcal (11.3g fat); 3-joint wings reach 210 kcal (14.6g fat). Chicken tenderloin (Sasami) is peak fitness fuel: 24.2g protein with just 0.6g fat! For offal: swirl hearts and livers in ample running water to purge blood residue, and braise with turmeric; bones and feet release unctuous collagen gelatin during slow simmering.'
       }
     ],
     'ja': [
       {
-        q: '鶏ムネ肉をパサつかせず、本当にジューシーに仕上げる秘訣は？',
-        a: 'ムネ肉がパサつく主な原因は、中心温度が68°Cを超えると筋繊維が急激に収縮し水分を排出するためです。3つのプロの技：1. ブライン液（3%塩水）に1〜2時間浸け、ミオシン構造を保水化；2. 低温調理（低温スチーム）：62°C〜64°Cで60分間じっくり加熱；3. 繊維を断つ逆切り：包丁を繊維に対して垂直に入れてスライスすると驚くほど柔らかくなります。'
+        q: '台湾のブロイラー（白肉鶏）、地鶏（土鶏）、放し飼い鶏（放山鶏）の肉質と料理の違いは？',
+        a: '市場と料理基準による分類：1. ブロイラー（白肉鶏）：飼育期間が短く水分が多く非常に柔らかいため、フライドチキンやチキンソテー、低温調理ムネ肉に最適。2. 地鶏（土鶏）：体が大きく（丸鶏推奨1.3〜1.8kg）、肉質が引き締まり繊維感と鶏本来の旨味が濃厚。台湾名物の白斬鶏（蒸し鶏）、三杯鶏、きのこ鍋や煮込みに最高です。3. 放し飼い鶏（放山鶏）：運動量が多く飼育期間が長い（丸鶏推奨約1.5kg）、皮がプリッと引き締まりコラーゲンが豊富で、清蒸や薬膳スープに最適です。'
       },
       {
-        q: '焼き鳥屋で人気の「せせり」と「ソリレス (オイスター肉)」とはどこの部位？',
-        a: 'どちらも焼き鳥通が愛する希少部位です！「せせり」は首周りの筋肉で、よく動かすためトントロのような弾力と強い旨味があります。「ソリレス (Sot-l\'y-laisse)」はモモの付け根・骨盤のくぼみにある一口大の肉で、フランス語で「愚か者だけがこれを残す」という意味を持ち、モモ肉を凌ぐ肉汁と旨味が詰まっています。'
+        q: '鶏ムネ肉を絶対にパサつかせず、ジューシーに仕上げるプロの火入れ技は？',
+        a: '肉のタンパク質は68°Cを超えると急激に収縮し水分を排出します。3大科学テクニック：1. 10%加水保水法（打水）/ブライン：肉の重量の約10%の水を揉み込み薄衣でコーティング、または3%塩水に漬ける；2. 逆切り（繊維断ち）：包丁を繊維に対して直角に入れてスライス；3. 余熱調理：弱火で3分微沸騰させた後、火を止めてフタをし10〜12分蒸らす（低温調理器なら60°Cで60分）。安全基準の中心温度は74°Cですが、72°Cで火から下ろし余熱で74°Cに到達させるのが最もジューシーです。'
       },
       {
-        q: 'チキン料理には白ワインしか合いませんか？赤ワインの選び方は？',
-        a: 'その思い込みは不要です！淡白な白身には白ワインが王道ですが、パリパリの皮目やジューシーなモモ肉には赤ワインが絶妙に合います。ポイントは「渋み（タンニン）が穏やかで、酸味と果実味が豊かな軽快な赤」を選ぶこと。ブルゴーニュのピノ・ノワールやクリュ・ボジョレー、キアンティが最適です。重厚なカベルネは肉の繊細さを損なうため避けましょう。'
+        q: '鶏料理には白ワインしか合いませんか？三杯鶏や照り焼きチキンには何を合わせる？',
+        a: '「白身には白ワイン」という固定観念を捨てましょう！味付けの濃淡と調理法がペアリングを決定します。あっさりした白斬鶏や清蒸鶏には高酸味のシャブリ（Chablis）、紹興酔鶏にはやや甘口のリースリングや温めた紹興酒が合います。一方、醤油・黒ごま油・生姜・バジルが香る三杯鶏やタレ焼きには、渋みが穏やかで果実味豊かなピノ・ノワールやローヌ赤が抜群。唐揚げや手羽先には、油を洗い流すシャンパンや冷えた生ビールが最適です。'
       },
       {
-        q: '地鶏・銘柄鶏・ブロイラー（若鶏）の肉質と料理の使い分けは？',
-        a: '1. ブロイラー（若鶏）：飼育期間が短く肉質が非常に柔らかいため、唐揚げ、チキンソテー、しっとり蒸し鶏に最適です。2. 銘柄鶏：適度な歯ごたえと旨味があり、照り焼きや焼き鳥にぴったり。3. 地鶏・放し飼い鶏：運動量が豊富で筋繊維が締まりコラーゲンが豊富なため、水炊きや濃厚な鶏ガラスープ、煮込み料理で骨と身の深いコクを最大限に発揮します。'
+        q: '部位ごとの栄養価の違いは？皮の有無で脂質はどう変わる？内臓と骨の処理法は？',
+        a: '台湾衛生福利部の食品成分表（100gあたり）：皮なしムネ肉はわずか104kcal、タンパク質22.4g、脂質0.9g。一方、皮付きは219kcal（脂質15.1g）と脂質の多くは皮に集中しています。皮なしモモ肉は165kcal（脂質8.9g）に対し皮付きは173kcal（脂質11.3g）。手羽先は210kcal（脂質14.6g）。ささみはタンパク質24.2g、脂質わずか0.6gと究極の高タンパク部位です。内臓処理：ハツやレバーはたっぷりの水で旋回洗浄し血抜きを行い、ウコン（ターメリック）を加えて煮込むと臭みが取れます。鶏ガラやもみじ（鶏足）はじっくり煮込むことで濃厚なコラーゲンを引き出せます。'
       }
     ]
   }
