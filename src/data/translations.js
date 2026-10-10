@@ -34,6 +34,52 @@ export const TRANSLATIONS = {
       warning: '🔞 禁止酒駕 · 未滿十八歲禁止飲酒 · 酒後不開車 安全有保障',
     },
     hero: {
+      heroCovers: {
+        beef: {
+          alt: '酒肉朋友 米其林熟成牛排餐酒學 AI 視覺封面',
+          badge: '米其林星級視界 · AI 封面',
+          clickToZoom: '點擊看大圖',
+          title: '乾式熟成肋眼 × 典雅侍酒',
+          tags: ['🥩 5-7分熟粉嫩切面', '🍷 波爾多水晶杯', '🍸 工藝薄荷無調酒'],
+          closeAria: '關閉',
+          lightboxTitle: '酒肉朋友 · 頂級牛排餐搭視覺封面 (Michelin Editorial Photography)',
+          lightboxDesc: '厚切乾式熟成牛排 · 鹽之花與迷迭香 · 波爾多晶透紅酒杯 · 薄荷柑橘工藝零酒精調酒',
+          aiTag: 'AI 智能生成 · 8K 極致畫質'
+        },
+        pork: {
+          alt: '酒肉朋友 炭火黑豚五花與香檳餐酒學 AI 視覺封面',
+          badge: '極致燒肉視界 · AI 封面',
+          clickToZoom: '點擊看大圖',
+          title: '炭火金黃脆皮豬五花 × 爽快微氣泡',
+          tags: ['🥓 焦香酥脆黃金外皮', '🍺 冰鎮微氣泡生啤', '🍸 莫希托碎冰調酒'],
+          closeAria: '關閉',
+          lightboxTitle: '酒肉朋友 · 頂級豚肉餐搭視覺封面 (Michelin Editorial Photography)',
+          lightboxDesc: '炭火慢烤脆皮黑豚五花 · 焦糖梅納脆邊 · 冰鎮清爽拉格生啤 · 薄荷青檸莫希托',
+          aiTag: 'AI 智能生成 · 8K 極致畫質'
+        },
+        chicken: {
+          alt: '酒肉朋友 職人炭烤燒鳥與地雞腿排餐酒學 AI 視覺封面',
+          badge: '燒鳥職人視界 · AI 封面',
+          clickToZoom: '點擊看大圖',
+          title: '炭烤金黃地雞腿排 × 辛口純米大吟釀',
+          tags: ['🍗 外酥爆汁黃金腿排', '🍶 冷冽辛口純米清酒', '🥃 威士忌蘇打 Highball'],
+          closeAria: '關閉',
+          lightboxTitle: '酒肉朋友 · 頂級家禽燒鳥餐搭視覺封面 (Michelin Editorial Photography)',
+          lightboxDesc: '備長炭火直烤黃金地雞腿排 · 焦香脆皮與爆汁肌理 · 冰鎮純米大吟釀 · 爽快強氣泡 Highball',
+          aiTag: 'AI 智能生成 · 8K 極致畫質'
+        },
+        fish: {
+          alt: '酒肉朋友 產地直送頂級鮮魚與夏布利白酒 AI 視覺封面',
+          badge: '旬之海味視界 · AI 封面',
+          clickToZoom: '點擊看大圖',
+          title: '香煎龍虎斑嫩菲力 × 夏布利冷冽白酒',
+          tags: ['🐟 晶瑩酥脆金黃魚皮', '🥂 Chablis 礦石白酒', '🍸 萊姆黛綺莉特調'],
+          closeAria: '關閉',
+          lightboxTitle: '酒肉朋友 · 頂級鮮魚海味餐搭視覺封面 (Michelin Editorial Photography)',
+          lightboxDesc: '奶油香煎脆皮石斑魚菲力 · 新鮮檸檬百里香 · 勃根地夏布利白葡萄酒 · 純淨青檸黛綺莉',
+          aiTag: 'AI 智能生成 · 8K 極致畫質'
+        }
+      },
       heroCover: {
         alt: '酒肉朋友 米其林極致餐酒學 AI 視覺封面',
         badge: '米其林星級視界 · AI 封面',
@@ -141,6 +187,7 @@ export const TRANSLATIONS = {
       recTitle: '為您精選的推薦部位',
       recCountSuffix: '款首選',
       perfectBadge: '最佳契合',
+      recommendedBadge: '推薦部位',
       scoreTenderness: '軟嫩度',
       scoreFat: '油脂感',
       scoreFlavor: '風味濃郁',
@@ -341,6 +388,52 @@ export const TRANSLATIONS = {
       warning: '🔞 Don\'t Drink & Drive · Underage Drinking Prohibited · Please Drink Responsibly',
     },
     hero: {
+      heroCovers: {
+        beef: {
+          alt: 'Fair-Weather Friends Michelin Editorial Beef AI Cover',
+          badge: 'Michelin Perspective · AI Cover',
+          clickToZoom: 'Click to Enlarge',
+          title: 'Dry-Aged Ribeye × Sommelier Pairing',
+          tags: ['🥩 Medium-Rare Juicy Cut', '🍷 Bordeaux Crystal Glass', '🍸 Craft Botanical Mocktail'],
+          closeAria: 'Close',
+          lightboxTitle: 'Fair-Weather Friends · Gourmet Beef Pairing Editorial (8K AI Visual)',
+          lightboxDesc: 'Thick Dry-Aged Ribeye · Fleur de Sel & Rosemary · Bordeaux Wine Glass · Citrus Mint Zero-Proof Cocktail',
+          aiTag: 'AI Generated · 8K Ultra High Definition'
+        },
+        pork: {
+          alt: 'Fair-Weather Friends Golden Pork Belly & Lager Pairing AI Cover',
+          badge: 'Gourmet Grill Perspective · AI Cover',
+          clickToZoom: 'Click to Enlarge',
+          title: 'Charcoal Pork Belly × Sparkling Crispness',
+          tags: ['🥓 Golden Crackling Crust', '🍺 Chilled Craft Lager', '🍸 Crushed Mint Mojito'],
+          closeAria: 'Close',
+          lightboxTitle: 'Fair-Weather Friends · Gourmet Pork Pairing Editorial (8K AI Visual)',
+          lightboxDesc: 'Slow-Roasted Pork Belly · Golden Maillard Crust · Chilled Draft Lager · Zesty Mint Lime Mojito',
+          aiTag: 'AI Generated · 8K Ultra High Definition'
+        },
+        chicken: {
+          alt: 'Fair-Weather Friends Yakitori Chicken Thigh & Sake AI Cover',
+          badge: 'Yakitori Master Perspective · AI Cover',
+          clickToZoom: 'Click to Enlarge',
+          title: 'Grilled Golden Chicken Thigh × Junmai Daiginjo',
+          tags: ['🍗 Crispy Juicy Thigh Steak', '🍶 Chilled Dry Junmai Sake', '🥃 Highball Effervescence'],
+          closeAria: 'Close',
+          lightboxTitle: 'Fair-Weather Friends · Gourmet Poultry Pairing Editorial (8K AI Visual)',
+          lightboxDesc: 'Binchotan Charcoal Grilled Chicken Thigh · Crispy Skin & Tender Juices · Chilled Junmai Sake · Refreshing Whisky Highball',
+          aiTag: 'AI Generated · 8K Ultra High Definition'
+        },
+        fish: {
+          alt: 'Fair-Weather Friends Seared Grouper Fillet & Chablis AI Cover',
+          badge: 'Seasonal Seafood Perspective · AI Cover',
+          clickToZoom: 'Click to Enlarge',
+          title: 'Pan-Seared Grouper Fillet × Mineral Chablis',
+          tags: ['🐟 Crispy Golden Fish Skin', '🥂 Chablis Mineral White', '🍸 Zesty Lime Daiquiri'],
+          closeAria: 'Close',
+          lightboxTitle: 'Fair-Weather Friends · Gourmet Seafood Pairing Editorial (8K AI Visual)',
+          lightboxDesc: 'Butter-Basted Crispy Grouper Fillet · Fresh Lemon Thyme · Burgundy Chablis White Wine · Crisp Lime Daiquiri',
+          aiTag: 'AI Generated · 8K Ultra High Definition'
+        }
+      },
       heroCover: {
         alt: 'Fair-Weather Friends Michelin Editorial AI Cover',
         badge: 'Michelin Perspective · AI Cover',
@@ -448,6 +541,7 @@ export const TRANSLATIONS = {
       recTitle: 'Selected Cut Recommendations',
       recCountSuffix: 'Top Picks',
       perfectBadge: 'Best Match',
+      recommendedBadge: 'Recommended Cut',
       scoreTenderness: 'Tenderness',
       scoreFat: 'Fat / Marbling',
       scoreFlavor: 'Flavor Richness',
@@ -648,6 +742,52 @@ export const TRANSLATIONS = {
       warning: '🔞 飲酒運転は法律で禁止されています · 20歳未満の飲酒は禁止 · お酒は適量に',
     },
     hero: {
+      heroCovers: {
+        beef: {
+          alt: '酒肉友達 ミシュラン級牛肉ペアリング AIビジュアルカバー',
+          badge: 'ミシュラン視点 · AIカバー',
+          clickToZoom: 'クリックで拡大',
+          title: 'ドライエイジドリブアイ × 極上ソムリエペアリング',
+          tags: ['🥩 ミディアムレアのジューシー断面', '🍷 ボルドークリスタルグラス', '🍸 クラフトモクテル（ノンアル）'],
+          closeAria: '閉じる',
+          lightboxTitle: '酒肉友達 · 極上牛肉ペアリングビジュアルカバー (8K AI Visual)',
+          lightboxDesc: '厚切り熟成リブアイステーキ · フルール・ド・セルとローズマリー · クリスタルワイングラス · 柑橘とミントのノンアルコールカクテル',
+          aiTag: 'AIスマート生成 · 8K超高画質'
+        },
+        pork: {
+          alt: '酒肉友達 香ばし豚バラ焼肉と爽快ラガービール AIビジュアルカバー',
+          badge: '極上焼肉視点 · AIカバー',
+          clickToZoom: 'クリックで拡大',
+          title: '炭火カリカリ豚バラ × 爽快微炭酸ビール',
+          tags: ['🥓 香ばしい黄金クリスピー皮', '🍺 冷えたクラフト生ビール', '🍸 ミント香るモヒート'],
+          closeAria: '閉じる',
+          lightboxTitle: '酒肉友達 · 極上豚肉ペアリングビジュアルカバー (8K AI Visual)',
+          lightboxDesc: '炭火でじっくり焼き上げた極上豚バラ · 黄金のメイラードクリスピー · 喉ごし爽快な生ビール · フレッシュモヒート',
+          aiTag: 'AIスマート生成 · 8K超高画質'
+        },
+        chicken: {
+          alt: '酒肉友達 職人炭火焼き鳥と純米大吟醸 AIビジュアルカバー',
+          badge: '焼き鳥職人視点 · AIカバー',
+          clickToZoom: 'クリックで拡大',
+          title: '炭火地鶏もも肉ステーキ × 冷涼純米大吟醸',
+          tags: ['🍗 パリパリ皮のジューシー地鶏', '🍶 辛口純米大吟醸', '🥃 強炭酸ウイスキーハイボール'],
+          closeAria: '閉じる',
+          lightboxTitle: '酒肉友達 · 極上地鶏焼き鳥ペアリングビジュアルカバー (8K AI Visual)',
+          lightboxDesc: '備長炭直火焼き地鶏もも肉 · パリッとした皮と溢れる肉汁 · 冷酒純米大吟醸 · 爽快ハイボール',
+          aiTag: 'AIスマート生成 · 8K超高画質'
+        },
+        fish: {
+          alt: '酒肉友達 鮮魚ソテーとシャブリ白ワイン AIビジュアルカバー',
+          badge: '旬の海の幸視点 · AIカバー',
+          clickToZoom: 'クリックで拡大',
+          title: '鮮魚ハタの香ばしムニエル × ミネラルシャブリ',
+          tags: ['🐟 パリッとした黄金の皮目', '🥂 シャブリ辛口白ワイン', '🍸 爽快ライムダイキリ'],
+          closeAria: '閉じる',
+          lightboxTitle: '酒肉友達 · 極上海鮮ペアリングビジュアルカバー (8K AI Visual)',
+          lightboxDesc: 'バターでカリッと焼き上げた白身魚フィレ · レモンとタイム · ブルゴーニュ・シャブリ · フルーティーなダイキリ',
+          aiTag: 'AIスマート生成 · 8K超高画質'
+        }
+      },
       heroCover: {
         alt: '酒肉友達 ミシュラン級ペアリング AIビジュアルカバー',
         badge: 'ミシュラン視点 · AIカバー',
@@ -755,6 +895,7 @@ export const TRANSLATIONS = {
       recTitle: 'あなたにおすすめの厳選部位',
       recCountSuffix: '選',
       perfectBadge: 'ベストマッチ',
+      recommendedBadge: 'おすすめ部位',
       scoreTenderness: '柔らかさ',
       scoreFat: '脂・サシ',
       scoreFlavor: '旨味の濃さ',

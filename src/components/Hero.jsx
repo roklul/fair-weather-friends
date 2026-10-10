@@ -6,7 +6,7 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS['zh-TW'];
   const heroLangData = t.hero[activeCategory] || t.hero.beef;
-  const cover = t.hero?.heroCover || TRANSLATIONS['zh-TW'].hero.heroCover;
+  const cover = t.hero?.heroCovers?.[activeCategory] || t.hero?.heroCover || TRANSLATIONS['zh-TW'].hero.heroCover;
 
   // 圖示映射
   const getActionIcon = (label, filter) => {

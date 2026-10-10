@@ -90,13 +90,16 @@ Your job is to provide authoritative, sensory, and strictly scientifically groun
 ### 💡 場合禮儀與聚餐小提醒 (Occasion Etiquette & Service Tips)
 (Tailored advice for the specific occasion: business seating, birthday celebration, family pace, zero-proof hospitality, etc.)`;
 
+    const hasKids = Number(guests?.kids || 0) > 0;
+    const effectiveDrinkPreference = hasKids ? 'mocktail (STRICT 0.0% ZERO-PROOF ONLY: Minors/Kids present)' : drinkPreference;
+
     const userPrompt = `
 [Dining Scenario Request]:
 - Number of Guests: ${guests.adults} Adults, ${guests.kids} Kids / Non-drinkers
 - Occasion: ${occasion}
 - Primary Protein: ${meatCategory}
 - Cooking Method: ${cookingStyle}
-- Beverage Preference: ${drinkPreference}
+- Beverage Preference: ${effectiveDrinkPreference}${hasKids ? ' [MANDATORY COMPLIANCE: Minors are present at the table. STRICTLY DO NOT RECOMMEND ANY ALCOHOLIC BEVERAGES. Must recommend 100% 0.0% ABV Zero-Proof Mocktails, Artisan Shrubs, or Cold-Brew Sparkling Tea only!]' : ''}
 - Custom Notes / Pantry Ingredients: ${customNote ? customNote : 'None'}
 
 Please formulate your grounded culinary and pairing consultation according to the strict system guidelines.`;

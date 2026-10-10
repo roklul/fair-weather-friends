@@ -524,8 +524,9 @@ export const FAQS_DATA = [
   }
 ];
 
-// 受控展示資料邊界保護：全面標記 isDemo 與 isPurchasable
+// 受控展示資料邊界保護：全面標記 isDemo 與 isPurchasable 及品類 category
 BEEF_CUTS_DATA.forEach(cut => {
+  cut.category = cut.category || 'beef';
   cut.isDemo = true;
   cut.isPurchasable = false;
 });

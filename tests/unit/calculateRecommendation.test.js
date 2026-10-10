@@ -249,4 +249,37 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
     expect(pairing.isDemo).toBe(true);
     expect(pairing.isPurchasable).toBe(false);
   });
+
+  // 19. 防呆隔離驗證：非牛肉品類（豬、雞、魚）之所有 Wizard 配對說明絕對不出現「牛」字
+  it('19. 豬肉、雞肉與海鮮的所有推薦組合中，調酒搭餐理由絕不包含牛肉字眼', () => {
+    const nonBeefDatasets = [
+      { category: 'pork', cuts: PORK_CUTS_DATA, wizard: PORK_WIZARD_DATA },
+      { category: 'chicken', cuts: CHICKEN_CUTS_DATA, wizard: CHICKEN_WIZARD_DATA },
+      { category: 'fish', cuts: FISH_CUTS_DATA, wizard: FISH_WIZARD_DATA }
+    ];
+
+    nonBeefDatasets.forEach(({ category, cuts, wizard }) => {
+      wizard.textures.forEach((texture) => {
+        wizard.cookingMethods.forEach((cooking) => {
+          const result = calculateRecommendation({
+            textureId: texture.id,
+            cookingId: cooking.id,
+            cutsData: cuts,
+            wizardData: wizard,
+            maxLimit: 4
+          });
+
+          result.recommendedCuts.forEach((cut) => {
+            const reason = cut.pairedCocktail?.synergyReason || '';
+            const reasonEn = cut.pairedCocktail?.synergyReasonEn || '';
+            const reasonJa = cut.pairedCocktail?.synergyReasonJa || '';
+
+            expect(reason).not.toMatch(/牛排|牛肉|牛小排|和牛/);
+            expect(reasonEn.toLowerCase()).not.toMatch(/\bbeef\b|\bsteak\b/);
+            expect(reasonJa).not.toMatch(/牛肉|ステーキ/);
+          });
+        });
+      });
+    });
+  });
 });

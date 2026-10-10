@@ -188,9 +188,9 @@ export default function TasteWizard({
             </div>
 
             <div className="space-y-3.5">
-              {recommendedCuts.map((rawCut, idx) => {
+              {recommendedCuts.map((rawCut) => {
                 const cut = getLocalizedCut(rawCut, currentLang);
-                const isTopPick = perfectMatches.includes(cut.id) || idx === 0;
+                const isPerfect = perfectMatches.includes(cut.id);
                 const pairing = cut.pairedCocktail || {};
                 const synergyTagText = currentLang === 'en' ? pairing.synergyTagEn : currentLang === 'ja' ? pairing.synergyTagJa : pairing.synergyTag;
                 const synergyReasonText = currentLang === 'en' ? pairing.synergyReasonEn : currentLang === 'ja' ? pairing.synergyReasonJa : pairing.synergyReason;
@@ -216,9 +216,13 @@ export default function TasteWizard({
                         </div>
                       </div>
 
-                      {isTopPick && (
+                      {isPerfect ? (
                         <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300 whitespace-nowrap shadow-2xs">
                           {w.perfectBadge}
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded text-[10px] font-medium tracking-wider bg-parchment-200 text-charcoal-muted border border-parchment-300 whitespace-nowrap shadow-2xs">
+                          {w.recommendedBadge || '推薦部位'}
                         </span>
                       )}
                     </div>
