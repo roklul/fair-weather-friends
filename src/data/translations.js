@@ -304,7 +304,7 @@ export const TRANSLATIONS = {
       legalTitle: '理性飲酒與法規宣告',
       legalWarning: '🔞 禁止酒駕 · 酒後不開車 安全有保障 · 未滿十八歲禁止飲酒。',
       legalDesc: '本網站提供之餐酒與調酒搭配資訊僅供美食生活品味與廚藝研究參考。',
-      rights: 'All rights reserved. (受控展示型技術 Demo)',
+      rights: 'All rights reserved.',
     }
   },
   'en': {
@@ -611,7 +611,7 @@ export const TRANSLATIONS = {
       legalTitle: 'Responsible Drinking & Disclaimer',
       legalWarning: '🔞 Don\'t Drink & Drive · Underage Drinking Prohibited · Please Drink Responsibly.',
       legalDesc: 'Information provided on this website is for culinary education, UI demo, and gastronomy appreciation only.',
-      rights: 'All rights reserved. (Controlled Technical Showcase Demo)',
+      rights: 'All rights reserved.',
     }
   },
   'ja': {
@@ -918,7 +918,7 @@ export const TRANSLATIONS = {
       legalTitle: '適正飲酒に関するお知らせ',
       legalWarning: '🔞 飲酒運転は法律で禁止されています · 20歳未満の飲酒は禁止されています。',
       legalDesc: '当サイトに掲載されているペアリング情報は食文化の研究とデモを目的としています。',
-      rights: 'All rights reserved. (技術デモ用ショーケース)',
+      rights: 'All rights reserved.',
     }
   }
 };
