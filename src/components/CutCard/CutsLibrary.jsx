@@ -59,6 +59,29 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
         { id: 'pork-soup', label: 'ひき肉・コラーゲンスープ (モモ·豚足·頬肉)' },
       ]
     },
+    chicken: {
+      'zh-TW': [
+        { id: 'all', label: '全部 12 款精選部位' },
+        { id: 'chicken-fry', label: '香酥油炸·吮指首選 (棒棒腿·雙節翅·三角軟骨)' },
+        { id: 'chicken-sear', label: '鑄鐵香煎·舒肥嫩排 (去骨雞腿·雞胸·雞牡蠣)' },
+        { id: 'chicken-yakitori', label: '日式燒鳥·老饕稀少 (雞松阪·七里香·雞皮·雞心)' },
+        { id: 'chicken-stew', label: '老火高湯·滋補慢煲 (全雞切塊·棒棒腿·雞心)' },
+      ],
+      'en': [
+        { id: 'all', label: 'All 12 Featured Poultry Cuts' },
+        { id: 'chicken-fry', label: 'Crispy Fried & Finger-Licking (Drumstick · Wings · Cartilage)' },
+        { id: 'chicken-sear', label: 'Pan-Sear & Tender Steak (Boneless Thigh · Breast · Oyster)' },
+        { id: 'chicken-yakitori', label: 'Yakitori & Rare Delicacies (Seseri · Tail · Skin · Heart)' },
+        { id: 'chicken-stew', label: 'Collagen Broth & Stew (Whole Cut · Drumstick · Heart)' },
+      ],
+      'ja': [
+        { id: 'all', label: '厳選鶏肉12部位すべて' },
+        { id: 'chicken-fry', label: '唐揚げ・香ばしい揚げ物 (手羽元·手羽先·ヤゲン軟骨)' },
+        { id: 'chicken-sear', label: 'ソテー・しっとりステーキ (モモ正肉·ムネ肉·ソリレス)' },
+        { id: 'chicken-yakitori', label: '焼き鳥・希少部位 (せせり·ぼんじり·鶏皮·ハツ)' },
+        { id: 'chicken-stew', label: '濃厚スープ・薬膳煮込み (煮込みぶつ切り·手羽元·ハツ)' },
+      ]
+    },
     fish: {
       'zh-TW': [
         { id: 'all', label: '全部 12 款精選海味' },
@@ -122,6 +145,14 @@ export default function CutsLibrary({ activeCategory, cutsData, onOpenModal, cur
       if (selectedFilter === 'pork-fry') return ['pork-loin-chop', 'pork-tenderloin-cut', 'matsusaka-pork'].includes(cut.id);
       if (selectedFilter === 'pork-bbq') return ['pork-butt', 'pork-spare-ribs', 'matsusaka-pork', 'pork-belly-cut'].includes(cut.id);
       if (selectedFilter === 'pork-soup') return ['pork-blade-shoulder', 'pork-ham-leg', 'pork-trotters-cut', 'pork-jowl-cheek'].includes(cut.id);
+    }
+
+    // 雞肉篩選
+    if (activeCategory === 'chicken') {
+      if (selectedFilter === 'chicken-fry') return ['chicken-drumstick-cut', 'chicken-wings-cut', 'chicken-cartilage-cut'].includes(cut.id);
+      if (selectedFilter === 'chicken-sear') return ['chicken-boneless-thigh', 'chicken-breast-cut', 'chicken-oyster-cut', 'chicken-tenderloin-cut'].includes(cut.id);
+      if (selectedFilter === 'chicken-yakitori') return ['chicken-neck-seseri', 'chicken-tail-bonjiri', 'chicken-skin-cut', 'chicken-heart-cut'].includes(cut.id);
+      if (selectedFilter === 'chicken-stew') return ['chicken-bone-broth', 'chicken-drumstick-cut', 'chicken-heart-cut'].includes(cut.id);
     }
 
     // 魚類海鮮篩選

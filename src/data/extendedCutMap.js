@@ -86,3 +86,34 @@ export const getFishCutId = (primalId, idx, name) => {
   if (n.includes('尾') || n.includes('皮') || n.includes('tail') || n.includes('skin')) return 'spanish-mackerel';
   return null;
 };
+
+export const CHICKEN_EXTENDED_CUT_MAP = {
+  'chicken-breast': ['chicken-breast-cut', 'chicken-breast-cut', 'chicken-breast-cut'],
+  'chicken-tender': ['chicken-tenderloin-cut', 'chicken-tenderloin-cut', 'chicken-tenderloin-cut'],
+  'chicken-thigh': ['chicken-boneless-thigh', 'chicken-boneless-thigh', 'chicken-bone-broth'],
+  'chicken-drumstick': ['chicken-drumstick-cut', 'chicken-drumstick-cut', 'chicken-bone-broth'],
+  'chicken-wing': ['chicken-wings-cut', 'chicken-wings-cut', 'chicken-wings-cut'],
+  'chicken-neck': ['chicken-neck-seseri', 'chicken-neck-seseri', 'chicken-neck-seseri'],
+  'chicken-tail': ['chicken-tail-bonjiri', 'chicken-tail-bonjiri', 'chicken-oyster-cut'],
+  'chicken-cartilage': ['chicken-cartilage-cut', 'chicken-heart-cut', 'chicken-cartilage-cut']
+};
+
+export const getChickenCutId = (primalId, idx, name) => {
+  if (CHICKEN_EXTENDED_CUT_MAP[primalId]?.[idx]) {
+    return CHICKEN_EXTENDED_CUT_MAP[primalId][idx];
+  }
+  const n = (name || '').toLowerCase();
+  if (n.includes('棒棒腿') || n.includes('小腿') || n.includes('drumstick') || n.includes('手羽元')) return 'chicken-drumstick-cut';
+  if (n.includes('腿排') || n.includes('大腿') || n.includes('腿') || n.includes('thigh') || n.includes('もも') || n.includes('モモ')) return 'chicken-boneless-thigh';
+  if (n.includes('胸') || n.includes('breast') || n.includes('むね') || n.includes('ムネ')) return 'chicken-breast-cut';
+  if (n.includes('里肌') || n.includes('柳') || n.includes('tender') || n.includes('sasami') || n.includes('ささみ') || n.includes('ササミ')) return 'chicken-tenderloin-cut';
+  if (n.includes('翅') || n.includes('wing') || n.includes('手羽先') || n.includes('手羽中')) return 'chicken-wings-cut';
+  if (n.includes('松阪') || n.includes('頸') || n.includes('neck') || n.includes('seseri') || n.includes('せせり') || n.includes('セセリ')) return 'chicken-neck-seseri';
+  if (n.includes('軟骨') || n.includes('cartilage') || n.includes('ヤゲン') || n.includes('やげん') || n.includes('yagen')) return 'chicken-cartilage-cut';
+  if (n.includes('七里香') || n.includes('屁股') || n.includes('tail') || n.includes('bonjiri') || n.includes('ぼんじり') || n.includes('ボンジリ')) return 'chicken-tail-bonjiri';
+  if (n.includes('皮') || n.includes('skin') || n.includes('kawa') || n.includes('かわ') || n.includes('カワ')) return 'chicken-skin-cut';
+  if (n.includes('牡蠣') || n.includes('oyster') || n.includes('sot-l') || n.includes('ソリレス') || n.includes('そりれす')) return 'chicken-oyster-cut';
+  if (n.includes('心') || n.includes('heart') || n.includes('hatsu') || n.includes('ハツ') || n.includes('はつ')) return 'chicken-heart-cut';
+  if (n.includes('湯') || n.includes('broth') || n.includes('骨') || n.includes('stew')) return 'chicken-bone-broth';
+  return null;
+};

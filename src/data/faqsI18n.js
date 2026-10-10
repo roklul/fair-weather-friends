@@ -168,6 +168,62 @@ export const FAQS_I18N = {
         a: '3つのポイント：1. 焼く前にペーパーで表面の水分を徹底的に拭き取る；2. 熱したフライパンに皮目を下にして入れ、ヘラで15秒軽く押さえて反り返りを防ぐ；3. 皮がカリッと焼き上がり自然と剥がれるまで触らず、最後に裏返して身をふっくら火を通します。'
       }
     ]
+  },
+  chicken: {
+    'zh-TW': [
+      {
+        q: '雞胸肉如何烹調才能真正多汁不乾柴？',
+        a: '雞胸肉乾柴的主因在於蛋白質在高於 68°C 時會劇烈收縮並擠出細胞水份。三大專業秘訣：1. 鹽水浸泡法（Brining）：烹調前浸泡於 3% 鹽水中 1-2 小時，改變肌球蛋白結構鎖住水分；2. 低溫舒肥（Sous-vide）：以 62°C-64°C 恆溫水浴烹煮 60 分鐘；3. 逆紋厚切：下刀時與肌肉纖維呈垂直切斷，入口立顯柔嫩。'
+      },
+      {
+        q: '居酒屋常聽到的「雞松阪」與「雞牡蠣 (Sot-l\'y-laisse)」是雞的哪裡？',
+        a: '兩者皆是燒鳥界的頂級老饕夢幻部位！「雞松阪」是雞脖子兩側去骨的純頸肉（せせり），每隻雞僅有少許幾十克，運動量大帶有如松阪豬般的彈脆咬勁；「雞牡蠣肉（ソリレス）」則是藏在雞背骨盆凹槽處的兩顆圓形肉球，法文原意為「只有傻瓜才會把它留在骨架上」，肉汁飽滿豐腴超越大腿排。'
+      },
+      {
+        q: '吃烤雞只能配白葡萄酒嗎？紅酒該怎麼挑？',
+        a: '完全打破迷思！雖然白肉搭白酒是經典，但烤雞的「脆皮」與「深色腿肉」非常適合紅酒。關鍵在於選擇「低到中等單寧、高酸度、果香奔放」的輕紅酒，例如法國勃根地黑皮諾 (Pinot Noir)、薄酒萊 (Gamay) 或義大利奇揚地 (Chianti)。過於厚重的重單寧紅酒（如波爾多卡本內）才會破壞禽肉的細緻感。'
+      },
+      {
+        q: '台灣土雞、仿土雞與肉雞（白肉雞）在部位挑選上有何差異？',
+        a: '1. 肉雞（白肉雞）：飼育期短、肉質極度軟嫩多汁但肉味較淡，最適合炸雞、香煎雞排或低溫舒肥嫩雞胸；2. 仿土雞：肉質介於軟與韌之間，適合家常快炒、醬燒或香烤；3. 放山土雞：飼育期長且運動充沛，肌纖維結實富含膠質，最適合長時間慢燉雞湯、白斬雞或藥膳補湯，久熬骨肉不散且湯頭甘醇。'
+      }
+    ],
+    'en': [
+      {
+        q: 'How do you cook chicken breast so it stays succulent and never dry?',
+        a: 'Chicken breast dries out because muscle proteins contract violently above 68°C (155°F), expelling intracellular moisture. 3 chef secrets: 1. Brining: soak in a 3% equilibrium salt solution for 1-2 hours to restructure myosin; 2. Sous-vide: precision water bath at 62°C-64°C (144°F) for 60 minutes; 3. Cut across the grain: slice perpendicular to muscle fibers for effortless tenderness.'
+      },
+      {
+        q: 'What exactly are "Seseri (Chicken Neck)" and "Chicken Oyster (Sot-l\'y-laisse)" at Yakitori bars?',
+        a: 'Both are cult-favorite yakitori delicacies! "Seseri" (Chicken Neck Meat) comes from the active muscles flanking the cervical spine, delivering a springy, crunchy snap similar to Matsusaka pork. "Chicken Oyster" (Sot-l\'y-laisse in French, meaning "only a fool leaves it behind") refers to two tender nuggets nestled in the pelvic hollow, offering juiciness surpassing prime thigh meat.'
+      },
+      {
+        q: 'Can you only pair roast chicken with white wine? How should you select a red?',
+        a: 'Bust this myth! While white wine is standard for poultry, crispy chicken skin and dark thigh meat shine with red wine. The secret is choosing low-to-medium tannin, high-acid, fruit-forward reds such as Burgundy Pinot Noir, Cru Beaujolais (Gamay), or Italian Chianti. Avoid heavy, astringent Cabernet Sauvignon, which overpowers delicate bird fibers.'
+      },
+      {
+        q: 'How do free-range heritage chickens and standard broilers differ in culinary butchery?',
+        a: '1. Broilers (Commercial White Chicken): Young age and high water content yield ultra-tender, juicy meat perfect for fried chicken, quick pan-searing, and sous-vide breasts. 2. Crossbred Chickens: Balanced firmness ideal for stir-fries, soy glaze, and rotisserie roasting. 3. Free-Range Heritage Chickens: Mature bone density and abundant collagen fibers thrive in long-simmered herbal broths and traditional cold poached chicken (Bai Zhan Ji).'
+      }
+    ],
+    'ja': [
+      {
+        q: '鶏ムネ肉をパサつかせず、本当にジューシーに仕上げる秘訣は？',
+        a: 'ムネ肉がパサつく主な原因は、中心温度が68°Cを超えると筋繊維が急激に収縮し水分を排出するためです。3つのプロの技：1. ブライン液（3%塩水）に1〜2時間浸け、ミオシン構造を保水化；2. 低温調理（低温スチーム）：62°C〜64°Cで60分間じっくり加熱；3. 繊維を断つ逆切り：包丁を繊維に対して垂直に入れてスライスすると驚くほど柔らかくなります。'
+      },
+      {
+        q: '焼き鳥屋で人気の「せせり」と「ソリレス (オイスター肉)」とはどこの部位？',
+        a: 'どちらも焼き鳥通が愛する希少部位です！「せせり」は首周りの筋肉で、よく動かすためトントロのような弾力と強い旨味があります。「ソリレス (Sot-l\'y-laisse)」はモモの付け根・骨盤のくぼみにある一口大の肉で、フランス語で「愚か者だけがこれを残す」という意味を持ち、モモ肉を凌ぐ肉汁と旨味が詰まっています。'
+      },
+      {
+        q: 'チキン料理には白ワインしか合いませんか？赤ワインの選び方は？',
+        a: 'その思い込みは不要です！淡白な白身には白ワインが王道ですが、パリパリの皮目やジューシーなモモ肉には赤ワインが絶妙に合います。ポイントは「渋み（タンニン）が穏やかで、酸味と果実味が豊かな軽快な赤」を選ぶこと。ブルゴーニュのピノ・ノワールやクリュ・ボジョレー、キアンティが最適です。重厚なカベルネは肉の繊細さを損なうため避けましょう。'
+      },
+      {
+        q: '地鶏・銘柄鶏・ブロイラー（若鶏）の肉質と料理の使い分けは？',
+        a: '1. ブロイラー（若鶏）：飼育期間が短く肉質が非常に柔らかいため、唐揚げ、チキンソテー、しっとり蒸し鶏に最適です。2. 銘柄鶏：適度な歯ごたえと旨味があり、照り焼きや焼き鳥にぴったり。3. 地鶏・放し飼い鶏：運動量が豊富で筋繊維が締まりコラーゲンが豊富なため、水炊きや濃厚な鶏ガラスープ、煮込み料理で骨と身の深いコクを最大限に発揮します。'
+      }
+    ]
   }
 };
 

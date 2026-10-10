@@ -11,9 +11,9 @@ describe('AI Sommelier & Culinary Concierge - i18n and Data Integrity', () => {
       expect(data.title).toBeTruthy();
       expect(data.subtitle).toBeTruthy();
       expect(data.byokTitle).toBeTruthy();
-      expect(data.presets.length).toBe(3);
+      expect(data.presets.length).toBe(4);
       expect(data.form.occasions.length).toBe(6);
-      expect(data.form.meats.length).toBe(4);
+      expect(data.form.meats.length).toBe(5);
       expect(data.form.cookings.length).toBe(5);
       expect(data.form.drinks.length).toBe(4);
       expect(data.results.title).toBeTruthy();
@@ -27,7 +27,7 @@ describe('AI Sommelier & Culinary Concierge - i18n and Data Integrity', () => {
         expect(p.icon).toBeTruthy();
         expect(p.label).toBeTruthy();
         expect(p.text).toBeTruthy();
-        expect(['beef', 'pork', 'fish']).toContain(p.category);
+        expect(['beef', 'pork', 'chicken', 'fish']).toContain(p.category);
         expect(p.cooking).toBeTruthy();
         expect(p.drink).toBeTruthy();
       });

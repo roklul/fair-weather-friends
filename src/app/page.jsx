@@ -9,6 +9,8 @@ import PorkSvgMap from '../components/CowDiagram/PorkSvgMap';
 import PorkDetailPanel from '../components/CowDiagram/PorkDetailPanel';
 import FishSvgMap from '../components/CowDiagram/FishSvgMap';
 import FishDetailPanel from '../components/CowDiagram/FishDetailPanel';
+import ChickenSvgMap from '../components/CowDiagram/ChickenSvgMap';
+import ChickenDetailPanel from '../components/CowDiagram/ChickenDetailPanel';
 import TasteWizard from '../components/Wizard/TasteWizard';
 import AiSommelierSection from '../components/AiSommelier/AiSommelierSection';
 import CutsLibrary from '../components/CutCard/CutsLibrary';
@@ -41,6 +43,14 @@ import {
 } from '../data/porkData';
 
 import {
+  CHICKEN_PRIMAL_AREAS as CHICKEN_PRIMALS,
+  CHICKEN_CUTS_DATA,
+  CHICKEN_WINE_PRINCIPLES,
+  CHICKEN_WIZARD_DATA,
+  CHICKEN_FAQS_DATA as CHICKEN_FAQS
+} from '../data/chickenData';
+
+import {
   FISH_PRIMAL_AREAS as FISH_PRIMALS,
   FISH_CUTS_DATA,
   FISH_WINE_PRINCIPLES,
@@ -49,7 +59,7 @@ import {
 } from '../data/fishData';
 
 export default function HomePage() {
-  const [activeCategory, setActiveCategory] = useState('beef'); // 'beef' | 'pork' | 'fish'
+  const [activeCategory, setActiveCategory] = useState('beef'); // 'beef' | 'pork' | 'chicken' | 'fish'
   const { currentLang, setCurrentLang, t } = useLanguage();
 
   const categoryTitle = t.categories[activeCategory]?.shortLabel || activeCategory;
@@ -57,6 +67,7 @@ export default function HomePage() {
   // 各品類選中之部位 ID
   const [selectedBeefPrimal, setSelectedBeefPrimal] = useState('rib');
   const [selectedPorkPrimal, setSelectedPorkPrimal] = useState('pork-shoulder');
+  const [selectedChickenPrimal, setSelectedChickenPrimal] = useState('chicken-thigh');
   const [selectedFishPrimal, setSelectedFishPrimal] = useState('fish-dorsal');
 
   // Wizard 選項狀態 (受控狀態)
@@ -65,6 +76,9 @@ export default function HomePage() {
 
   const [porkTexture, setPorkTexture] = useState(PORK_WIZARD_DATA.textures[0].id);
   const [porkCooking, setPorkCooking] = useState(PORK_WIZARD_DATA.cookingMethods[0].id);
+
+  const [chickenTexture, setChickenTexture] = useState(CHICKEN_WIZARD_DATA.textures[0].id);
+  const [chickenCooking, setChickenCooking] = useState(CHICKEN_WIZARD_DATA.cookingMethods[0].id);
 
   const [fishTexture, setFishTexture] = useState(FISH_WIZARD_DATA.textures[0].id);
   const [fishCooking, setFishCooking] = useState(FISH_WIZARD_DATA.cookingMethods[0].id);
@@ -102,6 +116,20 @@ export default function HomePage() {
       setSelectedTexture: setPorkTexture,
       selectedCooking: porkCooking,
       setSelectedCooking: setPorkCooking,
+    },
+    chicken: {
+      title: categoryTitle,
+      primals: CHICKEN_PRIMALS,
+      cuts: CHICKEN_CUTS_DATA,
+      winePrinciples: CHICKEN_WINE_PRINCIPLES,
+      wizard: CHICKEN_WIZARD_DATA,
+      faqs: CHICKEN_FAQS,
+      activePrimal: selectedChickenPrimal,
+      setActivePrimal: setSelectedChickenPrimal,
+      selectedTexture: chickenTexture,
+      setSelectedTexture: setChickenTexture,
+      selectedCooking: chickenCooking,
+      setSelectedCooking: setChickenCooking,
     },
     fish: {
       title: categoryTitle,
@@ -258,6 +286,13 @@ export default function HomePage() {
                     currentLang={currentLang}
                   />
                 )}
+                {activeCategory === 'chicken' && (
+                  <ChickenSvgMap
+                    selectedPrimalId={selectedChickenPrimal}
+                    onSelectPrimal={(id) => setSelectedChickenPrimal(id)}
+                    currentLang={currentLang}
+                  />
+                )}
                 {activeCategory === 'fish' && (
                   <FishSvgMap
                     selectedPrimalId={selectedFishPrimal}
@@ -279,6 +314,13 @@ export default function HomePage() {
                 {activeCategory === 'pork' && (
                   <PorkDetailPanel
                     selectedPrimalId={selectedPorkPrimal}
+                    onOpenCutModalById={handleOpenCutModalById}
+                    currentLang={currentLang}
+                  />
+                )}
+                {activeCategory === 'chicken' && (
+                  <ChickenDetailPanel
+                    selectedPrimalId={selectedChickenPrimal}
                     onOpenCutModalById={handleOpenCutModalById}
                     currentLang={currentLang}
                   />

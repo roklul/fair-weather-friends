@@ -44,6 +44,15 @@ export const AI_SOMMELIER_I18N = {
         cooking: 'steamed_raw',
         drink: 'wine',
         occasion: 'business'
+      },
+      {
+        icon: '🐔',
+        label: '脆皮雞腿排與精釀白啤',
+        text: '香煎脆皮去骨雞腿排與炸雞翅，想搭配清爽去油的調酒、白酒或小麥啤酒？',
+        category: 'chicken',
+        cooking: 'steak',
+        drink: 'cocktail',
+        occasion: 'casual'
       }
     ],
     form: {
@@ -63,6 +72,7 @@ export const AI_SOMMELIER_I18N = {
       meats: [
         { id: 'beef', label: '🥩 頂級牛肉', desc: '肋眼、菲力、牛小排、牛五花' },
         { id: 'pork', label: '🐖 特選豬肉', desc: '松阪豬、梅花肉、五花三層肉' },
+        { id: 'chicken', label: '🐔 鮮嫩土雞', desc: '雞腿排、雞胸肉、雞松阪、雞翅' },
         { id: 'fish', label: '🐟 鮮魚海鮮', desc: '黑鮪魚、鮭魚、石斑、生蠔' },
         { id: 'mix', label: '🦞 海陸雙饗', desc: '牛排/五花搭配鮮蝦干貝' }
       ],
@@ -139,6 +149,15 @@ export const AI_SOMMELIER_I18N = {
         cooking: 'steamed_raw',
         drink: 'wine',
         occasion: 'business'
+      },
+      {
+        icon: '🐔',
+        label: 'Crispy Chicken & Craft Beer',
+        text: 'Crispy skin chicken thigh and fried wings, what cocktail, white wine, or wheat beer cuts grease best?',
+        category: 'chicken',
+        cooking: 'steak',
+        drink: 'cocktail',
+        occasion: 'casual'
       }
     ],
     form: {
@@ -158,6 +177,7 @@ export const AI_SOMMELIER_I18N = {
       meats: [
         { id: 'beef', label: '🥩 Prime Beef', desc: 'Ribeye, Tenderloin, Short Ribs, Short Plate' },
         { id: 'pork', label: '🐖 Select Pork', desc: 'Matsusaka Pork, Pork Collar, Pork Belly' },
+        { id: 'chicken', label: '🐔 Prime Poultry', desc: 'Chicken Thigh, Tender Breast, Seseri, Wings' },
         { id: 'fish', label: '🐟 Seafood & Fish', desc: 'Bluefin Tuna, Salmon, Grouper, Fresh Oysters' },
         { id: 'mix', label: '🦞 Surf & Turf', desc: 'Steak / Pork paired with Prawns & Scallops' }
       ],
@@ -234,6 +254,15 @@ export const AI_SOMMELIER_I18N = {
         cooking: 'steamed_raw',
         drink: 'wine',
         occasion: 'business'
+      },
+      {
+        icon: '🐔',
+        label: 'パリパリ鶏モモ肉＆クラフトビール',
+        text: 'パリパリ皮のチキンステーキや手羽先揚げに合わせる、油っぽさを切るカクテルや白ワインは？',
+        category: 'chicken',
+        cooking: 'steak',
+        drink: 'cocktail',
+        occasion: 'casual'
       }
     ],
     form: {
@@ -253,6 +282,7 @@ export const AI_SOMMELIER_I18N = {
       meats: [
         { id: 'beef', label: '🥩 厳選牛肉', desc: 'リブロース、ヒレ、ショートリブ、牛バラ' },
         { id: 'pork', label: '🐖 特選豚肉', desc: '松阪ポーク、肩ロース、豚バラ三層肉' },
+        { id: 'chicken', label: '🐔 厳選鶏肉', desc: '鶏モモ肉、ささみ、せせり、手羽先' },
         { id: 'fish', label: '🐟 鮮魚・海鮮', desc: '本マグロ、サーモン、ハタ、生牡蠣' },
         { id: 'mix', label: '🦞 サーフ＆ターフ (肉・魚介)', desc: 'ステーキと海老・ホタテの贅沢盛り' }
       ],

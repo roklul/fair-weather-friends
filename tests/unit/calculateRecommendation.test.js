@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { calculateRecommendation, getPairedCocktailForCut } from '../../src/domain/recommendation/calculateRecommendation';
 import { BEEF_CUTS_DATA, WIZARD_DATA as BEEF_WIZARD } from '../../src/data/beefData';
 import { PORK_CUTS_DATA, PORK_WIZARD_DATA } from '../../src/data/porkData';
+import { CHICKEN_CUTS_DATA, CHICKEN_WIZARD_DATA } from '../../src/data/chickenData';
 import { FISH_CUTS_DATA, FISH_WIZARD_DATA } from '../../src/data/fishData';
 
 describe('calculateRecommendation - Domain Recommendation Engine', () => {
@@ -83,6 +84,32 @@ describe('calculateRecommendation - Domain Recommendation Engine', () => {
 
     const cutIds = result.recommendedCuts.map((c) => c.id);
     expect(cutIds).toContain('tuna-otoro-cut');
+  });
+
+  // 6b. 雞肉燒鳥串燒推薦
+  it('6b. 正確推薦日式燒鳥串燒之雞松阪 (せせり) 與七里香', () => {
+    const result = calculateRecommendation({
+      textureId: 'crunchy',
+      cookingId: 'bbq-skewer',
+      cutsData: CHICKEN_CUTS_DATA,
+      wizardData: CHICKEN_WIZARD_DATA
+    });
+
+    const cutIds = result.recommendedCuts.map((c) => c.id);
+    expect(cutIds).toContain('chicken-neck-seseri');
+  });
+
+  // 6c. 雞肉鑄鐵香煎推薦
+  it('6c. 正確推薦鑄鐵鍋香煎之去骨雞腿排', () => {
+    const result = calculateRecommendation({
+      textureId: 'fatty-juicy',
+      cookingId: 'pan-sear',
+      cutsData: CHICKEN_CUTS_DATA,
+      wizardData: CHICKEN_WIZARD_DATA
+    });
+
+    const cutIds = result.recommendedCuts.map((c) => c.id);
+    expect(cutIds).toContain('chicken-boneless-thigh');
   });
 
   // 7. 受控展示邊界保護：所有回傳物件均具備 isDemo: true 與 isPurchasable: false

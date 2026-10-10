@@ -7,6 +7,7 @@ export const TRANSLATIONS = {
     categories: {
       beef: { label: '牛肉指南', shortLabel: '牛肉', subtitle: '8 大美式分切' },
       pork: { label: '豬肉指南', shortLabel: '豬肉', subtitle: '台灣常用分切' },
+      chicken: { label: '雞肉指南', shortLabel: '雞肉', subtitle: '全雞 8 大分切' },
       fish: { label: '魚類海鮮', shortLabel: '海鮮', subtitle: '海味部位分切' },
     },
     nav: {
@@ -76,6 +77,23 @@ export const TRANSLATIONS = {
           { label: '我想調手工水餃肉餡', filter: { type: 'wizard', cookingId: 'dumpling-filling', textureId: 'lean' } },
           { label: '我想找低脂腰內肉', filter: { type: 'wizard', textureId: 'tender', cookingId: 'fry-cutlet' } },
           { label: '幫我選搭豬肉的酒', filter: { type: 'anchor', val: 'wine-pairing' } }
+        ]
+      },
+      chicken: {
+        tagline: '家禽職人 × 現代侍酒指南 · 探索全雞 8 大分切與日式燒鳥珍味',
+        mainTitlePrefix: '找到最適合今天料理的',
+        highlightWord: '那款雞肉料理',
+        subtitle: '從舒肥嫩雞胸、黃金腿排、酥脆雞翅到老饕雞松阪與牡蠣肉，一次看懂雞肉部位特性、極致火候與搭餐美酒。',
+        quote: '白肉與深色肉結構截然不同；雞胸需低溫鎖水、雞腿需梅納焦脆、老饕珍味需炭火逼香。選對部位與火候，日常雞肉也能登上米其林殿堂。',
+        quickActions: [
+          { label: '我想吃脆皮雞腿排', filter: { type: 'wizard', cookingId: 'pan-sear', textureId: 'fatty-juicy' } },
+          { label: '我想吃串燒燒鳥', filter: { type: 'wizard', cookingId: 'bbq-skewer', textureId: 'crunchy' } },
+          { label: '我想健身低脂舒肥', filter: { type: 'wizard', cookingId: 'sous-vide', textureId: 'lean' } },
+          { label: '我想吃酥脆炸雞', filter: { type: 'wizard', cookingId: 'deep-fry', textureId: 'chewy-firm' } },
+          { label: '我想燉滋補雞湯', filter: { type: 'wizard', cookingId: 'stew-soup', textureId: 'chewy-firm' } },
+          { label: '我喜歡軟嫩多汁', filter: { type: 'wizard', textureId: 'tender', cookingId: 'pan-sear' } },
+          { label: '我想找下酒爽脆', filter: { type: 'wizard', textureId: 'crunchy', cookingId: 'bbq-skewer' } },
+          { label: '幫我選搭雞肉的酒', filter: { type: 'anchor', val: 'wine-pairing' } }
         ]
       },
       fish: {
@@ -296,6 +314,7 @@ export const TRANSLATIONS = {
     categories: {
       beef: { label: 'Beef Cuts', shortLabel: 'Beef', subtitle: '8 USDA Primal Cuts' },
       pork: { label: 'Pork Cuts', shortLabel: 'Pork', subtitle: 'Culinary Cuts Guide' },
+      chicken: { label: 'Chicken Cuts', shortLabel: 'Chicken', subtitle: 'Poultry Primal Cuts' },
       fish: { label: 'Seafood', shortLabel: 'Seafood', subtitle: 'Fish Anatomy & Cuts' },
     },
     nav: {
@@ -365,6 +384,23 @@ export const TRANSLATIONS = {
           { label: 'Dumpling Mince', filter: { type: 'wizard', cookingId: 'dumpling-filling', textureId: 'lean' } },
           { label: 'Lean Tenderloin', filter: { type: 'wizard', textureId: 'tender', cookingId: 'fry-cutlet' } },
           { label: 'Pair Pork with Drinks', filter: { type: 'anchor', val: 'wine-pairing' } }
+        ]
+      },
+      chicken: {
+        tagline: 'Poultry Craft × Modern Sommelier Guide · 8 Primal Cuts & Yakitori Secrets',
+        mainTitlePrefix: 'Discover the ideal cut for your table:',
+        highlightWord: 'The Ultimate Chicken',
+        subtitle: 'From Tender Chicken Breast, Golden Thighs, Crispy Wings to Gourmet Neck Seseri & Oysters. Master poultry gastronomy and wine synergy.',
+        quote: 'White meat and dark meat have distinct structural profiles. Breast needs gentle heat, thighs need Maillard caramelization, and delicacies shine on charcoal.',
+        quickActions: [
+          { label: 'Crispy Pan-Seared Thigh', filter: { type: 'wizard', cookingId: 'pan-sear', textureId: 'fatty-juicy' } },
+          { label: 'Yakitori Charcoal Skewer', filter: { type: 'wizard', cookingId: 'bbq-skewer', textureId: 'crunchy' } },
+          { label: 'Sous-vide Fitness Breast', filter: { type: 'wizard', cookingId: 'sous-vide', textureId: 'lean' } },
+          { label: 'Crispy Fried Chicken', filter: { type: 'wizard', cookingId: 'deep-fry', textureId: 'chewy-firm' } },
+          { label: 'Slow Simmered Broth', filter: { type: 'wizard', cookingId: 'stew-soup', textureId: 'chewy-firm' } },
+          { label: 'Juicy & Tender Texture', filter: { type: 'wizard', textureId: 'tender', cookingId: 'pan-sear' } },
+          { label: 'Crunchy Offal Bar Snacks', filter: { type: 'wizard', textureId: 'crunchy', cookingId: 'bbq-skewer' } },
+          { label: 'Pair Chicken with Wine', filter: { type: 'anchor', val: 'wine-pairing' } }
         ]
       },
       fish: {
@@ -585,6 +621,7 @@ export const TRANSLATIONS = {
     categories: {
       beef: { label: '牛肉ガイド', shortLabel: '牛肉', subtitle: 'USDA 8大部位' },
       pork: { label: '豚肉ガイド', shortLabel: '豚肉', subtitle: '定番部位カット' },
+      chicken: { label: '鶏肉ガイド', shortLabel: '鶏肉', subtitle: '鶏肉 8大部位解剖' },
       fish: { label: '魚介海鮮', shortLabel: '海鮮', subtitle: '鮮魚部位と旬' },
     },
     nav: {
@@ -654,6 +691,23 @@ export const TRANSLATIONS = {
           { label: '手作り餃子の餡', filter: { type: 'wizard', cookingId: 'dumpling-filling', textureId: 'lean' } },
           { label: '低脂質ヒレ肉', filter: { type: 'wizard', textureId: 'tender', cookingId: 'fry-cutlet' } },
           { label: '豚肉に合うお酒を探す', filter: { type: 'anchor', val: 'wine-pairing' } }
+        ]
+      },
+      chicken: {
+        tagline: '鶏肉職人 × ソムリエガイド · 鶏肉8大部位と職人焼鳥の極意',
+        mainTitlePrefix: '今夜のメニューにぴったりの',
+        highlightWord: '極上の鶏肉料理',
+        subtitle: 'しっとり柔らかむね肉、黄金もも肉からせせり、ソリレス（牡蠣肉）まで。鶏肉の部位特性と極上ペアリングを解説。',
+        quote: '白肉と赤身部位は構造が異なります。むね肉は低温調理で水分を閉じ込め、もも肉はメイラード反応で香ばしく、希少部位は炭火で旨味を引き出します。',
+        quickActions: [
+          { label: '皮パリジューシーもも焼き', filter: { type: 'wizard', cookingId: 'pan-sear', textureId: 'fatty-juicy' } },
+          { label: '炭火焼き鳥・串焼き', filter: { type: 'wizard', cookingId: 'bbq-skewer', textureId: 'crunchy' } },
+          { label: 'ヘルシー低温調理むね肉', filter: { type: 'wizard', cookingId: 'sous-vide', textureId: 'lean' } },
+          { label: 'サクサク極上から揚げ', filter: { type: 'wizard', cookingId: 'deep-fry', textureId: 'chewy-firm' } },
+          { label: '滋養コラーゲン鶏スープ', filter: { type: 'wizard', cookingId: 'stew-soup', textureId: 'chewy-firm' } },
+          { label: '柔らかジューシー食感', filter: { type: 'wizard', textureId: 'tender', cookingId: 'pan-sear' } },
+          { label: 'コリコリおつまみ軟骨', filter: { type: 'wizard', textureId: 'crunchy', cookingId: 'bbq-skewer' } },
+          { label: '鶏肉に合うお酒を選ぶ', filter: { type: 'anchor', val: 'wine-pairing' } }
         ]
       },
       fish: {

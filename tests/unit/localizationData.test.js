@@ -16,7 +16,7 @@ import {
 
 describe('Localization Dictionaries and Helpers (zh-TW, en, ja)', () => {
   const languages = ['zh-TW', 'en', 'ja'];
-  const categories = ['beef', 'pork', 'fish'];
+  const categories = ['beef', 'pork', 'chicken', 'fish'];
 
   describe('Cocktail Localization', () => {
     it('should localize all 10 cocktails with complete fields across zh-TW, en, and ja', () => {

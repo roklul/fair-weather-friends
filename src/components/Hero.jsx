@@ -12,10 +12,10 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
   const getActionIcon = (label, filter) => {
     if (filter.type === 'anchor') return Wine;
     if (filter.cookingId === 'steak' || filter.cookingId === 'fry-cutlet' || filter.cookingId === 'pan-sear' || filter.cookingId === 'dumpling-filling') return UtensilsCrossed;
-    if (filter.cookingId === 'bbq' || filter.cookingId === 'bbq-grill' || filter.cookingId === 'grill-bbq') return Flame;
+    if (filter.cookingId === 'bbq' || filter.cookingId === 'bbq-grill' || filter.cookingId === 'grill-bbq' || filter.cookingId === 'bbq-skewer' || filter.cookingId === 'deep-fry') return Flame;
     if (filter.cookingId === 'sashimi-plate') return Sparkles;
-    if (filter.textureId === 'fatty' || filter.textureId === 'fatty-sear') return Droplets;
-    if (filter.textureId === 'lean' || filter.textureId === 'tender' || filter.textureId === 'boneless-tender') return HeartPulse;
+    if (filter.textureId === 'fatty' || filter.textureId === 'fatty-sear' || filter.textureId === 'fatty-juicy') return Droplets;
+    if (filter.textureId === 'lean' || filter.textureId === 'tender' || filter.textureId === 'boneless-tender' || filter.textureId === 'chewy-firm' || filter.textureId === 'crunchy') return HeartPulse;
     return Soup;
   };
 

@@ -186,6 +186,68 @@ export const WINE_PRINCIPLES_I18N = {
         ]
       }
     ]
+  },
+  chicken: {
+    'zh-TW': [
+      {
+        title: '原則一：部位顏色與脂肪結構決定單寧高低 (White vs. Dark Meat)',
+        desc: '白肉部位（如雞胸、雞里肌）肌紅蛋白少、脂肪低，需搭配低單寧、酸度輕盈明亮的白葡萄酒（如 Sauvignon Blanc, Chablis），避免紅酒單寧摧毀白肉的細膩纖維；而暗色紅肉（如雞腿、雞松阪、七里香）油脂豐沛且肉感結實，能輕鬆駕馭果香豐滿的薄酒萊 (Gamay)、黑皮諾 (Pinot Noir) 甚至辛香的隆河紅酒。',
+        items: [
+          { meatType: '白肉低脂 (嫩雞胸、雞里肌、三角軟骨)', wineStyle: '未過桶白酒、冷涼果香、高酸度', examples: 'Chardonnay (夏多內)、Sauvignon Blanc、Pinot Grigio' },
+          { meatType: '多汁深色肉 (雞腿排、棒棒腿、七里香)', wineStyle: '中輕度單寧紅酒、過桶白酒、粉紅酒', examples: 'Pinot Noir (黑皮諾)、Cru Beaujolais、普羅旺斯粉紅酒' }
+        ]
+      },
+      {
+        title: '原則二：料理烹調火候與醬汁主導風味共振 (Crispy Skin & Glazes)',
+        desc: '香煎脆皮或日式炭火燒鳥產生的梅納褐變香氣，與經橡木桶陳年的白酒或氣泡酒的烤吐司、堅果風味完美共鳴；而酥炸雞翅或韓式炸雞的飽滿油脂，則需依靠香檳 (Champagne) 或氣泡酒高密度的細緻氣泡以物理方式沖洗舌苔，帶來極致清爽感。',
+        items: [
+          { method: '香煎脆皮 / 迷迭香烤腿排', wineFocus: '橡木桶烘烤香、奶油乳脂滑順', picks: '桶陳 Chardonnay、Viognier (維歐尼耶)' },
+          { method: '日式炭火照燒串 / 醬烤手羽先', wineFocus: '黑櫻桃果香、細膩單寧或強氣泡', picks: 'Pinot Noir、日本純米吟釀清酒、Highball' },
+          { method: '酥脆炸雞 / 椒鹽雞軟骨', wineFocus: '高酸度清脆氣泡、柑橘皮香', picks: 'Brut Champagne (乾型香檳)、Cava、白啤酒' },
+          { method: '砂鍋燉雞湯 / 人蔘香菇煲', wineFocus: '柔和酸度、旨味鮮甜呼應', picks: '勃根地白酒、溫飲花雕酒、乾型清酒' }
+        ]
+      }
+    ],
+    'en': [
+      {
+        title: 'Principle 1: Meat Color & Fat Structure Dictate Tannin Balance (White vs. Dark Meat)',
+        desc: 'White poultry cuts (Breast, Tenderloin) are low in myoglobin and fat, requiring low-tannin, bright-acid white wines (Sauvignon Blanc, Chablis) to protect delicate fibers. Dark cuts (Thighs, Drumsticks, Seseri, Tail) feature abundant succulent fat and firm textures, comfortably pairing with fruit-forward Gamay, Pinot Noir, or spicy Rhône reds.',
+        items: [
+          { meatType: 'Lean White Meat (Chicken Breast, Tenderloin, Cartilage)', wineStyle: 'Unoaked Whites, Chilled Citrus, High Crisp Acidity', examples: 'Unoaked Chardonnay, Sauvignon Blanc, Pinot Grigio' },
+          { meatType: 'Juicy Dark Meat (Chicken Thigh, Drumstick, Chicken Tail)', wineStyle: 'Low-Medium Tannin Reds, Oaked Whites, Dry Rosé', examples: 'Pinot Noir, Cru Beaujolais, Provence Dry Rosé' }
+        ]
+      },
+      {
+        title: 'Principle 2: Cooking Heat & Glazes Drive Flavor Synergy (Crispy Skin & Glazes)',
+        desc: 'Pan-seared crispy skin and charcoal yakitori smokiness harmonize seamlessly with toasted brioche and nutty notes from oak-aged whites or Champagne. Meanwhile, rich deep-fried wings or spicy glazes call for dense effervescence to cleanse the palate.',
+        items: [
+          { method: 'Crispy Pan-Sear / Rosemary Roast Thigh', wineFocus: 'Toasted Oak, Buttery Texture, Vanilla', picks: 'Oaked Chardonnay, Viognier' },
+          { method: 'Charcoal Yakitori / Glazed Teriyaki Wings', wineFocus: 'Dark Cherry Fruit, Silky Tannins or Fizzy Refreshment', picks: 'Pinot Noir, Junmai Ginjo Sake, Whisky Highball' },
+          { method: 'Crispy Fried Chicken / Pepper Cartilage', wineFocus: 'High-Acid Tight Effervescence, Citrus Zest', picks: 'Brut Champagne, Cava, Witbier (Wheat Beer)' },
+          { method: 'Claypot Chicken Broth / Ginseng Mushroom Stew', wineFocus: 'Gentle Acidity, Umami Resonance', picks: 'White Burgundy, Warm Shaoxing Huadiao, Dry Sake' }
+        ]
+      }
+    ],
+    'ja': [
+      {
+        title: '原則一：部位の色と脂肪構造がタンニン度合いを決める (白身肉 vs 赤身・脂身)',
+        desc: 'ムネ肉やささみなど白身部位はミオグロビンと脂肪が少なく、繊細な繊維を守るために酸味の澄んだ辛口白ワイン（ソーヴィニヨン・ブラン、シャブリ）が最適です。一方、モモ肉、せせり、ぼんじりなど旨味の濃い部位は、果実味豊かなガメイ（ボジョレー）やピノ・ノワール、軽やかな赤ワインが脂と見事に調和します。',
+        items: [
+          { meatType: 'ヘルシー白身 (鶏ムネ肉、ささみ、ヤゲン軟骨)', wineStyle: '樽なし白ワイン、冷涼な柑橘香、高い酸味', examples: '樽なしシャルドネ、ソーヴィニヨン・ブラン、ピノ・グリージョ' },
+          { meatType: 'ジューシー赤身・脂身 (鶏モモ肉、手羽元、ぼんじり)', wineStyle: '渋み穏やかな軽口赤、樽熟白ワイン、ロゼ', examples: 'ピノ・ノワール (Pinot Noir)、ボジョレー (Gamay)、プロヴァンスロゼ' }
+        ]
+      },
+      {
+        title: '原則二：火入れの香ばしさとタレがペアリングを主導 (パリパリ皮＆炭火)',
+        desc: 'パリッと焼き上げた皮目や炭火焼き鳥の香ばしい焦げ目は、樽熟成シャルドネやシャンパーニュのトースト・ナッツ香と絶妙に響き合います。唐揚げのジューシーな油分には、きめ細かなスパークリングの炭酸やハイボールが最高の油切りをもたらします。',
+        items: [
+          { method: '皮パリチキンソテー・ハーブロースト', wineFocus: 'オーク樽のロースト香、まろやかなバター感', picks: '樽熟シャルドネ、ヴィオニエ (Viognier)' },
+          { method: '炭火焼き鳥・タレ焼き手羽先', wineFocus: '黒チェリーの果実味、滑らかな渋み、強炭酸', picks: 'ピノ・ノワール、純米吟醸酒、ウイスキーハイボール' },
+          { method: '香ばしい唐揚げ・軟骨の唐揚げ', wineFocus: '高酸味のキレある泡、柑橘ピール', picks: '辛口シャンパーニュ (Brut Champagne)、カヴァ、白ビール' },
+          { method: '土鍋鶏煮込みスープ・水炊き鍋', wineFocus: '穏やかな酸味、旨味の相乗効果', picks: 'ブルゴーニュ白ワイン、燗酒 (花彫酒)、辛口清酒' }
+        ]
+      }
+    ]
   }
 };
 
@@ -772,6 +834,209 @@ export const COOKING_MATRICES_I18N = {
           '🥃 金門58度高粱酒 (冷凍ショット)'
         ],
         tastingNotes: 'ナッツとトースト香 · 高い酸味の泡 · 完璧な旨味の共鳴'
+      }
+    ]
+  },
+  chicken: {
+    'zh-TW': [
+      {
+        method: '鑄鐵鍋脆皮香煎雞腿排',
+        meatExamples: '去骨雞腿排、雞牡蠣肉、香草嫩雞胸',
+        characteristics: '外皮金黃酥脆如餅、中心鮮嫩爆汁、迷迭香大蒜奶油香氣',
+        principles: '雞皮的深層焦香與豐富皮脂，能完美承接過桶夏多內的奶油烤橡木桶香，或搭配酸度優雅的黑皮諾紅酒。',
+        recommendedWines: [
+          '🍷 桶陳 Chardonnay (夏多內)',
+          '🍷 Pinot Noir (勃根地黑皮諾)',
+          '🍾 Brut Rosé (粉紅氣泡酒)',
+          '🍺 琥珀愛爾精釀啤酒 (Amber Ale)'
+        ],
+        tastingNotes: '烤橡木香草 · 柔順草莓紅莓 · 圓潤飽滿'
+      },
+      {
+        method: '日式炭火燒鳥串燒 / 醬烤手羽先',
+        meatExamples: '雞松阪 (せせり)、七里香、醬烤雞翅、雞心',
+        characteristics: '炭火高溫直烤逼出雞油甘甜、甘辛照燒醬汁梅納焦香',
+        principles: '炭火焦香與照燒甜醬忌諱厚重單寧；高氣泡的威士忌 Highball、辛口純米吟釀或薄酒萊紅酒是天作之合。',
+        recommendedWines: [
+          '🥃 威士忌 Highball (強氣泡辛口)',
+          '🍶 辛口純米吟釀清酒 (Junmai Ginjo)',
+          '🍷 Cru Beaujolais (薄酒萊特級村莊)',
+          '🍺 冰鎮拉格生啤酒'
+        ],
+        tastingNotes: '麥芽碳酸衝擊 · 熟成蜜李果香 · 純淨旨味'
+      },
+      {
+        method: '台式鹽酥雞 / 香酥唐揚炸雞',
+        meatExamples: '棒棒腿、雙節雞翅、三角軟骨、酥炸雞皮',
+        characteristics: '九層塔蒜香、酥脆麵衣、椒鹽辛香、飽滿高溫肉汁',
+        principles: '油炸熱氣與椒鹽蒜香，最需要高酸度氣泡酒、香檳或冰涼台灣 18 天生啤酒瞬間洗滌油膩感。',
+        recommendedWines: [
+          '🍺 台灣 18 天生啤酒 / 金牌生啤',
+          '🍾 Brut Champagne (乾型香檳 / Cava)',
+          '🍷 Off-dry Riesling (微甜麗絲玲)',
+          '🍸 Gin & Tonic (琴通寧調酒)'
+        ],
+        tastingNotes: '爽快麥芽殺口 · 青蘋果檸檬果酸 · 生津俐落'
+      },
+      {
+        method: '港式老火煲全雞湯 / 剝皮辣椒雞',
+        meatExamples: '老母雞切塊、放山土雞腿、雞骨架',
+        characteristics: '乳白濃潤膠原高湯、甘醇黏唇、剝皮辣椒或人蔘菇香',
+        principles: '燉雞湯富含肌苷酸（Inosinate）天然鮮味，溫飲台灣特級紹興或法國夏布利白酒能帶來極致鮮甜共鳴。',
+        recommendedWines: [
+          '🍶 台灣陳年特級紹興酒 (溫飲提鮮)',
+          '🍷 Chablis (夏布利冷冽白酒)',
+          '🍶 純米酒 (燗酒)',
+          '🍾 乾型氣泡酒'
+        ],
+        tastingNotes: '溫潤熟成黃酒香 · 純淨礦石柑橘 · 鮮甜黏唇'
+      },
+      {
+        method: '低溫舒肥嫩雞胸 / 紹興醉雞冷盤',
+        meatExamples: '熟成嫩雞胸、白肉雞里肌、鮮凍醉雞捲',
+        characteristics: '62°C 恆溫水浴鎖住水分、絲綢般細緻纖維、藥膳酒香',
+        principles: '極嫩細纖維白肉需搭配未過桶清新白酒或花雕醉雞專屬黃酒，避免單寧掩蓋純粹肉香。',
+        recommendedWines: [
+          '🍷 Sauvignon Blanc (白蘇維濃)',
+          '🍷 未過桶 Chardonnay (夏多內)',
+          '🍶 台灣埔里花雕酒',
+          '🍷 Pinot Grigio (灰皮諾)'
+        ],
+        tastingNotes: '青草白桃香 · 鮮爽檸檬酸度 · 純淨無負擔'
+      }
+    ],
+    'en': [
+      {
+        method: 'Pan-Seared Crispy Skin Chicken Thigh',
+        meatExamples: 'Boneless Thigh, Chicken Oyster, Herb Chicken Breast',
+        characteristics: 'Golden crackling skin, explosive core juiciness, rosemary garlic butter aroma',
+        principles: 'Deep rendered skin fat carries buttery oak aromatics from barrel-aged Chardonnay or delicate fruit from Pinot Noir.',
+        recommendedWines: [
+          '🍷 Oaked Chardonnay',
+          '🍷 Pinot Noir (Burgundy)',
+          '🍾 Brut Rosé (Sparkling)',
+          '🍺 Craft Amber Ale'
+        ],
+        tastingNotes: 'Toasted Brioche & Vanilla · Silky Red Berries · Rich & Balanced'
+      },
+      {
+        method: 'Charcoal Yakitori Skewers & Glazed Wings',
+        meatExamples: 'Seseri (Neck), Tail, Teriyaki Wings, Heart',
+        characteristics: 'High-heat charcoal char rendering sweet chicken fats, sweet savory tare glaze',
+        principles: 'Avoid harsh tannins; high-carbonation Whisky Highball, Junmai Ginjo sake, or lively Beaujolais are supreme partners.',
+        recommendedWines: [
+          '🥃 Whisky Highball (Crisp Carbonation)',
+          '🍶 Junmai Ginjo Dry Sake',
+          '🍷 Cru Beaujolais (Gamay)',
+          '🍺 Chilled Draft Lager'
+        ],
+        tastingNotes: 'Crisp Malt Fizz · Ripe Plum & Cherry · Pure Umami'
+      },
+      {
+        method: 'Taiwanese Salt & Pepper / Crispy Fried Chicken',
+        meatExamples: 'Drumsticks, Double Wings, Cartilage, Chicken Skin',
+        characteristics: 'Thai basil garlic crunch, pepper salt crust, boiling tender juices',
+        principles: 'Deep-fried heat and pepper salt call for high-acid Champagne, crisp Cava, or ice-cold Taiwan draft beer to cleanse grease.',
+        recommendedWines: [
+          '🍺 Taiwan 18-Day Draft Beer',
+          '🍾 Brut Champagne / Cava',
+          '🍷 Off-dry German Riesling',
+          '🍸 Gin & Tonic'
+        ],
+        tastingNotes: 'Malt Effervescence · Crisp Green Apple · Palate Cleansing'
+      },
+      {
+        method: 'Slow-Simmered Rich Chicken Broth & Stew',
+        meatExamples: 'Old Hen Soup Cuts, Pasture-Raised Drumsticks, Back Bone',
+        characteristics: 'Milky collagen broth, gelatinous sweet finish, peeled chili or ginseng depth',
+        principles: 'Inosinate umami in chicken broth resonates with warm aged Shaoxing or mineral-driven Chablis white wine.',
+        recommendedWines: [
+          '🍶 Aged Taiwanese Shaoxing Wine (Warmed)',
+          '🍷 Chablis (Domaine White Burgundy)',
+          '🍶 Junmai Sake (Warm Kan)',
+          '🍾 Dry Sparkling Wine'
+        ],
+        tastingNotes: 'Warming Aged Rice Wine · Flint & Lemon Minerality · Rich Sweet Collagen'
+      },
+      {
+        method: 'Sous-Vide Herb Chicken Breast & Cold Drunken Roll',
+        meatExamples: 'Aged Chicken Breast, Tenderloin, Chilled Herb Roll',
+        characteristics: '62°C precision water bath retaining moisture, silky fine fibers, herbal wine aromatics',
+        principles: 'Delicate lean fibers require crisp unoaked whites or Huadiao wine without heavy tannins.',
+        recommendedWines: [
+          '🍷 Sauvignon Blanc',
+          '🍷 Unoaked Chardonnay',
+          '🍶 Taiwanese Huadiao Wine',
+          '🍷 Pinot Grigio'
+        ],
+        tastingNotes: 'White Peach & Herb · Crisp Lime Acidity · Pure & Refined'
+      }
+    ],
+    'ja': [
+      {
+        method: '皮パリチキンステーキ・バターアロゼ',
+        meatExamples: '鶏モモ正肉、ソリレス (オイスター肉)、ハーブムネ肉',
+        characteristics: '黄金色に輝くパリッとした皮目、あふれ出る肉汁、ローズマリーガーリックバター',
+        principles: '香ばしい皮の脂は、樽熟成シャルドネの香ばしいバニラ香や、エレガントなピノ・ノワールと抜群の相性。',
+        recommendedWines: [
+          '🍷 樽熟シャルドネ (Oaked Chardonnay)',
+          '🍷 ブルゴーニュ ピノ・ノワール',
+          '🍾 ロゼスパークリング (Brut Rosé)',
+          '🍺 アンバーエールビール'
+        ],
+        tastingNotes: 'トーストバニラ · 滑らかなイチゴとチェリー · 豊かなコク'
+      },
+      {
+        method: '炭火焼き鳥串焼き・タレ焼き手羽先',
+        meatExamples: 'せせり (首肉)、ぼんじり、手羽先、ハツ (鶏心)',
+        characteristics: '炭火直火で引き出される鶏油の甘み、甘辛い秘伝タレのメイラード香',
+        principles: '甘辛いタレと炭火香には重い渋みは避け、強炭酸ハイボールや辛口純米吟醸、ボジョレーが至高の相棒です。',
+        recommendedWines: [
+          '🥃 ウイスキーハイボール (強炭酸)',
+          '🍶 辛口純米吟醸酒 (Junmai Ginjo)',
+          '🍷 クリュ・ボジョレー (ガメイ)',
+          '🍺 氷冷ラガー生ビール'
+        ],
+        tastingNotes: '麦芽の刺激 · 熟したベリーの果実味 · ピュアな旨味'
+      },
+      {
+        method: '台湾風塩胡椒から揚げ・サクサク唐揚げ',
+        meatExamples: '骨付き手羽元、手羽先、ヤゲン軟骨、鶏皮揚げ',
+        characteristics: '九層塔バジルの香り、カリカリ衣、特製スパイス、熱々ジューシー',
+        principles: '揚げ物の油分とスパイスには、高酸度シャンパンやカヴァ、キンキンに冷えた生ビールが最高の油切りになります。',
+        recommendedWines: [
+          '🍺 台湾18天生ビール / プレミアム生',
+          '🍾 辛口シャンパーニュ / カヴァ',
+          '🍷 微甘口リースリング (Off-dry Riesling)',
+          '🍸 ジントニック (Gin & Tonic)'
+        ],
+        tastingNotes: '爽快な炭酸 · 青リンゴの酸味 · 瞬時にリフレッシュ'
+      },
+      {
+        method: '土鍋濃厚丸鶏スープ・薬膳水炊き',
+        meatExamples: '丸鶏ぶつ切り、地鶏骨付き肉、鶏ガラ出汁',
+        characteristics: '白濁した濃厚コラーゲンスープ、唇に吸い付く甘み、ショウガと漢方の香り',
+        principles: '鶏スープの豊かなイノシン酸（旨味）には、ぬる燗の台湾特級紹興酒やシャブリ白ワインが最高の甘みを引き出します。',
+        recommendedWines: [
+          '🍶 台湾特級熟成紹興酒 (燗酒)',
+          '🍷 シャブリ (Chablis 辛口白ワイン)',
+          '🍶 特別純米酒 (熱燗)',
+          '🍾 辛口スパークリング'
+        ],
+        tastingNotes: '芳醇な熟成香 · 冷涼なミネラル · コラーゲンの余韻'
+      },
+      {
+        method: '低温調理しっとり鶏ムネ肉・紹興酒漬け酔鶏',
+        meatExamples: '熟成ささみ、鶏ムネ肉、酔っぱらい鶏ロール',
+        characteristics: '62°Cの精密火入れで水分を閉じ込めたシルクのような繊維、薬膳酒のアロマ',
+        principles: '極上の柔らかい白身肉には、樽なしのソーヴィニヨン・ブランや花彫酒が、渋みなく肉のピュアな甘さを引き立てます。',
+        recommendedWines: [
+          '🍷 ソーヴィニヨン・ブラン (白ワイン)',
+          '🍷 樽なしシャルドネ',
+          '🍶 台湾埔里花彫酒',
+          '🍷 ピノ・グリージョ'
+        ],
+        tastingNotes: 'ハーブと白桃のアロマ · レモンのキレ · 軽やかで上品'
       }
     ]
   }

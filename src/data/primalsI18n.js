@@ -707,6 +707,216 @@ export const PRIMALS_I18N = {
       recommendedCooking: ['高粱酒炙りカラスミ', '台湾バジルと魚腸炒め', '白子のごま油煮込み', '香ばし魚卵マヨネーズ添え'],
       idealWine: ['金門高粱酒', 'フィノ・シェリー (Fino Sherry)', '純米酒', 'シャンパン']
     }
+  },
+
+  // ==================== 雞肉 8 大分切 ====================
+  'chicken-breast': {
+    'zh-TW': {
+      name: '雞胸部 (胸肉·白肉)',
+      positioning: '白肉之冠、極致低脂高蛋白',
+      description: '位於雞隻胸骨兩側，運動量極小，脂肪含量極低且富含優質蛋白質。透過精準低溫舒肥或鹽水浸泡醃漬，能達到不可思議的柔嫩多汁。',
+      extendedCuts: ['舒肥嫩雞胸', '帶皮香煎雞胸排', '法式藍帶雞排'],
+      recommendedCooking: ['低溫舒肥香煎', '溫沙拉冷盤', '日式炸雞排', '清炒雞肉絲'],
+      idealWine: ['未過桶 Chardonnay', 'Sauvignon Blanc (白蘇維濃)', 'Pinot Grigio (灰皮諾)']
+    },
+    'en': {
+      name: 'Chicken Breast',
+      positioning: 'Crown of White Meat · Ultra-Lean & High-Protein',
+      description: 'Located along both sides of the breastbone. Minimal movement yields very low fat and premium proteins. Precise sous-vide or brining unlocks incredible juiciness.',
+      extendedCuts: ['Sous-vide Chicken Breast', 'Crispy Skin Seared Breast', 'Chicken Cordon Bleu'],
+      recommendedCooking: ['Sous-vide Pan Sear', 'Warm Salad Bowl', 'Crispy Katsu Breast', 'Quick Stir-fry Strips'],
+      idealWine: ['Unoaked Chardonnay', 'Sauvignon Blanc', 'Pinot Grigio']
+    },
+    'ja': {
+      name: 'むね肉 (白肉)',
+      positioning: '白肉の頂点 · 極上低脂質＆高タンパク',
+      description: '胸骨の両側に位置し、運動量が極めて少なくヘルシー。低温調理（スーヴィード）や塩水ブライン液漬けで驚くほどジューシーに仕上がります。',
+      extendedCuts: ['しっとり低温調理むね肉', '皮パリソテーチキン', 'チキンコルドンブルー'],
+      recommendedCooking: ['低温調理ソテー', '温野菜サラダ', 'チキンカツ', '細切り炒め'],
+      idealWine: ['樽なしシャルドネ', 'ソーヴィニヨン・ブラン', 'ピノ・グリージョ']
+    }
+  },
+  'chicken-tender': {
+    'zh-TW': {
+      name: '雞柳部 (里肌·Sasami)',
+      positioning: '全雞最嫩無筋、細緻清甜',
+      description: '緊貼雞胸骨內側的兩條長條肌肉（小里肌），形似柳葉。幾無筋膜與脂肪，肉質是全雞最軟嫩的部位，日式燒鳥名物「ささみ」即此部位。',
+      extendedCuts: ['頂級雞里肌條', '日式紫蘇梅肉卷', '炙燒半生熟雞刺身'],
+      recommendedCooking: ['香酥炸雞柳條', '日式串燒佐芥末', '炙燒溫泉蛋雞肉丼', '輕羹高湯'],
+      idealWine: ['Chablis (夏布利夏多內)', '純米吟釀清酒 (Sake)', 'Brut Champagne (乾型香檳)']
+    },
+    'en': {
+      name: 'Chicken Tenderloin (Sasami)',
+      positioning: 'Most Delicate Cut · Zero Tendon & Pure Sweetness',
+      description: 'Two slender strips nestled inside the breastbone. Lacks tendons and connective tissue, making it the tenderest cut in the entire bird.',
+      extendedCuts: ['Prime Chicken Tenders', 'Shiso Plum Yakitori Roll', 'Tataki Seared Skewers'],
+      recommendedCooking: ['Crispy Chicken Tenders', 'Yakitori with Wasabi', 'Toridon Rice Bowl', 'Delicate Clear Broth'],
+      idealWine: ['Chablis', 'Junmai Ginjo Sake', 'Brut Champagne']
+    },
+    'ja': {
+      name: 'ささみ (小里肌)',
+      positioning: '全鶏で最も柔らかい · 筋なし上品な甘み',
+      description: '胸骨の内側に密着する2本の柳葉状の部位。筋や脂がほとんどなく、鶏肉の部位中で最高の柔らかさを誇る焼鳥の定番名物。',
+      extendedCuts: ['極上ささみスティック', '梅しそ巻き串', 'ささみタタキ・炙り'],
+      recommendedCooking: ['サクサクささみカツ', 'わさび焼鳥串', '温玉鶏丼', '上品なお吸い物'],
+      idealWine: ['シャブリ (Chablis)', '純米吟醸酒', 'ブリュット・シャンパン']
+    }
+  },
+  'chicken-thigh': {
+    'zh-TW': {
+      name: '雞腿部 (大腿·骨腿)',
+      positioning: '肉汁豐沛飽滿、煎炸烤全能之王',
+      description: '雞隻髖部以下、膝關節以上之大腿肉，富含微血管與肌紅蛋白。活動量充沛造就紮實彈性與豐潤雞油香，久煎不柴且皮脆肉滑。',
+      extendedCuts: ['黃金去骨雞腿排', '照燒雞肉串', '土雞腿切塊'],
+      recommendedCooking: ['脆皮鑄鐵鍋香煎', '日式炭火照燒串', '椒麻雞 / 唐揚炸雞', '法式紅酒燉雞 (Coq au Vin)'],
+      idealWine: ['Pinot Noir (黑皮諾)', '桶陳 Chardonnay', 'Beaujolais (薄酒萊加美)']
+    },
+    'en': {
+      name: 'Chicken Thigh',
+      positioning: 'Juiciest Muscle · King of Searing, Grilling & Frying',
+      description: 'Upper leg above the knee joint, packed with rich myoglobin. Active movement yields succulent juices, firm springiness, and golden crispy skin.',
+      extendedCuts: ['Boneless Chicken Thigh Cut', 'Teriyaki Skewers', 'Country Style Bone-in Cut'],
+      recommendedCooking: ['Cast-Iron Crispy Sear', 'Charcoal Teriyaki Skewers', 'Crispy Karaage', 'French Coq au Vin'],
+      idealWine: ['Pinot Noir', 'Oaked Chardonnay', 'Beaujolais']
+    },
+    'ja': {
+      name: 'もも肉 (大腿)',
+      positioning: '肉汁あふれるジューシーさ · 焼・揚・煮の万能王',
+      description: '膝より上の大腿部でミオグロビンが豊富。しっかりとした運動量により弾力があり、皮の脂と赤身のコクが絶品。',
+      extendedCuts: ['黄金骨なしチキンステーキ', '照り焼きねぎま串', '地鶏ぶつ切り'],
+      recommendedCooking: ['皮パリ鉄板ソテー', '炭火照り焼き串', '若鶏の唐揚げ', 'コック・オ・ヴァン (赤ワイン煮)'],
+      idealWine: ['ピノ・ノワール', '樽熟成シャルドネ', 'ボジョレー (ガメイ)']
+    }
+  },
+  'chicken-drumstick': {
+    'zh-TW': {
+      name: '棒棒腿 (小腿部)',
+      positioning: '膠質筋膜濃郁、吮指肉感霸主',
+      description: '膝關節以下至腳踝的小腿部位，包覆結實肌肉與粗壯肌腱筋膜。脂肪與骨邊膠原蛋白豐富，極適合高溫慢烤、醬滷或慢火煲湯。',
+      extendedCuts: ['香酥鮮嫩棒棒腿', '醬烤小腿棒', '藥膳蔘雞湯腿'],
+      recommendedCooking: ['美式酥脆炸雞', '慢火滷燉肉汁醬', '韓式甜辣醬烤腿', '養生蒜頭雞湯'],
+      idealWine: ['Grenache (格納希)', 'Dry Rosé (粉紅酒)', '美國精釀 IPA 啤酒']
+    },
+    'en': {
+      name: 'Chicken Drumstick',
+      positioning: 'Rich Collagen & Tendons · Finger-Licking Classic',
+      description: 'Lower leg below the knee joint, wrapped in dense muscle and strong sinews. Rich in bone marrow essence and gelatinous mouthfeel.',
+      extendedCuts: ['Juicy Chicken Drumstick', 'Glazed BBQ Drumsticks', 'Ginseng Stew Drumstick'],
+      recommendedCooking: ['Crispy Southern Fried Chicken', 'Slow Braised Drumsticks', 'Korean Glazed Roast', 'Garlic Chicken Soup'],
+      idealWine: ['Grenache', 'Dry Rosé', 'American Craft IPA']
+    },
+    'ja': {
+      name: 'すね肉 (ドラムスティック)',
+      positioning: '濃厚コラーゲン · 骨付き肉の醍醐味',
+      description: '膝関節から足首にかけての部位。ゼラチン質と骨周りの旨味が凝縮されており、フライドチキンや煮込みに抜群。',
+      extendedCuts: ['ジューシー骨付きフライドチキン', 'タレ焼きドラムスティック', '高麗人参参鶏湯用すね肉'],
+      recommendedCooking: ['本格フライドチキン', 'じっくり甘辛醤油煮込み', 'ヤンニョムチキン', 'にんにく滋養鶏スープ'],
+      idealWine: ['グルナッシュ', '辛口ロゼワイン', 'クラフトIPAビール']
+    }
+  },
+  'chicken-wing': {
+    'zh-TW': {
+      name: '雞翅部 (二節翅·三節翅)',
+      positioning: '高皮脂比、外酥內嫩下酒神物',
+      description: '由翅小腿（一節）、二節翅與翅尖組成，皮下脂肪飽滿且富含明膠蛋白。高溫油炸或直火炙烤時，雞皮油脂快速梅納焦化，脆香無比。',
+      extendedCuts: ['酥脆二節翅', '明太子包餡雞翅', '水牛城香辣翅小腿'],
+      recommendedCooking: ['水牛城辣雞翅', '名古屋手羽先串燒', '明太子鑲烤雞翅', '氣炸香檸椒鹽翅'],
+      idealWine: ['Cava 氣泡酒', 'Riesling (微甜麗絲玲)', '威士忌蘇打 Highball']
+    },
+    'en': {
+      name: 'Chicken Wings',
+      positioning: 'High Skin-to-Meat Ratio · Crispy Tavern Favorite',
+      description: 'Comprises drumettes, wingettes, and tips. Abundant subcutaneous fat and gelatin crisp up into an aromatic, crunchy crust upon high heat.',
+      extendedCuts: ['Crispy Double Chicken Wings', 'Mentaiko Stuffed Wings', 'Buffalo Spicy Drumettes'],
+      recommendedCooking: ['Buffalo Hot Wings', 'Nagoya Tebasaki Wings', 'Stuffed Grilled Wings', 'Air-Fried Pepper Wings'],
+      idealWine: ['Cava Sparkling', 'Off-dry Riesling', 'Whiskey Highball']
+    },
+    'ja': {
+      name: '手羽先・手羽元 (ウイング)',
+      positioning: '皮の旨味とコラーゲン · パリパリおつまみ',
+      description: '手羽元、手羽中、手羽先から構成。皮の比率が高くコラーゲン満載。高温調理で皮がカリッと香ばしく揚がります。',
+      extendedCuts: ['サクサク手羽中串', '明太子手羽先餃子', 'バッファローホットウイング'],
+      recommendedCooking: ['名古屋風甘辛手羽先', '明太子挟み焼き', 'バッファローウイング', '塩コショウ揚げ'],
+      idealWine: ['カヴァ (Cava)', 'やや甘口リースリング', 'ハイボール']
+    }
+  },
+  'chicken-neck': {
+    'zh-TW': {
+      name: '雞頸部 (雞松阪·頸肉)',
+      positioning: '稀少老饕部位、彈牙爽脆極品',
+      description: '每隻雞僅有一小條的頸部剔骨純肉，整日隨雞首靈活擺動，肌肉紋理緊緻且交織薄薄油脂。口感神似豬松阪般爽脆彈牙，是燒鳥老饕必點。',
+      extendedCuts: ['彈脆極品雞松阪', '炭烤椒鹽頸肉串', '蔥香熱炒雞松阪'],
+      recommendedCooking: ['炭火鹽烤雞松阪', '九層塔快炒', '鐵板炙燒檸檬汁', '氣炸蒜香下酒菜'],
+      idealWine: ['日本辛口純米酒', 'Sauvignon Blanc', 'Paloma 龍舌蘭特調']
+    },
+    'en': {
+      name: 'Chicken Neck Meat (Seseri)',
+      positioning: 'Rare Butcher Gem · Springy & Crisp Yakitori Star',
+      description: 'Deboned neck meat yielding only 30-40g per bird. Constant head motion creates distinct muscle striations with delightful crunch.',
+      extendedCuts: ['Chicken Neck Meat (Seseri)', 'Salt Grilled Neck Skewer', 'Scallion Stir-fried Neck'],
+      recommendedCooking: ['Charcoal Salted Seseri Skewer', 'Basil Flash Stir-fry', 'Teppan Lemon Griddle', 'Garlic Air-fried Nibbles'],
+      idealWine: ['Dry Junmai Sake', 'Sauvignon Blanc', 'Paloma Cocktail']
+    },
+    'ja': {
+      name: 'ネック・せせり (首肉)',
+      positioning: '希少部位 · プリプリ弾力と濃厚な脂',
+      description: '首の骨から削ぎ落とした希少肉。頭を頻繁に動かすため身が締まり、豚トロに似た独特の歯ごたえとジューシーな旨味。',
+      extendedCuts: ['極上せせり串', '塩焼きせせりネギまみれ', 'ガーリックせせり炒め'],
+      recommendedCooking: ['炭火塩焼きせせり串', '台湾バジル炒め', '鉄板レモンペッパー焼き', 'おつまみ揚げ'],
+      idealWine: ['辛口純米酒', 'ソーヴィニヨン・ブラン', 'パロマカクテル']
+    }
+  },
+  'chicken-tail': {
+    'zh-TW': {
+      name: '雞尾與背部 (七里香·雞背)',
+      positioning: '豐潤脂肪熔點低、炭烤爆漿香氣',
+      description: '雞隻尾椎尾脂腺周圍肌肉，富含豐沛油脂與柔嫩軟組織；背骨兩側的凹窩更藏有珍貴的「牡蠣肉 (Sot-l\'y-laisse)」，濃郁多汁。',
+      extendedCuts: ['炙烤琥珀七里香', '香酥炸雞屁股', '炭烤老饕雞牡蠣肉'],
+      recommendedCooking: ['炭火直烤逼油七里香', '酥炸椒鹽佐胡椒', '法式平底鍋奶油煎牡蠣肉', '串燒照燒醬烤'],
+      idealWine: ['Syrah (希哈)', 'Brut Champagne (乾型香檳)', 'Whiskey Highball']
+    },
+    'en': {
+      name: 'Chicken Tail & Back (Bonjiri)',
+      positioning: 'Luscious Fat Melts Fast · Intense Charcoal Aroma',
+      description: 'Surrounds the tail gland with rich, buttery fats, paired with the hidden "Chicken Oyster" (Sot-l\'y-laisse) in the pelvic hollow.',
+      extendedCuts: ['Charcoal Grilled Chicken Tail (Bonjiri)', 'Crispy Fried Tail Nibbles', 'Gourmet Chicken Oyster'],
+      recommendedCooking: ['Charcoal Rendered Tail Skewers', 'Salt & Pepper Deep Fry', 'French Butter Basted Oyster', 'Glazed Yakitori Skewer'],
+      idealWine: ['Syrah', 'Brut Champagne', 'Whiskey Highball']
+    },
+    'ja': {
+      name: 'ぼんじり・ソリレス (テール・腰肉)',
+      positioning: 'トロける脂の甘み · 炭火爆発アロマ',
+      description: '尾骨周辺の濃厚な脂身と、骨盤のくぼみに隠された至高の逸品「ソリレス（牡蠣肉）」。外はカリカリ、中はジュワッとトロけます。',
+      extendedCuts: ['香ばしぼんじり串', 'カリカリ揚げテール', 'ソリレス極上ステーキ'],
+      recommendedCooking: ['炭火塩焼きぼんじり', 'スパイシー唐揚げ', 'フランス風バターソテー', '秘伝タレ焼き'],
+      idealWine: ['シラー', '辛口シャンパン', 'ハイボール']
+    }
+  },
+  'chicken-cartilage': {
+    'zh-TW': {
+      name: '軟骨與內臟 (三角骨·雞心)',
+      positioning: '喀吱酥脆口感、低卡高鈣佐酒王',
+      description: '取自胸骨尖端的三角軟骨（Yagen）與膝關節軟骨，富含硫酸軟骨素；搭配緊實富有彈性的雞心與雞胗，呈現乾淨俐落的純粹口感。',
+      extendedCuts: ['椒鹽三角胸軟骨', '炙燒黑椒嫩雞心', '甘露煮雞胗'],
+      recommendedCooking: ['日式椒鹽烤三角軟骨', '酥炸雞軟骨下酒', '麻油爆炒雞心胗', '醬烤七味串'],
+      idealWine: ['乾型 Prosecco 氣泡酒', '特別純米清酒', 'Gin & Tonic (琴通寧)']
+    },
+    'en': {
+      name: 'Cartilage & Offal (Yagen / Hatsu)',
+      positioning: 'Crisp Snapping Bite · Low-Calorie Calcium Rich',
+      description: 'Triangular breast cartilage (Yagen) and knee cartilage packed with chondroitin, joined by springy, metallic-sweet chicken hearts.',
+      extendedCuts: ['Chicken Breast Cartilage (Yagen)', 'Tender Grilled Chicken Heart', 'Glazed Chicken Gizzard'],
+      recommendedCooking: ['Salt & Pepper Grilled Yagen', 'Crispy Tavern Cartilage Fry', 'Sesame Oil Stir-fry Hearts', 'Spicy Shichimi Skewers'],
+      idealWine: ['Dry Prosecco', 'Tokubetsu Junmai Sake', 'Gin & Tonic']
+    },
+    'ja': {
+      name: '軟骨・ハツ (ヤゲン・心臓)',
+      positioning: 'コリコリ快感食感 · 低カロリー高カルシウム',
+      description: '胸骨の先端にある三角形の軟骨（ヤゲン）と、プリッとした弾力ある鶏ハツ（心臓）。歯切れの良い食感で酒席を彩ります。',
+      extendedCuts: ['ヤゲン軟骨塩焼き串', '黒胡椒炙りハツ串', '砂肝の甘辛煮'],
+      recommendedCooking: ['塩コショウ炭火軟骨串', '軟骨の唐揚げ', 'ごま油ハツ炒め', '七味タレ焼き'],
+      idealWine: ['辛口プロセッコ', '特別純米酒', 'ジントニック']
+    }
   }
 };
 

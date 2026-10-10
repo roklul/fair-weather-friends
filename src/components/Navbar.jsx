@@ -34,6 +34,7 @@ export default function Navbar({
   const categories = [
     { id: 'beef', label: t.categories.beef.label, shortLabel: t.categories.beef.shortLabel, icon: '🥩' },
     { id: 'pork', label: t.categories.pork.label, shortLabel: t.categories.pork.shortLabel, icon: '🐖' },
+    { id: 'chicken', label: t.categories.chicken.label, shortLabel: t.categories.chicken.shortLabel, icon: '🐔' },
     { id: 'fish', label: t.categories.fish.label, shortLabel: t.categories.fish.shortLabel, icon: '🐟' },
   ];
 
