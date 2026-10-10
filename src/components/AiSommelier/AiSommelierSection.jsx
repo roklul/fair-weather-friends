@@ -3,7 +3,11 @@ import { Sparkles, AlertCircle, Key, Eye, EyeOff, RotateCcw, ArrowRight } from '
 import { AI_SOMMELIER_I18N } from '../../data/aiSommelierI18n';
 import AiReportViewer from './AiReportViewer';
 
-export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
+export default function AiSommelierSection({ 
+  currentLang = 'zh-TW',
+  initialCategory = 'beef',
+  initialCooking = 'steak'
+}) {
   const t = AI_SOMMELIER_I18N[currentLang] || AI_SOMMELIER_I18N['zh-TW'];
 
   // BYOK State
@@ -15,8 +19,8 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
   const [adults, setAdults] = useState(2);
   const [kids, setKids] = useState(0);
   const [occasion, setOccasion] = useState('friends');
-  const [meatCategory, setMeatCategory] = useState('beef');
-  const [cookingStyle, setCookingStyle] = useState('steak');
+  const [meatCategory, setMeatCategory] = useState(initialCategory || 'beef');
+  const [cookingStyle, setCookingStyle] = useState(initialCooking || 'steak');
   const [drinkPreference, setDrinkPreference] = useState('cocktail');
   const [customNote, setCustomNote] = useState('');
 
@@ -111,6 +115,21 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const getCookingLabel = (c) => {
+    if (c.id === 'steak') {
+      if (meatCategory === 'pork') {
+        return currentLang === 'en' ? '🍳 Pan-Seared Pork Chop' : currentLang === 'ja' ? '🍳 香煎ポークソテー' : '🍳 原味香煎 / 特級豚排';
+      }
+      if (meatCategory === 'chicken') {
+        return currentLang === 'en' ? '🍳 Pan-Seared Chicken Thigh' : currentLang === 'ja' ? '🍳 鶏もも肉のパリパリ香煎' : '🍳 脆皮香煎 / 嫩雞腿排';
+      }
+      if (meatCategory === 'fish') {
+        return currentLang === 'en' ? '🍳 Pan-Seared Fish Fillet' : currentLang === 'ja' ? '🍳 鮮魚の香ばしムニエル' : '🍳 香煎魚菲力 / 奶油石斑';
+      }
+    }
+    return c.label;
   };
 
   return (
@@ -328,7 +347,7 @@ export default function AiSommelierSection({ currentLang = 'zh-TW' }) {
                       : 'bg-parchment-100 text-charcoal border-parchment-300 hover:bg-parchment-200'
                   }`}
                 >
-                  {c.label}
+                  {getCookingLabel(c)}
                 </button>
               ))}
             </div>

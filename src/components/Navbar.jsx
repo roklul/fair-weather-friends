@@ -107,13 +107,13 @@ export default function Navbar({
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
             {/* AI 侍酒師專屬快速入口 */}
-            <a
-              href="#ai-sommelier"
+            <Link
+              href={`/ai-sommelier?category=${activeCategory}`}
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-beef-burgundy/40 bg-beef-burgundy/10 hover:bg-beef-burgundy hover:text-white text-xs font-bold text-beef-burgundy shadow-2xs transition-all whitespace-nowrap"
             >
               <Sparkles className="w-3.5 h-3.5 text-beef-burgundy group-hover:text-white" />
               <span>{t.nav.aiSommelier}</span>
-            </a>
+            </Link>
 
             {/* 餐桌禮儀專題入口 */}
             <Link

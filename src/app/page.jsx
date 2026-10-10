@@ -12,7 +12,7 @@ import FishDetailPanel from '../components/CowDiagram/FishDetailPanel';
 import ChickenSvgMap from '../components/CowDiagram/ChickenSvgMap';
 import ChickenDetailPanel from '../components/CowDiagram/ChickenDetailPanel';
 import TasteWizard from '../components/Wizard/TasteWizard';
-import AiSommelierSection from '../components/AiSommelier/AiSommelierSection';
+import Link from 'next/link';
 import CutsLibrary from '../components/CutCard/CutsLibrary';
 import WinePairingSection from '../components/WineSection/WinePairingSection';
 import CocktailSection from '../components/CocktailSection/CocktailSection';
@@ -22,7 +22,7 @@ import FaqSection from '../components/Faq/FaqSection';
 import Footer from '../components/Footer';
 import CutModal from '../components/CutCard/CutModal';
 import DemoDisclaimer from '../components/Compliance/DemoDisclaimer';
-import { Compass, Sparkles } from '../components/Icons';
+import { Compass, Sparkles, ArrowRight } from '../components/Icons';
 import { useLanguage } from '../context/LanguageContext';
 
 // 資料庫引入
@@ -357,8 +357,50 @@ export default function HomePage() {
 
       </section>
 
-      {/* AI 智能侍酒師與料理顧問 (BYOK 模式 + 防幻覺事實護欄) */}
-      <AiSommelierSection currentLang={currentLang} />
+      {/* AI 侍酒師專屬快速入口橫幅卡片 (可一鍵連動當前品類至獨立工作台 /ai-sommelier) */}
+      <section id="ai-sommelier" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-charcoal via-[#231518] to-charcoal border-2 border-beef-burgundy/40 shadow-xl p-8 sm:p-12 text-parchment-100 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="space-y-4 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-beef-burgundy/60 border border-amber-300/30 text-amber-200 text-xs font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>{t.nav.aiSommelier}</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-serif font-bold text-white tracking-tight leading-snug">
+              {currentLang === 'en'
+                ? `Custom Sommelier Consultation for ${currentData[activeCategory]?.title}`
+                : currentLang === 'ja'
+                ? `専属 AI ソムリエによる【${currentData[activeCategory]?.title}】ペアリング提案`
+                : `為今晚的【${currentData[activeCategory]?.title}】呼叫 AI 侍酒師專屬搭配`}
+            </h2>
+            <p className="text-sm text-parchment-300 leading-relaxed font-sans">
+              {currentLang === 'en'
+                ? `Input guest count, occasion, and preferences to generate a Michelin-grade pairing report with exact temperature controls and flavor science.`
+                : currentLang === 'ja'
+                ? `人数、シーン、お好みのドリンク（ワイン・カクテル・地酒・ノンアル）を指定するだけで、科学的根拠に基づいたフルコース提案を即座に出力します。`
+                : `依據用餐人數、聚餐情境（商務/約會/朋友）、烹調火候與飲品偏好，即時產生融合四大報告維度（部位推薦、熟度參數、經典調酒/在地名酒、零酒精特調）的專業侍酒解析。`}
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-amber-200/90 font-mono">
+              <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/10">🥩 推薦部位</span>
+              <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/10">🔥 火候溫控</span>
+              <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/10">🍸 調酒與名酒</span>
+              <span className="px-2.5 py-1 rounded-lg bg-white/10 border border-white/10">🌱 0.0% 零酒精護欄</span>
+            </div>
+          </div>
+
+          <div className="shrink-0 flex flex-col items-center sm:items-end gap-3 w-full md:w-auto">
+            <Link
+              href={`/ai-sommelier?category=${activeCategory}&cooking=${currentData[activeCategory]?.selectedCooking}`}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-beef-burgundy hover:bg-beef-red text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-beef-burgundy/50 transition-all transform hover:-translate-y-0.5 whitespace-nowrap border border-amber-300/30"
+            >
+              <span>{currentLang === 'en' ? 'Launch AI Sommelier Studio →' : currentLang === 'ja' ? 'AI ソムリエを起動する →' : '開啟 AI 侍酒師獨立工作台 →'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <span className="text-[11px] text-parchment-400 font-sans">
+              {currentLang === 'en' ? 'BYOK Mode · Zero Data Storage · Guardrails' : currentLang === 'ja' ? 'BYOK対応・データ非保持・未成年保護' : '支援自備 API Key (BYOK) · 嚴格未成年安全護欄'}
+            </span>
+          </div>
+        </div>
+      </section>
 
       {/* 12 款精選細切部位卡片庫 */}
       <CutsLibrary

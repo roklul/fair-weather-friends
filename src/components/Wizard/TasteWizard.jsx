@@ -21,6 +21,8 @@ export default function TasteWizard({
   const w = t.wizard;
   const categoryName = t.categories[activeCategory]?.shortLabel || activeCategory;
   const localizedWizardData = getLocalizedWizardData(wizardData, activeCategory, currentLang);
+  const activeTextureObj = localizedWizardData?.textures?.find((item) => item.id === selectedTexture) || localizedWizardData?.textures?.[0];
+  const activeCookingObj = localizedWizardData?.cookingMethods?.find((item) => item.id === selectedCooking) || localizedWizardData?.cookingMethods?.[0];
 
   // 圖示動態映射
   const iconMap = {
@@ -183,9 +185,49 @@ export default function TasteWizard({
                 <h3 className="text-lg font-bold font-serif text-charcoal">{w.recTitle} ({categoryName})</h3>
               </div>
               <span className="px-2.5 py-1 rounded-full bg-beef-burgundy text-white text-xs font-mono font-bold whitespace-nowrap shadow-xs">
-                {recommendedCuts.length} {w.recCountSuffix}
+                {perfectMatches.length > 0
+                  ? `${recommendedCuts.length} ${w.recCountSuffix} (${perfectMatches.length} ${w.perfectCountSuffix || '款契合'})`
+                  : `${recommendedCuts.length} ${w.recCountSuffix}`}
               </span>
             </div>
+
+            {/* 當前篩選條件摘要膠囊 */}
+            <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-xl bg-parchment-100 border border-parchment-200 text-xs">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-charcoal-muted font-medium">{w.selectedPair || '目前自選：'}</span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-beef-burgundy/10 text-beef-burgundy font-bold border border-beef-burgundy/20">
+                  <span>1️⃣</span>
+                  <span>{activeTextureObj?.label}</span>
+                </span>
+                <span className="text-charcoal-muted">+</span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-600/10 text-amber-800 font-bold border border-amber-600/20">
+                  <span>2️⃣</span>
+                  <span>{activeCookingObj?.label}</span>
+                </span>
+              </div>
+
+              {perfectMatches.length > 0 ? (
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300 px-2 py-0.5 rounded-md shadow-2xs">
+                  <span>★</span>
+                  <span>{perfectMatches.length} {w.perfectCountSuffix || '款契合'}</span>
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-amber-800 bg-amber-100/90 border border-amber-300 px-2 py-0.5 rounded-md shadow-2xs">
+                  <span>💡</span>
+                  <span>{w.closestMatchBadge || '最接近推薦'}</span>
+                </span>
+              )}
+            </div>
+
+            {/* 若無完美交集部位時之貼心提醒 */}
+            {perfectMatches.length === 0 && (
+              <div className="p-3 rounded-xl bg-amber-50/90 border border-amber-300/80 text-amber-950 text-xs flex items-start gap-2 shadow-2xs">
+                <span className="text-sm shrink-0">💡</span>
+                <span className="leading-relaxed">
+                  {w.noExactMatch || '此組合無同時滿足兩題之完美重合部位，已為您依料理法與口感呈列最貼近的精選部位：'}
+                </span>
+              </div>
+            )}
 
             <div className="space-y-3.5">
               {recommendedCuts.map((rawCut) => {
@@ -218,11 +260,11 @@ export default function TasteWizard({
 
                       {isPerfect ? (
                         <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300 whitespace-nowrap shadow-2xs">
-                          {w.perfectBadge}
+                          ★ {w.perfectBadge}
                         </span>
                       ) : (
                         <span className="px-2 py-0.5 rounded text-[10px] font-medium tracking-wider bg-parchment-200 text-charcoal-muted border border-parchment-300 whitespace-nowrap shadow-2xs">
-                          {w.recommendedBadge || '推薦部位'}
+                          {w.relevantBadge || w.recommendedBadge || '相關推薦'}
                         </span>
                       )}
                     </div>

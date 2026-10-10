@@ -8,6 +8,13 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
   const heroLangData = t.hero[activeCategory] || t.hero.beef;
   const cover = t.hero?.heroCovers?.[activeCategory] || t.hero?.heroCover || TRANSLATIONS['zh-TW'].hero.heroCover;
 
+  const coverImage = {
+    beef: '/images/hero-cover.jpg',
+    pork: '/images/hero-cover-pork.jpg',
+    chicken: '/images/hero-cover-chicken.jpg',
+    fish: '/images/hero-cover-fish.jpg',
+  }[activeCategory] || '/images/hero-cover.jpg';
+
   // 圖示映射
   const getActionIcon = (label, filter) => {
     if (filter.type === 'anchor') return Wine;
@@ -128,7 +135,7 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
             >
               {/* AI 封面圖片 */}
               <img
-                src="/images/hero-cover.jpg"
+                src={coverImage}
                 alt={cover.alt}
                 className="w-full h-auto object-cover aspect-[16/10] sm:aspect-[16/11] transition-transform duration-700 group-hover:scale-105"
               />
@@ -191,7 +198,7 @@ export default function Hero({ activeCategory, onQuickFilter, currentLang = 'zh-
 
             {/* 高解析度大圖 */}
             <img
-              src="/images/hero-cover.jpg"
+              src={coverImage}
               alt={`${cover.alt} 8K`}
               className="w-full h-auto max-h-[75vh] object-contain mx-auto"
             />
