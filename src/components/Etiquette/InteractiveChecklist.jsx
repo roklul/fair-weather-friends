@@ -49,7 +49,7 @@ export default function InteractiveChecklist({ data }) {
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-semibold tracking-wider uppercase">
           <span>✅</span>
-          <span>{data.chapters?.c10}</span>
+          <span>{data.chapters?.c09}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-serif font-bold text-charcoal tracking-tight">
           {checklist.title}

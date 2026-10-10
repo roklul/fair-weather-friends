@@ -13,9 +13,8 @@ export const ETIQUETTE_DATA = {
       c05: 'CHAPTER 05 · 西餐儀態與刀叉訊號',
       c06: 'CHAPTER 06 · 13 大常見失禮行為對照',
       c07: 'CHAPTER 07 · 三大核心用餐場合',
-      c08: 'CHAPTER 08 · 數位版權安全原則',
-      c09: 'CHAPTER 09 · 規則適用與判斷順序',
-      c10: 'CHAPTER 10 · 實用互動檢查清單'
+      c08: 'CHAPTER 08 · 規則適用與判斷順序',
+      c09: 'CHAPTER 09 · 實用互動檢查清單'
     },
     title: '中西餐餐桌禮儀指南',
     subtitle: '掌握文化結構差異、圓桌與長桌座次、餐位餐具語言、13 大失禮行為對照與實用檢查清單',
@@ -32,9 +31,8 @@ export const ETIQUETTE_DATA = {
       { id: 'western-flow', label: '五、西餐用餐流程', icon: '🍴' },
       { id: 'faux-pas', label: '六、常見失禮對照', icon: '⚠️' },
       { id: 'scenarios', label: '七、三大用餐場合', icon: '🥂' },
-      { id: 'copyright', label: '八、版權安全原則', icon: '🛡️' },
-      { id: 'reliability', label: '九、適用限制與判斷', icon: '🧭' },
-      { id: 'checklist', label: '十、實用檢查清單', icon: '✅' },
+      { id: 'reliability', label: '八、適用限制與判斷', icon: '🧭' },
+      { id: 'checklist', label: '九、實用檢查清單', icon: '✅' },
     ],
 
     // 版權重要原則
@@ -418,29 +416,9 @@ export const ETIQUETTE_DATA = {
       }
     },
 
-    // 八、版權安全與教材製作
-    copyrightSection: {
-      title: '八、版權安全的圖像與教材製作方案',
-      desc: '在數位時代製作餐飲教材或網頁，必須具備高度的著作權法治觀念。',
-      pyramidTitle: '圖像素材授權安全等級金字塔',
-      pyramid: [
-        { level: '等級 1 (最高安全)', source: '自主繪製向量 SVG / CSS 圖表', advice: '100% 掌握完整著作權，完全杜絕侵權爭議（本站全數採用）。' },
-        { level: '等級 2 (高安全)', source: '自主拍攝實景照片', advice: '需取得現場環境與出鏡人物之必要肖像授權，保存原檔。' },
-        { level: '等級 3 (高安全)', source: '明確標示 CC0 / Public Domain', advice: '公有領域素材，下載時保留來源頁面與授權說明備查。' },
-        { level: '等級 4 (中等安全)', source: 'Creative Commons (CC 授權)', advice: '嚴格核對是否需署名 (BY)、是否允許商用 (NC) 與是否允許改作 (ND)。' },
-        { level: '等級 5 (中等安全)', source: '已購買之商用付費圖庫', advice: '保留購買訂單收據、授權證明與約定之使用受眾範圍。' },
-        { level: '等級 6 (極高風險)', source: '網路搜尋 / 社群截圖 / 部落格轉貼', advice: '標註出處不等於合法取得授權！去浮水印重新裁切仍屬侵權，嚴禁使用。' }
-      ],
-      vectorAdvantages: [
-        '幾何簡練：圓桌、方桌、刀叉杯盤用幾何線條表達最直觀清晰。',
-        '高解析度：SVG 向量圖檔在手機、平板與 4K 螢幕上永遠銳利不模糊。',
-        '交互性強：能輕鬆綁定點擊高亮、多語系切換與動畫反饋。'
-      ]
-    },
-
-    // 九、適用限制與判斷
+    // 八、適用限制與判斷
     reliability: {
-      title: '九、資料可靠性與判斷順序',
+      title: '八、資料可靠性與判斷順序',
       desc: '禮儀不是死板的教條，而是活在不同文化與情境中的體貼。',
       notes: [
         '中餐各地區在座次尊卑、敬酒習俗與茶禮細節上存在客觀地域差異。',
@@ -457,9 +435,9 @@ export const ETIQUETTE_DATA = {
       ]
     },
 
-    // 十、實用檢查清單
+    // 九、實用檢查清單
     checklist: {
-      title: '十、實用互動檢查清單 (Interactive Checklist)',
+      title: '九、實用互動檢查清單 (Interactive Checklist)',
       subtitle: '出門赴宴前的速查口袋清單 · 點擊打勾即時計算禮儀準備完成度',
       progressLabel: '禮儀準備度：',
       resetBtn: '重置所有項目',
@@ -546,9 +524,8 @@ export const ETIQUETTE_DATA = {
       c05: 'CHAPTER 05 · Western Course Flow & Napkin Signals',
       c06: 'CHAPTER 06 · 13 Common Dining Faux Pas Analysis',
       c07: 'CHAPTER 07 · Strategies for 3 Major Dining Scenarios',
-      c08: 'CHAPTER 08 · Copyright Compliance & Originality Notice',
-      c09: 'CHAPTER 09 · Contextual Flexibility & Practical Judgment',
-      c10: 'CHAPTER 10 · Interactive Dining Checklist'
+      c08: 'CHAPTER 08 · Contextual Flexibility & Practical Judgment',
+      c09: 'CHAPTER 09 · Interactive Dining Checklist'
     },
     title: 'Chinese & Western Dining Etiquette Guide',
     subtitle: 'Cultural differences, round & rectangular seating charts, cutlery signals, 13 common faux pas, and an interactive checklist.',
@@ -556,6 +533,7 @@ export const ETIQUETTE_DATA = {
     badge: 'Practical Social & Dining Etiquette Guide',
     introQuote: '"Chinese dining centers on sharing and relationship hierarchy; Western dining focuses on individual place settings and course pacing. True etiquette is not rigid dogmatism, but respect, hygiene, and calm demeanor."',
     
+    // 快速錨點
     quickNav: [
       { id: 'culture-diff', label: '1. Cultural Differences', icon: '⚖️' },
       { id: 'chinese-seating', label: '2. Chinese Seating', icon: '🪑' },
@@ -564,9 +542,8 @@ export const ETIQUETTE_DATA = {
       { id: 'western-flow', label: '5. Western Dining Flow', icon: '🍴' },
       { id: 'faux-pas', label: '6. Common Faux Pas', icon: '⚠️' },
       { id: 'scenarios', label: '7. Dining Scenarios', icon: '🥂' },
-      { id: 'copyright', label: '8. Copyright Principles', icon: '🛡️' },
-      { id: 'reliability', label: '9. Rule Boundaries', icon: '🧭' },
-      { id: 'checklist', label: '10. Interactive Checklist', icon: '✅' },
+      { id: 'reliability', label: '8. Rule Boundaries', icon: '🧭' },
+      { id: 'checklist', label: '9. Interactive Checklist', icon: '✅' },
     ],
 
     copyrightNotice: {
@@ -817,27 +794,8 @@ export const ETIQUETTE_DATA = {
       }
     },
 
-    copyrightSection: {
-      title: '8. Copyright-Safe Imagery & Educational Design',
-      desc: 'Designing digital culinary resources requires strong copyright hygiene.',
-      pyramidTitle: 'Image Licensing Safety Pyramid',
-      pyramid: [
-        { level: 'Level 1 (Highest Safety)', source: 'Original Vector SVG / CSS Diagrams', advice: 'Full intellectual property control; zero infringement risk (Used 100% on this site).' },
-        { level: 'Level 2 (High Safety)', source: 'Original On-site Photography', advice: 'Obtain venue and model releases; store raw image files.' },
-        { level: 'Level 3 (High Safety)', source: 'CC0 / Public Domain Assets', advice: 'Free for commercial use; archive source link and license date.' },
-        { level: 'Level 4 (Moderate Safety)', source: 'Creative Commons (CC Licensed)', advice: 'Check Attribution (BY), Non-Commercial (NC), and No-Derivatives (ND) clauses.' },
-        { level: 'Level 5 (Moderate Safety)', source: 'Purchased Stock Photos', advice: 'Retain license receipts and verify allowable audience scope.' },
-        { level: 'Level 6 (Extreme Risk)', source: 'Web Searches / Screenshots / Reposts', advice: 'Attribution is NOT a legal license! Cropping watermarks is copyright infringement.' }
-      ],
-      vectorAdvantages: [
-        'Clean geometry: Lines and icons convey round/square tables and cutlery layouts with perfect clarity.',
-        'High resolution: SVG vectors remain crisp on mobile, tablet, and 4K displays.',
-        'Interactive: Easily binds to click-highlights, language switching, and micro-animations.'
-      ]
-    },
-
     reliability: {
-      title: '9. Rule Boundaries & 5-Step Decision Hierarchy',
+      title: '8. Rule Boundaries & 5-Step Decision Hierarchy',
       desc: 'Etiquette is not a rigid legal code, but considerate empathy across cultures.',
       notes: [
         'Regional differences exist across Chinese regions regarding seating, toasting, and tea rites.',
@@ -855,7 +813,7 @@ export const ETIQUETTE_DATA = {
     },
 
     checklist: {
-      title: '10. Practical Interactive Checklist',
+      title: '9. Practical Interactive Checklist',
       subtitle: 'Pocket checklist before attending banquets · Track your readiness in real time',
       progressLabel: 'Etiquette Readiness:',
       resetBtn: 'Reset All Items',
@@ -941,9 +899,8 @@ export const ETIQUETTE_DATA = {
       c05: 'CHAPTER 05 · 西洋料理のコース進行とナプキンのサイン',
       c06: 'CHAPTER 06 · 13大マナー違反の徹底解説',
       c07: 'CHAPTER 07 · 3大食事シーンの実践的対応戦略',
-      c08: 'CHAPTER 08 · 著作権コンプライアンスと安全性',
-      c09: 'CHAPTER 09 · マナーの適用限界と柔軟な判断',
-      c10: 'CHAPTER 10 · 実践インタラクティブチェックリスト'
+      c08: 'CHAPTER 08 · マナーの適用限界と柔軟な判断',
+      c09: 'CHAPTER 09 · 実践インタラクティブチェックリスト'
     },
     title: '中華・西洋テーブルマナー完全ガイド',
     subtitle: '文化構造の違い、円卓・長机の席順、カトラリーシグナル、13の無作法比較、実践チェックリスト',
@@ -951,6 +908,7 @@ export const ETIQUETTE_DATA = {
     badge: '実用的な食事マナーと社交エチケット',
     introQuote: '「中華料理は共有と関係秩序を重んじ、西洋料理は個人の席とコースの進行を重んじます。マナーの本質は教条ではなく、他者への敬意、衛生の保持、そして落ち着いた立ち振る舞いです。」',
     
+    // 快速錨點
     quickNav: [
       { id: 'culture-diff', label: '一、文化構造の違い', icon: '⚖️' },
       { id: 'chinese-seating', label: '二、中華料理の席順', icon: '🪑' },
@@ -959,9 +917,8 @@ export const ETIQUETTE_DATA = {
       { id: 'western-flow', label: '五、西洋料理の作法とナイフ', icon: '🍴' },
       { id: 'faux-pas', label: '六、よくある無作法比較', icon: '⚠️' },
       { id: 'scenarios', label: '七、三大食事シーン', icon: '🥂' },
-      { id: 'copyright', label: '八、著作権安全原則', icon: '🛡️' },
-      { id: 'reliability', label: '九、適用制限と判断順', icon: '🧭' },
-      { id: 'checklist', label: '十、実践チェックリスト', icon: '✅' },
+      { id: 'reliability', label: '八、適用制限と判断順', icon: '🧭' },
+      { id: 'checklist', label: '九、実践チェックリスト', icon: '✅' },
     ],
 
     copyrightNotice: {
@@ -1212,27 +1169,8 @@ export const ETIQUETTE_DATA = {
       }
     },
 
-    copyrightSection: {
-      title: '八、著作権保護と安全な教材制作',
-      desc: 'デジタル時代における教材作成では著作権への深い配慮が必要です。',
-      pyramidTitle: '画像素材のライセンス安全性ピラミッド',
-      pyramid: [
-        { level: 'レベル1 (最高安全)', source: 'オリジナルSVG / CSSベクター描画', advice: '完全な著作権を保持し、権利侵害リスクゼロ（本サイト全面採用）。' },
-        { level: 'レベル2 (高安全)', source: '自社撮影の写真', advice: '場所や人物の撮影許諾を取得し原本を保管。' },
-        { level: 'レベル3 (高安全)', source: '明確なCC0 / パブリックドメイン', advice: '出所と規約ページを記録して利用。' },
-        { level: 'レベル4 (中安全)', source: 'Creative Commons (CCライセンス)', advice: 'クレジット表記や商用可否を厳格に確認。' },
-        { level: 'レベル5 (中安全)', source: '購入済み有料ストックフォト', advice: '領収書とライセンス範囲を保存。' },
-        { level: 'レベル6 (極めて危険)', source: 'ネット検索画像・SNSスクショ', advice: '出所を明記しても無断転載は違法です。厳禁。' }
-      ],
-      vectorAdvantages: [
-        '幾何学的な明瞭さ：円卓やナイフの配置が直感的に伝わります。',
-        '高解像度対応：4Kやスマホ画面でも常に鮮明に表示されます。',
-        'インタラクティブ性：クリック操作や言語切り替えと完璧に連動します。'
-      ]
-    },
-
     reliability: {
-      title: '九、適用限界と5つの判断基準',
+      title: '八、適用限界と5つの判断基準',
       desc: 'マナーは固定された法律ではなく、状況に応じた思いやりです。',
       notes: [
         '中華料理でも地域によって席順や乾杯の風習が異なります。',
@@ -1250,7 +1188,7 @@ export const ETIQUETTE_DATA = {
     },
 
     checklist: {
-      title: '十、実践インタラクティブチェックリスト',
+      title: '九、実践インタラクティブチェックリスト',
       subtitle: '宴席前のスマート確認リスト · チェックして準備度をリアルタイム測定',
       progressLabel: 'マナー準備度：',
       resetBtn: 'すべての項目をリセット',

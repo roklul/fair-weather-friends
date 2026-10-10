@@ -83,9 +83,19 @@ export default function EtiquetteFooter({ currentLang = 'zh-TW' }) {
           <p>{footerText.disclaimer}</p>
         </div>
 
-        {/* 版權標記 */}
-        <div className="pt-6 text-center text-xs text-charcoal-muted font-mono">
-          <p>{footerText.copyright}</p>
+        {/* 版權標記與授權連結 */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-charcoal-muted">
+          <p className="font-mono">{footerText.copyright}</p>
+          <Link
+            href="/copyright"
+            className="text-beef-burgundy hover:underline font-sans font-medium whitespace-nowrap"
+          >
+            {currentLang === 'en'
+              ? 'View Copyright & Licensing Policy →'
+              : currentLang === 'ja'
+              ? '著作権ポリシーとライセンスを見る →'
+              : '查看完整版權政策與授權金字塔 →'}
+          </Link>
         </div>
 
       </div>

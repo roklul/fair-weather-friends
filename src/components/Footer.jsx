@@ -69,6 +69,7 @@ export default function Footer({ currentLang = 'zh-TW' }) {
               <li><a href="#wine-pairing" className="hover:text-white transition-colors">{t.nav.wine}</a></li>
               <li><a href="#cocktails" className="hover:text-white transition-colors">{t.nav.cocktail}</a></li>
               <li><Link href="/etiquette" className="text-amber-300 hover:text-white transition-colors font-semibold">{t.nav.etiquette}</Link></li>
+              <li><Link href="/copyright" className="hover:text-white transition-colors">{f.copyrightLink}</Link></li>
             </ul>
           </div>
 
