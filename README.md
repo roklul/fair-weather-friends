@@ -4,7 +4,7 @@
 > *Interactive Meat & Seafood Cuts × AI Sommelier × Fine Wine & Craft Mocktail Pairing Guide*  
 > *インタラクティブ肉・海鮮部位選び × AIソムリエ × 料理・ペアリング酒＆モクテルガイド*
 
-[![Next.js 14](https://img.shields.io/badge/Next.js-14.2-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16.4-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![React 18](https://img.shields.io/badge/React-18.3-61DAFB?style=flat&logo=react)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![Vitest 38 Tests](https://img.shields.io/badge/Vitest-38%2F38%20Passed-729B1B?style=flat&logo=vitest)](https://vitest.dev/)
@@ -83,7 +83,7 @@
 
 ### 🛠️ 技術架構
 
-- **前端框架**：Next.js 14.2 (App Router) + React 18.3
+- **前端框架**：Next.js 16.4 (App Router) + React 19.2
 - **樣式與視覺系統**：Tailwind CSS v3.4 + 自製羊皮紙復古色調 + 出版物排版系統
 - **圖形與圖示工程**：原創 Responsive Inline SVG + 零外部依賴 Micro Vector Icons
 - **代碼品質與測試金字塔**：

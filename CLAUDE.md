@@ -9,7 +9,7 @@
 
 - **專案名稱**：Fair Weather Friends（酒肉朋友）
 - **定位**：頂級肉品部位解剖百科、風味決策精靈、經典調酒與現代零酒精 (Zero-Proof) 搭餐指南。
-- **架構形態**：Next.js 14 (App Router) + React 18 + Tailwind CSS 3.4 + Vitest 單元測試 + Playwright E2E。
+- **架構形態**：Next.js 16 (App Router) + React 19 + Tailwind CSS 3.4 + Vitest 單元測試 + Playwright E2E。
 
 ---
 
